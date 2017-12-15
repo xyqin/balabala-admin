@@ -32,7 +32,7 @@ public class JavaModelGeneratorConfiguration extends PropertyHolder {
 
     private String targetProject;
 
-    private String projectName = "sc";
+    private String projectName = "balabala";
 
     public String getProjectName() {
         return projectName;

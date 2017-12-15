@@ -30,7 +30,7 @@ public class JavaClientGeneratorConfiguration extends TypedPropertyHolder {
     private String targetPackage;
     private String implementationPackage;
     private String targetProject;
-    private String projectName ="sc";
+    private String projectName ="balabala";
 
     public String getProjectName() {
         return projectName;

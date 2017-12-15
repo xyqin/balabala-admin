@@ -41,7 +41,7 @@ public class RudderGeneratorTools {
 
     private void initProjectInfo() throws IOException {
         Project.newProject("rudderframework","Rudder框架");
-        Project.newProject("sc","智能");
+        Project.newProject("balabala","叭啦叭啦");
 
         InputStream input = RudderGeneratorTools.class.getClassLoader().getResourceAsStream("template/rudderframework/table.txt");
         InputStreamReader isr = new InputStreamReader(input);

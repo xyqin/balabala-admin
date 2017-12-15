@@ -4,5 +4,14 @@
 {"moduleTitle":"角色权限关系","dataType":"Table","moduleName":"rudderRole2permission","displayField":"","remark":"角色权限关系","version":"1.0","key":"rudderframework"}
 {"moduleTitle":"用户","dataType":"Table","moduleName":"rudderUser","displayField":"rudderuserName","remark":"系统用户","version":"1.0","key":"rudderframework"}
 {"moduleTitle":"用户角色关系","dataType":"Table","moduleName":"rudderUser2role","displayField":"","remark":"用户角色关系","version":"1.0","key":"rudderframework"}
-{"moduleTitle":"设备","dataType":"Table","moduleName":"scDevice","displayField":"","remark":"","version":"1.0","key":"sc"}
-{"moduleTitle":"设备登记","dataType":"Table","moduleName":"scDeviceSignup","displayField":"","remark":"","version":"1.0","key":"sc"}
+{"moduleTitle":"校区","dataType":"Table","moduleName":"balabalaCampus","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"开班","dataType":"Table","moduleName":"balabalaClass","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"开班课时","dataType":"Table","moduleName":"balabalaClassLesson","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"开班会员","dataType":"Table","moduleName":"balabalaClassMember","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"课程","dataType":"Table","moduleName":"balabalaCourse","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"课程分类","dataType":"Table","moduleName":"balabalaCourseCategory","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"会员","dataType":"Table","moduleName":"balabalaMember","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"会员通行证","dataType":"Table","moduleName":"balabalaMemberPassport","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"收货地址","dataType":"Table","moduleName":"balabalaMemberShippingAddress","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"地区","dataType":"Table","moduleName":"balabalaRegion","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"教师","dataType":"Table","moduleName":"balabalaTeacher","displayField":"","remark":"","version":"1.0","key":"balabala"}
