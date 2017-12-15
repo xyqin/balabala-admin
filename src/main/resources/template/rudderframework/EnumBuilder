@@ -1,0 +1,31 @@
+package com.newhead.${vo.projectName}.modules.${vo.moduleName};
+
+/**
+ *
+ */
+public enum ${vo.enumName}Enum {
+<%for(type in vo.types){%>${type.label}("${type.value}")<%if(!typeLP.last){%>,<%}%><%}%>;
+    private String value;
+
+    private ${vo.enumName}Enum(String value) {
+        this.value = value;
+    }
+
+    public static String getLabel(String value) {
+        ${vo.enumName}Enum[] enums = ${vo.enumName}Enum.values();
+        for(${vo.enumName}Enum e:enums) {
+            if (e.getValue().equals(value)) {
+                return  e.name();
+            }
+        }
+        return "";
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+}

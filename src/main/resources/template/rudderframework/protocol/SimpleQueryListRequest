@@ -1,0 +1,13 @@
+package com.newhead.${vo.key}.modules.${vo.smoduleName}.ext.protocol;
+
+import com.newhead.${vo.key}.modules.${vo.smoduleName}.base.protocol.Abstract${vo.bmoduleName}QueryListRequest;
+import lombok.Data;
+
+/**
+ * ${vo.remark}
+ * ${vo.date}
+ */
+@Data
+public class Simple${vo.bmoduleName}QueryListRequest extends Abstract${vo.bmoduleName}QueryListRequest {
+
+}

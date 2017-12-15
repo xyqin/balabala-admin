@@ -1,0 +1,30 @@
+server:
+  port: 8089
+spring:
+  application:
+    name: admin-service
+  datasource:
+    url: jdbc:mysql://118.31.2.247:3306/sc_tmp1?autoReconnect=true&rewriteBatchedStatements=true
+    username: sc
+    password: '[X(anMzBq12Uad9Plj1FJxbC'
+    driver-class-name: org.mariadb.jdbc.Driver
+  redis:
+    host: 118.31.2.247
+    port: 6379
+    password: EUcU4gy$2pFlubmr@5EhOQH1
+  session:
+    store-type: none
+  http:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+management:
+  security:
+    enabled: false
+
+mybatis:
+    config-location: classpath:mybatis-config.xml
+
+storeconfig:
+  storepath: /data/sc
+

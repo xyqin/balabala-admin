@@ -1,0 +1,30 @@
+package com.newhead.${vo.key}.modules.${vo.smoduleName}.ext;
+
+import com.newhead.${vo.key}.modules.${vo.smoduleName}.base.Abstract${vo.bmoduleName}Controller;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Api;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * RudderFramework 自动生成
+ * ${vo.moduleTitle}控制
+ * ${vo.date}
+ */
+@Api(tags = "${vo.moduleTitle}", description = "相关的API")
+@RestController
+@RequestMapping(value = "/${vo.smoduleName}", method = RequestMethod.GET)
+public class Simple${vo.bmoduleName}Controller extends Abstract${vo.bmoduleName}Controller {
+    @Autowired
+    private Simple${vo.bmoduleName}Service service;
+
+    @Override
+    public Simple${vo.bmoduleName}Service getService() {
+        return service;
+    }
+}

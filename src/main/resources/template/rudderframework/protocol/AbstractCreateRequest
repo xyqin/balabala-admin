@@ -1,0 +1,40 @@
+package com.newhead.${vo.key}.modules.${vo.smoduleName}.base.protocol;
+
+import lombok.Data;
+import org.hibernate.validator.constraints.NotEmpty;
+import java.util.Date;
+import java.math.BigDecimal;
+
+import javax.validation.constraints.Size;
+
+/**
+ * ${vo.remark}
+ * ${vo.date}
+ */
+@Data
+public abstract class Abstract${vo.bmoduleName}CreateRequest {
+<%for(field in vo.fields) {%>
+    <%if (field.visible) {%>
+        <%if (field.fieldType!='Id') {%>
+    /**
+     *
+     * ${field.desc}
+     */
+            <%if (!field.valid) {%>
+                <%if (field.fieldType=='String') {%>
+    @NotEmpty(message="${vo.moduleName}${field.desc}不能为空")
+                    <%if (field.length>0) {%>
+    @Size(max=${field.length},message = "{vo.moduleName}${field.desc}长度无效")
+                    <%}%>
+                <%}%>
+            <%}%>
+    private ${field.javaType} ${field.name};
+
+        <%}%>
+    <%}%>
+<%}%>
+<% for(ref in vo.refs ){%>
+    private String[] ${ref.rnref}s;
+
+<%}%>
+}

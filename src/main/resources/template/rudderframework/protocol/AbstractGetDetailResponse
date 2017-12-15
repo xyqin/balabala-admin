@@ -1,0 +1,43 @@
+package com.newhead.${vo.key}.modules.${vo.smoduleName}.base.protocol;
+
+import com.newhead.rudderframework.modules.LabelValueItem;
+import lombok.Data;
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+
+import java.math.BigDecimal;
+
+/**
+ * ${vo.remark}
+ * ${vo.date}
+ */
+@Data
+public abstract class Abstract${vo.bmoduleName}GetDetailResponse {
+ <%for(field in vo.fields) {%>
+     <%if (field.visible) {%>
+    /**
+     *
+     * ${field.desc}
+     */
+        <%if (field.fieldType=='Object') {%>
+    private LabelValueItem ${field.bname}Object = new LabelValueItem();
+        <%} else if (field.fieldType=='Enum') {%>
+    private LabelValueItem ${field.bname}Enum = new LabelValueItem();
+        <%} else {%>
+     private ${field.javaType} ${field.name};
+        <%}%>
+
+     <%}%>
+ <%}%>
+<% for(ref in vo.refs ){%>
+    <% if(ref.displayType=='ListSelect') { %>
+    private List<LabelValueItem> ${ref.rnref}Items = new ArrayList<>();
+    <% } else if(ref.displayType=='TreeSelect') { %>
+    private Tree ${ref.rnref}Items = new Tree();
+     <% } %>
+
+<% } %>
+
+}
