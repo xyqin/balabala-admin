@@ -15,3 +15,4 @@
 {"moduleTitle":"收货地址","dataType":"Table","moduleName":"balabalaMemberShippingAddress","displayField":"","remark":"","version":"1.0","key":"balabala"}
 {"moduleTitle":"地区","dataType":"Table","moduleName":"balabalaRegion","displayField":"","remark":"","version":"1.0","key":"balabala"}
 {"moduleTitle":"教师","dataType":"Table","moduleName":"balabalaTeacher","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"会员课时表","dataType":"Table","moduleName":"balabalaMemberLesson","displayField":"","remark":"","version":"1.0","key":"balabala"}
