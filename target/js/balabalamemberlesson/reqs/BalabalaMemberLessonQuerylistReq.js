@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2017年12月23日 02:13:00
+ * 生成时间：2017年12月24日 12:57:59
  * 该文件系自动生成，手动修改可能会被替换
  * BalabalaMemberLessonQuerylistReq
  * 接口地址：balabalamemberlesson/querylist

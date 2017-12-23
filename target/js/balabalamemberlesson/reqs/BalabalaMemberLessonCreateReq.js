@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2017年12月23日 02:13:00
+ * 生成时间：2017年12月24日 12:57:59
  * 该文件系自动生成，手动修改可能会被替换
  * BalabalaMemberLessonCreateReq
  * 接口地址：balabalamemberlesson/create
@@ -24,6 +24,9 @@ class BalabalaMemberLessonCreateReq extends BaseRobotReq {
         },{key: 'memberId',
             desc: '会员ID',
             isRequired: true
+        },{key: 'classId',
+            desc: '开班ID',
+            isRequired: true
         },{key: 'lessonId',
             desc: '课时ID',
             isRequired: true
@@ -40,9 +43,10 @@ class BalabalaMemberLessonCreateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,memberId,lessonId,startAt,endAt) {
+    setSimpleParams(id,memberId,classId,lessonId,startAt,endAt) {
         this.addParams('id', id);
         this.addParams('memberId', memberId);
+        this.addParams('classId', classId);
         this.addParams('lessonId', lessonId);
         this.addParams('startAt', startAt);
         this.addParams('endAt', endAt);

@@ -18,20 +18,18 @@
             <encoder>
                 <pattern>${FILE_LOG_PATTERN}</pattern>
             </encoder>
-            <!--<file>/Users/hgwang/logs/admin.log</file>-->
-            <file>/opt/sc/logs/admin.log</file>
+            <file>/opt/balabala/log/admin.log</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <!-- daily rollover -->
 
-                <!--<fileNamePattern>/Users/hgwang/logs/admin.%d{yyyy-MM-dd}.log</fileNamePattern>-->
-                <fileNamePattern>/opt/sc/logs/admin.%d{yyyy-MM-dd}.log</fileNamePattern>
+                <fileNamePattern>/opt/balabala/log/admin.%d{yyyy-MM-dd}.log</fileNamePattern>
 
                 <!-- keep 30 days' worth of history -->
                 <maxHistory>30</maxHistory>
             </rollingPolicy>
         </appender>
 
-        <logger name="com.anywave" level="DEBUG"/>
+        <logger name="com.newhead" level="DEBUG"/>
 
         <root level="INFO">
             <appender-ref ref="FILE"/>
@@ -44,17 +42,17 @@
             <encoder>
                 <pattern>${FILE_LOG_PATTERN}</pattern>
             </encoder>
-            <file>/opt/anywave/log/admin.log</file>
+            <file>/opt/balabala/log/admin.log</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <!-- daily rollover -->
-                <fileNamePattern>/opt/anywave/log/admin.%d{yyyy-MM-dd}.log</fileNamePattern>
+                <fileNamePattern>/opt/balabala/log/admin.%d{yyyy-MM-dd}.log</fileNamePattern>
 
                 <!-- keep 30 days' worth of history -->
                 <maxHistory>30</maxHistory>
             </rollingPolicy>
         </appender>
 
-        <logger name="com.anywave" level="DEBUG"/>
+        <logger name="com.newhead" level="DEBUG"/>
 
         <root level="WARN">
             <appender-ref ref="FILE"/>

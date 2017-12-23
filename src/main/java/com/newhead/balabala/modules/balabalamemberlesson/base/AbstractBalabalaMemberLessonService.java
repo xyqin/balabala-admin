@@ -22,6 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 
+import com.newhead.balabala.modules.balabalaclass.base.repository.entity.BalabalaClass;
+import com.newhead.balabala.modules.balabalaclass.base.repository.entity.BalabalaClassExample;
+
+import com.newhead.balabala.modules.balabalaclass.base.repository.dao.BalabalaClassMapper;
 import com.newhead.balabala.modules.balabalaclasslesson.base.repository.entity.BalabalaClassLesson;
 import com.newhead.balabala.modules.balabalaclasslesson.base.repository.entity.BalabalaClassLessonExample;
 
@@ -46,6 +50,8 @@ public abstract class AbstractBalabalaMemberLessonService extends BaseService {
 
     protected abstract void saveOrUpdate(BalabalaMemberLesson entity);
 
+    @Autowired
+    protected BalabalaClassMapper balabalaclassMapper;
     @Autowired
     protected BalabalaClassLessonMapper balabalaclasslessonMapper;
     @Autowired
@@ -109,6 +115,14 @@ public abstract class AbstractBalabalaMemberLessonService extends BaseService {
             memberIdObject.setLabel(memberIdEntity.getNickname());
             memberIdObject.setValue(String.valueOf(entity.getMemberId()));
             memberIdObject.setChecked(false);
+        }
+        BalabalaClass  classIdEntity = balabalaclassMapper.selectByPrimaryKey(Long.valueOf(entity.getClassId()));
+        if (classIdEntity!=null) {
+            LabelValueItem classIdObject = response.getClassIdObject();
+            classIdObject.setName("classId");
+            classIdObject.setLabel(classIdEntity.getClassName());
+            classIdObject.setValue(String.valueOf(entity.getClassId()));
+            classIdObject.setChecked(false);
         }
         BalabalaClassLesson  lessonIdEntity = balabalaclasslessonMapper.selectByPrimaryKey(Long.valueOf(entity.getLessonId()));
         if (lessonIdEntity!=null) {
@@ -187,11 +201,15 @@ public abstract class AbstractBalabalaMemberLessonService extends BaseService {
         Map<Long,Long> memberIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> memberIdResultMap = Maps.newHashMap();
 
+        Map<Long,Long> classIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> classIdResultMap = Maps.newHashMap();
+
         Map<Long,Long> lessonIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> lessonIdResultMap = Maps.newHashMap();
 
        for(BalabalaMemberLesson entity:entitys) {
             memberIdMap.put(entity.getId(),entity.getMemberId());
+            classIdMap.put(entity.getId(),entity.getClassId());
             lessonIdMap.put(entity.getId(),entity.getLessonId());
         }
         BalabalaMemberExample memberIdExample = new BalabalaMemberExample();
@@ -208,6 +226,21 @@ public abstract class AbstractBalabalaMemberLessonService extends BaseService {
            memberIdItem.setValue(String.valueOf(item.getId()));
            memberIdItem.setLabel(item.getNickname());
            memberIdResultMap.put(item.getId(),memberIdItem);
+        }
+        BalabalaClassExample classIdExample = new BalabalaClassExample();
+
+        List<Long> classIds = new ArrayList<>();
+        classIds.addAll(classIdMap.values());
+        if (classIds.size()>0) {
+            classIdExample.createCriteria().andIdIn(classIds);
+        }
+        List<BalabalaClass>  classIdList = balabalaclassMapper.selectByExample(classIdExample);
+        for(BalabalaClass item:classIdList) {
+           LabelValueItem classIdItem = new LabelValueItem();
+           classIdItem.setName("classId");
+           classIdItem.setValue(String.valueOf(item.getId()));
+           classIdItem.setLabel(item.getClassName());
+           classIdResultMap.put(item.getId(),classIdItem);
         }
         BalabalaClassLessonExample lessonIdExample = new BalabalaClassLessonExample();
 
@@ -236,6 +269,14 @@ public abstract class AbstractBalabalaMemberLessonService extends BaseService {
                 BeanUtils.copyProperties(memberIdResultMap.get(memberId),memberIdlvi);
             }
             response.setMemberIdObject(memberIdlvi);
+            Long classId = classIdMap.get(entity.getId());
+
+            LabelValueItem classIdlvi = null;
+            if (classId!=null && classIdResultMap.get(classId)!=null) {
+                classIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(classIdResultMap.get(classId),classIdlvi);
+            }
+            response.setClassIdObject(classIdlvi);
             Long lessonId = lessonIdMap.get(entity.getId());
 
             LabelValueItem lessonIdlvi = null;
