@@ -11,7 +11,7 @@ import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 课程服务
- * 2017年12月23日 02:12:57
+ * 2017年12月28日 12:00:28
  */
 @Api(tags = "课程", description = "相关的API")
 @Service

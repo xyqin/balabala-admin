@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2017年12月24日 12:57:58
+ * @generated 2017年12月28日 12:00:29
  */
 @Data
 public abstract class AbstractBalabalaMemberLessonQueryListRequest  {

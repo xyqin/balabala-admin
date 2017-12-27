@@ -19,6 +19,10 @@
         <package name="com.newhead.balabala.modules.balabalaregion.base.repository.entity.BalabalaRegion"/>
         <package name="com.newhead.balabala.modules.balabalateacher.base.repository.entity.BalabalaTeacher"/>
         <package name="com.newhead.balabala.modules.balabalamemberlesson.base.repository.entity.BalabalaMemberLesson"/>
+        <package name="com.newhead.balabala.modules.balabalamembercomment.base.repository.entity.BalabalaMemberComment"/>
+        <package name="com.newhead.balabala.modules.balabalatextbook.base.repository.entity.BalabalaTextbook"/>
+        <package name="com.newhead.balabala.modules.balabalatextbookcategory.base.repository.entity.BalabalaTextbookCategory"/>
+        <package name="com.newhead.balabala.modules.balabalatextbookhomework.base.repository.entity.BalabalaTextbookHomework"/>
         <package name="com.newhead.rudderframework.modules.ruddermenu.base.repository.entity.RudderMenu"/>
         <package name="com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermission"/>
         <package name="com.newhead.rudderframework.modules.rudderrole.base.repository.entity.RudderRole"/>
@@ -39,6 +43,10 @@
          <mapper resource="com/newhead/balabala/modules/balabalaregion/base/repository/entity/BalabalaRegionMapper.xml"/>
          <mapper resource="com/newhead/balabala/modules/balabalateacher/base/repository/entity/BalabalaTeacherMapper.xml"/>
          <mapper resource="com/newhead/balabala/modules/balabalamemberlesson/base/repository/entity/BalabalaMemberLessonMapper.xml"/>
+         <mapper resource="com/newhead/balabala/modules/balabalamembercomment/base/repository/entity/BalabalaMemberCommentMapper.xml"/>
+         <mapper resource="com/newhead/balabala/modules/balabalatextbook/base/repository/entity/BalabalaTextbookMapper.xml"/>
+         <mapper resource="com/newhead/balabala/modules/balabalatextbookcategory/base/repository/entity/BalabalaTextbookCategoryMapper.xml"/>
+         <mapper resource="com/newhead/balabala/modules/balabalatextbookhomework/base/repository/entity/BalabalaTextbookHomeworkMapper.xml"/>
          <mapper resource="com/newhead/rudderframework/modules/ruddermenu/base/repository/entity/RudderMenuMapper.xml"/>
          <mapper resource="com/newhead/rudderframework/modules/rudderpermission/base/repository/entity/RudderPermissionMapper.xml"/>
          <mapper resource="com/newhead/rudderframework/modules/rudderrole/base/repository/entity/RudderRoleMapper.xml"/>

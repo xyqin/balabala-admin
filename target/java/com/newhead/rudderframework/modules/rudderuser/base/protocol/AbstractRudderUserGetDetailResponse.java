@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 系统用户
- * 2017年12月23日 02:12:59
+ * 2017年12月28日 12:00:30
  */
 @Data
 public abstract class AbstractRudderUserGetDetailResponse {

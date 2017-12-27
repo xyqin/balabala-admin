@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * RudderFramework 自动生成
  * 菜单控制
- * 2017年12月23日 02:12:57
+ * 2017年12月28日 12:00:28
  */
 @Api(tags = "菜单", description = "相关的API")
 @RestController

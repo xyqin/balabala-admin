@@ -26,6 +26,10 @@ import com.newhead.balabala.modules.balabalacoursecategory.base.repository.entit
 import com.newhead.balabala.modules.balabalacoursecategory.base.repository.entity.BalabalaCourseCategoryExample;
 
 import com.newhead.balabala.modules.balabalacoursecategory.base.repository.dao.BalabalaCourseCategoryMapper;
+import com.newhead.balabala.modules.balabalatextbook.base.repository.entity.BalabalaTextbook;
+import com.newhead.balabala.modules.balabalatextbook.base.repository.entity.BalabalaTextbookExample;
+
+import com.newhead.balabala.modules.balabalatextbook.base.repository.dao.BalabalaTextbookMapper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,6 +48,8 @@ public abstract class AbstractBalabalaCourseService extends BaseService {
 
     @Autowired
     protected BalabalaCourseCategoryMapper balabalacoursecategoryMapper;
+    @Autowired
+    protected BalabalaTextbookMapper balabalatextbookMapper;
 
     /**
      * 创建
@@ -103,6 +109,14 @@ public abstract class AbstractBalabalaCourseService extends BaseService {
             categoryIdObject.setLabel(categoryIdEntity.getCategoryName());
             categoryIdObject.setValue(String.valueOf(entity.getCategoryId()));
             categoryIdObject.setChecked(false);
+        }
+        BalabalaTextbook  textbookIdEntity = balabalatextbookMapper.selectByPrimaryKey(Long.valueOf(entity.getTextbookId()));
+        if (textbookIdEntity!=null) {
+            LabelValueItem textbookIdObject = response.getTextbookIdObject();
+            textbookIdObject.setName("textbookId");
+            textbookIdObject.setLabel(textbookIdEntity.getTextbookName());
+            textbookIdObject.setValue(String.valueOf(entity.getTextbookId()));
+            textbookIdObject.setChecked(false);
         }
         return response;
     }
@@ -181,8 +195,12 @@ public abstract class AbstractBalabalaCourseService extends BaseService {
         Map<Long,Long> categoryIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> categoryIdResultMap = Maps.newHashMap();
 
+        Map<Long,Long> textbookIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> textbookIdResultMap = Maps.newHashMap();
+
        for(BalabalaCourse entity:entitys) {
             categoryIdMap.put(entity.getId(),entity.getCategoryId());
+            textbookIdMap.put(entity.getId(),entity.getTextbookId());
         }
         BalabalaCourseCategoryExample categoryIdExample = new BalabalaCourseCategoryExample();
 
@@ -199,6 +217,21 @@ public abstract class AbstractBalabalaCourseService extends BaseService {
            categoryIdItem.setLabel(item.getCategoryName());
            categoryIdResultMap.put(item.getId(),categoryIdItem);
         }
+        BalabalaTextbookExample textbookIdExample = new BalabalaTextbookExample();
+
+        List<Long> textbookIds = new ArrayList<>();
+        textbookIds.addAll(textbookIdMap.values());
+        if (textbookIds.size()>0) {
+            textbookIdExample.createCriteria().andIdIn(textbookIds);
+        }
+        List<BalabalaTextbook>  textbookIdList = balabalatextbookMapper.selectByExample(textbookIdExample);
+        for(BalabalaTextbook item:textbookIdList) {
+           LabelValueItem textbookIdItem = new LabelValueItem();
+           textbookIdItem.setName("textbookId");
+           textbookIdItem.setValue(String.valueOf(item.getId()));
+           textbookIdItem.setLabel(item.getTextbookName());
+           textbookIdResultMap.put(item.getId(),textbookIdItem);
+        }
         //第一组
         for(BalabalaCourse entity:entitys) {
             SimpleBalabalaCourseQueryResponse response = new SimpleBalabalaCourseQueryResponse();
@@ -211,6 +244,14 @@ public abstract class AbstractBalabalaCourseService extends BaseService {
                 BeanUtils.copyProperties(categoryIdResultMap.get(categoryId),categoryIdlvi);
             }
             response.setCategoryIdObject(categoryIdlvi);
+            Long textbookId = textbookIdMap.get(entity.getId());
+
+            LabelValueItem textbookIdlvi = null;
+            if (textbookId!=null && textbookIdResultMap.get(textbookId)!=null) {
+                textbookIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(textbookIdResultMap.get(textbookId),textbookIdlvi);
+            }
+            response.setTextbookIdObject(textbookIdlvi);
             results.add(response);
         }
     }

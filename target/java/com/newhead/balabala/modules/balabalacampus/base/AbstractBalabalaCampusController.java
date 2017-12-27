@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 校区控制器
- * 2017年12月23日 02:12:59
+ * 2017年12月28日 12:00:30
  */
 @Api(tags = "校区", description = "相关的API")
 public abstract class AbstractBalabalaCampusController extends WebController  {

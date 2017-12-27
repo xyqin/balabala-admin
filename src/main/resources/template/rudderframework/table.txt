@@ -12,7 +12,10 @@
 {"moduleTitle":"课程分类","dataType":"Table","moduleName":"balabalaCourseCategory","displayField":"","remark":"","version":"1.0","key":"balabala"}
 {"moduleTitle":"会员","dataType":"Table","moduleName":"balabalaMember","displayField":"","remark":"","version":"1.0","key":"balabala"}
 {"moduleTitle":"会员通行证","dataType":"Table","moduleName":"balabalaMemberPassport","displayField":"","remark":"","version":"1.0","key":"balabala"}
-{"moduleTitle":"收货地址","dataType":"Table","moduleName":"balabalaMemberShippingAddress","displayField":"","remark":"","version":"1.0","key":"balabala"}
 {"moduleTitle":"地区","dataType":"Table","moduleName":"balabalaRegion","displayField":"","remark":"","version":"1.0","key":"balabala"}
 {"moduleTitle":"教师","dataType":"Table","moduleName":"balabalaTeacher","displayField":"","remark":"","version":"1.0","key":"balabala"}
 {"moduleTitle":"会员课时表","dataType":"Table","moduleName":"balabalaMemberLesson","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"教师评语表","dataType":"Table","moduleName":"balabalaMemberComment","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"教材表","dataType":"Table","moduleName":"balabalaTextbook","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"教材分类表","dataType":"Table","moduleName":"balabalaTextbookCategory","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"教材作业表","dataType":"Table","moduleName":"balabalaTextbookHomework","displayField":"","remark":"","version":"1.0","key":"balabala"}

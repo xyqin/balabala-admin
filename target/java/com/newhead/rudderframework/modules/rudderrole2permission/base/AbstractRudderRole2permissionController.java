@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 角色权限关系控制器
- * 2017年12月23日 02:12:59
+ * 2017年12月28日 12:00:30
  */
 @Api(tags = "角色权限关系", description = "相关的API")
 public abstract class AbstractRudderRole2permissionController extends WebController  {

@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2017年12月23日 02:12:58
+ * 2017年12月28日 12:00:29
  */
 @Data
 public abstract class AbstractBalabalaCourseUpdateRequest {
@@ -23,6 +23,11 @@ public abstract class AbstractBalabalaCourseUpdateRequest {
      * 课程分类ID
      */
     private Long categoryId;
+    /**
+     *
+     * 教材ID
+     */
+    private Long textbookId;
     /**
      *
      * 课程名称

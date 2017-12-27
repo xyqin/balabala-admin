@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员通行证控制器
- * 2017年12月23日 02:12:59
+ * 2017年12月28日 12:00:30
  */
 @Api(tags = "会员通行证", description = "相关的API")
 public abstract class AbstractBalabalaMemberPassportController extends WebController  {

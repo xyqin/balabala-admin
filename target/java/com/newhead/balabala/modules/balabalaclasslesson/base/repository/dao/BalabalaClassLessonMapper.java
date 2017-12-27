@@ -11,77 +11,77 @@ public interface BalabalaClassLessonMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_class_lesson
-     * @generated 2017年12月23日 02:12:57
+     * @generated 2017年12月28日 12:00:27
      */
     long countByExample(BalabalaClassLessonExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_class_lesson
-     * @generated 2017年12月23日 02:12:57
+     * @generated 2017年12月28日 12:00:27
      */
     int deleteByExample(BalabalaClassLessonExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_class_lesson
-     * @generated 2017年12月23日 02:12:57
+     * @generated 2017年12月28日 12:00:27
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_class_lesson
-     * @generated 2017年12月23日 02:12:57
+     * @generated 2017年12月28日 12:00:27
      */
     int insert(BalabalaClassLesson record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_class_lesson
-     * @generated 2017年12月23日 02:12:57
+     * @generated 2017年12月28日 12:00:27
      */
     int insertSelective(BalabalaClassLesson record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_class_lesson
-     * @generated 2017年12月23日 02:12:57
+     * @generated 2017年12月28日 12:00:27
      */
     List<BalabalaClassLesson> selectByExample(BalabalaClassLessonExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_class_lesson
-     * @generated 2017年12月23日 02:12:57
+     * @generated 2017年12月28日 12:00:27
      */
     BalabalaClassLesson selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_class_lesson
-     * @generated 2017年12月23日 02:12:57
+     * @generated 2017年12月28日 12:00:27
      */
     int updateByExampleSelective(@Param("record") BalabalaClassLesson record, @Param("example") BalabalaClassLessonExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_class_lesson
-     * @generated 2017年12月23日 02:12:57
+     * @generated 2017年12月28日 12:00:27
      */
     int updateByExample(@Param("record") BalabalaClassLesson record, @Param("example") BalabalaClassLessonExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_class_lesson
-     * @generated 2017年12月23日 02:12:57
+     * @generated 2017年12月28日 12:00:27
      */
     int updateByPrimaryKeySelective(BalabalaClassLesson record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_class_lesson
-     * @generated 2017年12月23日 02:12:57
+     * @generated 2017年12月28日 12:00:27
      */
     int updateByPrimaryKey(BalabalaClassLesson record);
 }
