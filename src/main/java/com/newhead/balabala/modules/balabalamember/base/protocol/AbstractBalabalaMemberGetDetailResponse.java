@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2017年12月23日 02:12:59
+ * 2017年12月28日 06:54:54
  */
 @Data
 public abstract class AbstractBalabalaMemberGetDetailResponse {
@@ -68,6 +68,12 @@ public abstract class AbstractBalabalaMemberGetDetailResponse {
      * 网易云登录token
      */
      private String token;
+
+    /**
+     *
+     * 积分
+     */
+     private Integer points;
 
 
 }

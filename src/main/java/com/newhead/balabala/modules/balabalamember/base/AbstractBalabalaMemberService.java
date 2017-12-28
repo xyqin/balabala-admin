@@ -136,6 +136,7 @@ public abstract class AbstractBalabalaMemberService extends BaseService {
         BalabalaMemberExample example = new BalabalaMemberExample();
         BalabalaMemberExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+            example.setOrderByClause("points desc");
         if (request.getNickname()!=null) {
             c.andNicknameLike("%"+request.getNickname()+"%");
         }
@@ -181,6 +182,7 @@ public abstract class AbstractBalabalaMemberService extends BaseService {
         BalabalaMemberExample example = new BalabalaMemberExample();
         BalabalaMemberExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+            example.setOrderByClause("points desc");
 
         if (request.getNickname()!=null) {
             c.andNicknameLike("%"+request.getNickname()+"%");

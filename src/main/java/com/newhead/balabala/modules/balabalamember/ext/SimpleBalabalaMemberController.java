@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * RudderFramework 自动生成
  * 会员控制
- * 2017年12月23日 02:12:57
+ * 2017年12月28日 06:54:52
  */
 @Api(tags = "会员", description = "相关的API")
 @RestController
