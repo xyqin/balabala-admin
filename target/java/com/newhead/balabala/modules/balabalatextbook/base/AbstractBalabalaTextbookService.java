@@ -104,6 +104,11 @@ public abstract class AbstractBalabalaTextbookService extends BaseService {
             categoryIdObject.setValue(String.valueOf(entity.getCategoryId()));
             categoryIdObject.setChecked(false);
         }
+        LabelValueItem typeEnum = response.getTypeEnum();
+        typeEnum.setName("type");
+        typeEnum.setLabel(com.newhead.balabala.modules.balabalatextbook.BalabalaTextbookTypeEnum.getLabel(entity.getType()));
+        typeEnum.setValue(entity.getType());
+        typeEnum.setChecked(true);
         return response;
     }
 
@@ -131,6 +136,10 @@ public abstract class AbstractBalabalaTextbookService extends BaseService {
         BalabalaTextbookExample example = new BalabalaTextbookExample();
         BalabalaTextbookExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        if (request.getType()!=null) {
+            c.andTypeEqualTo(request.getType());
+         }
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -148,6 +157,10 @@ public abstract class AbstractBalabalaTextbookService extends BaseService {
         BalabalaTextbookExample example = new BalabalaTextbookExample();
         BalabalaTextbookExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+
+        if (request.getType()!=null) {
+            c.andTypeEqualTo(request.getType());
+         }
 
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
@@ -203,6 +216,11 @@ public abstract class AbstractBalabalaTextbookService extends BaseService {
                 BeanUtils.copyProperties(categoryIdResultMap.get(categoryId),categoryIdlvi);
             }
             response.setCategoryIdObject(categoryIdlvi);
+            LabelValueItem typeEnum = response.getTypeEnum();
+            typeEnum.setName("type");
+            typeEnum.setLabel(com.newhead.balabala.modules.balabalatextbook.BalabalaTextbookTypeEnum.getLabel(entity.getType()));
+            typeEnum.setValue(entity.getType());
+            typeEnum.setChecked(true);
             results.add(response);
         }
     }
@@ -235,6 +253,54 @@ public abstract class AbstractBalabalaTextbookService extends BaseService {
         BalabalaTextbookExample example = new BalabalaTextbookExample();
         BalabalaTextbookExample.Criteria c = example.createCriteria();
         c.andTextbookNameEqualTo(textbookName);
+        List<BalabalaTextbook> list = getMapper().selectByExample(example);
+        if (list!=null && list.size()==1) {
+            return list.get(0);
+        }
+        return null;
+    }
+    /**
+     * 是否存在同名数据
+     * @param question
+     * @return
+     */
+    public BalabalaTextbook existByQuestion(String question) {
+        //构造查询对象
+        BalabalaTextbookExample example = new BalabalaTextbookExample();
+        BalabalaTextbookExample.Criteria c = example.createCriteria();
+        c.andQuestionEqualTo(question);
+        List<BalabalaTextbook> list = getMapper().selectByExample(example);
+        if (list!=null && list.size()==1) {
+            return list.get(0);
+        }
+        return null;
+    }
+    /**
+     * 是否存在同名数据
+     * @param correct
+     * @return
+     */
+    public BalabalaTextbook existByCorrect(String correct) {
+        //构造查询对象
+        BalabalaTextbookExample example = new BalabalaTextbookExample();
+        BalabalaTextbookExample.Criteria c = example.createCriteria();
+        c.andCorrectEqualTo(correct);
+        List<BalabalaTextbook> list = getMapper().selectByExample(example);
+        if (list!=null && list.size()==1) {
+            return list.get(0);
+        }
+        return null;
+    }
+    /**
+     * 是否存在同名数据
+     * @param image
+     * @return
+     */
+    public BalabalaTextbook existByImage(String image) {
+        //构造查询对象
+        BalabalaTextbookExample example = new BalabalaTextbookExample();
+        BalabalaTextbookExample.Criteria c = example.createCriteria();
+        c.andImageEqualTo(image);
         List<BalabalaTextbook> list = getMapper().selectByExample(example);
         if (list!=null && list.size()==1) {
             return list.get(0);

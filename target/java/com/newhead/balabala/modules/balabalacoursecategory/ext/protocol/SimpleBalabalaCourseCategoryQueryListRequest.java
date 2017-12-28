@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * 
- * 2017年12月28日 12:00:28
+ * 2017年12月28日 01:55:48
  */
 @Data
 public class SimpleBalabalaCourseCategoryQueryListRequest extends AbstractBalabalaCourseCategoryQueryListRequest {

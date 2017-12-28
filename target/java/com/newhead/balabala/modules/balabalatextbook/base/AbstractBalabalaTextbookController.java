@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教材表控制器
- * 2017年12月28日 12:00:30
+ * 2017年12月28日 01:55:50
  */
 @Api(tags = "教材表", description = "相关的API")
 public abstract class AbstractBalabalaTextbookController extends WebController  {
@@ -45,7 +45,19 @@ public abstract class AbstractBalabalaTextbookController extends WebController  
     public ApiEntity<Map> create(@RequestBody SimpleBalabalaTextbookCreateRequest request) {
         BalabalaTextbook textbookName = getService().existByTextbookName(request.getTextbookName());
         if (textbookName != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材名称'"+request.getTextbookName()+"'已经存在！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称'"+request.getTextbookName()+"'已经存在！");
+        }
+        BalabalaTextbook question = getService().existByQuestion(request.getQuestion());
+        if (question != null) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题'"+request.getQuestion()+"'已经存在！");
+        }
+        BalabalaTextbook correct = getService().existByCorrect(request.getCorrect());
+        if (correct != null) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"正确答案'"+request.getCorrect()+"'已经存在！");
+        }
+        BalabalaTextbook image = getService().existByImage(request.getImage());
+        if (image != null) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"图片'"+request.getImage()+"'已经存在！");
         }
         BalabalaTextbook balabalatextbook = getService().create(request);
         //默认创建成功返回ID
@@ -65,7 +77,19 @@ public abstract class AbstractBalabalaTextbookController extends WebController  
     public ApiEntity update(@RequestBody SimpleBalabalaTextbookUpdateRequest request) {
         BalabalaTextbook TextbookName = getService().existByTextbookName(request.getTextbookName());
         if (TextbookName != null && TextbookName.getId()!=request.getId()) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材名称"+request.getTextbookName()+"'已经存在！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称"+request.getTextbookName()+"'已经存在！");
+        }
+        BalabalaTextbook Question = getService().existByQuestion(request.getQuestion());
+        if (Question != null && Question.getId()!=request.getId()) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题"+request.getQuestion()+"'已经存在！");
+        }
+        BalabalaTextbook Correct = getService().existByCorrect(request.getCorrect());
+        if (Correct != null && Correct.getId()!=request.getId()) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"正确答案"+request.getCorrect()+"'已经存在！");
+        }
+        BalabalaTextbook Image = getService().existByImage(request.getImage());
+        if (Image != null && Image.getId()!=request.getId()) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"图片"+request.getImage()+"'已经存在！");
         }
         getService().update(request);
         return new ApiEntity<>();
@@ -103,8 +127,11 @@ public abstract class AbstractBalabalaTextbookController extends WebController  
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "教材表ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBalabalaTextbookQueryResponse>> getList() {
+    public ApiEntity<List<SimpleBalabalaTextbookQueryResponse>> getList(@RequestParam(required = false) String type) {
         SimpleBalabalaTextbookQueryListRequest request = new SimpleBalabalaTextbookQueryListRequest();
+        if (!StringUtils.isEmpty(type)) {
+            request.setType(type);
+        }
         List<SimpleBalabalaTextbookQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBalabalaTextbookQueryResponse>>(sources);
     }
@@ -118,9 +145,13 @@ public abstract class AbstractBalabalaTextbookController extends WebController  
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) String type,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBalabalaTextbookQueryPageRequest request = new SimpleBalabalaTextbookQueryPageRequest();
+        if (!StringUtils.isEmpty(type)) {
+            request.setType(type);
+        }
         if (page==null) {
             request.setPage(1);
         } else {

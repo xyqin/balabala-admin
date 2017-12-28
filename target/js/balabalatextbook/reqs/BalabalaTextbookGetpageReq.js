@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2017年12月28日 12:00:31
+ * 生成时间：2017年12月28日 01:55:51
  * 该文件系自动生成，手动修改可能会被替换
  * BalabalaTextbookGetpageReq
  * 接口地址：balabalatextbook/getpage
@@ -17,7 +17,10 @@ class BalabalaTextbookGetpageReq extends BaseRobotReq {
             url: '/balabalatextbook/getpage',
             type: 'Get',        };
         // 请求参数的描述信息，只定义先不用
-        this._paramsDescriptor = [{key: 'page',
+        this._paramsDescriptor = [{key: 'type',
+            desc: '题目类型',
+            isRequired: true
+        },{key: 'page',
             desc: '页码',
             isRequired: false
         },{key: 'size',
@@ -30,7 +33,8 @@ class BalabalaTextbookGetpageReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(page,size) {
+    setSimpleParams(type,page,size) {
+        this.addParams('type', type);
         this.addParams('page', page);
         this.addParams('size', size);
     }

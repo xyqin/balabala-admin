@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 系统权限
- * 2017年12月28日 12:00:29
+ * 2017年12月28日 01:55:50
  */
 @Data
 public abstract class AbstractRudderPermissionUpdateRequest {

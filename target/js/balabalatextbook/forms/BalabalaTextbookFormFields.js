@@ -1,5 +1,5 @@
 /**
- * 生成时间：2017年12月28日 12:00:30
+ * 生成时间：2017年12月28日 01:55:50
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -26,9 +26,45 @@ const BALABALATEXTBOOK_FORM_FIELDS = [{
     dataLableKey: 'categoryName',
     dataValueKey: 'id'
 },{
+    key: 'type',
+    type: 'Enum',
+    label: '题目类型',
+        placeholder: '请选择题目类型',
+        data: [{        value: 'CHOICE',
+        label: '选择题'
+        },{        value: 'FILLIN',
+        label: '填空题'
+        },{        value: 'LISTEN',
+        label: '听写题'
+        },{        value: 'SENTENCE',
+        label: '看图造句'
+        },{        value: 'CONNECT',
+        label: '图词对应'
+        },{        value: 'WORD',
+        label: '认词拼读'
+        },{        value: 'PICTURE',
+        label: '看图读词'
+        },{        value: 'ARTICLE',
+        label: '阅读文章'
+        }]},{
     key: 'textbookName',
     type: 'String',
-    label: '教材名称',
-    placeholder: '请输入教材名称'
+    label: '题目名称',
+    placeholder: '请输入题目名称'
+},{
+    key: 'question',
+    type: 'String',
+    label: '问题',
+    placeholder: '请输入问题'
+},{
+    key: 'correct',
+    type: 'String',
+    label: '正确答案',
+    placeholder: '请输入正确答案'
+},{
+    key: 'image',
+    type: 'String',
+    label: '图片',
+    placeholder: '请输入图片'
 }];
 export default BALABALATEXTBOOK_FORM_FIELDS;

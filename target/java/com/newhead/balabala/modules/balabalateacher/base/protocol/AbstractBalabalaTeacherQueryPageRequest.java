@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2017年12月28日 12:00:29
+ * @generated 2017年12月28日 01:55:49
  */
 @Data
 public abstract class AbstractBalabalaTeacherQueryPageRequest extends PageRequest {

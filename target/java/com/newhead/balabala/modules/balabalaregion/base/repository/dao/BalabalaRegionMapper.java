@@ -11,77 +11,77 @@ public interface BalabalaRegionMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_region
-     * @generated 2017年12月28日 12:00:27
+     * @generated 2017年12月28日 01:55:47
      */
     long countByExample(BalabalaRegionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_region
-     * @generated 2017年12月28日 12:00:27
+     * @generated 2017年12月28日 01:55:47
      */
     int deleteByExample(BalabalaRegionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_region
-     * @generated 2017年12月28日 12:00:27
+     * @generated 2017年12月28日 01:55:47
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_region
-     * @generated 2017年12月28日 12:00:27
+     * @generated 2017年12月28日 01:55:47
      */
     int insert(BalabalaRegion record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_region
-     * @generated 2017年12月28日 12:00:27
+     * @generated 2017年12月28日 01:55:47
      */
     int insertSelective(BalabalaRegion record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_region
-     * @generated 2017年12月28日 12:00:27
+     * @generated 2017年12月28日 01:55:47
      */
     List<BalabalaRegion> selectByExample(BalabalaRegionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_region
-     * @generated 2017年12月28日 12:00:27
+     * @generated 2017年12月28日 01:55:47
      */
     BalabalaRegion selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_region
-     * @generated 2017年12月28日 12:00:27
+     * @generated 2017年12月28日 01:55:47
      */
     int updateByExampleSelective(@Param("record") BalabalaRegion record, @Param("example") BalabalaRegionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_region
-     * @generated 2017年12月28日 12:00:27
+     * @generated 2017年12月28日 01:55:47
      */
     int updateByExample(@Param("record") BalabalaRegion record, @Param("example") BalabalaRegionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_region
-     * @generated 2017年12月28日 12:00:27
+     * @generated 2017年12月28日 01:55:47
      */
     int updateByPrimaryKeySelective(BalabalaRegion record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_region
-     * @generated 2017年12月28日 12:00:27
+     * @generated 2017年12月28日 01:55:47
      */
     int updateByPrimaryKey(BalabalaRegion record);
 }

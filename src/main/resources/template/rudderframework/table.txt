@@ -18,4 +18,7 @@
 {"moduleTitle":"教师评语表","dataType":"Table","moduleName":"balabalaMemberComment","displayField":"","remark":"","version":"1.0","key":"balabala"}
 {"moduleTitle":"教材表","dataType":"Table","moduleName":"balabalaTextbook","displayField":"","remark":"","version":"1.0","key":"balabala"}
 {"moduleTitle":"教材分类表","dataType":"Table","moduleName":"balabalaTextbookCategory","displayField":"","remark":"","version":"1.0","key":"balabala"}
-{"moduleTitle":"教材作业表","dataType":"Table","moduleName":"balabalaTextbookHomework","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"教师发布作业表","dataType":"Table","moduleName":"balabalaTeacherHomework","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"教师发布作业题目表","dataType":"Table","moduleName":"balabalaTeacherHomeworkItem","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"学生作业表","dataType":"Table","moduleName":"balabalaMemberHomework","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"会员作业答案表","dataType":"Table","moduleName":"balabalaMemberHomeworkItem","displayField":"","remark":"","version":"1.0","key":"balabala"}
