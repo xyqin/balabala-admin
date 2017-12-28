@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * 菜单
- * 2017年12月28日 06:54:53
+ * 2017年12月28日 07:22:04
  */
 @Data
 public class SimpleRudderMenuQueryListRequest extends AbstractRudderMenuQueryListRequest {

@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2017年12月28日 06:54:53
+ * @generated 2017年12月28日 07:22:04
  */
 @Data
 public abstract class AbstractBalabalaCampusQueryResponse {

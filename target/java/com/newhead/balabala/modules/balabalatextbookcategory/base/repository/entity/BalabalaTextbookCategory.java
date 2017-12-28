@@ -11,27 +11,27 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * RudderFramework框架自动生成，不允许修改！
  * 表 balabala_textbook_category
- * @generated do_not_delete_during_merge 2017年12月28日 06:54:51
+ * @generated do_not_delete_during_merge 2017年12月28日 07:22:02
  */
 public class BalabalaTextbookCategory implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"1","formid":"1"},"name":"主键","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     private Long id;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"父ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BalabalaTextbookCategory","field":"categoryName","type":"SingleTree"},"valid":true}
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     private Long parentId;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"分类名称","checkName":true,"fieldType":"String","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     @NotEmpty(message="分类名称不能为空")
     @Size(max=0,message = "分类名称长度无效")
@@ -41,7 +41,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"分类路径","checkName":true,"fieldType":"String","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     @NotEmpty(message="分类路径不能为空")
     @Size(max=0,message = "分类路径长度无效")
@@ -51,14 +51,14 @@ public class BalabalaTextbookCategory implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"排序号","fieldType":"Number","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false,"orderkey":true,"remark":"大数优先"}
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     private Integer position;
 
     /**
      *
      * {"name":"创建时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     @JSONField(serialize=false)
     private Date createdAt;
@@ -66,7 +66,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
     /**
      *
      * {"name":"修改时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     @JSONField(serialize=false)
     private Date updatedAt;
@@ -74,7 +74,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
     /**
      *
      * {"name":"创建者","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     @JSONField(serialize=false)
     private Long creator;
@@ -82,7 +82,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
     /**
      *
      * {"name":"修改人","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     @JSONField(serialize=false)
     private Long lastModifier;
@@ -90,14 +90,14 @@ public class BalabalaTextbookCategory implements AuditableEntity {
     /**
      *
      * {"name":"删除标志","fieldType":"Bool","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     @JSONField(serialize=false)
     private Boolean deleted;
 
     /**
      * 返回 id 主键
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public Long getId() {
         
@@ -108,7 +108,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
      * 设置主键
      *
      * @param id
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public void setId(Long id) {
         this.id = id;
@@ -116,7 +116,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
 
     /**
      * 返回 parent_id 父ID
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public Long getParentId() {
         
@@ -127,7 +127,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
      * 设置父ID
      *
      * @param parentId
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public void setParentId(Long parentId) {
         this.parentId = parentId;
@@ -135,7 +135,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
 
     /**
      * 返回 category_name 分类名称
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public String getCategoryName() {
         
@@ -146,7 +146,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
      * 设置分类名称
      *
      * @param categoryName
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName == null ? null : categoryName.trim();
@@ -154,7 +154,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
 
     /**
      * 返回 path 分类路径
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public String getPath() {
         
@@ -165,7 +165,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
      * 设置分类路径
      *
      * @param path
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public void setPath(String path) {
         this.path = path == null ? null : path.trim();
@@ -173,7 +173,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
 
     /**
      * 返回 position 排序号
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public Integer getPosition() {
         
@@ -184,7 +184,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
      * 设置排序号
      *
      * @param position
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public void setPosition(Integer position) {
         this.position = position;
@@ -192,7 +192,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
 
     /**
      * 返回 created_at 创建时间
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public Date getCreatedAt() {
         
@@ -203,7 +203,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
      * 设置创建时间
      *
      * @param createdAt
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -211,7 +211,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
 
     /**
      * 返回 updated_at 修改时间
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public Date getUpdatedAt() {
         
@@ -222,7 +222,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
      * 设置修改时间
      *
      * @param updatedAt
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
@@ -230,7 +230,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
 
     /**
      * 返回 creator 创建者
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public Long getCreator() {
         
@@ -241,7 +241,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
      * 设置创建者
      *
      * @param creator
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public void setCreator(Long creator) {
         this.creator = creator;
@@ -249,7 +249,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
 
     /**
      * 返回 last_modifier 修改人
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public Long getLastModifier() {
         
@@ -260,7 +260,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
      * 设置修改人
      *
      * @param lastModifier
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public void setLastModifier(Long lastModifier) {
         this.lastModifier = lastModifier;
@@ -268,7 +268,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
 
     /**
      * 返回 deleted 删除标志
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public Boolean getDeleted() {
         
@@ -279,7 +279,7 @@ public class BalabalaTextbookCategory implements AuditableEntity {
      * 设置删除标志
      *
      * @param deleted
-     * @generated 2017年12月28日 06:54:51
+     * @generated 2017年12月28日 07:22:02
      */
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
