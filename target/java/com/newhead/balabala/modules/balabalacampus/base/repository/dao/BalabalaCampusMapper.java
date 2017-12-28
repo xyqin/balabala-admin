@@ -11,77 +11,77 @@ public interface BalabalaCampusMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_campus
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     long countByExample(BalabalaCampusExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_campus
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int deleteByExample(BalabalaCampusExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_campus
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_campus
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int insert(BalabalaCampus record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_campus
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int insertSelective(BalabalaCampus record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_campus
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     List<BalabalaCampus> selectByExample(BalabalaCampusExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_campus
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     BalabalaCampus selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_campus
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int updateByExampleSelective(@Param("record") BalabalaCampus record, @Param("example") BalabalaCampusExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_campus
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int updateByExample(@Param("record") BalabalaCampus record, @Param("example") BalabalaCampusExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_campus
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int updateByPrimaryKeySelective(BalabalaCampus record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_campus
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int updateByPrimaryKey(BalabalaCampus record);
 }

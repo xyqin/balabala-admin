@@ -11,77 +11,77 @@ public interface BalabalaTextbookCategoryMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook_category
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     long countByExample(BalabalaTextbookCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook_category
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int deleteByExample(BalabalaTextbookCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook_category
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook_category
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int insert(BalabalaTextbookCategory record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook_category
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int insertSelective(BalabalaTextbookCategory record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook_category
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     List<BalabalaTextbookCategory> selectByExample(BalabalaTextbookCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook_category
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     BalabalaTextbookCategory selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook_category
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int updateByExampleSelective(@Param("record") BalabalaTextbookCategory record, @Param("example") BalabalaTextbookCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook_category
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int updateByExample(@Param("record") BalabalaTextbookCategory record, @Param("example") BalabalaTextbookCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook_category
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int updateByPrimaryKeySelective(BalabalaTextbookCategory record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook_category
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     int updateByPrimaryKey(BalabalaTextbookCategory record);
 }

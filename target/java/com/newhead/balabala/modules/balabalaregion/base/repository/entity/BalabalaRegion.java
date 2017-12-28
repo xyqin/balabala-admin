@@ -11,27 +11,27 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * RudderFramework框架自动生成，不允许修改！
  * 表 balabala_region
- * @generated do_not_delete_during_merge 2017年12月28日 01:55:47
+ * @generated do_not_delete_during_merge 2017年12月28日 03:59:19
  */
 public class BalabalaRegion implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"1","formid":"1"},"name":"主键","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     private Long id;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"上级ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BalabalaRegion","field":"regionName","type":"SingleList"},"valid":true}
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     private Long parentId;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"地区名称","checkName":true,"fieldType":"String","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     @NotEmpty(message="地区名称不能为空")
     @Size(max=0,message = "地区名称长度无效")
@@ -41,7 +41,7 @@ public class BalabalaRegion implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"地区路径，以分隔","fieldType":"String","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     @NotEmpty(message="地区路径，以分隔不能为空")
     @Size(max=0,message = "地区路径，以分隔长度无效")
@@ -51,14 +51,14 @@ public class BalabalaRegion implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"排序号","fieldType":"Number","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     private Integer position;
 
     /**
      *
      * {"name":"创建时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     @JSONField(serialize=false)
     private Date createdAt;
@@ -66,7 +66,7 @@ public class BalabalaRegion implements AuditableEntity {
     /**
      *
      * {"name":"修改时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     @JSONField(serialize=false)
     private Date updatedAt;
@@ -74,7 +74,7 @@ public class BalabalaRegion implements AuditableEntity {
     /**
      *
      * {"name":"创建者","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     @JSONField(serialize=false)
     private Long creator;
@@ -82,7 +82,7 @@ public class BalabalaRegion implements AuditableEntity {
     /**
      *
      * {"name":"修改人","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     @JSONField(serialize=false)
     private Long lastModifier;
@@ -90,14 +90,14 @@ public class BalabalaRegion implements AuditableEntity {
     /**
      *
      * {"name":"删除标志","fieldType":"Bool","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     @JSONField(serialize=false)
     private Boolean deleted;
 
     /**
      * 返回 id 主键
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public Long getId() {
         
@@ -108,7 +108,7 @@ public class BalabalaRegion implements AuditableEntity {
      * 设置主键
      *
      * @param id
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public void setId(Long id) {
         this.id = id;
@@ -116,7 +116,7 @@ public class BalabalaRegion implements AuditableEntity {
 
     /**
      * 返回 parent_id 上级ID
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public Long getParentId() {
         
@@ -127,7 +127,7 @@ public class BalabalaRegion implements AuditableEntity {
      * 设置上级ID
      *
      * @param parentId
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public void setParentId(Long parentId) {
         this.parentId = parentId;
@@ -135,7 +135,7 @@ public class BalabalaRegion implements AuditableEntity {
 
     /**
      * 返回 region_name 地区名称
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public String getRegionName() {
         
@@ -146,7 +146,7 @@ public class BalabalaRegion implements AuditableEntity {
      * 设置地区名称
      *
      * @param regionName
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public void setRegionName(String regionName) {
         this.regionName = regionName == null ? null : regionName.trim();
@@ -154,7 +154,7 @@ public class BalabalaRegion implements AuditableEntity {
 
     /**
      * 返回 path 地区路径，以分隔
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public String getPath() {
         
@@ -165,7 +165,7 @@ public class BalabalaRegion implements AuditableEntity {
      * 设置地区路径，以分隔
      *
      * @param path
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public void setPath(String path) {
         this.path = path == null ? null : path.trim();
@@ -173,7 +173,7 @@ public class BalabalaRegion implements AuditableEntity {
 
     /**
      * 返回 position 排序号
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public Integer getPosition() {
         
@@ -184,7 +184,7 @@ public class BalabalaRegion implements AuditableEntity {
      * 设置排序号
      *
      * @param position
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public void setPosition(Integer position) {
         this.position = position;
@@ -192,7 +192,7 @@ public class BalabalaRegion implements AuditableEntity {
 
     /**
      * 返回 created_at 创建时间
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public Date getCreatedAt() {
         
@@ -203,7 +203,7 @@ public class BalabalaRegion implements AuditableEntity {
      * 设置创建时间
      *
      * @param createdAt
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -211,7 +211,7 @@ public class BalabalaRegion implements AuditableEntity {
 
     /**
      * 返回 updated_at 修改时间
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public Date getUpdatedAt() {
         
@@ -222,7 +222,7 @@ public class BalabalaRegion implements AuditableEntity {
      * 设置修改时间
      *
      * @param updatedAt
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
@@ -230,7 +230,7 @@ public class BalabalaRegion implements AuditableEntity {
 
     /**
      * 返回 creator 创建者
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public Long getCreator() {
         
@@ -241,7 +241,7 @@ public class BalabalaRegion implements AuditableEntity {
      * 设置创建者
      *
      * @param creator
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public void setCreator(Long creator) {
         this.creator = creator;
@@ -249,7 +249,7 @@ public class BalabalaRegion implements AuditableEntity {
 
     /**
      * 返回 last_modifier 修改人
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public Long getLastModifier() {
         
@@ -260,7 +260,7 @@ public class BalabalaRegion implements AuditableEntity {
      * 设置修改人
      *
      * @param lastModifier
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public void setLastModifier(Long lastModifier) {
         this.lastModifier = lastModifier;
@@ -268,7 +268,7 @@ public class BalabalaRegion implements AuditableEntity {
 
     /**
      * 返回 deleted 删除标志
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public Boolean getDeleted() {
         
@@ -279,7 +279,7 @@ public class BalabalaRegion implements AuditableEntity {
      * 设置删除标志
      *
      * @param deleted
-     * @generated 2017年12月28日 01:55:47
+     * @generated 2017年12月28日 03:59:19
      */
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;

@@ -57,6 +57,7 @@
             <columnOverride column="enabled" javaType="java.lang.Boolean" jdbcType="BOOLEAN" />
             <columnOverride column="released" javaType="java.lang.Boolean" jdbcType="BOOLEAN" />
             <columnOverride column="on_homepage" javaType="java.lang.Boolean" jdbcType="BOOLEAN" />
+            <columnOverride column="prepared" javaType="java.lang.Boolean" jdbcType="BOOLEAN" />
         </table>
     </context>
 </generatorConfiguration>

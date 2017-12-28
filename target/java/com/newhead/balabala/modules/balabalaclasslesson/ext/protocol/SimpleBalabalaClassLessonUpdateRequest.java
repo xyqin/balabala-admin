@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * 
- * 2017年12月28日 01:55:48
+ * 2017年12月28日 03:59:20
  */
 @Data
 public class SimpleBalabalaClassLessonUpdateRequest extends AbstractBalabalaClassLessonUpdateRequest {
