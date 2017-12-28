@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2017年12月28日 03:59:22
+ * 生成时间：2017年12月28日 05:00:59
  * 该文件系自动生成，手动修改可能会被替换
  * BalabalaTextbookCategoryCreateReq
  * 接口地址：balabalatextbookcategory/create
@@ -30,6 +30,9 @@ class BalabalaTextbookCategoryCreateReq extends BaseRobotReq {
         },{key: 'path',
             desc: '分类路径',
             isRequired: true
+        },{key: 'position',
+            desc: '排序号',
+            isRequired: false
         }];        this.curd = 'd';
     }
 
@@ -37,11 +40,12 @@ class BalabalaTextbookCategoryCreateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,parentId,categoryName,path) {
+    setSimpleParams(id,parentId,categoryName,path,position) {
         this.addParams('id', id);
         this.addParams('parentId', parentId);
         this.addParams('categoryName', categoryName);
         this.addParams('path', path);
+        this.addParams('position', position);
     }
 
     /**

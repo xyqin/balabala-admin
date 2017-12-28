@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2017年12月28日 03:59:21
+ * @generated 2017年12月28日 05:00:58
  */
 @Data
 public abstract class AbstractBalabalaTextbookCategoryQueryResponse {
@@ -39,5 +39,11 @@ public abstract class AbstractBalabalaTextbookCategoryQueryResponse {
      * 分类路径
      */
      private String path;
+
+    /**
+     *
+     * 排序号
+     */
+     private Integer position;
 
 }

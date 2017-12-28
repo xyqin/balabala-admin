@@ -1,5 +1,5 @@
 /**
- * 生成时间：2017年12月28日 03:59:22
+ * 生成时间：2017年12月28日 05:00:59
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -31,5 +31,10 @@ const BALABALACLASSLESSON_CONDITIONS = [{
     type: 'String',
     label: '网易云房间',
     placeholder: '请输入网易云房间'
+},{
+    key: 'prepared',
+    type: 'Bool',
+    label: '是否备课',
+    placeholder: '请输入是否备课'
 }];
 export default BALABALACLASSLESSON_CONDITIONS;

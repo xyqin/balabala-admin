@@ -1,5 +1,5 @@
 /**
- * 生成时间：2017年12月28日 03:59:22
+ * 生成时间：2017年12月28日 05:00:59
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -35,5 +35,10 @@ const BALABALATEXTBOOKCATEGORY_FORM_FIELDS = [{
     type: 'String',
     label: '分类路径',
     placeholder: '请输入分类路径'
+},{
+    key: 'position',
+    type: 'Number',
+    label: '排序号',
+        placeholder: '请输入排序号'
 }];
 export default BALABALATEXTBOOKCATEGORY_FORM_FIELDS;

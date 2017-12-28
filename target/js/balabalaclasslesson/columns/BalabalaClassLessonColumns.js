@@ -1,5 +1,5 @@
 /**
- * 生成时间：2017年12月28日 03:59:22
+ * 生成时间：2017年12月28日 05:00:58
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -35,6 +35,12 @@ key: 'teacherIdObject',
 type:'Object',
 checked: true
 },{
+title: '三级分类ID',
+dataIndex: 'categoryIdObject',
+key: 'categoryIdObject',
+type:'Object',
+checked: true
+},{
 title: '外教教师ID',
 dataIndex: 'englishTeacherIdObject',
 key: 'englishTeacherIdObject',
@@ -63,6 +69,12 @@ title: '网易云房间',
 dataIndex: 'room',
 key: 'room',
 type:'String',
+checked: true
+},{
+title: '是否备课',
+dataIndex: 'prepared',
+key: 'prepared',
+type:'Bool',
 checked: true
 }];
 export default BALABALACLASSLESSON_COLUMNS;

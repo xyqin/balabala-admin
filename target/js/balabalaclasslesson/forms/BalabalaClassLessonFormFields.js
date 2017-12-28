@@ -1,5 +1,5 @@
 /**
- * 生成时间：2017年12月28日 03:59:22
+ * 生成时间：2017年12月28日 05:00:59
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -44,6 +44,15 @@ const BALABALACLASSLESSON_FORM_FIELDS = [{
     dataLableKey: 'fullName',
     dataValueKey: 'id'
 },{
+    key: 'categoryId',
+    type: 'Object',
+    label: '三级分类ID',
+    placeholder: '请选择三级分类ID',
+    displayType: 'SingleTree',
+    url: '/balabalatextbookcategory/gettree',
+    dataLableKey: 'categoryName',
+    dataValueKey: 'id'
+},{
     key: 'englishTeacherId',
     type: 'Object',
     label: '外教教师ID',
@@ -72,5 +81,10 @@ const BALABALACLASSLESSON_FORM_FIELDS = [{
     type: 'String',
     label: '网易云房间',
     placeholder: '请输入网易云房间'
+},{
+    key: 'prepared',
+    type: 'Bool',
+    label: '是否备课',
+placeholder: '请输入是否备课'
 }];
 export default BALABALACLASSLESSON_FORM_FIELDS;

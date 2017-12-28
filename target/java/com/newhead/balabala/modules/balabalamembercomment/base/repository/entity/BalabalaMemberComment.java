@@ -11,34 +11,34 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * RudderFramework框架自动生成，不允许修改！
  * 表 balabala_member_comment
- * @generated do_not_delete_during_merge 2017年12月28日 03:59:19
+ * @generated do_not_delete_during_merge 2017年12月28日 05:00:55
  */
 public class BalabalaMemberComment implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"1","formid":"1"},"name":"主键","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     private Long id;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"会员ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BalabalaMember","field":"nickname","type":"SingleTree"},"valid":true}
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     private Long memberId;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"教师ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BalabalaTeacher","field":"fullName","type":"SingleTree"},"valid":true}
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     private Long teacherId;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"评语内容","fieldType":"String","visible":true,"checkName":false,"queryType":2,"displayOrder”:0,”length":16,"types":[],"valid":true}
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     @NotEmpty(message="评语内容不能为空")
     @Size(max=0,message = "评语内容长度无效")
@@ -48,7 +48,7 @@ public class BalabalaMemberComment implements AuditableEntity {
     /**
      *
      * {"name":"创建时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     @JSONField(serialize=false)
     private Date createdAt;
@@ -56,7 +56,7 @@ public class BalabalaMemberComment implements AuditableEntity {
     /**
      *
      * {"name":"修改时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     @JSONField(serialize=false)
     private Date updatedAt;
@@ -64,7 +64,7 @@ public class BalabalaMemberComment implements AuditableEntity {
     /**
      *
      * {"name":"创建者","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     @JSONField(serialize=false)
     private Long creator;
@@ -72,7 +72,7 @@ public class BalabalaMemberComment implements AuditableEntity {
     /**
      *
      * {"name":"修改人","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     @JSONField(serialize=false)
     private Long lastModifier;
@@ -80,14 +80,14 @@ public class BalabalaMemberComment implements AuditableEntity {
     /**
      *
      * {"name":"删除标志","fieldType":"Bool","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     @JSONField(serialize=false)
     private Boolean deleted;
 
     /**
      * 返回 id 主键
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public Long getId() {
         
@@ -98,7 +98,7 @@ public class BalabalaMemberComment implements AuditableEntity {
      * 设置主键
      *
      * @param id
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public void setId(Long id) {
         this.id = id;
@@ -106,7 +106,7 @@ public class BalabalaMemberComment implements AuditableEntity {
 
     /**
      * 返回 member_id 会员ID
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public Long getMemberId() {
         
@@ -117,7 +117,7 @@ public class BalabalaMemberComment implements AuditableEntity {
      * 设置会员ID
      *
      * @param memberId
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
@@ -125,7 +125,7 @@ public class BalabalaMemberComment implements AuditableEntity {
 
     /**
      * 返回 teacher_id 教师ID
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public Long getTeacherId() {
         
@@ -136,7 +136,7 @@ public class BalabalaMemberComment implements AuditableEntity {
      * 设置教师ID
      *
      * @param teacherId
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public void setTeacherId(Long teacherId) {
         this.teacherId = teacherId;
@@ -144,7 +144,7 @@ public class BalabalaMemberComment implements AuditableEntity {
 
     /**
      * 返回 content 评语内容
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public String getContent() {
         
@@ -155,7 +155,7 @@ public class BalabalaMemberComment implements AuditableEntity {
      * 设置评语内容
      *
      * @param content
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
@@ -163,7 +163,7 @@ public class BalabalaMemberComment implements AuditableEntity {
 
     /**
      * 返回 created_at 创建时间
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public Date getCreatedAt() {
         
@@ -174,7 +174,7 @@ public class BalabalaMemberComment implements AuditableEntity {
      * 设置创建时间
      *
      * @param createdAt
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -182,7 +182,7 @@ public class BalabalaMemberComment implements AuditableEntity {
 
     /**
      * 返回 updated_at 修改时间
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public Date getUpdatedAt() {
         
@@ -193,7 +193,7 @@ public class BalabalaMemberComment implements AuditableEntity {
      * 设置修改时间
      *
      * @param updatedAt
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
@@ -201,7 +201,7 @@ public class BalabalaMemberComment implements AuditableEntity {
 
     /**
      * 返回 creator 创建者
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public Long getCreator() {
         
@@ -212,7 +212,7 @@ public class BalabalaMemberComment implements AuditableEntity {
      * 设置创建者
      *
      * @param creator
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public void setCreator(Long creator) {
         this.creator = creator;
@@ -220,7 +220,7 @@ public class BalabalaMemberComment implements AuditableEntity {
 
     /**
      * 返回 last_modifier 修改人
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public Long getLastModifier() {
         
@@ -231,7 +231,7 @@ public class BalabalaMemberComment implements AuditableEntity {
      * 设置修改人
      *
      * @param lastModifier
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public void setLastModifier(Long lastModifier) {
         this.lastModifier = lastModifier;
@@ -239,7 +239,7 @@ public class BalabalaMemberComment implements AuditableEntity {
 
     /**
      * 返回 deleted 删除标志
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public Boolean getDeleted() {
         
@@ -250,7 +250,7 @@ public class BalabalaMemberComment implements AuditableEntity {
      * 设置删除标志
      *
      * @param deleted
-     * @generated 2017年12月28日 03:59:19
+     * @generated 2017年12月28日 05:00:55
      */
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;

@@ -1,5 +1,5 @@
 /**
- * 生成时间：2017年12月28日 03:59:22
+ * 生成时间：2017年12月28日 05:00:58
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -33,6 +33,12 @@ title: '分类路径',
 dataIndex: 'path',
 key: 'path',
 type:'String',
+checked: true
+},{
+title: '排序号',
+dataIndex: 'position',
+key: 'position',
+type:'Number',
 checked: true
 }];
 export default BALABALATEXTBOOKCATEGORY_COLUMNS;

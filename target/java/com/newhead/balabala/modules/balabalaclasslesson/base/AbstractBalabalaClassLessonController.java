@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 开班课时控制器
- * 2017年12月28日 03:59:22
+ * 2017年12月28日 05:00:58
  */
 @Api(tags = "开班课时", description = "相关的API")
 public abstract class AbstractBalabalaClassLessonController extends WebController  {
@@ -95,7 +95,7 @@ public abstract class AbstractBalabalaClassLessonController extends WebControlle
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "开班课时ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBalabalaClassLessonQueryResponse>> getList(@RequestParam(required = false) String lessonName,@RequestParam(required = false) String thumbnail,@RequestParam(required = false) String video,@RequestParam(required = false) String room) {
+    public ApiEntity<List<SimpleBalabalaClassLessonQueryResponse>> getList(@RequestParam(required = false) String lessonName,@RequestParam(required = false) String thumbnail,@RequestParam(required = false) String video,@RequestParam(required = false) String room,@RequestParam(required = false) Boolean prepared) {
         SimpleBalabalaClassLessonQueryListRequest request = new SimpleBalabalaClassLessonQueryListRequest();
         if (!StringUtils.isEmpty(lessonName)) {
             request.setLessonName(lessonName);
@@ -108,6 +108,9 @@ public abstract class AbstractBalabalaClassLessonController extends WebControlle
         }
         if (!StringUtils.isEmpty(room)) {
             request.setRoom(room);
+        }
+        if (!StringUtils.isEmpty(prepared)) {
+            request.setPrepared(prepared);
         }
         List<SimpleBalabalaClassLessonQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBalabalaClassLessonQueryResponse>>(sources);
@@ -126,6 +129,7 @@ public abstract class AbstractBalabalaClassLessonController extends WebControlle
         @RequestParam(required = false) String thumbnail,
         @RequestParam(required = false) String video,
         @RequestParam(required = false) String room,
+        @RequestParam(required = false) Boolean prepared,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBalabalaClassLessonQueryPageRequest request = new SimpleBalabalaClassLessonQueryPageRequest();
@@ -140,6 +144,9 @@ public abstract class AbstractBalabalaClassLessonController extends WebControlle
         }
         if (!StringUtils.isEmpty(room)) {
             request.setRoom(room);
+        }
+        if (!StringUtils.isEmpty(prepared)) {
+            request.setPrepared(prepared);
         }
         if (page==null) {
             request.setPage(1);

@@ -11,7 +11,7 @@ import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 教材分类表服务
- * 2017年12月28日 12:00:28
+ * 2017年12月28日 05:00:56
  */
 @Api(tags = "教材分类表", description = "相关的API")
 @Service

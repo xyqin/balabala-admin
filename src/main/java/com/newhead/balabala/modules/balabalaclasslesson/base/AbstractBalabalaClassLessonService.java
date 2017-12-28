@@ -30,6 +30,10 @@ import com.newhead.balabala.modules.balabalateacher.base.repository.entity.Balab
 import com.newhead.balabala.modules.balabalateacher.base.repository.entity.BalabalaTeacherExample;
 
 import com.newhead.balabala.modules.balabalateacher.base.repository.dao.BalabalaTeacherMapper;
+import com.newhead.balabala.modules.balabalatextbookcategory.base.repository.entity.BalabalaTextbookCategory;
+import com.newhead.balabala.modules.balabalatextbookcategory.base.repository.entity.BalabalaTextbookCategoryExample;
+
+import com.newhead.balabala.modules.balabalatextbookcategory.base.repository.dao.BalabalaTextbookCategoryMapper;
 import com.newhead.balabala.modules.balabalacourse.base.repository.entity.BalabalaCourse;
 import com.newhead.balabala.modules.balabalacourse.base.repository.entity.BalabalaCourseExample;
 
@@ -54,6 +58,8 @@ public abstract class AbstractBalabalaClassLessonService extends BaseService {
     protected BalabalaClassMapper balabalaclassMapper;
     @Autowired
     protected BalabalaTeacherMapper balabalateacherMapper;
+    @Autowired
+    protected BalabalaTextbookCategoryMapper balabalatextbookcategoryMapper;
     @Autowired
     protected BalabalaCourseMapper balabalacourseMapper;
 
@@ -132,6 +138,14 @@ public abstract class AbstractBalabalaClassLessonService extends BaseService {
             teacherIdObject.setValue(String.valueOf(entity.getTeacherId()));
             teacherIdObject.setChecked(false);
         }
+        BalabalaTextbookCategory  categoryIdEntity = balabalatextbookcategoryMapper.selectByPrimaryKey(Long.valueOf(entity.getCategoryId()));
+        if (categoryIdEntity!=null) {
+            LabelValueItem categoryIdObject = response.getCategoryIdObject();
+            categoryIdObject.setName("categoryId");
+            categoryIdObject.setLabel(categoryIdEntity.getCategoryName());
+            categoryIdObject.setValue(String.valueOf(entity.getCategoryId()));
+            categoryIdObject.setChecked(false);
+        }
         BalabalaTeacher  englishTeacherIdEntity = balabalateacherMapper.selectByPrimaryKey(Long.valueOf(entity.getEnglishTeacherId()));
         if (englishTeacherIdEntity!=null) {
             LabelValueItem englishTeacherIdObject = response.getEnglishTeacherIdObject();
@@ -183,6 +197,10 @@ public abstract class AbstractBalabalaClassLessonService extends BaseService {
             c.andRoomLike("%"+request.getRoom()+"%");
         }
 
+        if (request.getPrepared()!=null) {
+            c.andPreparedEqualTo(request.getPrepared());
+         }
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -217,6 +235,10 @@ public abstract class AbstractBalabalaClassLessonService extends BaseService {
             c.andRoomLike("%"+request.getRoom()+"%");
         }
 
+        if (request.getPrepared()!=null) {
+            c.andPreparedEqualTo(request.getPrepared());
+         }
+
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -247,6 +269,9 @@ public abstract class AbstractBalabalaClassLessonService extends BaseService {
         Map<Long,Long> teacherIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> teacherIdResultMap = Maps.newHashMap();
 
+        Map<Long,Long> categoryIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> categoryIdResultMap = Maps.newHashMap();
+
         Map<Long,Long> englishTeacherIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> englishTeacherIdResultMap = Maps.newHashMap();
 
@@ -254,6 +279,7 @@ public abstract class AbstractBalabalaClassLessonService extends BaseService {
             classIdMap.put(entity.getId(),entity.getClassId());
             courseIdMap.put(entity.getId(),entity.getCourseId());
             teacherIdMap.put(entity.getId(),entity.getTeacherId());
+            categoryIdMap.put(entity.getId(),entity.getCategoryId());
             englishTeacherIdMap.put(entity.getId(),entity.getEnglishTeacherId());
         }
         BalabalaClassExample classIdExample = new BalabalaClassExample();
@@ -301,6 +327,21 @@ public abstract class AbstractBalabalaClassLessonService extends BaseService {
            teacherIdItem.setLabel(item.getFullName());
            teacherIdResultMap.put(item.getId(),teacherIdItem);
         }
+        BalabalaTextbookCategoryExample categoryIdExample = new BalabalaTextbookCategoryExample();
+
+        List<Long> categoryIds = new ArrayList<>();
+        categoryIds.addAll(categoryIdMap.values());
+        if (categoryIds.size()>0) {
+            categoryIdExample.createCriteria().andIdIn(categoryIds);
+        }
+        List<BalabalaTextbookCategory>  categoryIdList = balabalatextbookcategoryMapper.selectByExample(categoryIdExample);
+        for(BalabalaTextbookCategory item:categoryIdList) {
+           LabelValueItem categoryIdItem = new LabelValueItem();
+           categoryIdItem.setName("categoryId");
+           categoryIdItem.setValue(String.valueOf(item.getId()));
+           categoryIdItem.setLabel(item.getCategoryName());
+           categoryIdResultMap.put(item.getId(),categoryIdItem);
+        }
         BalabalaTeacherExample englishTeacherIdExample = new BalabalaTeacherExample();
 
         List<Long> englishTeacherIds = new ArrayList<>();
@@ -344,6 +385,14 @@ public abstract class AbstractBalabalaClassLessonService extends BaseService {
                 BeanUtils.copyProperties(teacherIdResultMap.get(teacherId),teacherIdlvi);
             }
             response.setTeacherIdObject(teacherIdlvi);
+            Long categoryId = categoryIdMap.get(entity.getId());
+
+            LabelValueItem categoryIdlvi = null;
+            if (categoryId!=null && categoryIdResultMap.get(categoryId)!=null) {
+                categoryIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(categoryIdResultMap.get(categoryId),categoryIdlvi);
+            }
+            response.setCategoryIdObject(categoryIdlvi);
             Long englishTeacherId = englishTeacherIdMap.get(entity.getId());
 
             LabelValueItem englishTeacherIdlvi = null;
