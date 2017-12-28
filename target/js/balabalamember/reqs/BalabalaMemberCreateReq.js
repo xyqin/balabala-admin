@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2017年12月28日 05:00:59
+ * 生成时间：2017年12月28日 06:54:55
  * 该文件系自动生成，手动修改可能会被替换
  * BalabalaMemberCreateReq
  * 接口地址：balabalamember/create
@@ -45,6 +45,9 @@ class BalabalaMemberCreateReq extends BaseRobotReq {
         },{key: 'token',
             desc: '网易云登录token',
             isRequired: true
+        },{key: 'points',
+            desc: '积分',
+            isRequired: false
         }];        this.curd = 'd';
     }
 
@@ -52,7 +55,7 @@ class BalabalaMemberCreateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,campusId,nickname,avatar,englishName,gender,birthday,accid,token) {
+    setSimpleParams(id,campusId,nickname,avatar,englishName,gender,birthday,accid,token,points) {
         this.addParams('id', id);
         this.addParams('campusId', campusId);
         this.addParams('nickname', nickname);
@@ -62,6 +65,7 @@ class BalabalaMemberCreateReq extends BaseRobotReq {
         this.addParams('birthday', birthday);
         this.addParams('accid', accid);
         this.addParams('token', token);
+        this.addParams('points', points);
     }
 
     /**

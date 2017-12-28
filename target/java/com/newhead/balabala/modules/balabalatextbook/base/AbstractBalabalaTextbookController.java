@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教材表控制器
- * 2017年12月28日 05:00:58
+ * 2017年12月28日 06:54:55
  */
 @Api(tags = "教材表", description = "相关的API")
 public abstract class AbstractBalabalaTextbookController extends WebController  {

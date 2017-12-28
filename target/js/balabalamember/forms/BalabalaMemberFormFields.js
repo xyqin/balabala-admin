@@ -1,5 +1,5 @@
 /**
- * 生成时间：2017年12月28日 05:00:59
+ * 生成时间：2017年12月28日 06:54:55
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -64,5 +64,10 @@ const BALABALAMEMBER_FORM_FIELDS = [{
     type: 'String',
     label: '网易云登录token',
     placeholder: '请输入网易云登录token'
+},{
+    key: 'points',
+    type: 'Number',
+    label: '积分',
+        placeholder: '请输入积分'
 }];
 export default BALABALAMEMBER_FORM_FIELDS;

@@ -11,7 +11,7 @@ import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 地区服务
- * 2017年12月28日 05:00:56
+ * 2017年12月28日 06:54:52
  */
 @Api(tags = "地区", description = "相关的API")
 @Service

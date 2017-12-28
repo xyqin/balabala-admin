@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2017年12月28日 05:00:57
+ * @generated 2017年12月28日 06:54:54
  */
 @Data
 public abstract class AbstractBalabalaClassMemberQueryResponse {
@@ -33,5 +33,11 @@ public abstract class AbstractBalabalaClassMemberQueryResponse {
      * 会员ID
      */
     private LabelValueItem MemberIdObject = new LabelValueItem();
+
+    /**
+     *
+     * 是否试听
+     */
+     private Boolean probational;
 
 }

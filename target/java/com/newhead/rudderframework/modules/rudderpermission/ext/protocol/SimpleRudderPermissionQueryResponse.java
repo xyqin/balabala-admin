@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * 系统权限
- * 2017年12月28日 05:00:57
+ * 2017年12月28日 06:54:53
  */
 @Data
 public class SimpleRudderPermissionQueryResponse extends AbstractRudderPermissionQueryResponse {

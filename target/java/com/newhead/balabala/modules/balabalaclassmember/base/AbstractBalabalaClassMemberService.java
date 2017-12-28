@@ -145,6 +145,10 @@ public abstract class AbstractBalabalaClassMemberService extends BaseService {
         BalabalaClassMemberExample example = new BalabalaClassMemberExample();
         BalabalaClassMemberExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        if (request.getProbational()!=null) {
+            c.andProbationalEqualTo(request.getProbational());
+         }
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -162,6 +166,10 @@ public abstract class AbstractBalabalaClassMemberService extends BaseService {
         BalabalaClassMemberExample example = new BalabalaClassMemberExample();
         BalabalaClassMemberExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+
+        if (request.getProbational()!=null) {
+            c.andProbationalEqualTo(request.getProbational());
+         }
 
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());

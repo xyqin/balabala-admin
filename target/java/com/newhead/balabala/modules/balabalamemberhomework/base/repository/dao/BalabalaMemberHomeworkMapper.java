@@ -11,77 +11,77 @@ public interface BalabalaMemberHomeworkMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_member_homework
-     * @generated 2017年12月28日 05:00:55
+     * @generated 2017年12月28日 06:54:51
      */
     long countByExample(BalabalaMemberHomeworkExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_member_homework
-     * @generated 2017年12月28日 05:00:55
+     * @generated 2017年12月28日 06:54:51
      */
     int deleteByExample(BalabalaMemberHomeworkExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_member_homework
-     * @generated 2017年12月28日 05:00:55
+     * @generated 2017年12月28日 06:54:51
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_member_homework
-     * @generated 2017年12月28日 05:00:55
+     * @generated 2017年12月28日 06:54:51
      */
     int insert(BalabalaMemberHomework record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_member_homework
-     * @generated 2017年12月28日 05:00:55
+     * @generated 2017年12月28日 06:54:51
      */
     int insertSelective(BalabalaMemberHomework record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_member_homework
-     * @generated 2017年12月28日 05:00:55
+     * @generated 2017年12月28日 06:54:51
      */
     List<BalabalaMemberHomework> selectByExample(BalabalaMemberHomeworkExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_member_homework
-     * @generated 2017年12月28日 05:00:55
+     * @generated 2017年12月28日 06:54:51
      */
     BalabalaMemberHomework selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_member_homework
-     * @generated 2017年12月28日 05:00:55
+     * @generated 2017年12月28日 06:54:51
      */
     int updateByExampleSelective(@Param("record") BalabalaMemberHomework record, @Param("example") BalabalaMemberHomeworkExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_member_homework
-     * @generated 2017年12月28日 05:00:55
+     * @generated 2017年12月28日 06:54:51
      */
     int updateByExample(@Param("record") BalabalaMemberHomework record, @Param("example") BalabalaMemberHomeworkExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_member_homework
-     * @generated 2017年12月28日 05:00:55
+     * @generated 2017年12月28日 06:54:51
      */
     int updateByPrimaryKeySelective(BalabalaMemberHomework record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_member_homework
-     * @generated 2017年12月28日 05:00:55
+     * @generated 2017年12月28日 06:54:51
      */
     int updateByPrimaryKey(BalabalaMemberHomework record);
 }

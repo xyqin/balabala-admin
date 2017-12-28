@@ -1,5 +1,5 @@
 /**
- * 生成时间：2017年12月28日 05:00:58
+ * 生成时间：2017年12月28日 06:54:55
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -27,6 +27,12 @@ title: '会员ID',
 dataIndex: 'memberIdObject',
 key: 'memberIdObject',
 type:'Object',
+checked: true
+},{
+title: '是否试听',
+dataIndex: 'probational',
+key: 'probational',
+type:'Bool',
 checked: true
 }];
 export default BALABALACLASSMEMBER_COLUMNS;
