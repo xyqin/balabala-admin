@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2017年12月28日 07:22:04
+ * @generated 2018年01月06日 09:19:39
  */
 @Data
 public abstract class AbstractBalabalaMemberHomeworkQueryResponse {
@@ -39,5 +39,11 @@ public abstract class AbstractBalabalaMemberHomeworkQueryResponse {
      * 作业名称
      */
      private String homeworkName;
+
+    /**
+     *
+     * 状态
+     */
+    private LabelValueItem StatusEnum = new LabelValueItem();
 
 }

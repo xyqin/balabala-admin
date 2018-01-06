@@ -1,5 +1,5 @@
 /**
- * 生成时间：2017年12月28日 07:22:06
+ * 生成时间：2018年01月06日 09:19:41
  * 该文件系自动生成，手动修改可能会被替换
  * 目录结构，从接口定义中解析出当前的目录结构
  * 规则：
@@ -75,6 +75,10 @@
  }, {
     "module": "balabalamemberhomeworkitem",
     "template": "balabalamemberhomeworkitem",
+    "desc": ""
+ }, {
+    "module": "balabalamemberpointlog",
+    "template": "balabalamemberpointlog",
     "desc": ""
  }, {
     "module": "ruddermenu",

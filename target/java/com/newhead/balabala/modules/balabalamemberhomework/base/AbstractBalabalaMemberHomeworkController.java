@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 学生作业表控制器
- * 2017年12月28日 07:22:05
+ * 2018年01月06日 09:19:40
  */
 @Api(tags = "学生作业表", description = "相关的API")
 public abstract class AbstractBalabalaMemberHomeworkController extends WebController  {
@@ -95,10 +95,13 @@ public abstract class AbstractBalabalaMemberHomeworkController extends WebContro
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "学生作业表ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBalabalaMemberHomeworkQueryResponse>> getList(@RequestParam(required = false) String homeworkName) {
+    public ApiEntity<List<SimpleBalabalaMemberHomeworkQueryResponse>> getList(@RequestParam(required = false) String homeworkName,@RequestParam(required = false) String status) {
         SimpleBalabalaMemberHomeworkQueryListRequest request = new SimpleBalabalaMemberHomeworkQueryListRequest();
         if (!StringUtils.isEmpty(homeworkName)) {
             request.setHomeworkName(homeworkName);
+        }
+        if (!StringUtils.isEmpty(status)) {
+            request.setStatus(status);
         }
         List<SimpleBalabalaMemberHomeworkQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBalabalaMemberHomeworkQueryResponse>>(sources);
@@ -114,11 +117,15 @@ public abstract class AbstractBalabalaMemberHomeworkController extends WebContro
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
         @RequestParam(required = false) String homeworkName,
+        @RequestParam(required = false) String status,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBalabalaMemberHomeworkQueryPageRequest request = new SimpleBalabalaMemberHomeworkQueryPageRequest();
         if (!StringUtils.isEmpty(homeworkName)) {
             request.setHomeworkName(homeworkName);
+        }
+        if (!StringUtils.isEmpty(status)) {
+            request.setStatus(status);
         }
         if (page==null) {
             request.setPage(1);

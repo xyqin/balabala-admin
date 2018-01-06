@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 课程分类控制器
- * 2017年12月28日 07:22:05
+ * 2018年01月06日 09:19:40
  */
 @Api(tags = "课程分类", description = "相关的API")
 public abstract class AbstractBalabalaCourseCategoryController extends WebController  {

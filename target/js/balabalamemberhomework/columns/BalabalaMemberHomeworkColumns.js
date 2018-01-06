@@ -1,5 +1,5 @@
 /**
- * 生成时间：2017年12月28日 07:22:05
+ * 生成时间：2018年01月06日 09:19:40
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -33,6 +33,12 @@ title: '作业名称',
 dataIndex: 'homeworkName',
 key: 'homeworkName',
 type:'String',
+checked: true
+},{
+title: '状态',
+dataIndex: 'statusEnum',
+key: 'statusEnum',
+type:'Enum',
 checked: true
 }];
 export default BALABALAMEMBERHOMEWORK_COLUMNS;

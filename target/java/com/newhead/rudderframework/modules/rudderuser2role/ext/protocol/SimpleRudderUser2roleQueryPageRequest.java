@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * 用户角色关系
- * 2017年12月28日 07:22:04
+ * 2018年01月06日 09:19:39
  */
 @Data
 public class SimpleRudderUser2roleQueryPageRequest extends AbstractRudderUser2roleQueryPageRequest {

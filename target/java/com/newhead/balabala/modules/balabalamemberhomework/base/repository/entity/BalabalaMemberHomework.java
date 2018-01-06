@@ -11,34 +11,34 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * RudderFramework框架自动生成，不允许修改！
  * 表 balabala_member_homework
- * @generated do_not_delete_during_merge 2017年12月28日 07:22:02
+ * @generated do_not_delete_during_merge 2018年1月6日 09:19:37
  */
 public class BalabalaMemberHomework implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"1","formid":"1"},"name":"主键","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     private Long id;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"会员ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BalabalaMember","field":"nickname","type":"SingleTree"},"valid":true}
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     private Long memberId;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"教师ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BalabalaTeacher","field":"fullName","type":"SingleTree"},"valid":true}
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     private Long teacherId;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"作业名称","fieldType":"String","visible":true,"checkName":false,"queryType":2,"displayOrder”:0,”length":16,"types":[],"valid":true}
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     @NotEmpty(message="作业名称不能为空")
     @Size(max=0,message = "作业名称长度无效")
@@ -48,15 +48,25 @@ public class BalabalaMemberHomework implements AuditableEntity {
     /**
      *
      * {"name":"截止时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     @JSONField(serialize=false)
     private Date closingAt;
 
     /**
      *
+     * {"viewconfig":{"optype":"3","formid":"1"},"name":"状态","fieldType":"Enum","visible":true,"queryType":2,"displayOrder":0,"length":0,"types":[{"label":"未完成","value":"PENDING"},{"label":"已完成","value":"FINISHED"}],"valid":true}
+     * @generated 2018年1月6日 09:19:37
+     */
+    @NotEmpty(message="状态不能为空")
+    @Size(max=0,message = "状态长度无效")
+
+    private String status;
+
+    /**
+     *
      * {"name":"创建时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     @JSONField(serialize=false)
     private Date createdAt;
@@ -64,7 +74,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
     /**
      *
      * {"name":"修改时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     @JSONField(serialize=false)
     private Date updatedAt;
@@ -72,7 +82,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
     /**
      *
      * {"name":"创建者","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     @JSONField(serialize=false)
     private Long creator;
@@ -80,7 +90,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
     /**
      *
      * {"name":"修改人","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     @JSONField(serialize=false)
     private Long lastModifier;
@@ -88,14 +98,14 @@ public class BalabalaMemberHomework implements AuditableEntity {
     /**
      *
      * {"name":"删除标志","fieldType":"Bool","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     @JSONField(serialize=false)
     private Boolean deleted;
 
     /**
      * 返回 id 主键
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public Long getId() {
         
@@ -106,7 +116,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
      * 设置主键
      *
      * @param id
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public void setId(Long id) {
         this.id = id;
@@ -114,7 +124,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
 
     /**
      * 返回 member_id 会员ID
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public Long getMemberId() {
         
@@ -125,7 +135,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
      * 设置会员ID
      *
      * @param memberId
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
@@ -133,7 +143,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
 
     /**
      * 返回 teacher_id 教师ID
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public Long getTeacherId() {
         
@@ -144,7 +154,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
      * 设置教师ID
      *
      * @param teacherId
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public void setTeacherId(Long teacherId) {
         this.teacherId = teacherId;
@@ -152,7 +162,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
 
     /**
      * 返回 homework_name 作业名称
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public String getHomeworkName() {
         
@@ -163,7 +173,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
      * 设置作业名称
      *
      * @param homeworkName
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public void setHomeworkName(String homeworkName) {
         this.homeworkName = homeworkName == null ? null : homeworkName.trim();
@@ -171,7 +181,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
 
     /**
      * 返回 closing_at 截止时间
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public Date getClosingAt() {
         
@@ -182,15 +192,34 @@ public class BalabalaMemberHomework implements AuditableEntity {
      * 设置截止时间
      *
      * @param closingAt
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public void setClosingAt(Date closingAt) {
         this.closingAt = closingAt;
     }
 
     /**
+     * 返回 status 状态
+     * @generated 2018年1月6日 09:19:37
+     */
+    public String getStatus() {
+        
+        return status;
+    }
+
+    /**
+     * 设置状态
+     *
+     * @param status
+     * @generated 2018年1月6日 09:19:37
+     */
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
+    }
+
+    /**
      * 返回 created_at 创建时间
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public Date getCreatedAt() {
         
@@ -201,7 +230,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
      * 设置创建时间
      *
      * @param createdAt
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -209,7 +238,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
 
     /**
      * 返回 updated_at 修改时间
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public Date getUpdatedAt() {
         
@@ -220,7 +249,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
      * 设置修改时间
      *
      * @param updatedAt
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
@@ -228,7 +257,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
 
     /**
      * 返回 creator 创建者
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public Long getCreator() {
         
@@ -239,7 +268,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
      * 设置创建者
      *
      * @param creator
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public void setCreator(Long creator) {
         this.creator = creator;
@@ -247,7 +276,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
 
     /**
      * 返回 last_modifier 修改人
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public Long getLastModifier() {
         
@@ -258,7 +287,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
      * 设置修改人
      *
      * @param lastModifier
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public void setLastModifier(Long lastModifier) {
         this.lastModifier = lastModifier;
@@ -266,7 +295,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
 
     /**
      * 返回 deleted 删除标志
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public Boolean getDeleted() {
         
@@ -277,7 +306,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
      * 设置删除标志
      *
      * @param deleted
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;

@@ -1,5 +1,5 @@
 /**
- * 生成时间：2017年12月28日 07:22:05
+ * 生成时间：2018年01月06日 09:19:40
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -39,5 +39,14 @@ const BALABALAMEMBERHOMEWORK_FORM_FIELDS = [{
     type: 'String',
     label: '作业名称',
     placeholder: '请输入作业名称'
-}];
+},{
+    key: 'status',
+    type: 'Enum',
+    label: '状态',
+        placeholder: '请选择状态',
+        data: [{        value: 'PENDING',
+        label: '未完成'
+        },{        value: 'FINISHED',
+        label: '已完成'
+        }]}];
 export default BALABALAMEMBERHOMEWORK_FORM_FIELDS;

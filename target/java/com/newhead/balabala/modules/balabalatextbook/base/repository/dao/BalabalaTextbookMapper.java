@@ -11,77 +11,77 @@ public interface BalabalaTextbookMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     long countByExample(BalabalaTextbookExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     int deleteByExample(BalabalaTextbookExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     int insert(BalabalaTextbook record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     int insertSelective(BalabalaTextbook record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     List<BalabalaTextbook> selectByExample(BalabalaTextbookExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     BalabalaTextbook selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     int updateByExampleSelective(@Param("record") BalabalaTextbook record, @Param("example") BalabalaTextbookExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     int updateByExample(@Param("record") BalabalaTextbook record, @Param("example") BalabalaTextbookExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     int updateByPrimaryKeySelective(BalabalaTextbook record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  balabala_textbook
-     * @generated 2017年12月28日 07:22:02
+     * @generated 2018年1月6日 09:19:37
      */
     int updateByPrimaryKey(BalabalaTextbook record);
 }

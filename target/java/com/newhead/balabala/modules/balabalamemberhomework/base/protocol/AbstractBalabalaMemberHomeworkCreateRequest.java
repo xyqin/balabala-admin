@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2017年12月28日 07:22:04
+ * 2018年01月06日 09:19:39
  */
 @Data
 public abstract class AbstractBalabalaMemberHomeworkCreateRequest {
@@ -30,5 +30,11 @@ public abstract class AbstractBalabalaMemberHomeworkCreateRequest {
      * 作业名称
      */
     private String homeworkName;
+
+    /**
+     *
+     * 状态
+     */
+    private String status;
 
 }

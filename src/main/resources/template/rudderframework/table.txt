@@ -22,3 +22,4 @@
 {"moduleTitle":"教师发布作业题目表","dataType":"Table","moduleName":"balabalaTeacherHomeworkItem","displayField":"","remark":"","version":"1.0","key":"balabala"}
 {"moduleTitle":"学生作业表","dataType":"Table","moduleName":"balabalaMemberHomework","displayField":"","remark":"","version":"1.0","key":"balabala"}
 {"moduleTitle":"会员作业答案表","dataType":"Table","moduleName":"balabalaMemberHomeworkItem","displayField":"","remark":"","version":"1.0","key":"balabala"}
+{"moduleTitle":"会员积分日志表","dataType":"Table","moduleName":"balabalaMemberPointLog","displayField":"","remark":"","version":"1.0","key":"balabala"}

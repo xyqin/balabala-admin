@@ -118,6 +118,11 @@ public abstract class AbstractBalabalaMemberHomeworkService extends BaseService 
             teacherIdObject.setValue(String.valueOf(entity.getTeacherId()));
             teacherIdObject.setChecked(false);
         }
+        LabelValueItem statusEnum = response.getStatusEnum();
+        statusEnum.setName("status");
+        statusEnum.setLabel(com.newhead.balabala.modules.balabalamemberhomework.BalabalaMemberHomeworkStatusEnum.getLabel(entity.getStatus()));
+        statusEnum.setValue(entity.getStatus());
+        statusEnum.setChecked(true);
         return response;
     }
 
@@ -149,6 +154,10 @@ public abstract class AbstractBalabalaMemberHomeworkService extends BaseService 
             c.andHomeworkNameLike("%"+request.getHomeworkName()+"%");
         }
 
+        if (request.getStatus()!=null) {
+            c.andStatusEqualTo(request.getStatus());
+         }
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -170,6 +179,10 @@ public abstract class AbstractBalabalaMemberHomeworkService extends BaseService 
         if (request.getHomeworkName()!=null) {
             c.andHomeworkNameLike("%"+request.getHomeworkName()+"%");
         }
+
+        if (request.getStatus()!=null) {
+            c.andStatusEqualTo(request.getStatus());
+         }
 
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
@@ -252,6 +265,11 @@ public abstract class AbstractBalabalaMemberHomeworkService extends BaseService 
                 BeanUtils.copyProperties(teacherIdResultMap.get(teacherId),teacherIdlvi);
             }
             response.setTeacherIdObject(teacherIdlvi);
+            LabelValueItem statusEnum = response.getStatusEnum();
+            statusEnum.setName("status");
+            statusEnum.setLabel(com.newhead.balabala.modules.balabalamemberhomework.BalabalaMemberHomeworkStatusEnum.getLabel(entity.getStatus()));
+            statusEnum.setValue(entity.getStatus());
+            statusEnum.setChecked(true);
             results.add(response);
         }
     }
