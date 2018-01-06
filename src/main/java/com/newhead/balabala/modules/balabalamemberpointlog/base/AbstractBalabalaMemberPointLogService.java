@@ -1,4 +1,4 @@
-package com.newhead.balabala.modules.balabalamemberhomework.base;
+package com.newhead.balabala.modules.balabalamemberpointlog.base;
 
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 
@@ -12,20 +12,16 @@ import com.newhead.rudderframework.core.web.component.tree.TransitionTree;
 import com.newhead.rudderframework.core.services.BaseService;
 
 import com.newhead.rudderframework.modules.LabelValueItem;
-import com.newhead.balabala.modules.balabalamemberhomework.base.repository.dao.BalabalaMemberHomeworkMapper;
-import com.newhead.balabala.modules.balabalamemberhomework.base.repository.entity.BalabalaMemberHomework;
-import com.newhead.balabala.modules.balabalamemberhomework.base.repository.entity.BalabalaMemberHomeworkExample;
-import com.newhead.balabala.modules.balabalamemberhomework.ext.protocol.*;
+import com.newhead.balabala.modules.balabalamemberpointlog.base.repository.dao.BalabalaMemberPointLogMapper;
+import com.newhead.balabala.modules.balabalamemberpointlog.base.repository.entity.BalabalaMemberPointLog;
+import com.newhead.balabala.modules.balabalamemberpointlog.base.repository.entity.BalabalaMemberPointLogExample;
+import com.newhead.balabala.modules.balabalamemberpointlog.ext.protocol.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 
-import com.newhead.balabala.modules.balabalateacher.base.repository.entity.BalabalaTeacher;
-import com.newhead.balabala.modules.balabalateacher.base.repository.entity.BalabalaTeacherExample;
-
-import com.newhead.balabala.modules.balabalateacher.base.repository.dao.BalabalaTeacherMapper;
 import com.newhead.balabala.modules.balabalamember.base.repository.entity.BalabalaMember;
 import com.newhead.balabala.modules.balabalamember.base.repository.entity.BalabalaMemberExample;
 
@@ -41,13 +37,11 @@ import java.util.Map;
  * 菜单服务
  * 2017年05月03日 06:31:12
  */
-public abstract class AbstractBalabalaMemberHomeworkService extends BaseService {
-    protected abstract BalabalaMemberHomeworkMapper getMapper();
+public abstract class AbstractBalabalaMemberPointLogService extends BaseService {
+    protected abstract BalabalaMemberPointLogMapper getMapper();
 
-    protected abstract void saveOrUpdate(BalabalaMemberHomework entity);
+    protected abstract void saveOrUpdate(BalabalaMemberPointLog entity);
 
-    @Autowired
-    protected BalabalaTeacherMapper balabalateacherMapper;
     @Autowired
     protected BalabalaMemberMapper balabalamemberMapper;
 
@@ -57,8 +51,8 @@ public abstract class AbstractBalabalaMemberHomeworkService extends BaseService 
      * @return entity
      */
     @Transactional
-    public BalabalaMemberHomework create(SimpleBalabalaMemberHomeworkCreateRequest request) {
-        BalabalaMemberHomework entity = new BalabalaMemberHomework();
+    public BalabalaMemberPointLog create(SimpleBalabalaMemberPointLogCreateRequest request) {
+        BalabalaMemberPointLog entity = new BalabalaMemberPointLog();
         BeanUtils.copyProperties(request,entity);
         entity.setCreatedAt(new Date());
         entity.setUpdatedAt(new Date());
@@ -78,8 +72,8 @@ public abstract class AbstractBalabalaMemberHomeworkService extends BaseService 
      * @return
      */
     @Transactional
-    public BalabalaMemberHomework update(SimpleBalabalaMemberHomeworkUpdateRequest request) {
-        BalabalaMemberHomework entity = new BalabalaMemberHomework();
+    public BalabalaMemberPointLog update(SimpleBalabalaMemberPointLogUpdateRequest request) {
+        BalabalaMemberPointLog entity = new BalabalaMemberPointLog();
         BeanUtils.copyProperties(request,entity);
         entity.setUpdatedAt(new Date());
         entity.setDeleted(false);
@@ -95,12 +89,12 @@ public abstract class AbstractBalabalaMemberHomeworkService extends BaseService 
      * @param id
      * @return
      */
-    public SimpleBalabalaMemberHomeworkGetDetailResponse getDetail(Long id) {
-        BalabalaMemberHomework entity = getMapper().selectByPrimaryKey(id);
+    public SimpleBalabalaMemberPointLogGetDetailResponse getDetail(Long id) {
+        BalabalaMemberPointLog entity = getMapper().selectByPrimaryKey(id);
         if (entity.getDeleted()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源名称已经被删除或者并不存在！");
         }
-        SimpleBalabalaMemberHomeworkGetDetailResponse response = new SimpleBalabalaMemberHomeworkGetDetailResponse();
+        SimpleBalabalaMemberPointLogGetDetailResponse response = new SimpleBalabalaMemberPointLogGetDetailResponse();
         BeanUtils.copyProperties(entity, response);
         BalabalaMember  memberIdEntity = balabalamemberMapper.selectByPrimaryKey(Long.valueOf(entity.getMemberId()));
         if (memberIdEntity!=null) {
@@ -110,19 +104,11 @@ public abstract class AbstractBalabalaMemberHomeworkService extends BaseService 
             memberIdObject.setValue(String.valueOf(entity.getMemberId()));
             memberIdObject.setChecked(false);
         }
-        BalabalaTeacher  teacherIdEntity = balabalateacherMapper.selectByPrimaryKey(Long.valueOf(entity.getTeacherId()));
-        if (teacherIdEntity!=null) {
-            LabelValueItem teacherIdObject = response.getTeacherIdObject();
-            teacherIdObject.setName("teacherId");
-            teacherIdObject.setLabel(teacherIdEntity.getFullName());
-            teacherIdObject.setValue(String.valueOf(entity.getTeacherId()));
-            teacherIdObject.setChecked(false);
-        }
-        LabelValueItem statusEnum = response.getStatusEnum();
-        statusEnum.setName("status");
-        statusEnum.setLabel(com.newhead.balabala.modules.balabalamemberhomework.BalabalaMemberHomeworkStatusEnum.getLabel(entity.getStatus()));
-        statusEnum.setValue(entity.getStatus());
-        statusEnum.setChecked(true);
+        LabelValueItem typeEnum = response.getTypeEnum();
+        typeEnum.setName("type");
+        typeEnum.setLabel(com.newhead.balabala.modules.balabalamemberpointlog.BalabalaMemberPointLogTypeEnum.getLabel(entity.getType()));
+        typeEnum.setValue(entity.getType());
+        typeEnum.setChecked(true);
         return response;
     }
 
@@ -132,7 +118,7 @@ public abstract class AbstractBalabalaMemberHomeworkService extends BaseService 
      * @param id
      */
     public void delete(Long id) {
-        BalabalaMemberHomework entity = new BalabalaMemberHomework();
+        BalabalaMemberPointLog entity = new BalabalaMemberPointLog();
         entity.setId(id);
         entity.setDeleted(true);
         getMapper().updateByPrimaryKeySelective(entity);
@@ -143,19 +129,16 @@ public abstract class AbstractBalabalaMemberHomeworkService extends BaseService 
      * @param request
      * @return list
      */
-    public List<SimpleBalabalaMemberHomeworkQueryResponse> queryList(SimpleBalabalaMemberHomeworkQueryListRequest request) {
-        List<SimpleBalabalaMemberHomeworkQueryResponse> results = new ArrayList<SimpleBalabalaMemberHomeworkQueryResponse>();
+    public List<SimpleBalabalaMemberPointLogQueryResponse> queryList(SimpleBalabalaMemberPointLogQueryListRequest request) {
+        List<SimpleBalabalaMemberPointLogQueryResponse> results = new ArrayList<SimpleBalabalaMemberPointLogQueryResponse>();
 
         //构造查询对象
-        BalabalaMemberHomeworkExample example = new BalabalaMemberHomeworkExample();
-        BalabalaMemberHomeworkExample.Criteria c = example.createCriteria();
+        BalabalaMemberPointLogExample example = new BalabalaMemberPointLogExample();
+        BalabalaMemberPointLogExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-        if (request.getHomeworkName()!=null) {
-            c.andHomeworkNameLike("%"+request.getHomeworkName()+"%");
-        }
-
-        if (request.getStatus()!=null) {
-            c.andStatusEqualTo(request.getStatus());
+            example.setOrderByClause("points desc");
+        if (request.getType()!=null) {
+            c.andTypeEqualTo(request.getType());
          }
 
         convertEntityToResponse(getMapper().selectByExample(example),results);
@@ -167,21 +150,18 @@ public abstract class AbstractBalabalaMemberHomeworkService extends BaseService 
      * @param request
      * @return page
      */
-    public Page<SimpleBalabalaMemberHomeworkQueryResponse> queryPage(SimpleBalabalaMemberHomeworkQueryPageRequest request) {
+    public Page<SimpleBalabalaMemberPointLogQueryResponse> queryPage(SimpleBalabalaMemberPointLogQueryPageRequest request) {
         //结果
-        List<SimpleBalabalaMemberHomeworkQueryResponse> results = new ArrayList<SimpleBalabalaMemberHomeworkQueryResponse>();
+        List<SimpleBalabalaMemberPointLogQueryResponse> results = new ArrayList<SimpleBalabalaMemberPointLogQueryResponse>();
 
         //构造查询对象
-        BalabalaMemberHomeworkExample example = new BalabalaMemberHomeworkExample();
-        BalabalaMemberHomeworkExample.Criteria c = example.createCriteria();
+        BalabalaMemberPointLogExample example = new BalabalaMemberPointLogExample();
+        BalabalaMemberPointLogExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+            example.setOrderByClause("points desc");
 
-        if (request.getHomeworkName()!=null) {
-            c.andHomeworkNameLike("%"+request.getHomeworkName()+"%");
-        }
-
-        if (request.getStatus()!=null) {
-            c.andStatusEqualTo(request.getStatus());
+        if (request.getType()!=null) {
+            c.andTypeEqualTo(request.getType());
          }
 
         example.setPageSize(request.getSize());
@@ -204,16 +184,12 @@ public abstract class AbstractBalabalaMemberHomeworkService extends BaseService 
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BalabalaMemberHomework> entitys,List<SimpleBalabalaMemberHomeworkQueryResponse> results) {
+    private void convertEntityToResponse(List<BalabalaMemberPointLog> entitys,List<SimpleBalabalaMemberPointLogQueryResponse> results) {
         Map<Long,Long> memberIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> memberIdResultMap = Maps.newHashMap();
 
-        Map<Long,Long> teacherIdMap = Maps.newHashMap();
-        Map<Long,LabelValueItem> teacherIdResultMap = Maps.newHashMap();
-
-       for(BalabalaMemberHomework entity:entitys) {
+       for(BalabalaMemberPointLog entity:entitys) {
             memberIdMap.put(entity.getId(),entity.getMemberId());
-            teacherIdMap.put(entity.getId(),entity.getTeacherId());
         }
         BalabalaMemberExample memberIdExample = new BalabalaMemberExample();
 
@@ -230,24 +206,9 @@ public abstract class AbstractBalabalaMemberHomeworkService extends BaseService 
            memberIdItem.setLabel(item.getNickname());
            memberIdResultMap.put(item.getId(),memberIdItem);
         }
-        BalabalaTeacherExample teacherIdExample = new BalabalaTeacherExample();
-
-        List<Long> teacherIds = new ArrayList<>();
-        teacherIds.addAll(teacherIdMap.values());
-        if (teacherIds.size()>0) {
-            teacherIdExample.createCriteria().andIdIn(teacherIds);
-        }
-        List<BalabalaTeacher>  teacherIdList = balabalateacherMapper.selectByExample(teacherIdExample);
-        for(BalabalaTeacher item:teacherIdList) {
-           LabelValueItem teacherIdItem = new LabelValueItem();
-           teacherIdItem.setName("teacherId");
-           teacherIdItem.setValue(String.valueOf(item.getId()));
-           teacherIdItem.setLabel(item.getFullName());
-           teacherIdResultMap.put(item.getId(),teacherIdItem);
-        }
         //第一组
-        for(BalabalaMemberHomework entity:entitys) {
-            SimpleBalabalaMemberHomeworkQueryResponse response = new SimpleBalabalaMemberHomeworkQueryResponse();
+        for(BalabalaMemberPointLog entity:entitys) {
+            SimpleBalabalaMemberPointLogQueryResponse response = new SimpleBalabalaMemberPointLogQueryResponse();
             BeanUtils.copyProperties(entity,response);
             Long memberId = memberIdMap.get(entity.getId());
 
@@ -257,19 +218,11 @@ public abstract class AbstractBalabalaMemberHomeworkService extends BaseService 
                 BeanUtils.copyProperties(memberIdResultMap.get(memberId),memberIdlvi);
             }
             response.setMemberIdObject(memberIdlvi);
-            Long teacherId = teacherIdMap.get(entity.getId());
-
-            LabelValueItem teacherIdlvi = null;
-            if (teacherId!=null && teacherIdResultMap.get(teacherId)!=null) {
-                teacherIdlvi = new LabelValueItem();
-                BeanUtils.copyProperties(teacherIdResultMap.get(teacherId),teacherIdlvi);
-            }
-            response.setTeacherIdObject(teacherIdlvi);
-            LabelValueItem statusEnum = response.getStatusEnum();
-            statusEnum.setName("status");
-            statusEnum.setLabel(com.newhead.balabala.modules.balabalamemberhomework.BalabalaMemberHomeworkStatusEnum.getLabel(entity.getStatus()));
-            statusEnum.setValue(entity.getStatus());
-            statusEnum.setChecked(true);
+            LabelValueItem typeEnum = response.getTypeEnum();
+            typeEnum.setName("type");
+            typeEnum.setLabel(com.newhead.balabala.modules.balabalamemberpointlog.BalabalaMemberPointLogTypeEnum.getLabel(entity.getType()));
+            typeEnum.setValue(entity.getType());
+            typeEnum.setChecked(true);
             results.add(response);
         }
     }

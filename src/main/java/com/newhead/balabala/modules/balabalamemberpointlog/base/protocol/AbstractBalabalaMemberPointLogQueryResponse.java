@@ -1,4 +1,4 @@
-package com.newhead.balabala.modules.balabalamemberhomework.base.protocol;
+package com.newhead.balabala.modules.balabalamemberpointlog.base.protocol;
 
 import com.newhead.rudderframework.modules.LabelValueItem;
 import com.newhead.rudderframework.core.web.component.tree.Tree;
@@ -15,10 +15,10 @@ import lombok.Data;
  * @generated 2018年01月06日 09:19:39
  */
 @Data
-public abstract class AbstractBalabalaMemberHomeworkQueryResponse {
+public abstract class AbstractBalabalaMemberPointLogQueryResponse {
     /**
      *
-     * 主键
+     * 会员ID
      */
      private Long id;
 
@@ -30,20 +30,14 @@ public abstract class AbstractBalabalaMemberHomeworkQueryResponse {
 
     /**
      *
-     * 教师ID
+     * 积分
      */
-    private LabelValueItem TeacherIdObject = new LabelValueItem();
+     private Integer points;
 
     /**
      *
-     * 作业名称
+     * 类型
      */
-     private String homeworkName;
-
-    /**
-     *
-     * 状态
-     */
-    private LabelValueItem StatusEnum = new LabelValueItem();
+    private LabelValueItem TypeEnum = new LabelValueItem();
 
 }

@@ -1,4 +1,4 @@
-package com.newhead.balabala.modules.balabalamemberhomework.base.protocol;
+package com.newhead.balabala.modules.balabalamemberpointlog.base.protocol;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -12,29 +12,26 @@ import javax.validation.constraints.Size;
  * 2018年01月06日 09:19:39
  */
 @Data
-public abstract class AbstractBalabalaMemberHomeworkCreateRequest {
+public abstract class AbstractBalabalaMemberPointLogUpdateRequest {
+    /**
+     *
+     * 会员ID
+     */
+    private Long id;
     /**
      *
      * 会员ID
      */
     private Long memberId;
-
     /**
      *
-     * 教师ID
+     * 积分
      */
-    private Long teacherId;
-
+    private Integer points;
     /**
      *
-     * 作业名称
+     * 类型
      */
-    private String homeworkName;
-
-    /**
-     *
-     * 状态
-     */
-    private String status;
+    private String type;
 
 }

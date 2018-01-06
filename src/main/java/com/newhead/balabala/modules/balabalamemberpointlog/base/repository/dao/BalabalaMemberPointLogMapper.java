@@ -1,87 +1,87 @@
-package com.newhead.balabala.modules.balabalamemberhomework.base.repository.dao;
+package com.newhead.balabala.modules.balabalamemberpointlog.base.repository.dao;
 
-import com.newhead.balabala.modules.balabalamemberhomework.base.repository.entity.BalabalaMemberHomework;
-import com.newhead.balabala.modules.balabalamemberhomework.base.repository.entity.BalabalaMemberHomeworkExample;
+import com.newhead.balabala.modules.balabalamemberpointlog.base.repository.entity.BalabalaMemberPointLog;
+import com.newhead.balabala.modules.balabalamemberpointlog.base.repository.entity.BalabalaMemberPointLogExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
-public interface BalabalaMemberHomeworkMapper {
+public interface BalabalaMemberPointLogMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
-     *  balabala_member_homework
+     *  balabala_member_point_log
      * @generated 2018年1月6日 09:19:37
      */
-    long countByExample(BalabalaMemberHomeworkExample example);
+    long countByExample(BalabalaMemberPointLogExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
-     *  balabala_member_homework
+     *  balabala_member_point_log
      * @generated 2018年1月6日 09:19:37
      */
-    int deleteByExample(BalabalaMemberHomeworkExample example);
+    int deleteByExample(BalabalaMemberPointLogExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
-     *  balabala_member_homework
+     *  balabala_member_point_log
      * @generated 2018年1月6日 09:19:37
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
-     *  balabala_member_homework
+     *  balabala_member_point_log
      * @generated 2018年1月6日 09:19:37
      */
-    int insert(BalabalaMemberHomework record);
+    int insert(BalabalaMemberPointLog record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
-     *  balabala_member_homework
+     *  balabala_member_point_log
      * @generated 2018年1月6日 09:19:37
      */
-    int insertSelective(BalabalaMemberHomework record);
+    int insertSelective(BalabalaMemberPointLog record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
-     *  balabala_member_homework
+     *  balabala_member_point_log
      * @generated 2018年1月6日 09:19:37
      */
-    List<BalabalaMemberHomework> selectByExample(BalabalaMemberHomeworkExample example);
+    List<BalabalaMemberPointLog> selectByExample(BalabalaMemberPointLogExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
-     *  balabala_member_homework
+     *  balabala_member_point_log
      * @generated 2018年1月6日 09:19:37
      */
-    BalabalaMemberHomework selectByPrimaryKey(Long id);
+    BalabalaMemberPointLog selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
-     *  balabala_member_homework
+     *  balabala_member_point_log
      * @generated 2018年1月6日 09:19:37
      */
-    int updateByExampleSelective(@Param("record") BalabalaMemberHomework record, @Param("example") BalabalaMemberHomeworkExample example);
+    int updateByExampleSelective(@Param("record") BalabalaMemberPointLog record, @Param("example") BalabalaMemberPointLogExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
-     *  balabala_member_homework
+     *  balabala_member_point_log
      * @generated 2018年1月6日 09:19:37
      */
-    int updateByExample(@Param("record") BalabalaMemberHomework record, @Param("example") BalabalaMemberHomeworkExample example);
+    int updateByExample(@Param("record") BalabalaMemberPointLog record, @Param("example") BalabalaMemberPointLogExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
-     *  balabala_member_homework
+     *  balabala_member_point_log
      * @generated 2018年1月6日 09:19:37
      */
-    int updateByPrimaryKeySelective(BalabalaMemberHomework record);
+    int updateByPrimaryKeySelective(BalabalaMemberPointLog record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
-     *  balabala_member_homework
+     *  balabala_member_point_log
      * @generated 2018年1月6日 09:19:37
      */
-    int updateByPrimaryKey(BalabalaMemberHomework record);
+    int updateByPrimaryKey(BalabalaMemberPointLog record);
 }

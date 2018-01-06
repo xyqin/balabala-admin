@@ -1,4 +1,4 @@
-package com.newhead.balabala.modules.balabalamemberhomework.base.repository.entity;
+package com.newhead.balabala.modules.balabalamemberpointlog.base.repository.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.newhead.rudderframework.core.domain.AuditableEntity;
@@ -10,13 +10,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 /**
  *
  * RudderFramework框架自动生成，不允许修改！
- * 表 balabala_member_homework
+ * 表 balabala_member_point_log
  * @generated do_not_delete_during_merge 2018年1月6日 09:19:37
  */
-public class BalabalaMemberHomework implements AuditableEntity {
+public class BalabalaMemberPointLog implements AuditableEntity {
     /**
      *
-     * {"viewconfig":{"optype":"1","formid":"1"},"name":"主键","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
+     * {"viewconfig":{"optype":"1","formid":"1"},"name":"会员ID","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
      * @generated 2018年1月6日 09:19:37
      */
     private Long id;
@@ -30,38 +30,20 @@ public class BalabalaMemberHomework implements AuditableEntity {
 
     /**
      *
-     * {"viewconfig":{"optype":"3","formid":"1"},"name":"教师ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BalabalaTeacher","field":"fullName","type":"SingleTree"},"valid":true}
+     * {"viewconfig":{"optype":"3","formid":"1"},"name":"积分","fieldType":"Number","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false,"orderkey":true,"remark":""}
      * @generated 2018年1月6日 09:19:37
      */
-    private Long teacherId;
+    private Integer points;
 
     /**
      *
-     * {"viewconfig":{"optype":"3","formid":"1"},"name":"作业名称","fieldType":"String","visible":true,"checkName":false,"queryType":2,"displayOrder”:0,”length":16,"types":[],"valid":true}
+     * {"viewconfig":{"optype":"3","formid":"1"},"name":"类型","fieldType":"Enum","visible":true,"queryType":2,"displayOrder":0,"length":0,"types":[{"label":"奖杯","value":"TROPHY"},{"label":"鼓掌","value":"CLAPPING"},{"label":"开心","value":"SMILING"}],"valid":true}
      * @generated 2018年1月6日 09:19:37
      */
-    @NotEmpty(message="作业名称不能为空")
-    @Size(max=0,message = "作业名称长度无效")
+    @NotEmpty(message="类型不能为空")
+    @Size(max=0,message = "类型长度无效")
 
-    private String homeworkName;
-
-    /**
-     *
-     * {"name":"截止时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年1月6日 09:19:37
-     */
-    @JSONField(serialize=false)
-    private Date closingAt;
-
-    /**
-     *
-     * {"viewconfig":{"optype":"3","formid":"1"},"name":"状态","fieldType":"Enum","visible":true,"queryType":2,"displayOrder":0,"length":0,"types":[{"label":"未完成","value":"PENDING"},{"label":"已完成","value":"FINISHED"}],"valid":true}
-     * @generated 2018年1月6日 09:19:37
-     */
-    @NotEmpty(message="状态不能为空")
-    @Size(max=0,message = "状态长度无效")
-
-    private String status;
+    private String type;
 
     /**
      *
@@ -104,7 +86,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
     private Boolean deleted;
 
     /**
-     * 返回 id 主键
+     * 返回 id 会员ID
      * @generated 2018年1月6日 09:19:37
      */
     public Long getId() {
@@ -113,7 +95,7 @@ public class BalabalaMemberHomework implements AuditableEntity {
     }
 
     /**
-     * 设置主键
+     * 设置会员ID
      *
      * @param id
      * @generated 2018年1月6日 09:19:37
@@ -142,79 +124,41 @@ public class BalabalaMemberHomework implements AuditableEntity {
     }
 
     /**
-     * 返回 teacher_id 教师ID
+     * 返回 points 积分
      * @generated 2018年1月6日 09:19:37
      */
-    public Long getTeacherId() {
+    public Integer getPoints() {
         
-        return teacherId;
+        return points;
     }
 
     /**
-     * 设置教师ID
+     * 设置积分
      *
-     * @param teacherId
+     * @param points
      * @generated 2018年1月6日 09:19:37
      */
-    public void setTeacherId(Long teacherId) {
-        this.teacherId = teacherId;
+    public void setPoints(Integer points) {
+        this.points = points;
     }
 
     /**
-     * 返回 homework_name 作业名称
+     * 返回 type 类型
      * @generated 2018年1月6日 09:19:37
      */
-    public String getHomeworkName() {
+    public String getType() {
         
-        return homeworkName;
+        return type;
     }
 
     /**
-     * 设置作业名称
+     * 设置类型
      *
-     * @param homeworkName
+     * @param type
      * @generated 2018年1月6日 09:19:37
      */
-    public void setHomeworkName(String homeworkName) {
-        this.homeworkName = homeworkName == null ? null : homeworkName.trim();
-    }
-
-    /**
-     * 返回 closing_at 截止时间
-     * @generated 2018年1月6日 09:19:37
-     */
-    public Date getClosingAt() {
-        
-        return closingAt;
-    }
-
-    /**
-     * 设置截止时间
-     *
-     * @param closingAt
-     * @generated 2018年1月6日 09:19:37
-     */
-    public void setClosingAt(Date closingAt) {
-        this.closingAt = closingAt;
-    }
-
-    /**
-     * 返回 status 状态
-     * @generated 2018年1月6日 09:19:37
-     */
-    public String getStatus() {
-        
-        return status;
-    }
-
-    /**
-     * 设置状态
-     *
-     * @param status
-     * @generated 2018年1月6日 09:19:37
-     */
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
     }
 
     /**
