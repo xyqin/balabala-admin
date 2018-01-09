@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月06日 09:19:40
+ * 生成时间：2018年01月09日 04:35:24
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -19,8 +19,8 @@ const BALABALATEXTBOOK_FORM_FIELDS = [{
 },{
     key: 'categoryId',
     type: 'Object',
-    label: '分类ID',
-    placeholder: '请选择分类ID',
+    label: '教材三级分类ID',
+    placeholder: '请选择教材三级分类ID',
     displayType: 'SingleTree',
     url: '/balabalatextbookcategory/gettree',
     dataLableKey: 'categoryName',
@@ -57,6 +57,11 @@ const BALABALATEXTBOOK_FORM_FIELDS = [{
     label: '问题',
     placeholder: '请输入问题'
 },{
+    key: 'option',
+    type: 'String',
+    label: '选项',
+    placeholder: '请输入选项'
+},{
     key: 'correct',
     type: 'String',
     label: '正确答案',
@@ -66,5 +71,10 @@ const BALABALATEXTBOOK_FORM_FIELDS = [{
     type: 'String',
     label: '图片',
     placeholder: '请输入图片'
+},{
+    key: 'video',
+    type: 'String',
+    label: '音频',
+    placeholder: '请输入音频'
 }];
 export default BALABALATEXTBOOK_FORM_FIELDS;

@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员课时表控制器
- * 2017年12月24日 12:57:59
+ * 2018年01月08日 05:02:07
  */
 @Api(tags = "会员课时表", description = "相关的API")
 public abstract class AbstractBalabalaMemberLessonController extends WebController  {
@@ -95,8 +95,14 @@ public abstract class AbstractBalabalaMemberLessonController extends WebControll
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "会员课时表ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBalabalaMemberLessonQueryResponse>> getList() {
+    public ApiEntity<List<SimpleBalabalaMemberLessonQueryResponse>> getList(@RequestParam(required = false) String type,@RequestParam(required = false) Boolean probational) {
         SimpleBalabalaMemberLessonQueryListRequest request = new SimpleBalabalaMemberLessonQueryListRequest();
+        if (!StringUtils.isEmpty(type)) {
+            request.setType(type);
+        }
+        if (!StringUtils.isEmpty(probational)) {
+            request.setProbational(probational);
+        }
         List<SimpleBalabalaMemberLessonQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBalabalaMemberLessonQueryResponse>>(sources);
     }
@@ -110,9 +116,17 @@ public abstract class AbstractBalabalaMemberLessonController extends WebControll
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) String type,
+        @RequestParam(required = false) Boolean probational,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBalabalaMemberLessonQueryPageRequest request = new SimpleBalabalaMemberLessonQueryPageRequest();
+        if (!StringUtils.isEmpty(type)) {
+            request.setType(type);
+        }
+        if (!StringUtils.isEmpty(probational)) {
+            request.setProbational(probational);
+        }
         if (page==null) {
             request.setPage(1);
         } else {

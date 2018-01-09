@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * RudderFramework 自动生成
  * 教材表控制
- * 2017年12月28日 01:55:48
+ * 2018年01月09日 04:35:22
  */
 @Api(tags = "教材表", description = "相关的API")
 @RestController

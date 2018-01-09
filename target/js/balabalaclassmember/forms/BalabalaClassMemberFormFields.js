@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月06日 09:19:40
+ * 生成时间：2018年01月09日 04:35:24
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -34,5 +34,18 @@ const BALABALACLASSMEMBER_FORM_FIELDS = [{
     url: '/balabalamember/gettree',
     dataLableKey: 'nickname',
     dataValueKey: 'id'
-}];
+},{
+    key: 'status',
+    type: 'Enum',
+    label: '状态',
+        placeholder: '请选择状态',
+        data: [{        value: 'IN_REVIEW',
+        label: '审核中'
+        },{        value: 'REJECTED',
+        label: '审核被拒'
+        },{        value: 'ONGOING',
+        label: '进行中'
+        },{        value: 'FINISHED',
+        label: '已结束'
+        }]}];
 export default BALABALACLASSMEMBER_FORM_FIELDS;

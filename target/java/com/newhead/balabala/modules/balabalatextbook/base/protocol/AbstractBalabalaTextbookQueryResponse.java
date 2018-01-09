@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年01月06日 09:19:39
+ * @generated 2018年01月09日 04:35:23
  */
 @Data
 public abstract class AbstractBalabalaTextbookQueryResponse {
@@ -24,7 +24,7 @@ public abstract class AbstractBalabalaTextbookQueryResponse {
 
     /**
      *
-     * 分类ID
+     * 教材三级分类ID
      */
     private LabelValueItem CategoryIdObject = new LabelValueItem();
 
@@ -48,6 +48,12 @@ public abstract class AbstractBalabalaTextbookQueryResponse {
 
     /**
      *
+     * 选项
+     */
+     private String option;
+
+    /**
+     *
      * 正确答案
      */
      private String correct;
@@ -57,5 +63,11 @@ public abstract class AbstractBalabalaTextbookQueryResponse {
      * 图片
      */
      private String image;
+
+    /**
+     *
+     * 音频
+     */
+     private String video;
 
 }

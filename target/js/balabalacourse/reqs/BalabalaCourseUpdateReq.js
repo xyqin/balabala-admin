@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年01月06日 09:19:40
+ * 生成时间：2018年01月09日 04:35:25
  * 该文件系自动生成，手动修改可能会被替换
  * BalabalaCourseUpdateReq
  * 接口地址：balabalacourse/update
@@ -23,9 +23,6 @@ class BalabalaCourseUpdateReq extends BaseRobotReq {
             isRequired: true
         },{key: 'categoryId',
             desc: '课程分类ID',
-            isRequired: true
-        },{key: 'textbookId',
-            desc: '教材ID',
             isRequired: true
         },{key: 'courseName',
             desc: '课程名称',
@@ -52,10 +49,9 @@ class BalabalaCourseUpdateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,categoryId,textbookId,courseName,onlineLessons,onlineDuration,offlineLessons,offlineDuration,commission) {
+    setSimpleParams(id,categoryId,courseName,onlineLessons,onlineDuration,offlineLessons,offlineDuration,commission) {
         this.addParams('id', id);
         this.addParams('categoryId', categoryId);
-        this.addParams('textbookId', textbookId);
         this.addParams('courseName', courseName);
         this.addParams('onlineLessons', onlineLessons);
         this.addParams('onlineDuration', onlineDuration);

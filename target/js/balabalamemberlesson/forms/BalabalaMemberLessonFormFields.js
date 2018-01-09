@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月06日 09:19:40
+ * 生成时间：2018年01月09日 04:35:24
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -43,5 +43,19 @@ const BALABALAMEMBERLESSON_FORM_FIELDS = [{
     url: '/balabalaclasslesson/gettree',
     dataLableKey: 'lessonName',
     dataValueKey: 'id'
+},{
+    key: 'type',
+    type: 'Enum',
+    label: '类型',
+        placeholder: '请选择类型',
+        data: [{        value: 'ONLINE',
+        label: '线上'
+        },{        value: 'OFFLINE',
+        label: '线下'
+        }]},{
+    key: 'probational',
+    type: 'Bool',
+    label: '是否试听',
+placeholder: '请输入是否试听'
 }];
 export default BALABALAMEMBERLESSON_FORM_FIELDS;

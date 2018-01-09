@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2017年12月24日 12:57:58
+ * 2018年01月08日 05:02:06
  */
 @Data
 public abstract class AbstractBalabalaMemberLessonGetDetailResponse {
@@ -50,6 +50,18 @@ public abstract class AbstractBalabalaMemberLessonGetDetailResponse {
      * 结束时间
      */
      private Date endAt;
+
+    /**
+     *
+     * 类型
+     */
+    private LabelValueItem TypeEnum = new LabelValueItem();
+
+    /**
+     *
+     * 是否试听
+     */
+     private Boolean probational;
 
 
 }

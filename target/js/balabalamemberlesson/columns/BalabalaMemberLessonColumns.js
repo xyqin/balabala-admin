@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月06日 09:19:40
+ * 生成时间：2018年01月09日 04:35:24
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -33,6 +33,18 @@ title: '课时ID',
 dataIndex: 'lessonIdObject',
 key: 'lessonIdObject',
 type:'Object',
+checked: true
+},{
+title: '类型',
+dataIndex: 'typeEnum',
+key: 'typeEnum',
+type:'Enum',
+checked: true
+},{
+title: '是否试听',
+dataIndex: 'probational',
+key: 'probational',
+type:'Bool',
 checked: true
 }];
 export default BALABALAMEMBERLESSON_COLUMNS;

@@ -6,8 +6,20 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2017年12月24日 12:57:58
+ * @generated 2018年01月08日 05:02:06
  */
 @Data
 public abstract class AbstractBalabalaMemberLessonQueryListRequest  {
+    /**
+     *
+     * 类型
+     */
+     private String type;
+
+    /**
+     *
+     * 是否试听
+     */
+     private Boolean probational;
+
 }

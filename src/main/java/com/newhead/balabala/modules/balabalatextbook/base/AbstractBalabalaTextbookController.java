@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教材表控制器
- * 2017年12月28日 01:55:50
+ * 2018年01月09日 04:35:24
  */
 @Api(tags = "教材表", description = "相关的API")
 public abstract class AbstractBalabalaTextbookController extends WebController  {
@@ -51,6 +51,10 @@ public abstract class AbstractBalabalaTextbookController extends WebController  
         if (question != null) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题'"+request.getQuestion()+"'已经存在！");
         }
+        BalabalaTextbook option = getService().existByOption(request.getOption());
+        if (option != null) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"选项'"+request.getOption()+"'已经存在！");
+        }
         BalabalaTextbook correct = getService().existByCorrect(request.getCorrect());
         if (correct != null) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"正确答案'"+request.getCorrect()+"'已经存在！");
@@ -58,6 +62,10 @@ public abstract class AbstractBalabalaTextbookController extends WebController  
         BalabalaTextbook image = getService().existByImage(request.getImage());
         if (image != null) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"图片'"+request.getImage()+"'已经存在！");
+        }
+        BalabalaTextbook video = getService().existByVideo(request.getVideo());
+        if (video != null) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"音频'"+request.getVideo()+"'已经存在！");
         }
         BalabalaTextbook balabalatextbook = getService().create(request);
         //默认创建成功返回ID
@@ -83,6 +91,10 @@ public abstract class AbstractBalabalaTextbookController extends WebController  
         if (Question != null && Question.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题"+request.getQuestion()+"'已经存在！");
         }
+        BalabalaTextbook Option = getService().existByOption(request.getOption());
+        if (Option != null && Option.getId()!=request.getId()) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"选项"+request.getOption()+"'已经存在！");
+        }
         BalabalaTextbook Correct = getService().existByCorrect(request.getCorrect());
         if (Correct != null && Correct.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"正确答案"+request.getCorrect()+"'已经存在！");
@@ -90,6 +102,10 @@ public abstract class AbstractBalabalaTextbookController extends WebController  
         BalabalaTextbook Image = getService().existByImage(request.getImage());
         if (Image != null && Image.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"图片"+request.getImage()+"'已经存在！");
+        }
+        BalabalaTextbook Video = getService().existByVideo(request.getVideo());
+        if (Video != null && Video.getId()!=request.getId()) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"音频"+request.getVideo()+"'已经存在！");
         }
         getService().update(request);
         return new ApiEntity<>();

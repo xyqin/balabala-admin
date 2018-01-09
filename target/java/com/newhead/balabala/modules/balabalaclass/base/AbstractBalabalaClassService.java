@@ -22,6 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 
+import com.newhead.balabala.modules.balabalatextbookcategory.base.repository.entity.BalabalaTextbookCategory;
+import com.newhead.balabala.modules.balabalatextbookcategory.base.repository.entity.BalabalaTextbookCategoryExample;
+
+import com.newhead.balabala.modules.balabalatextbookcategory.base.repository.dao.BalabalaTextbookCategoryMapper;
 import com.newhead.balabala.modules.balabalateacher.base.repository.entity.BalabalaTeacher;
 import com.newhead.balabala.modules.balabalateacher.base.repository.entity.BalabalaTeacherExample;
 
@@ -46,6 +50,8 @@ public abstract class AbstractBalabalaClassService extends BaseService {
 
     protected abstract void saveOrUpdate(BalabalaClass entity);
 
+    @Autowired
+    protected BalabalaTextbookCategoryMapper balabalatextbookcategoryMapper;
     @Autowired
     protected BalabalaTeacherMapper balabalateacherMapper;
     @Autowired
@@ -109,6 +115,14 @@ public abstract class AbstractBalabalaClassService extends BaseService {
             courseIdObject.setLabel(courseIdEntity.getCourseName());
             courseIdObject.setValue(String.valueOf(entity.getCourseId()));
             courseIdObject.setChecked(false);
+        }
+        BalabalaTextbookCategory  categoryIdEntity = balabalatextbookcategoryMapper.selectByPrimaryKey(Long.valueOf(entity.getCategoryId()));
+        if (categoryIdEntity!=null) {
+            LabelValueItem categoryIdObject = response.getCategoryIdObject();
+            categoryIdObject.setName("categoryId");
+            categoryIdObject.setLabel(categoryIdEntity.getCategoryName());
+            categoryIdObject.setValue(String.valueOf(entity.getCategoryId()));
+            categoryIdObject.setChecked(false);
         }
         BalabalaTeacher  teacherIdEntity = balabalateacherMapper.selectByPrimaryKey(Long.valueOf(entity.getTeacherId()));
         if (teacherIdEntity!=null) {
@@ -232,6 +246,9 @@ public abstract class AbstractBalabalaClassService extends BaseService {
         Map<Long,Long> courseIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> courseIdResultMap = Maps.newHashMap();
 
+        Map<Long,Long> categoryIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> categoryIdResultMap = Maps.newHashMap();
+
         Map<Long,Long> teacherIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> teacherIdResultMap = Maps.newHashMap();
 
@@ -240,6 +257,7 @@ public abstract class AbstractBalabalaClassService extends BaseService {
 
        for(BalabalaClass entity:entitys) {
             courseIdMap.put(entity.getId(),entity.getCourseId());
+            categoryIdMap.put(entity.getId(),entity.getCategoryId());
             teacherIdMap.put(entity.getId(),entity.getTeacherId());
             englishTeacherIdMap.put(entity.getId(),entity.getEnglishTeacherId());
         }
@@ -257,6 +275,21 @@ public abstract class AbstractBalabalaClassService extends BaseService {
            courseIdItem.setValue(String.valueOf(item.getId()));
            courseIdItem.setLabel(item.getCourseName());
            courseIdResultMap.put(item.getId(),courseIdItem);
+        }
+        BalabalaTextbookCategoryExample categoryIdExample = new BalabalaTextbookCategoryExample();
+
+        List<Long> categoryIds = new ArrayList<>();
+        categoryIds.addAll(categoryIdMap.values());
+        if (categoryIds.size()>0) {
+            categoryIdExample.createCriteria().andIdIn(categoryIds);
+        }
+        List<BalabalaTextbookCategory>  categoryIdList = balabalatextbookcategoryMapper.selectByExample(categoryIdExample);
+        for(BalabalaTextbookCategory item:categoryIdList) {
+           LabelValueItem categoryIdItem = new LabelValueItem();
+           categoryIdItem.setName("categoryId");
+           categoryIdItem.setValue(String.valueOf(item.getId()));
+           categoryIdItem.setLabel(item.getCategoryName());
+           categoryIdResultMap.put(item.getId(),categoryIdItem);
         }
         BalabalaTeacherExample teacherIdExample = new BalabalaTeacherExample();
 
@@ -300,6 +333,14 @@ public abstract class AbstractBalabalaClassService extends BaseService {
                 BeanUtils.copyProperties(courseIdResultMap.get(courseId),courseIdlvi);
             }
             response.setCourseIdObject(courseIdlvi);
+            Long categoryId = categoryIdMap.get(entity.getId());
+
+            LabelValueItem categoryIdlvi = null;
+            if (categoryId!=null && categoryIdResultMap.get(categoryId)!=null) {
+                categoryIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(categoryIdResultMap.get(categoryId),categoryIdlvi);
+            }
+            response.setCategoryIdObject(categoryIdlvi);
             Long teacherId = teacherIdMap.get(entity.getId());
 
             LabelValueItem teacherIdlvi = null;

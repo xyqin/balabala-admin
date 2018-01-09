@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月06日 09:19:40
+ * 生成时间：2018年01月09日 04:35:24
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -86,5 +86,14 @@ const BALABALACLASSLESSON_FORM_FIELDS = [{
     type: 'Bool',
     label: '是否备课',
 placeholder: '请输入是否备课'
-}];
+},{
+    key: 'type',
+    type: 'Enum',
+    label: '类型',
+        placeholder: '请选择类型',
+        data: [{        value: 'ONLINE',
+        label: '线上'
+        },{        value: 'OFFLINE',
+        label: '线下'
+        }]}];
 export default BALABALACLASSLESSON_FORM_FIELDS;

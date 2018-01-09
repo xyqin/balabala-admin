@@ -277,6 +277,22 @@ public abstract class AbstractBalabalaTextbookService extends BaseService {
     }
     /**
      * 是否存在同名数据
+     * @param option
+     * @return
+     */
+    public BalabalaTextbook existByOption(String option) {
+        //构造查询对象
+        BalabalaTextbookExample example = new BalabalaTextbookExample();
+        BalabalaTextbookExample.Criteria c = example.createCriteria();
+        c.andOptionEqualTo(option);
+        List<BalabalaTextbook> list = getMapper().selectByExample(example);
+        if (list!=null && list.size()==1) {
+            return list.get(0);
+        }
+        return null;
+    }
+    /**
+     * 是否存在同名数据
      * @param correct
      * @return
      */
@@ -301,6 +317,22 @@ public abstract class AbstractBalabalaTextbookService extends BaseService {
         BalabalaTextbookExample example = new BalabalaTextbookExample();
         BalabalaTextbookExample.Criteria c = example.createCriteria();
         c.andImageEqualTo(image);
+        List<BalabalaTextbook> list = getMapper().selectByExample(example);
+        if (list!=null && list.size()==1) {
+            return list.get(0);
+        }
+        return null;
+    }
+    /**
+     * 是否存在同名数据
+     * @param video
+     * @return
+     */
+    public BalabalaTextbook existByVideo(String video) {
+        //构造查询对象
+        BalabalaTextbookExample example = new BalabalaTextbookExample();
+        BalabalaTextbookExample.Criteria c = example.createCriteria();
+        c.andVideoEqualTo(video);
         List<BalabalaTextbook> list = getMapper().selectByExample(example);
         if (list!=null && list.size()==1) {
             return list.get(0);

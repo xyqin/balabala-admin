@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2017年12月28日 05:00:57
+ * 2018年01月08日 03:02:50
  */
 @Data
 public abstract class AbstractBalabalaClassLessonCreateRequest {
@@ -84,5 +84,11 @@ public abstract class AbstractBalabalaClassLessonCreateRequest {
      * 是否备课
      */
     private Boolean prepared;
+
+    /**
+     *
+     * 类型
+     */
+    private String type;
 
 }

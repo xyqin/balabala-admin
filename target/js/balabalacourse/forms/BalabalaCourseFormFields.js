@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月06日 09:19:40
+ * 生成时间：2018年01月09日 04:35:24
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -24,15 +24,6 @@ const BALABALACOURSE_FORM_FIELDS = [{
     displayType: 'SingleTree',
     url: '/balabalacoursecategory/gettree',
     dataLableKey: 'categoryName',
-    dataValueKey: 'id'
-},{
-    key: 'textbookId',
-    type: 'Object',
-    label: '教材ID',
-    placeholder: '请选择教材ID',
-    displayType: 'SingleTree',
-    url: '/balabalatextbook/gettree',
-    dataLableKey: 'textbookName',
     dataValueKey: 'id'
 },{
     key: 'courseName',

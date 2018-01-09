@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年01月06日 09:19:41
+ * 生成时间：2018年01月09日 04:35:25
  * 该文件系自动生成，手动修改可能会被替换
  * BalabalaTextbookCreateReq
  * 接口地址：balabalatextbook/create
@@ -22,7 +22,7 @@ class BalabalaTextbookCreateReq extends BaseRobotReq {
             desc: '主键',
             isRequired: false
         },{key: 'categoryId',
-            desc: '分类ID',
+            desc: '教材三级分类ID',
             isRequired: true
         },{key: 'type',
             desc: '题目类型',
@@ -33,11 +33,17 @@ class BalabalaTextbookCreateReq extends BaseRobotReq {
         },{key: 'question',
             desc: '问题',
             isRequired: true
+        },{key: 'option',
+            desc: '选项',
+            isRequired: true
         },{key: 'correct',
             desc: '正确答案',
             isRequired: true
         },{key: 'image',
             desc: '图片',
+            isRequired: true
+        },{key: 'video',
+            desc: '音频',
             isRequired: true
         }];        this.curd = 'd';
     }
@@ -46,14 +52,16 @@ class BalabalaTextbookCreateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,categoryId,type,textbookName,question,correct,image) {
+    setSimpleParams(id,categoryId,type,textbookName,question,option,correct,image,video) {
         this.addParams('id', id);
         this.addParams('categoryId', categoryId);
         this.addParams('type', type);
         this.addParams('textbookName', textbookName);
         this.addParams('question', question);
+        this.addParams('option', option);
         this.addParams('correct', correct);
         this.addParams('image', image);
+        this.addParams('video', video);
     }
 
     /**

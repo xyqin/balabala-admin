@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月06日 09:19:40
+ * 生成时间：2018年01月09日 04:35:24
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -27,6 +27,12 @@ title: '会员ID',
 dataIndex: 'memberIdObject',
 key: 'memberIdObject',
 type:'Object',
+checked: true
+},{
+title: '状态',
+dataIndex: 'statusEnum',
+key: 'statusEnum',
+type:'Enum',
 checked: true
 }];
 export default BALABALACLASSMEMBER_COLUMNS;

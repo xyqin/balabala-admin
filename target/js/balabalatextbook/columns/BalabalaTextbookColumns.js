@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月06日 09:19:40
+ * 生成时间：2018年01月09日 04:35:24
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -17,7 +17,7 @@ key: 'id',
 type:'Id',
 checked: true
 },{
-title: '分类ID',
+title: '教材三级分类ID',
 dataIndex: 'categoryIdObject',
 key: 'categoryIdObject',
 type:'Object',
@@ -41,6 +41,12 @@ key: 'question',
 type:'String',
 checked: true
 },{
+title: '选项',
+dataIndex: 'option',
+key: 'option',
+type:'String',
+checked: true
+},{
 title: '正确答案',
 dataIndex: 'correct',
 key: 'correct',
@@ -50,6 +56,12 @@ checked: true
 title: '图片',
 dataIndex: 'image',
 key: 'image',
+type:'String',
+checked: true
+},{
+title: '音频',
+dataIndex: 'video',
+key: 'video',
 type:'String',
 checked: true
 }];

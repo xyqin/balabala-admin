@@ -154,6 +154,11 @@ public abstract class AbstractBalabalaClassLessonService extends BaseService {
             englishTeacherIdObject.setValue(String.valueOf(entity.getEnglishTeacherId()));
             englishTeacherIdObject.setChecked(false);
         }
+        LabelValueItem typeEnum = response.getTypeEnum();
+        typeEnum.setName("type");
+        typeEnum.setLabel(com.newhead.balabala.modules.balabalaclasslesson.BalabalaClassLessonTypeEnum.getLabel(entity.getType()));
+        typeEnum.setValue(entity.getType());
+        typeEnum.setChecked(true);
         return response;
     }
 
@@ -201,6 +206,10 @@ public abstract class AbstractBalabalaClassLessonService extends BaseService {
             c.andPreparedEqualTo(request.getPrepared());
          }
 
+        if (request.getType()!=null) {
+            c.andTypeEqualTo(request.getType());
+         }
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -237,6 +246,10 @@ public abstract class AbstractBalabalaClassLessonService extends BaseService {
 
         if (request.getPrepared()!=null) {
             c.andPreparedEqualTo(request.getPrepared());
+         }
+
+        if (request.getType()!=null) {
+            c.andTypeEqualTo(request.getType());
          }
 
         example.setPageSize(request.getSize());
@@ -401,6 +414,11 @@ public abstract class AbstractBalabalaClassLessonService extends BaseService {
                 BeanUtils.copyProperties(englishTeacherIdResultMap.get(englishTeacherId),englishTeacherIdlvi);
             }
             response.setEnglishTeacherIdObject(englishTeacherIdlvi);
+            LabelValueItem typeEnum = response.getTypeEnum();
+            typeEnum.setName("type");
+            typeEnum.setLabel(com.newhead.balabala.modules.balabalaclasslesson.BalabalaClassLessonTypeEnum.getLabel(entity.getType()));
+            typeEnum.setValue(entity.getType());
+            typeEnum.setChecked(true);
             results.add(response);
         }
     }

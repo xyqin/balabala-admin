@@ -118,6 +118,11 @@ public abstract class AbstractBalabalaClassMemberService extends BaseService {
             memberIdObject.setValue(String.valueOf(entity.getMemberId()));
             memberIdObject.setChecked(false);
         }
+        LabelValueItem statusEnum = response.getStatusEnum();
+        statusEnum.setName("status");
+        statusEnum.setLabel(com.newhead.balabala.modules.balabalaclassmember.BalabalaClassMemberStatusEnum.getLabel(entity.getStatus()));
+        statusEnum.setValue(entity.getStatus());
+        statusEnum.setChecked(true);
         return response;
     }
 
@@ -145,6 +150,10 @@ public abstract class AbstractBalabalaClassMemberService extends BaseService {
         BalabalaClassMemberExample example = new BalabalaClassMemberExample();
         BalabalaClassMemberExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        if (request.getStatus()!=null) {
+            c.andStatusEqualTo(request.getStatus());
+         }
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -162,6 +171,10 @@ public abstract class AbstractBalabalaClassMemberService extends BaseService {
         BalabalaClassMemberExample example = new BalabalaClassMemberExample();
         BalabalaClassMemberExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+
+        if (request.getStatus()!=null) {
+            c.andStatusEqualTo(request.getStatus());
+         }
 
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
@@ -244,6 +257,11 @@ public abstract class AbstractBalabalaClassMemberService extends BaseService {
                 BeanUtils.copyProperties(memberIdResultMap.get(memberId),memberIdlvi);
             }
             response.setMemberIdObject(memberIdlvi);
+            LabelValueItem statusEnum = response.getStatusEnum();
+            statusEnum.setName("status");
+            statusEnum.setLabel(com.newhead.balabala.modules.balabalaclassmember.BalabalaClassMemberStatusEnum.getLabel(entity.getStatus()));
+            statusEnum.setValue(entity.getStatus());
+            statusEnum.setChecked(true);
             results.add(response);
         }
     }

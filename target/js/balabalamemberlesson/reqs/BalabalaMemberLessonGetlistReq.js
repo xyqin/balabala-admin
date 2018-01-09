@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年01月06日 09:19:41
+ * 生成时间：2018年01月09日 04:35:25
  * 该文件系自动生成，手动修改可能会被替换
  * BalabalaMemberLessonGetlistReq
  * 接口地址：balabalamemberlesson/getlist
@@ -17,14 +17,22 @@ class BalabalaMemberLessonGetlistReq extends BaseRobotReq {
             url: '/balabalamemberlesson/getlist',
             type: 'Get',        };
         // 请求参数的描述信息，只定义先不用
-        this._paramsDescriptor = [];        this.curd = 'd';
+        this._paramsDescriptor = [{key: 'type',
+            desc: '类型',
+            isRequired: true
+        },{key: 'probational',
+            desc: '是否试听',
+            isRequired: true
+        }];        this.curd = 'd';
     }
 
     /**
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams() {
+    setSimpleParams(type,probational) {
+        this.addParams('type', type);
+        this.addParams('probational', probational);
     }
 
     /**

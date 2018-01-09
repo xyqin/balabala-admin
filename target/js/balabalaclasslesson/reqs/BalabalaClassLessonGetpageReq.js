@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年01月06日 09:19:40
+ * 生成时间：2018年01月09日 04:35:25
  * 该文件系自动生成，手动修改可能会被替换
  * BalabalaClassLessonGetpageReq
  * 接口地址：balabalaclasslesson/getpage
@@ -32,6 +32,9 @@ class BalabalaClassLessonGetpageReq extends BaseRobotReq {
         },{key: 'prepared',
             desc: '是否备课',
             isRequired: true
+        },{key: 'type',
+            desc: '类型',
+            isRequired: true
         },{key: 'page',
             desc: '页码',
             isRequired: false
@@ -45,12 +48,13 @@ class BalabalaClassLessonGetpageReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(lessonName,thumbnail,video,room,prepared,page,size) {
+    setSimpleParams(lessonName,thumbnail,video,room,prepared,type,page,size) {
         this.addParams('lessonName', lessonName);
         this.addParams('thumbnail', thumbnail);
         this.addParams('video', video);
         this.addParams('room', room);
         this.addParams('prepared', prepared);
+        this.addParams('type', type);
         this.addParams('page', page);
         this.addParams('size', size);
     }

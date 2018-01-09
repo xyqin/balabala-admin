@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 开班会员控制器
- * 2017年12月28日 07:22:05
+ * 2018年01月08日 03:02:51
  */
 @Api(tags = "开班会员", description = "相关的API")
 public abstract class AbstractBalabalaClassMemberController extends WebController  {
@@ -95,8 +95,11 @@ public abstract class AbstractBalabalaClassMemberController extends WebControlle
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "开班会员ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBalabalaClassMemberQueryResponse>> getList() {
+    public ApiEntity<List<SimpleBalabalaClassMemberQueryResponse>> getList(@RequestParam(required = false) String status) {
         SimpleBalabalaClassMemberQueryListRequest request = new SimpleBalabalaClassMemberQueryListRequest();
+        if (!StringUtils.isEmpty(status)) {
+            request.setStatus(status);
+        }
         List<SimpleBalabalaClassMemberQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBalabalaClassMemberQueryResponse>>(sources);
     }
@@ -110,9 +113,13 @@ public abstract class AbstractBalabalaClassMemberController extends WebControlle
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) String status,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBalabalaClassMemberQueryPageRequest request = new SimpleBalabalaClassMemberQueryPageRequest();
+        if (!StringUtils.isEmpty(status)) {
+            request.setStatus(status);
+        }
         if (page==null) {
             request.setPage(1);
         } else {

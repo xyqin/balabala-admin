@@ -132,6 +132,11 @@ public abstract class AbstractBalabalaMemberLessonService extends BaseService {
             lessonIdObject.setValue(String.valueOf(entity.getLessonId()));
             lessonIdObject.setChecked(false);
         }
+        LabelValueItem typeEnum = response.getTypeEnum();
+        typeEnum.setName("type");
+        typeEnum.setLabel(com.newhead.balabala.modules.balabalamemberlesson.BalabalaMemberLessonTypeEnum.getLabel(entity.getType()));
+        typeEnum.setValue(entity.getType());
+        typeEnum.setChecked(true);
         return response;
     }
 
@@ -159,6 +164,14 @@ public abstract class AbstractBalabalaMemberLessonService extends BaseService {
         BalabalaMemberLessonExample example = new BalabalaMemberLessonExample();
         BalabalaMemberLessonExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        if (request.getType()!=null) {
+            c.andTypeEqualTo(request.getType());
+         }
+
+        if (request.getProbational()!=null) {
+            c.andProbationalEqualTo(request.getProbational());
+         }
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -176,6 +189,14 @@ public abstract class AbstractBalabalaMemberLessonService extends BaseService {
         BalabalaMemberLessonExample example = new BalabalaMemberLessonExample();
         BalabalaMemberLessonExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+
+        if (request.getType()!=null) {
+            c.andTypeEqualTo(request.getType());
+         }
+
+        if (request.getProbational()!=null) {
+            c.andProbationalEqualTo(request.getProbational());
+         }
 
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
@@ -285,6 +306,11 @@ public abstract class AbstractBalabalaMemberLessonService extends BaseService {
                 BeanUtils.copyProperties(lessonIdResultMap.get(lessonId),lessonIdlvi);
             }
             response.setLessonIdObject(lessonIdlvi);
+            LabelValueItem typeEnum = response.getTypeEnum();
+            typeEnum.setName("type");
+            typeEnum.setLabel(com.newhead.balabala.modules.balabalamemberlesson.BalabalaMemberLessonTypeEnum.getLabel(entity.getType()));
+            typeEnum.setValue(entity.getType());
+            typeEnum.setChecked(true);
             results.add(response);
         }
     }
