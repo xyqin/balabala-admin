@@ -1,30 +1,45 @@
 package com.newhead.rudderframework.core.security;
 
 import com.google.common.base.Objects;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
+import com.google.common.collect.Lists;
+import com.newhead.rudderframework.core.utils.EncodeUtil;
+import com.newhead.rudderframework.modules.rudderuser.base.repository.entity.RudderUser;
+import com.newhead.rudderframework.modules.rudderuser.ext.SimpleRudderUserService;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by ling on 2017/4/7.
  */
 public class ShiroAuthorizingRealm extends AuthorizingRealm {
 
+    protected SimpleRudderUserService userService;
 
     /**
      * 认证回调函数,登录时调用.
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
-        return null;
+        UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+        RudderUser user = userService.getActiveUserByLoginName(token.getUsername());
+        if (user != null) {
+            byte[] salt = EncodeUtil.decodeHex(user.getSalt());
+            ShiroUser pricipal = new ShiroUser(user.getId(), user.getRudderuserName(), user.getNickname(),
+                    user.getEmail(), user.getStatus(), user.getCreatedAt(), userService.isSysadmin(user.getId()));
+            return new SimpleAuthenticationInfo(pricipal, user.getPassword(), ByteSource.Util.bytes(salt), getName());
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -32,9 +47,12 @@ public class ShiroAuthorizingRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-
+        ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
+        RudderUser user = userService.getActiveUserByLoginName(shiroUser.loginName);
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-
+        List<String> roles = Lists.newArrayList();
+        userService.getRudderRoles(user.getId()).forEach(role -> roles.add(role.getValue()));
+        info.addRoles(roles);
         return info;
     }
 
@@ -44,7 +62,13 @@ public class ShiroAuthorizingRealm extends AuthorizingRealm {
      */
     @PostConstruct
     public void initCredentialsMatcher() {
+        HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(SimpleRudderUserService.HASH_ALGORITHM);
+        matcher.setHashIterations(SimpleRudderUserService.HASH_INTERATIONS);
+        setCredentialsMatcher(matcher);
+    }
 
+    public void setUserService(SimpleRudderUserService userService) {
+        this.userService = userService;
     }
 
     /**
