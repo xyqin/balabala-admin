@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 /**
  * 系统用户
- * @generated 2017年12月23日 02:12:59
+ * @generated 2018年01月11日 07:57:50
  */
 @Data
 public abstract class AbstractRudderUserQueryListRequest  {

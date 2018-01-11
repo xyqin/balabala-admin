@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月09日 04:35:25
+ * 生成时间：2018年01月11日 07:57:51
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -57,6 +57,15 @@ const RUDDERUSER_FORM_FIELDS = [{
     type: 'Bool',
     label: '是否显示',
 placeholder: '请输入是否显示'
+},{
+    key: 'campusId',
+    type: 'Object',
+    label: '校区ID',
+    placeholder: '请选择校区ID',
+    displayType: 'SingleTree',
+    url: '/balabalacampus/gettree',
+    dataLableKey: 'campusName',
+    dataValueKey: 'id'
 },{
     key: 'rudderRoles',
     type: 'Object',

@@ -22,6 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 
+import com.newhead.balabala.modules.balabalacampus.base.repository.entity.BalabalaCampus;
+import com.newhead.balabala.modules.balabalacampus.base.repository.entity.BalabalaCampusExample;
+
+import com.newhead.balabala.modules.balabalacampus.base.repository.dao.BalabalaCampusMapper;
 import com.newhead.rudderframework.modules.rudderuser2role.base.repository.entity.RudderUser2role;
 import com.newhead.rudderframework.modules.rudderuser2role.base.repository.entity.RudderUser2roleExample;
 
@@ -46,6 +50,8 @@ public abstract class AbstractRudderUserService extends BaseService {
 
     protected abstract void saveOrUpdate(RudderUser entity);
 
+    @Autowired
+    protected BalabalaCampusMapper balabalacampusMapper;
     @Autowired
     protected RudderUser2roleMapper rudderuser2roleMapper;
     @Autowired
@@ -114,6 +120,14 @@ public abstract class AbstractRudderUserService extends BaseService {
         statusEnum.setLabel(com.newhead.rudderframework.modules.rudderuser.RudderUserStatusEnum.getLabel(entity.getStatus()));
         statusEnum.setValue(entity.getStatus());
         statusEnum.setChecked(true);
+        BalabalaCampus  campusIdEntity = balabalacampusMapper.selectByPrimaryKey(Long.valueOf(entity.getCampusId()));
+        if (campusIdEntity!=null) {
+            LabelValueItem campusIdObject = response.getCampusIdObject();
+            campusIdObject.setName("campusId");
+            campusIdObject.setLabel(campusIdEntity.getCampusName());
+            campusIdObject.setValue(String.valueOf(entity.getCampusId()));
+            campusIdObject.setChecked(false);
+        }
         return response;
     }
 
@@ -196,7 +210,26 @@ public abstract class AbstractRudderUserService extends BaseService {
      * @param results
      */
     private void convertEntityToResponse(List<RudderUser> entitys,List<SimpleRudderUserQueryResponse> results) {
+        Map<Long,Long> campusIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> campusIdResultMap = Maps.newHashMap();
+
        for(RudderUser entity:entitys) {
+            campusIdMap.put(entity.getId(),entity.getCampusId());
+        }
+        BalabalaCampusExample campusIdExample = new BalabalaCampusExample();
+
+        List<Long> campusIds = new ArrayList<>();
+        campusIds.addAll(campusIdMap.values());
+        if (campusIds.size()>0) {
+            campusIdExample.createCriteria().andIdIn(campusIds);
+        }
+        List<BalabalaCampus>  campusIdList = balabalacampusMapper.selectByExample(campusIdExample);
+        for(BalabalaCampus item:campusIdList) {
+           LabelValueItem campusIdItem = new LabelValueItem();
+           campusIdItem.setName("campusId");
+           campusIdItem.setValue(String.valueOf(item.getId()));
+           campusIdItem.setLabel(item.getCampusName());
+           campusIdResultMap.put(item.getId(),campusIdItem);
         }
         //第一组
         for(RudderUser entity:entitys) {
@@ -207,6 +240,14 @@ public abstract class AbstractRudderUserService extends BaseService {
             statusEnum.setLabel(com.newhead.rudderframework.modules.rudderuser.RudderUserStatusEnum.getLabel(entity.getStatus()));
             statusEnum.setValue(entity.getStatus());
             statusEnum.setChecked(true);
+            Long campusId = campusIdMap.get(entity.getId());
+
+            LabelValueItem campusIdlvi = null;
+            if (campusId!=null && campusIdResultMap.get(campusId)!=null) {
+                campusIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(campusIdResultMap.get(campusId),campusIdlvi);
+            }
+            response.setCampusIdObject(campusIdlvi);
             results.add(response);
         }
     }

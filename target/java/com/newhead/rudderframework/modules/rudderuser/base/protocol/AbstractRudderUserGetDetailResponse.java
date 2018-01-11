@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 系统用户
- * 2018年01月09日 04:35:24
+ * 2018年01月11日 07:57:50
  */
 @Data
 public abstract class AbstractRudderUserGetDetailResponse {
@@ -68,6 +68,12 @@ public abstract class AbstractRudderUserGetDetailResponse {
      * 是否显示
      */
      private Boolean visible;
+
+    /**
+     *
+     * 校区ID
+     */
+    private LabelValueItem CampusIdObject = new LabelValueItem();
 
     private List<LabelValueItem> rudderRoleItems = new ArrayList<>();
 

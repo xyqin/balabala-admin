@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年01月09日 04:35:25
+ * 生成时间：2018年01月11日 07:57:52
  * 该文件系自动生成，手动修改可能会被替换
  * RudderUserUpdateReq
  * 接口地址：rudderuser/update
@@ -45,6 +45,9 @@ class RudderUserUpdateReq extends BaseRobotReq {
         },{key: 'visible',
             desc: '是否显示',
             isRequired: true
+        },{key: 'campusId',
+            desc: '校区ID',
+            isRequired: true
         }];        this.curd = 'd';
     }
 
@@ -52,7 +55,7 @@ class RudderUserUpdateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,rudderuserName,rudderuserDesc,password,status,nickname,salt,email,visible) {
+    setSimpleParams(id,rudderuserName,rudderuserDesc,password,status,nickname,salt,email,visible,campusId) {
         this.addParams('id', id);
         this.addParams('rudderuserName', rudderuserName);
         this.addParams('rudderuserDesc', rudderuserDesc);
@@ -62,6 +65,7 @@ class RudderUserUpdateReq extends BaseRobotReq {
         this.addParams('salt', salt);
         this.addParams('email', email);
         this.addParams('visible', visible);
+        this.addParams('campusId', campusId);
     }
 
     /**

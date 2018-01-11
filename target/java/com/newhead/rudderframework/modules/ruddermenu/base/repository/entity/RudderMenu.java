@@ -11,20 +11,20 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * RudderFramework框架自动生成，不允许修改！
  * 表 rudder_menu
- * @generated do_not_delete_during_merge 2018年1月9日 04:35:21
+ * @generated do_not_delete_during_merge 2018年1月11日 07:57:47
  */
 public class RudderMenu implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"1","formid":"1"},"name":"菜单ID","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     private Long id;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"菜单名称","fieldType":"String","visible":true,"checkName":true,"queryType":2,"displayOrder”:0,”length":16,"types":[],"valid":true}
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     @NotEmpty(message="菜单名称不能为空")
     @Size(max=0,message = "菜单名称长度无效")
@@ -34,7 +34,7 @@ public class RudderMenu implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"2"},"name":"菜单描述","fieldType":"String","visible":true,"queryType":0,"displayOrder":0,"length":255,"types":[],"valid":true}
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     @Size(max=255,message = "菜单描述长度无效")
 
@@ -43,7 +43,7 @@ public class RudderMenu implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"菜单链接","fieldType":"String","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     @NotEmpty(message="菜单链接不能为空")
     @Size(max=0,message = "菜单链接长度无效")
@@ -53,28 +53,28 @@ public class RudderMenu implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"是否显示","fieldType":"Bool","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     private Boolean visible;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"排序号","fieldType":"Number","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     private Integer orderNumber;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"上级菜单","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"RudderMenu","field":"ruddermenuName","type":"SingleTree"},"valid":true}
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     private Long parentId;
 
     /**
      *
      * {"name":"系统创建时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     @JSONField(serialize=false)
     private Date createdAt;
@@ -82,7 +82,7 @@ public class RudderMenu implements AuditableEntity {
     /**
      *
      * {"name":"系统修改时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     @JSONField(serialize=false)
     private Date updatedAt;
@@ -90,7 +90,7 @@ public class RudderMenu implements AuditableEntity {
     /**
      *
      * {"name":"系统创建者","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     @JSONField(serialize=false)
     private Long creator;
@@ -98,7 +98,7 @@ public class RudderMenu implements AuditableEntity {
     /**
      *
      * {"name":"系统修改者","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     @JSONField(serialize=false)
     private Long lastModifier;
@@ -106,7 +106,7 @@ public class RudderMenu implements AuditableEntity {
     /**
      *
      * {"name":"逻辑删除标志","fieldType":"Bool","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     @JSONField(serialize=false)
     private Boolean deleted;
@@ -114,13 +114,13 @@ public class RudderMenu implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"上级资源","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"RudderPermission","field":"rudderpermissionName","type":"SingleTree"},"valid":true}
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     private Long resourceId;
 
     /**
      * 返回 id 菜单ID
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public Long getId() {
         
@@ -131,7 +131,7 @@ public class RudderMenu implements AuditableEntity {
      * 设置菜单ID
      *
      * @param id
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public void setId(Long id) {
         this.id = id;
@@ -139,7 +139,7 @@ public class RudderMenu implements AuditableEntity {
 
     /**
      * 返回 ruddermenu_name 菜单名称
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public String getRuddermenuName() {
         
@@ -150,7 +150,7 @@ public class RudderMenu implements AuditableEntity {
      * 设置菜单名称
      *
      * @param ruddermenuName
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public void setRuddermenuName(String ruddermenuName) {
         this.ruddermenuName = ruddermenuName == null ? null : ruddermenuName.trim();
@@ -158,7 +158,7 @@ public class RudderMenu implements AuditableEntity {
 
     /**
      * 返回 ruddermenu_desc 菜单描述
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public String getRuddermenuDesc() {
         
@@ -169,7 +169,7 @@ public class RudderMenu implements AuditableEntity {
      * 设置菜单描述
      *
      * @param ruddermenuDesc
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public void setRuddermenuDesc(String ruddermenuDesc) {
         this.ruddermenuDesc = ruddermenuDesc == null ? null : ruddermenuDesc.trim();
@@ -177,7 +177,7 @@ public class RudderMenu implements AuditableEntity {
 
     /**
      * 返回 url 菜单链接
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public String getUrl() {
         
@@ -188,7 +188,7 @@ public class RudderMenu implements AuditableEntity {
      * 设置菜单链接
      *
      * @param url
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public void setUrl(String url) {
         this.url = url == null ? null : url.trim();
@@ -196,7 +196,7 @@ public class RudderMenu implements AuditableEntity {
 
     /**
      * 返回 visible 是否显示
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public Boolean getVisible() {
         
@@ -207,7 +207,7 @@ public class RudderMenu implements AuditableEntity {
      * 设置是否显示
      *
      * @param visible
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public void setVisible(Boolean visible) {
         this.visible = visible;
@@ -215,7 +215,7 @@ public class RudderMenu implements AuditableEntity {
 
     /**
      * 返回 order_number 排序号
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public Integer getOrderNumber() {
         
@@ -226,7 +226,7 @@ public class RudderMenu implements AuditableEntity {
      * 设置排序号
      *
      * @param orderNumber
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public void setOrderNumber(Integer orderNumber) {
         this.orderNumber = orderNumber;
@@ -234,7 +234,7 @@ public class RudderMenu implements AuditableEntity {
 
     /**
      * 返回 parent_id 上级菜单
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public Long getParentId() {
         
@@ -245,7 +245,7 @@ public class RudderMenu implements AuditableEntity {
      * 设置上级菜单
      *
      * @param parentId
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public void setParentId(Long parentId) {
         this.parentId = parentId;
@@ -253,7 +253,7 @@ public class RudderMenu implements AuditableEntity {
 
     /**
      * 返回 created_at 系统创建时间
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public Date getCreatedAt() {
         
@@ -264,7 +264,7 @@ public class RudderMenu implements AuditableEntity {
      * 设置系统创建时间
      *
      * @param createdAt
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -272,7 +272,7 @@ public class RudderMenu implements AuditableEntity {
 
     /**
      * 返回 updated_at 系统修改时间
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public Date getUpdatedAt() {
         
@@ -283,7 +283,7 @@ public class RudderMenu implements AuditableEntity {
      * 设置系统修改时间
      *
      * @param updatedAt
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
@@ -291,7 +291,7 @@ public class RudderMenu implements AuditableEntity {
 
     /**
      * 返回 creator 系统创建者
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public Long getCreator() {
         
@@ -302,7 +302,7 @@ public class RudderMenu implements AuditableEntity {
      * 设置系统创建者
      *
      * @param creator
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public void setCreator(Long creator) {
         this.creator = creator;
@@ -310,7 +310,7 @@ public class RudderMenu implements AuditableEntity {
 
     /**
      * 返回 last_modifier 系统修改者
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public Long getLastModifier() {
         
@@ -321,7 +321,7 @@ public class RudderMenu implements AuditableEntity {
      * 设置系统修改者
      *
      * @param lastModifier
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public void setLastModifier(Long lastModifier) {
         this.lastModifier = lastModifier;
@@ -329,7 +329,7 @@ public class RudderMenu implements AuditableEntity {
 
     /**
      * 返回 deleted 逻辑删除标志
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public Boolean getDeleted() {
         
@@ -340,7 +340,7 @@ public class RudderMenu implements AuditableEntity {
      * 设置逻辑删除标志
      *
      * @param deleted
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
@@ -348,7 +348,7 @@ public class RudderMenu implements AuditableEntity {
 
     /**
      * 返回 resource_id 上级资源
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public Long getResourceId() {
         
@@ -359,7 +359,7 @@ public class RudderMenu implements AuditableEntity {
      * 设置上级资源
      *
      * @param resourceId
-     * @generated 2018年1月9日 04:35:21
+     * @generated 2018年1月11日 07:57:47
      */
     public void setResourceId(Long resourceId) {
         this.resourceId = resourceId;

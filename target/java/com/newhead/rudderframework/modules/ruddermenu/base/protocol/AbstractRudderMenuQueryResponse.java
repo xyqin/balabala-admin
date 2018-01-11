@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 菜单
- * @generated 2018年01月09日 04:35:23
+ * @generated 2018年01月11日 07:57:50
  */
 @Data
 public abstract class AbstractRudderMenuQueryResponse {

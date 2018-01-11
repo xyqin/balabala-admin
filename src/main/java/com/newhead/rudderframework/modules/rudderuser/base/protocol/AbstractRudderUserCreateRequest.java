@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 系统用户
- * 2017年12月23日 02:12:59
+ * 2018年01月11日 07:57:50
  */
 @Data
 public abstract class AbstractRudderUserCreateRequest {
@@ -61,6 +61,12 @@ public abstract class AbstractRudderUserCreateRequest {
      * 是否显示
      */
     private Boolean visible;
+
+    /**
+     *
+     * 校区ID
+     */
+    private Long campusId;
 
     private String[] rudderRoles;
 
