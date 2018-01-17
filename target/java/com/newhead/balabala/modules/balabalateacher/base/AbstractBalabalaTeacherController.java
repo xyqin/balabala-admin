@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教师控制器
- * 2018年01月09日 04:35:24
+ * 2018年01月17日 05:42:36
  */
 @Api(tags = "教师", description = "相关的API")
 public abstract class AbstractBalabalaTeacherController extends WebController  {
@@ -95,16 +95,10 @@ public abstract class AbstractBalabalaTeacherController extends WebController  {
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "教师ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBalabalaTeacherQueryResponse>> getList(@RequestParam(required = false) String username,@RequestParam(required = false) String password,@RequestParam(required = false) String avatar,@RequestParam(required = false) String fullName,@RequestParam(required = false) String phoneNumber,@RequestParam(required = false) String major,@RequestParam(required = false) String comeFrom,@RequestParam(required = false) String status,@RequestParam(required = false) String accid,@RequestParam(required = false) String token) {
+    public ApiEntity<List<SimpleBalabalaTeacherQueryResponse>> getList(@RequestParam(required = false) String username,@RequestParam(required = false) String fullName,@RequestParam(required = false) String phoneNumber,@RequestParam(required = false) String major,@RequestParam(required = false) String comeFrom,@RequestParam(required = false) String status) {
         SimpleBalabalaTeacherQueryListRequest request = new SimpleBalabalaTeacherQueryListRequest();
         if (!StringUtils.isEmpty(username)) {
             request.setUsername(username);
-        }
-        if (!StringUtils.isEmpty(password)) {
-            request.setPassword(password);
-        }
-        if (!StringUtils.isEmpty(avatar)) {
-            request.setAvatar(avatar);
         }
         if (!StringUtils.isEmpty(fullName)) {
             request.setFullName(fullName);
@@ -120,12 +114,6 @@ public abstract class AbstractBalabalaTeacherController extends WebController  {
         }
         if (!StringUtils.isEmpty(status)) {
             request.setStatus(status);
-        }
-        if (!StringUtils.isEmpty(accid)) {
-            request.setAccid(accid);
-        }
-        if (!StringUtils.isEmpty(token)) {
-            request.setToken(token);
         }
         List<SimpleBalabalaTeacherQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBalabalaTeacherQueryResponse>>(sources);
@@ -141,26 +129,16 @@ public abstract class AbstractBalabalaTeacherController extends WebController  {
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
         @RequestParam(required = false) String username,
-        @RequestParam(required = false) String password,
-        @RequestParam(required = false) String avatar,
         @RequestParam(required = false) String fullName,
         @RequestParam(required = false) String phoneNumber,
         @RequestParam(required = false) String major,
         @RequestParam(required = false) String comeFrom,
         @RequestParam(required = false) String status,
-        @RequestParam(required = false) String accid,
-        @RequestParam(required = false) String token,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBalabalaTeacherQueryPageRequest request = new SimpleBalabalaTeacherQueryPageRequest();
         if (!StringUtils.isEmpty(username)) {
             request.setUsername(username);
-        }
-        if (!StringUtils.isEmpty(password)) {
-            request.setPassword(password);
-        }
-        if (!StringUtils.isEmpty(avatar)) {
-            request.setAvatar(avatar);
         }
         if (!StringUtils.isEmpty(fullName)) {
             request.setFullName(fullName);
@@ -176,12 +154,6 @@ public abstract class AbstractBalabalaTeacherController extends WebController  {
         }
         if (!StringUtils.isEmpty(status)) {
             request.setStatus(status);
-        }
-        if (!StringUtils.isEmpty(accid)) {
-            request.setAccid(accid);
-        }
-        if (!StringUtils.isEmpty(token)) {
-            request.setToken(token);
         }
         if (page==null) {
             request.setPage(1);

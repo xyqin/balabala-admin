@@ -141,10 +141,6 @@ public abstract class AbstractBalabalaMemberService extends BaseService {
             c.andNicknameLike("%"+request.getNickname()+"%");
         }
 
-        if (request.getAvatar()!=null) {
-            c.andAvatarLike("%"+request.getAvatar()+"%");
-        }
-
         if (request.getEnglishName()!=null) {
             c.andEnglishNameLike("%"+request.getEnglishName()+"%");
         }
@@ -152,18 +148,6 @@ public abstract class AbstractBalabalaMemberService extends BaseService {
         if (request.getGender()!=null) {
             c.andGenderEqualTo(request.getGender());
          }
-
-        if (request.getBirthday()!=null) {
-            c.andBirthdayLike("%"+request.getBirthday()+"%");
-        }
-
-        if (request.getAccid()!=null) {
-            c.andAccidLike("%"+request.getAccid()+"%");
-        }
-
-        if (request.getToken()!=null) {
-            c.andTokenLike("%"+request.getToken()+"%");
-        }
 
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
@@ -188,10 +172,6 @@ public abstract class AbstractBalabalaMemberService extends BaseService {
             c.andNicknameLike("%"+request.getNickname()+"%");
         }
 
-        if (request.getAvatar()!=null) {
-            c.andAvatarLike("%"+request.getAvatar()+"%");
-        }
-
         if (request.getEnglishName()!=null) {
             c.andEnglishNameLike("%"+request.getEnglishName()+"%");
         }
@@ -199,18 +179,6 @@ public abstract class AbstractBalabalaMemberService extends BaseService {
         if (request.getGender()!=null) {
             c.andGenderEqualTo(request.getGender());
          }
-
-        if (request.getBirthday()!=null) {
-            c.andBirthdayLike("%"+request.getBirthday()+"%");
-        }
-
-        if (request.getAccid()!=null) {
-            c.andAccidLike("%"+request.getAccid()+"%");
-        }
-
-        if (request.getToken()!=null) {
-            c.andTokenLike("%"+request.getToken()+"%");
-        }
 
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());

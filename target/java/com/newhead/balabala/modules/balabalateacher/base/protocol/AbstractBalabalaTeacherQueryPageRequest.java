@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年01月09日 04:35:23
+ * @generated 2018年01月17日 05:42:35
  */
 @Data
 public abstract class AbstractBalabalaTeacherQueryPageRequest extends PageRequest {
@@ -17,18 +17,6 @@ public abstract class AbstractBalabalaTeacherQueryPageRequest extends PageReques
      * 账号
      */
      private String username;
-
-    /**
-     *
-     * 密码
-     */
-     private String password;
-
-    /**
-     *
-     * 头像
-     */
-     private String avatar;
 
     /**
      *
@@ -59,17 +47,5 @@ public abstract class AbstractBalabalaTeacherQueryPageRequest extends PageReques
      * 状态
      */
      private String status;
-
-    /**
-     *
-     * 网易云ID
-     */
-     private String accid;
-
-    /**
-     *
-     * 网易云登录token
-     */
-     private String token;
 
 }

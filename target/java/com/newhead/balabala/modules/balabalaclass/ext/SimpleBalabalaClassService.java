@@ -11,7 +11,7 @@ import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 开班服务
- * 2018年01月12日 04:41:37
+ * 2018年01月17日 05:42:34
  */
 @Api(tags = "开班", description = "相关的API")
 @Service

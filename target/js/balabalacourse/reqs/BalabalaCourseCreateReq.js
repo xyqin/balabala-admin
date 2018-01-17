@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年01月09日 04:35:25
+ * 生成时间：2018年01月17日 05:42:37
  * 该文件系自动生成，手动修改可能会被替换
  * BalabalaCourseCreateReq
  * 接口地址：balabalacourse/create
@@ -24,6 +24,9 @@ class BalabalaCourseCreateReq extends BaseRobotReq {
         },{key: 'categoryId',
             desc: '课程分类ID',
             isRequired: true
+        },{key: 'textbookCategoryId',
+            desc: '教材二级分类ID',
+            isRequired: true
         },{key: 'courseName',
             desc: '课程名称',
             isRequired: true
@@ -40,7 +43,7 @@ class BalabalaCourseCreateReq extends BaseRobotReq {
             desc: '线下授课时长',
             isRequired: false
         },{key: 'commission',
-            desc: '总部抽取佣金',
+            desc: '总部抽取佣金（元/每位学生）',
             isRequired: true
         }];        this.curd = 'd';
     }
@@ -49,9 +52,10 @@ class BalabalaCourseCreateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,categoryId,courseName,onlineLessons,onlineDuration,offlineLessons,offlineDuration,commission) {
+    setSimpleParams(id,categoryId,textbookCategoryId,courseName,onlineLessons,onlineDuration,offlineLessons,offlineDuration,commission) {
         this.addParams('id', id);
         this.addParams('categoryId', categoryId);
+        this.addParams('textbookCategoryId', textbookCategoryId);
         this.addParams('courseName', courseName);
         this.addParams('onlineLessons', onlineLessons);
         this.addParams('onlineDuration', onlineDuration);

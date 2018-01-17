@@ -140,14 +140,6 @@ public abstract class AbstractBalabalaTeacherService extends BaseService {
             c.andUsernameLike("%"+request.getUsername()+"%");
         }
 
-        if (request.getPassword()!=null) {
-            c.andPasswordLike("%"+request.getPassword()+"%");
-        }
-
-        if (request.getAvatar()!=null) {
-            c.andAvatarLike("%"+request.getAvatar()+"%");
-        }
-
         if (request.getFullName()!=null) {
             c.andFullNameLike("%"+request.getFullName()+"%");
         }
@@ -167,14 +159,6 @@ public abstract class AbstractBalabalaTeacherService extends BaseService {
         if (request.getStatus()!=null) {
             c.andStatusEqualTo(request.getStatus());
          }
-
-        if (request.getAccid()!=null) {
-            c.andAccidLike("%"+request.getAccid()+"%");
-        }
-
-        if (request.getToken()!=null) {
-            c.andTokenLike("%"+request.getToken()+"%");
-        }
 
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
@@ -198,14 +182,6 @@ public abstract class AbstractBalabalaTeacherService extends BaseService {
             c.andUsernameLike("%"+request.getUsername()+"%");
         }
 
-        if (request.getPassword()!=null) {
-            c.andPasswordLike("%"+request.getPassword()+"%");
-        }
-
-        if (request.getAvatar()!=null) {
-            c.andAvatarLike("%"+request.getAvatar()+"%");
-        }
-
         if (request.getFullName()!=null) {
             c.andFullNameLike("%"+request.getFullName()+"%");
         }
@@ -225,14 +201,6 @@ public abstract class AbstractBalabalaTeacherService extends BaseService {
         if (request.getStatus()!=null) {
             c.andStatusEqualTo(request.getStatus());
          }
-
-        if (request.getAccid()!=null) {
-            c.andAccidLike("%"+request.getAccid()+"%");
-        }
-
-        if (request.getToken()!=null) {
-            c.andTokenLike("%"+request.getToken()+"%");
-        }
 
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());

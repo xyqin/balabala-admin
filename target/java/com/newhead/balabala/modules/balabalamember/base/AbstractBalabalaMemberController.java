@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员控制器
- * 2018年01月09日 04:35:24
+ * 2018年01月17日 05:42:36
  */
 @Api(tags = "会员", description = "相关的API")
 public abstract class AbstractBalabalaMemberController extends WebController  {
@@ -95,28 +95,16 @@ public abstract class AbstractBalabalaMemberController extends WebController  {
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "会员ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBalabalaMemberQueryResponse>> getList(@RequestParam(required = false) String nickname,@RequestParam(required = false) String avatar,@RequestParam(required = false) String englishName,@RequestParam(required = false) String gender,@RequestParam(required = false) String birthday,@RequestParam(required = false) String accid,@RequestParam(required = false) String token) {
+    public ApiEntity<List<SimpleBalabalaMemberQueryResponse>> getList(@RequestParam(required = false) String nickname,@RequestParam(required = false) String englishName,@RequestParam(required = false) String gender) {
         SimpleBalabalaMemberQueryListRequest request = new SimpleBalabalaMemberQueryListRequest();
         if (!StringUtils.isEmpty(nickname)) {
             request.setNickname(nickname);
-        }
-        if (!StringUtils.isEmpty(avatar)) {
-            request.setAvatar(avatar);
         }
         if (!StringUtils.isEmpty(englishName)) {
             request.setEnglishName(englishName);
         }
         if (!StringUtils.isEmpty(gender)) {
             request.setGender(gender);
-        }
-        if (!StringUtils.isEmpty(birthday)) {
-            request.setBirthday(birthday);
-        }
-        if (!StringUtils.isEmpty(accid)) {
-            request.setAccid(accid);
-        }
-        if (!StringUtils.isEmpty(token)) {
-            request.setToken(token);
         }
         List<SimpleBalabalaMemberQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBalabalaMemberQueryResponse>>(sources);
@@ -132,35 +120,19 @@ public abstract class AbstractBalabalaMemberController extends WebController  {
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
         @RequestParam(required = false) String nickname,
-        @RequestParam(required = false) String avatar,
         @RequestParam(required = false) String englishName,
         @RequestParam(required = false) String gender,
-        @RequestParam(required = false) String birthday,
-        @RequestParam(required = false) String accid,
-        @RequestParam(required = false) String token,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBalabalaMemberQueryPageRequest request = new SimpleBalabalaMemberQueryPageRequest();
         if (!StringUtils.isEmpty(nickname)) {
             request.setNickname(nickname);
         }
-        if (!StringUtils.isEmpty(avatar)) {
-            request.setAvatar(avatar);
-        }
         if (!StringUtils.isEmpty(englishName)) {
             request.setEnglishName(englishName);
         }
         if (!StringUtils.isEmpty(gender)) {
             request.setGender(gender);
-        }
-        if (!StringUtils.isEmpty(birthday)) {
-            request.setBirthday(birthday);
-        }
-        if (!StringUtils.isEmpty(accid)) {
-            request.setAccid(accid);
-        }
-        if (!StringUtils.isEmpty(token)) {
-            request.setToken(token);
         }
         if (page==null) {
             request.setPage(1);

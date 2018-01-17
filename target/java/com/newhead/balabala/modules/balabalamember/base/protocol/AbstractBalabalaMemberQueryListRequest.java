@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年01月09日 04:35:23
+ * @generated 2018年01月17日 05:42:35
  */
 @Data
 public abstract class AbstractBalabalaMemberQueryListRequest  {
@@ -15,12 +15,6 @@ public abstract class AbstractBalabalaMemberQueryListRequest  {
      * 昵称
      */
      private String nickname;
-
-    /**
-     *
-     * 头像
-     */
-     private String avatar;
 
     /**
      *
@@ -33,23 +27,5 @@ public abstract class AbstractBalabalaMemberQueryListRequest  {
      * 性别
      */
      private String gender;
-
-    /**
-     *
-     * 生日
-     */
-     private String birthday;
-
-    /**
-     *
-     * 网易云ID
-     */
-     private String accid;
-
-    /**
-     *
-     * 网易云登录token
-     */
-     private String token;
 
 }

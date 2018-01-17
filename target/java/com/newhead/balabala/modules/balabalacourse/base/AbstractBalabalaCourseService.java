@@ -26,6 +26,10 @@ import com.newhead.balabala.modules.balabalacoursecategory.base.repository.entit
 import com.newhead.balabala.modules.balabalacoursecategory.base.repository.entity.BalabalaCourseCategoryExample;
 
 import com.newhead.balabala.modules.balabalacoursecategory.base.repository.dao.BalabalaCourseCategoryMapper;
+import com.newhead.balabala.modules.balabalatextbookcategory.base.repository.entity.BalabalaTextbookCategory;
+import com.newhead.balabala.modules.balabalatextbookcategory.base.repository.entity.BalabalaTextbookCategoryExample;
+
+import com.newhead.balabala.modules.balabalatextbookcategory.base.repository.dao.BalabalaTextbookCategoryMapper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,6 +48,8 @@ public abstract class AbstractBalabalaCourseService extends BaseService {
 
     @Autowired
     protected BalabalaCourseCategoryMapper balabalacoursecategoryMapper;
+    @Autowired
+    protected BalabalaTextbookCategoryMapper balabalatextbookcategoryMapper;
 
     /**
      * 创建
@@ -103,6 +109,14 @@ public abstract class AbstractBalabalaCourseService extends BaseService {
             categoryIdObject.setLabel(categoryIdEntity.getCategoryName());
             categoryIdObject.setValue(String.valueOf(entity.getCategoryId()));
             categoryIdObject.setChecked(false);
+        }
+        BalabalaTextbookCategory  textbookCategoryIdEntity = balabalatextbookcategoryMapper.selectByPrimaryKey(Long.valueOf(entity.getTextbookCategoryId()));
+        if (textbookCategoryIdEntity!=null) {
+            LabelValueItem textbookCategoryIdObject = response.getTextbookCategoryIdObject();
+            textbookCategoryIdObject.setName("textbookCategoryId");
+            textbookCategoryIdObject.setLabel(textbookCategoryIdEntity.getCategoryName());
+            textbookCategoryIdObject.setValue(String.valueOf(entity.getTextbookCategoryId()));
+            textbookCategoryIdObject.setChecked(false);
         }
         return response;
     }
@@ -181,8 +195,12 @@ public abstract class AbstractBalabalaCourseService extends BaseService {
         Map<Long,Long> categoryIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> categoryIdResultMap = Maps.newHashMap();
 
+        Map<Long,Long> textbookCategoryIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> textbookCategoryIdResultMap = Maps.newHashMap();
+
        for(BalabalaCourse entity:entitys) {
             categoryIdMap.put(entity.getId(),entity.getCategoryId());
+            textbookCategoryIdMap.put(entity.getId(),entity.getTextbookCategoryId());
         }
         BalabalaCourseCategoryExample categoryIdExample = new BalabalaCourseCategoryExample();
 
@@ -199,6 +217,21 @@ public abstract class AbstractBalabalaCourseService extends BaseService {
            categoryIdItem.setLabel(item.getCategoryName());
            categoryIdResultMap.put(item.getId(),categoryIdItem);
         }
+        BalabalaTextbookCategoryExample textbookCategoryIdExample = new BalabalaTextbookCategoryExample();
+
+        List<Long> textbookCategoryIds = new ArrayList<>();
+        textbookCategoryIds.addAll(textbookCategoryIdMap.values());
+        if (textbookCategoryIds.size()>0) {
+            textbookCategoryIdExample.createCriteria().andIdIn(textbookCategoryIds);
+        }
+        List<BalabalaTextbookCategory>  textbookCategoryIdList = balabalatextbookcategoryMapper.selectByExample(textbookCategoryIdExample);
+        for(BalabalaTextbookCategory item:textbookCategoryIdList) {
+           LabelValueItem textbookCategoryIdItem = new LabelValueItem();
+           textbookCategoryIdItem.setName("textbookCategoryId");
+           textbookCategoryIdItem.setValue(String.valueOf(item.getId()));
+           textbookCategoryIdItem.setLabel(item.getCategoryName());
+           textbookCategoryIdResultMap.put(item.getId(),textbookCategoryIdItem);
+        }
         //第一组
         for(BalabalaCourse entity:entitys) {
             SimpleBalabalaCourseQueryResponse response = new SimpleBalabalaCourseQueryResponse();
@@ -211,6 +244,14 @@ public abstract class AbstractBalabalaCourseService extends BaseService {
                 BeanUtils.copyProperties(categoryIdResultMap.get(categoryId),categoryIdlvi);
             }
             response.setCategoryIdObject(categoryIdlvi);
+            Long textbookCategoryId = textbookCategoryIdMap.get(entity.getId());
+
+            LabelValueItem textbookCategoryIdlvi = null;
+            if (textbookCategoryId!=null && textbookCategoryIdResultMap.get(textbookCategoryId)!=null) {
+                textbookCategoryIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(textbookCategoryIdResultMap.get(textbookCategoryId),textbookCategoryIdlvi);
+            }
+            response.setTextbookCategoryIdObject(textbookCategoryIdlvi);
             results.add(response);
         }
     }

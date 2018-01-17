@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * RudderFramework 自动生成
  * 校区控制
- * 2018年01月09日 04:35:22
+ * 2018年01月17日 05:42:34
  */
 @Api(tags = "校区", description = "相关的API")
 @RestController

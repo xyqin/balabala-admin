@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员课时表控制器
- * 2018年01月09日 04:35:24
+ * 2018年01月17日 05:42:36
  */
 @Api(tags = "会员课时表", description = "相关的API")
 public abstract class AbstractBalabalaMemberLessonController extends WebController  {

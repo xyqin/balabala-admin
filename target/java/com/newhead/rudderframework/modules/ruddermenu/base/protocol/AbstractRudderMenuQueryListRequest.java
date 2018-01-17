@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 /**
  * 菜单
- * @generated 2018年01月11日 07:57:50
+ * @generated 2018年01月17日 05:42:35
  */
 @Data
 public abstract class AbstractRudderMenuQueryListRequest  {

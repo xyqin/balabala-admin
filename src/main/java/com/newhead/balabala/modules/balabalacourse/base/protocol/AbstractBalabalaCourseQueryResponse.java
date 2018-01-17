@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年01月07日 04:52:25
+ * @generated 2018年01月17日 05:42:35
  */
 @Data
 public abstract class AbstractBalabalaCourseQueryResponse {
@@ -27,6 +27,12 @@ public abstract class AbstractBalabalaCourseQueryResponse {
      * 课程分类ID
      */
     private LabelValueItem CategoryIdObject = new LabelValueItem();
+
+    /**
+     *
+     * 教材二级分类ID
+     */
+    private LabelValueItem TextbookCategoryIdObject = new LabelValueItem();
 
     /**
      *
@@ -60,7 +66,7 @@ public abstract class AbstractBalabalaCourseQueryResponse {
 
     /**
      *
-     * 总部抽取佣金
+     * 总部抽取佣金（元/每位学生）
      */
      private BigDecimal commission;
 

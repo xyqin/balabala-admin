@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月09日 04:35:24
+ * 生成时间：2018年01月17日 05:42:36
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -20,6 +20,12 @@ checked: true
 title: '课程分类ID',
 dataIndex: 'categoryIdObject',
 key: 'categoryIdObject',
+type:'Object',
+checked: true
+},{
+title: '教材二级分类ID',
+dataIndex: 'textbookCategoryIdObject',
+key: 'textbookCategoryIdObject',
 type:'Object',
 checked: true
 },{
@@ -53,7 +59,7 @@ key: 'offlineDuration',
 type:'Number',
 checked: true
 },{
-title: '总部抽取佣金',
+title: '总部抽取佣金（元/每位学生）',
 dataIndex: 'commission',
 key: 'commission',
 type:'Number',
