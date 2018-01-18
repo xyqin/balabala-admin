@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 系统角色
- * 2018年01月17日 05:42:36
+ * 2018年01月18日 06:53:00
  */
 @Data
 public abstract class AbstractRudderRoleUpdateRequest {

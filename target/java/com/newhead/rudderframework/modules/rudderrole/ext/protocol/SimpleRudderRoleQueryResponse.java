@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * 系统角色
- * 2018年01月17日 05:42:35
+ * 2018年01月18日 06:52:59
  */
 @Data
 public class SimpleRudderRoleQueryResponse extends AbstractRudderRoleQueryResponse {

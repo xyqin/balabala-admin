@@ -4,7 +4,7 @@ spring:
   application:
     name: admin-service
   datasource:
-    url: jdbc:mysql://47.100.57.236:3306/balabala?autoReconnect=true&rewriteBatchedStatements=true
+    url: jdbc:mysql://47.100.57.236:3306/barablah?autoReconnect=true&rewriteBatchedStatements=true
     username: bara
     password: WZCr(P-%2F@R@ZjS
     driver-class-name: org.mariadb.jdbc.Driver

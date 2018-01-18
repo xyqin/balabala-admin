@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月17日 05:42:36
+ * 生成时间：2018年01月18日 06:53:01
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -63,7 +63,7 @@ placeholder: '请输入是否显示'
     label: '校区ID',
     placeholder: '请选择校区ID',
     displayType: 'SingleTree',
-    url: '/balabalacampus/gettree',
+    url: '/barablahcampus/gettree',
     dataLableKey: 'campusName',
     dataValueKey: 'id'
 },{

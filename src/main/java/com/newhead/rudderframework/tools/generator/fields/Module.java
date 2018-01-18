@@ -169,8 +169,8 @@ public class Module extends BaseTemplateVO {
 
         for (String name:tempMaps.keySet()) {
             Module m = new Module();
-            if (name.toLowerCase().contains("balabala")) {
-                m.setKey("balabala");
+            if (name.toLowerCase().contains("barablah")) {
+                m.setKey("barablah");
             } else {
                 m.setKey("rudderframework");
             }

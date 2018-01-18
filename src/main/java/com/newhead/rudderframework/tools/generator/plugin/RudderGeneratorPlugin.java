@@ -58,7 +58,7 @@ public class RudderGeneratorPlugin extends PluginAdapter {
     @Override
     public boolean modelExampleClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         String tableName = introspectedTable.getFullyQualifiedTable().getIntrospectedTableName();
-        if (!tableName.contains("balabala") && !tableName.contains("rudder")) return false;
+        if (!tableName.contains("barablah") && !tableName.contains("rudder")) return false;
         Field field = new Field();
         field.setName("startRow");
         field.setType(FullyQualifiedJavaType.getIntInstance());
@@ -108,7 +108,7 @@ public class RudderGeneratorPlugin extends PluginAdapter {
     @Override
     public boolean sqlMapSelectByExampleWithBLOBsElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
         String tableName = introspectedTable.getFullyQualifiedTable().getIntrospectedTableName();
-        if (!tableName.contains("balabala") && !tableName.contains("rudder")) return false;
+        if (!tableName.contains("barablah") && !tableName.contains("rudder")) return false;
         element.addElement(new Element() {
             @Override
             public String getFormattedContent(int i) {
@@ -123,7 +123,7 @@ public class RudderGeneratorPlugin extends PluginAdapter {
     @Override
     public boolean sqlMapSelectByExampleWithoutBLOBsElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
         String tableName = introspectedTable.getFullyQualifiedTable().getIntrospectedTableName();
-        if (!tableName.contains("balabala") && !tableName.contains("rudder")) return false;
+        if (!tableName.contains("barablah") && !tableName.contains("rudder")) return false;
         element.addElement(new Element() {
             @Override
             public String getFormattedContent(int i) {
@@ -146,8 +146,8 @@ public class RudderGeneratorPlugin extends PluginAdapter {
     public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
         String tableName = introspectedTable.getFullyQualifiedTable().getIntrospectedTableName();
         Project project = null;
-        if (tableName.contains("balabala")) {
-            project = Project.getProject("balabala");
+        if (tableName.contains("barablah")) {
+            project = Project.getProject("barablah");
         } else {
             project = Project.getProject("rudderframework");
         }

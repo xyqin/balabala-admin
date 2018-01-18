@@ -11,7 +11,7 @@ import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 菜单服务
- * 2018年01月17日 05:42:34
+ * 2018年01月18日 06:52:58
  */
 @Api(tags = "菜单", description = "相关的API")
 @Service

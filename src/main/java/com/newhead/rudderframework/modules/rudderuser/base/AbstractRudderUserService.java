@@ -22,10 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 
-import com.newhead.balabala.modules.balabalacampus.base.repository.entity.BalabalaCampus;
-import com.newhead.balabala.modules.balabalacampus.base.repository.entity.BalabalaCampusExample;
+import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus;
+import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampusExample;
 
-import com.newhead.balabala.modules.balabalacampus.base.repository.dao.BalabalaCampusMapper;
+import com.newhead.barablah.modules.barablahcampus.base.repository.dao.BarablahCampusMapper;
 import com.newhead.rudderframework.modules.rudderuser2role.base.repository.entity.RudderUser2role;
 import com.newhead.rudderframework.modules.rudderuser2role.base.repository.entity.RudderUser2roleExample;
 
@@ -51,7 +51,7 @@ public abstract class AbstractRudderUserService extends BaseService {
     protected abstract void saveOrUpdate(RudderUser entity);
 
     @Autowired
-    protected BalabalaCampusMapper balabalacampusMapper;
+    protected BarablahCampusMapper barablahcampusMapper;
     @Autowired
     protected RudderUser2roleMapper rudderuser2roleMapper;
     @Autowired
@@ -120,7 +120,7 @@ public abstract class AbstractRudderUserService extends BaseService {
         statusEnum.setLabel(com.newhead.rudderframework.modules.rudderuser.RudderUserStatusEnum.getLabel(entity.getStatus()));
         statusEnum.setValue(entity.getStatus());
         statusEnum.setChecked(true);
-        BalabalaCampus  campusIdEntity = balabalacampusMapper.selectByPrimaryKey(Long.valueOf(entity.getCampusId()));
+        BarablahCampus  campusIdEntity = barablahcampusMapper.selectByPrimaryKey(Long.valueOf(entity.getCampusId()));
         if (campusIdEntity!=null) {
             LabelValueItem campusIdObject = response.getCampusIdObject();
             campusIdObject.setName("campusId");
@@ -216,15 +216,15 @@ public abstract class AbstractRudderUserService extends BaseService {
        for(RudderUser entity:entitys) {
             campusIdMap.put(entity.getId(),entity.getCampusId());
         }
-        BalabalaCampusExample campusIdExample = new BalabalaCampusExample();
+        BarablahCampusExample campusIdExample = new BarablahCampusExample();
 
         List<Long> campusIds = new ArrayList<>();
         campusIds.addAll(campusIdMap.values());
         if (campusIds.size()>0) {
             campusIdExample.createCriteria().andIdIn(campusIds);
         }
-        List<BalabalaCampus>  campusIdList = balabalacampusMapper.selectByExample(campusIdExample);
-        for(BalabalaCampus item:campusIdList) {
+        List<BarablahCampus>  campusIdList = barablahcampusMapper.selectByExample(campusIdExample);
+        for(BarablahCampus item:campusIdList) {
            LabelValueItem campusIdItem = new LabelValueItem();
            campusIdItem.setName("campusId");
            campusIdItem.setValue(String.valueOf(item.getId()));

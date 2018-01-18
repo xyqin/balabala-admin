@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年01月17日 05:42:37
+ * 生成时间：2018年01月18日 06:53:02
  * 该文件系自动生成，手动修改可能会被替换
  * RudderUserGetdetailReq
  * 接口地址：rudderuser/getdetail/:id

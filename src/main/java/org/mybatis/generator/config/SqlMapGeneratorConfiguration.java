@@ -31,7 +31,7 @@ public class SqlMapGeneratorConfiguration extends PropertyHolder {
 
     private String targetProject;
 
-    private String projectName = "balabala";
+    private String projectName = "barablah";
 
     public String getProjectName() {
         return projectName;

@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 系统用户
- * 2018年01月11日 07:57:50
+ * 2018年01月18日 06:53:00
  */
 @Data
 public abstract class AbstractRudderUserCreateRequest {

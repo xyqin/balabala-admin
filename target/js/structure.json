@@ -1,92 +1,96 @@
 /**
- * 生成时间：2018年01月17日 05:42:37
+ * 生成时间：2018年01月18日 06:53:02
  * 该文件系自动生成，手动修改可能会被替换
  * 目录结构，从接口定义中解析出当前的目录结构
  * 规则：
  */
  [ {
-    "module": "balabalacampus",
-    "template": "balabalacampus",
+    "module": "barablahcampus",
+    "template": "barablahcampus",
     "desc": ""
  }, {
-    "module": "balabalaclass",
-    "template": "balabalaclass",
+    "module": "barablahclass",
+    "template": "barablahclass",
     "desc": ""
  }, {
-    "module": "balabalaclasslesson",
-    "template": "balabalaclasslesson",
+    "module": "barablahclasslesson",
+    "template": "barablahclasslesson",
     "desc": ""
  }, {
-    "module": "balabalaclassmember",
-    "template": "balabalaclassmember",
+    "module": "barablahclassmember",
+    "template": "barablahclassmember",
     "desc": ""
  }, {
-    "module": "balabalacourse",
-    "template": "balabalacourse",
+    "module": "barablahcourse",
+    "template": "barablahcourse",
     "desc": ""
  }, {
-    "module": "balabalacoursecategory",
-    "template": "balabalacoursecategory",
+    "module": "barablahcoursecategory",
+    "template": "barablahcoursecategory",
     "desc": ""
  }, {
-    "module": "balabalamember",
-    "template": "balabalamember",
+    "module": "barablahmember",
+    "template": "barablahmember",
     "desc": ""
  }, {
-    "module": "balabalamemberpassport",
-    "template": "balabalamemberpassport",
+    "module": "barablahmemberpassport",
+    "template": "barablahmemberpassport",
     "desc": ""
  }, {
-    "module": "balabalaregion",
-    "template": "balabalaregion",
+    "module": "barablahregion",
+    "template": "barablahregion",
     "desc": ""
  }, {
-    "module": "balabalateacher",
-    "template": "balabalateacher",
+    "module": "barablahteacher",
+    "template": "barablahteacher",
     "desc": ""
  }, {
-    "module": "balabalamemberlesson",
-    "template": "balabalamemberlesson",
+    "module": "barablahmemberlesson",
+    "template": "barablahmemberlesson",
     "desc": ""
  }, {
-    "module": "balabalamembercomment",
-    "template": "balabalamembercomment",
+    "module": "barablahmembercomment",
+    "template": "barablahmembercomment",
     "desc": ""
  }, {
-    "module": "balabalatextbook",
-    "template": "balabalatextbook",
+    "module": "barablahtextbook",
+    "template": "barablahtextbook",
     "desc": ""
  }, {
-    "module": "balabalatextbookcategory",
-    "template": "balabalatextbookcategory",
+    "module": "barablahtextbookcategory",
+    "template": "barablahtextbookcategory",
     "desc": ""
  }, {
-    "module": "balabalateacherhomework",
-    "template": "balabalateacherhomework",
+    "module": "barablahteacherhomework",
+    "template": "barablahteacherhomework",
     "desc": ""
  }, {
-    "module": "balabalateacherhomeworkitem",
-    "template": "balabalateacherhomeworkitem",
+    "module": "barablahteacherhomeworkitem",
+    "template": "barablahteacherhomeworkitem",
     "desc": ""
  }, {
-    "module": "balabalamemberhomework",
-    "template": "balabalamemberhomework",
+    "module": "barablahmemberhomework",
+    "template": "barablahmemberhomework",
     "desc": ""
  }, {
-    "module": "balabalamemberhomeworkitem",
-    "template": "balabalamemberhomeworkitem",
+    "module": "barablahmemberhomeworkitem",
+    "template": "barablahmemberhomeworkitem",
     "desc": ""
  }, {
-    "module": "balabalamemberpointlog",
-    "template": "balabalamemberpointlog",
+    "module": "barablahmemberpointlog",
+    "template": "barablahmemberpointlog",
     "desc": ""
  }, {
-    "module": "balabalaposition",
-    "template": "balabalaposition",
+    "module": "barablahposition",
+    "template": "barablahposition",
     "desc": ""
  }, {
-    "module": "balabalapositioncontent",
-    "template": "balabalapositioncontent",
+    "module": "barablahpositioncontent",
+    "template": "barablahpositioncontent",
+    "desc": ""
+ }, {
+    "module": "barablahmembersignup",
+    "template": "barablahmembersignup",
     "desc": ""
  }, {
     "module": "ruddermenu",
