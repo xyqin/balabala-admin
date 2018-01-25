@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年01月25日 02:58:41
+ * 生成时间：2018年01月25日 03:24:37
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahMemberCreateReq
  * 接口地址：barablahmember/create
@@ -39,12 +39,6 @@ class BarablahMemberCreateReq extends BaseRobotReq {
         },{key: 'birthday',
             desc: '生日',
             isRequired: true
-        },{key: 'accid',
-            desc: '网易云ID',
-            isRequired: true
-        },{key: 'token',
-            desc: '网易云登录token',
-            isRequired: true
         },{key: 'points',
             desc: '积分',
             isRequired: false
@@ -55,7 +49,7 @@ class BarablahMemberCreateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,campusId,nickname,avatar,englishName,gender,birthday,accid,token,points) {
+    setSimpleParams(id,campusId,nickname,avatar,englishName,gender,birthday,points) {
         this.addParams('id', id);
         this.addParams('campusId', campusId);
         this.addParams('nickname', nickname);
@@ -63,8 +57,6 @@ class BarablahMemberCreateReq extends BaseRobotReq {
         this.addParams('englishName', englishName);
         this.addParams('gender', gender);
         this.addParams('birthday', birthday);
-        this.addParams('accid', accid);
-        this.addParams('token', token);
         this.addParams('points', points);
     }
 

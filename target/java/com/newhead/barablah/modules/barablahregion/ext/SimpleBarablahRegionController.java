@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * RudderFramework 自动生成
  * 地区控制
- * 2018年01月25日 02:58:38
+ * 2018年01月25日 03:24:34
  */
 @Api(tags = "地区", description = "相关的API")
 @RestController

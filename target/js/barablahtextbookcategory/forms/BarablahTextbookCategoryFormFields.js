@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月25日 02:58:41
+ * 生成时间：2018年01月25日 03:24:37
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -30,11 +30,6 @@ const BARABLAHTEXTBOOKCATEGORY_FORM_FIELDS = [{
     type: 'String',
     label: '分类名称',
     placeholder: '请输入分类名称'
-},{
-    key: 'path',
-    type: 'String',
-    label: '分类路径',
-    placeholder: '请输入分类路径'
 },{
     key: 'position',
     type: 'Number',

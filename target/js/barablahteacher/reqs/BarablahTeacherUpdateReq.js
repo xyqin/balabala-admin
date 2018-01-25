@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年01月25日 02:58:41
+ * 生成时间：2018年01月25日 03:24:37
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahTeacherUpdateReq
  * 接口地址：barablahteacher/update
@@ -27,9 +27,6 @@ class BarablahTeacherUpdateReq extends BaseRobotReq {
         },{key: 'username',
             desc: '账号',
             isRequired: true
-        },{key: 'password',
-            desc: '密码',
-            isRequired: true
         },{key: 'avatar',
             desc: '头像',
             isRequired: true
@@ -48,12 +45,6 @@ class BarablahTeacherUpdateReq extends BaseRobotReq {
         },{key: 'status',
             desc: '状态',
             isRequired: true
-        },{key: 'accid',
-            desc: '网易云ID',
-            isRequired: true
-        },{key: 'token',
-            desc: '网易云登录token',
-            isRequired: true
         }];        this.curd = 'd';
     }
 
@@ -61,19 +52,16 @@ class BarablahTeacherUpdateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,campusId,username,password,avatar,fullName,phoneNumber,major,comeFrom,status,accid,token) {
+    setSimpleParams(id,campusId,username,avatar,fullName,phoneNumber,major,comeFrom,status) {
         this.addParams('id', id);
         this.addParams('campusId', campusId);
         this.addParams('username', username);
-        this.addParams('password', password);
         this.addParams('avatar', avatar);
         this.addParams('fullName', fullName);
         this.addParams('phoneNumber', phoneNumber);
         this.addParams('major', major);
         this.addParams('comeFrom', comeFrom);
         this.addParams('status', status);
-        this.addParams('accid', accid);
-        this.addParams('token', token);
     }
 
     /**

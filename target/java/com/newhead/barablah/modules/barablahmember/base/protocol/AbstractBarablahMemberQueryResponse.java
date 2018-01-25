@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年01月25日 02:58:39
+ * @generated 2018年01月25日 03:24:35
  */
 @Data
 public abstract class AbstractBarablahMemberQueryResponse {
@@ -57,18 +57,6 @@ public abstract class AbstractBarablahMemberQueryResponse {
      * 生日
      */
      private String birthday;
-
-    /**
-     *
-     * 网易云ID
-     */
-     private String accid;
-
-    /**
-     *
-     * 网易云登录token
-     */
-     private String token;
 
     /**
      *

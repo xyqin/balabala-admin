@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月25日 02:58:41
+ * 生成时间：2018年01月25日 03:24:36
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -54,16 +54,6 @@ const BARABLAHMEMBER_FORM_FIELDS = [{
     type: 'String',
     label: '生日',
     placeholder: '请输入生日'
-},{
-    key: 'accid',
-    type: 'String',
-    label: '网易云ID',
-    placeholder: '请输入网易云ID'
-},{
-    key: 'token',
-    type: 'String',
-    label: '网易云登录token',
-    placeholder: '请输入网易云登录token'
 },{
     key: 'points',
     type: 'Number',

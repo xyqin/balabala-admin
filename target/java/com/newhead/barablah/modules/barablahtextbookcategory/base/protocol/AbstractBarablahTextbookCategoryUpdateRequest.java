@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年01月25日 02:58:40
+ * 2018年01月25日 03:24:35
  */
 @Data
 public abstract class AbstractBarablahTextbookCategoryUpdateRequest {
@@ -28,11 +28,6 @@ public abstract class AbstractBarablahTextbookCategoryUpdateRequest {
      * 分类名称
      */
     private String categoryName;
-    /**
-     *
-     * 分类路径
-     */
-    private String path;
     /**
      *
      * 排序号

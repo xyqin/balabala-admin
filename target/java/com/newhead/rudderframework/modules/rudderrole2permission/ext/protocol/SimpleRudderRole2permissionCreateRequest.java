@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * 角色权限关系
- * 2018年01月25日 02:58:39
+ * 2018年01月25日 03:24:35
  */
 @Data
 public class SimpleRudderRole2permissionCreateRequest extends AbstractRudderRole2permissionCreateRequest {
