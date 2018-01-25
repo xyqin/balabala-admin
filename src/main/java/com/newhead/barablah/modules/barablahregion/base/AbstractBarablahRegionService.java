@@ -1,5 +1,6 @@
 package com.newhead.barablah.modules.barablahregion.base;
 
+import com.newhead.rudderframework.core.services.SimpleTreeService;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 
 import com.google.common.collect.Maps;
@@ -33,7 +34,7 @@ import java.util.Map;
  * 菜单服务
  * 2017年05月03日 06:31:12
  */
-public abstract class AbstractBarablahRegionService extends BaseService {
+public abstract class AbstractBarablahRegionService extends SimpleTreeService {
     protected abstract BarablahRegionMapper getMapper();
 
     protected abstract void saveOrUpdate(BarablahRegion entity);
@@ -236,6 +237,31 @@ public abstract class AbstractBarablahRegionService extends BaseService {
         return null;
     }
 
+    @Override
+    protected TransitionTree getTransitionTree() {
+        TransitionTree tree = new TransitionTree();
+        tree.setUrl("/barablahregion/gettree");
+
+        SimpleBarablahRegionQueryListRequest request = new SimpleBarablahRegionQueryListRequest();
+        List<SimpleBarablahRegionQueryResponse> sources = queryList(request);
+
+        for(SimpleBarablahRegionQueryResponse response:sources) {
+            ExtNode node = new ExtNode();
+            node.setId(response.getId());
+            node.getNode().setUrl(response.getUrl());
+            node.getNode().setLeaf(true);
+            node.getNode().setLabel(response.getRegionName());
+            node.getNode().setValue(String.valueOf(response.getId()));
+            node.getNode().setSelected(false);
+            if (response.getParentIdObject()!=null) {
+                node.getNode().setParentId(response.getParentIdObject().getValue());
+            } else {
+                node.getNode().setParentId("0");
+            }
+            tree.getNdoes().add(node);
+        }
+        return tree;
+    }
 
 
 
