@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 系统用户
- * @generated 2018年01月25日 01:52:22
+ * @generated 2018年01月25日 02:58:40
  */
 @Data
 public abstract class AbstractRudderUserQueryResponse {

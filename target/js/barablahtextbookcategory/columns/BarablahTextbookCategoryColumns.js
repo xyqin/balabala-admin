@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月25日 01:52:23
+ * 生成时间：2018年01月25日 02:58:41
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -39,6 +39,12 @@ title: '排序号',
 dataIndex: 'position',
 key: 'position',
 type:'Number',
+checked: true
+},{
+title: '资源地址',
+dataIndex: 'url',
+key: 'url',
+type:'String',
 checked: true
 }];
 export default BARABLAHTEXTBOOKCATEGORY_COLUMNS;

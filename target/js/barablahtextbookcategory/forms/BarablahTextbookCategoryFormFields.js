@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月25日 01:52:23
+ * 生成时间：2018年01月25日 02:58:41
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -40,5 +40,10 @@ const BARABLAHTEXTBOOKCATEGORY_FORM_FIELDS = [{
     type: 'Number',
     label: '排序号',
         placeholder: '请输入排序号'
+},{
+    key: 'url',
+    type: 'String',
+    label: '资源地址',
+    placeholder: '请输入资源地址'
 }];
 export default BARABLAHTEXTBOOKCATEGORY_FORM_FIELDS;

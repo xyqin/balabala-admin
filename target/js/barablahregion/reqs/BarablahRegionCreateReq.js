@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年01月25日 01:52:23
+ * 生成时间：2018年01月25日 02:58:41
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahRegionCreateReq
  * 接口地址：barablahregion/create
@@ -33,6 +33,9 @@ class BarablahRegionCreateReq extends BaseRobotReq {
         },{key: 'position',
             desc: '排序号',
             isRequired: false
+        },{key: 'url',
+            desc: '资源地址',
+            isRequired: true
         }];        this.curd = 'd';
     }
 
@@ -40,12 +43,13 @@ class BarablahRegionCreateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,parentId,regionName,path,position) {
+    setSimpleParams(id,parentId,regionName,path,position,url) {
         this.addParams('id', id);
         this.addParams('parentId', parentId);
         this.addParams('regionName', regionName);
         this.addParams('path', path);
         this.addParams('position', position);
+        this.addParams('url', url);
     }
 
     /**

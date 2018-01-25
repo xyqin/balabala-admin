@@ -11,7 +11,7 @@ import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 校区服务
- * 2018年01月25日 01:52:20
+ * 2018年01月25日 02:58:38
  */
 @Api(tags = "校区", description = "相关的API")
 @Service

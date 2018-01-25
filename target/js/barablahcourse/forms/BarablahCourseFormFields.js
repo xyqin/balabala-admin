@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月25日 01:52:23
+ * 生成时间：2018年01月25日 02:58:41
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -21,8 +21,8 @@ const BARABLAHCOURSE_FORM_FIELDS = [{
     type: 'Object',
     label: '课程分类ID',
     placeholder: '请选择课程分类ID',
-    displayType: 'SingleTree',
-    url: '/barablahcoursecategory/gettree',
+    displayType: 'SingleList',
+    url: '/barablahcoursecategory/getlist',
     dataLableKey: 'categoryName',
     dataValueKey: 'id'
 },{

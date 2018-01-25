@@ -9,7 +9,7 @@
 {"moduleTitle":"开班课时","dataType":"Table","moduleName":"barablahClassLesson","displayField":"lessonName","remark":"","version":"1.0","key":"barablah"}
 {"moduleTitle":"开班会员","dataType":"Table","moduleName":"barablahClassMember","displayField":"","remark":"","version":"1.0","key":"barablah"}
 {"moduleTitle":"课程","dataType":"Table","moduleName":"barablahCourse","displayField":"courseName","remark":"","version":"1.0","key":"barablah"}
-{"moduleTitle":"课程分类","dataType":"Tree","moduleName":"barablahCourseCategory","displayField":"categoryName","remark":"","version":"1.0","key":"barablah"}
+{"moduleTitle":"课程分类","dataType":"Table","moduleName":"barablahCourseCategory","displayField":"categoryName","remark":"","version":"1.0","key":"barablah"}
 {"moduleTitle":"会员","dataType":"Table","moduleName":"barablahMember","displayField":"nickname","remark":"","version":"1.0","key":"barablah"}
 {"moduleTitle":"会员通行证","dataType":"Table","moduleName":"barablahMemberPassport","displayField":"","remark":"","version":"1.0","key":"barablah"}
 {"moduleTitle":"地区","dataType":"Tree","moduleName":"barablahRegion","displayField":"regionName","remark":"","version":"1.0","key":"barablah"}

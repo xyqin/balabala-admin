@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * RudderFramework 自动生成
  * 会员积分日志表控制
- * 2018年01月25日 01:52:20
+ * 2018年01月25日 02:58:38
  */
 @Api(tags = "会员积分日志表", description = "相关的API")
 @RestController
