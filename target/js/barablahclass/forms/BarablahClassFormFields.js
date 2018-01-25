@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月18日 06:53:01
+ * 生成时间：2018年01月25日 01:52:23
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -21,8 +21,8 @@ const BARABLAHCLASS_FORM_FIELDS = [{
     type: 'Object',
     label: '课程ID',
     placeholder: '请选择课程ID',
-    displayType: 'SingleTree',
-    url: '/barablahcourse/gettree',
+    displayType: 'SingleList',
+    url: '/barablahcourse/getlist',
     dataLableKey: 'courseName',
     dataValueKey: 'id'
 },{
@@ -30,8 +30,8 @@ const BARABLAHCLASS_FORM_FIELDS = [{
     type: 'Object',
     label: '教师ID',
     placeholder: '请选择教师ID',
-    displayType: 'SingleTree',
-    url: '/barablahteacher/gettree',
+    displayType: 'SingleList',
+    url: '/barablahteacher/getlist',
     dataLableKey: 'fullName',
     dataValueKey: 'id'
 },{
@@ -39,8 +39,8 @@ const BARABLAHCLASS_FORM_FIELDS = [{
     type: 'Object',
     label: '校区ID',
     placeholder: '请选择校区ID',
-    displayType: 'SingleTree',
-    url: '/barablahcampus/gettree',
+    displayType: 'SingleList',
+    url: '/barablahcampus/getlist',
     dataLableKey: 'campusName',
     dataValueKey: 'id'
 },{
@@ -48,8 +48,8 @@ const BARABLAHCLASS_FORM_FIELDS = [{
     type: 'Object',
     label: '外教教师ID',
     placeholder: '请选择外教教师ID',
-    displayType: 'SingleTree',
-    url: '/barablahteacher/gettree',
+    displayType: 'SingleList',
+    url: '/barablahteacher/getlist',
     dataLableKey: 'fullName',
     dataValueKey: 'id'
 },{

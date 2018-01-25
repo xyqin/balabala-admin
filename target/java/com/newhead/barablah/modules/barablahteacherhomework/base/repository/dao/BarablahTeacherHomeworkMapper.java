@@ -11,77 +11,77 @@ public interface BarablahTeacherHomeworkMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_teacher_homework
-     * @generated 2018年1月18日 06:52:57
+     * @generated 2018年1月25日 01:52:19
      */
     long countByExample(BarablahTeacherHomeworkExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_teacher_homework
-     * @generated 2018年1月18日 06:52:57
+     * @generated 2018年1月25日 01:52:19
      */
     int deleteByExample(BarablahTeacherHomeworkExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_teacher_homework
-     * @generated 2018年1月18日 06:52:57
+     * @generated 2018年1月25日 01:52:19
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_teacher_homework
-     * @generated 2018年1月18日 06:52:57
+     * @generated 2018年1月25日 01:52:19
      */
     int insert(BarablahTeacherHomework record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_teacher_homework
-     * @generated 2018年1月18日 06:52:57
+     * @generated 2018年1月25日 01:52:19
      */
     int insertSelective(BarablahTeacherHomework record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_teacher_homework
-     * @generated 2018年1月18日 06:52:57
+     * @generated 2018年1月25日 01:52:19
      */
     List<BarablahTeacherHomework> selectByExample(BarablahTeacherHomeworkExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_teacher_homework
-     * @generated 2018年1月18日 06:52:57
+     * @generated 2018年1月25日 01:52:19
      */
     BarablahTeacherHomework selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_teacher_homework
-     * @generated 2018年1月18日 06:52:57
+     * @generated 2018年1月25日 01:52:19
      */
     int updateByExampleSelective(@Param("record") BarablahTeacherHomework record, @Param("example") BarablahTeacherHomeworkExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_teacher_homework
-     * @generated 2018年1月18日 06:52:57
+     * @generated 2018年1月25日 01:52:19
      */
     int updateByExample(@Param("record") BarablahTeacherHomework record, @Param("example") BarablahTeacherHomeworkExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_teacher_homework
-     * @generated 2018年1月18日 06:52:57
+     * @generated 2018年1月25日 01:52:19
      */
     int updateByPrimaryKeySelective(BarablahTeacherHomework record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_teacher_homework
-     * @generated 2018年1月18日 06:52:57
+     * @generated 2018年1月25日 01:52:19
      */
     int updateByPrimaryKey(BarablahTeacherHomework record);
 }

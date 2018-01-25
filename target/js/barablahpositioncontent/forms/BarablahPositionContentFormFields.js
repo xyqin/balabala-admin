@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月18日 06:53:01
+ * 生成时间：2018年01月25日 01:52:23
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -21,8 +21,8 @@ const BARABLAHPOSITIONCONTENT_FORM_FIELDS = [{
     type: 'Object',
     label: '位置ID',
     placeholder: '请选择位置ID',
-    displayType: 'SingleTree',
-    url: '/barablahposition/gettree',
+    displayType: 'SingleList',
+    url: '/barablahposition/getlist',
     dataLableKey: 'positionName',
     dataValueKey: 'id'
 },{

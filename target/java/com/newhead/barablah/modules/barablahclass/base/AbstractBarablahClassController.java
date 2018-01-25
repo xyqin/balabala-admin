@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 开班控制器
- * 2018年01月18日 06:53:00
+ * 2018年01月25日 01:52:23
  */
 @Api(tags = "开班", description = "相关的API")
 public abstract class AbstractBarablahClassController extends WebController  {

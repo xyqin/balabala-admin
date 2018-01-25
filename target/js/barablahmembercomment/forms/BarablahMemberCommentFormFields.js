@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月18日 06:53:01
+ * 生成时间：2018年01月25日 01:52:23
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -21,8 +21,8 @@ const BARABLAHMEMBERCOMMENT_FORM_FIELDS = [{
     type: 'Object',
     label: '会员ID',
     placeholder: '请选择会员ID',
-    displayType: 'SingleTree',
-    url: '/barablahmember/gettree',
+    displayType: 'SingleList',
+    url: '/barablahmember/getlist',
     dataLableKey: 'nickname',
     dataValueKey: 'id'
 },{
@@ -30,8 +30,8 @@ const BARABLAHMEMBERCOMMENT_FORM_FIELDS = [{
     type: 'Object',
     label: '教师ID',
     placeholder: '请选择教师ID',
-    displayType: 'SingleTree',
-    url: '/barablahteacher/gettree',
+    displayType: 'SingleList',
+    url: '/barablahteacher/getlist',
     dataLableKey: 'fullName',
     dataValueKey: 'id'
 },{
