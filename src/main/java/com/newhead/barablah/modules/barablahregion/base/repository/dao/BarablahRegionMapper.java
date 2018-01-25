@@ -11,77 +11,77 @@ public interface BarablahRegionMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_region
-     * @generated 2018年1月25日 01:52:19
+     * @generated 2018年1月25日 02:58:37
      */
     long countByExample(BarablahRegionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_region
-     * @generated 2018年1月25日 01:52:19
+     * @generated 2018年1月25日 02:58:37
      */
     int deleteByExample(BarablahRegionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_region
-     * @generated 2018年1月25日 01:52:19
+     * @generated 2018年1月25日 02:58:37
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_region
-     * @generated 2018年1月25日 01:52:19
+     * @generated 2018年1月25日 02:58:37
      */
     int insert(BarablahRegion record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_region
-     * @generated 2018年1月25日 01:52:19
+     * @generated 2018年1月25日 02:58:37
      */
     int insertSelective(BarablahRegion record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_region
-     * @generated 2018年1月25日 01:52:19
+     * @generated 2018年1月25日 02:58:37
      */
     List<BarablahRegion> selectByExample(BarablahRegionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_region
-     * @generated 2018年1月25日 01:52:19
+     * @generated 2018年1月25日 02:58:37
      */
     BarablahRegion selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_region
-     * @generated 2018年1月25日 01:52:19
+     * @generated 2018年1月25日 02:58:37
      */
     int updateByExampleSelective(@Param("record") BarablahRegion record, @Param("example") BarablahRegionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_region
-     * @generated 2018年1月25日 01:52:19
+     * @generated 2018年1月25日 02:58:37
      */
     int updateByExample(@Param("record") BarablahRegion record, @Param("example") BarablahRegionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_region
-     * @generated 2018年1月25日 01:52:19
+     * @generated 2018年1月25日 02:58:37
      */
     int updateByPrimaryKeySelective(BarablahRegion record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_region
-     * @generated 2018年1月25日 01:52:19
+     * @generated 2018年1月25日 02:58:37
      */
     int updateByPrimaryKey(BarablahRegion record);
 }

@@ -1,6 +1,5 @@
 package com.newhead.barablah.modules.barablahcoursecategory.base;
 
-import com.newhead.rudderframework.core.services.SimpleTreeService;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 
 import com.google.common.collect.Maps;
@@ -34,7 +33,7 @@ import java.util.Map;
  * 菜单服务
  * 2017年05月03日 06:31:12
  */
-public abstract class AbstractBarablahCourseCategoryService extends SimpleTreeService {
+public abstract class AbstractBarablahCourseCategoryService extends BaseService {
     protected abstract BarablahCourseCategoryMapper getMapper();
 
     protected abstract void saveOrUpdate(BarablahCourseCategory entity);
@@ -194,31 +193,6 @@ public abstract class AbstractBarablahCourseCategoryService extends SimpleTreeSe
     }
 
 
-    @Override
-    protected TransitionTree getTransitionTree() {
-        TransitionTree tree = new TransitionTree();
-        tree.setUrl("/barablahcoursecategory/gettree");
-
-        SimpleBarablahCourseCategoryQueryListRequest request = new SimpleBarablahCourseCategoryQueryListRequest();
-        List<SimpleBarablahCourseCategoryQueryResponse> sources = queryList(request);
-
-        for(SimpleBarablahCourseCategoryQueryResponse response:sources) {
-            ExtNode node = new ExtNode();
-            node.setId(response.getId());
-            node.getNode().setUrl(response.getUrl());
-            node.getNode().setLeaf(true);
-            node.getNode().setLabel(response.getCategoryName());
-            node.getNode().setValue(String.valueOf(response.getId()));
-            node.getNode().setSelected(false);
-            if (response.getParentIdObject()!=null) {
-                node.getNode().setParentId(response.getParentIdObject().getValue());
-            } else {
-                node.getNode().setParentId("0");
-            }
-            tree.getNdoes().add(node);
-        }
-        return tree;
-    }
 
 
 
