@@ -132,16 +132,12 @@ public abstract class AbstractBarablahPositionContentService extends BaseService
         BarablahPositionContentExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
             example.setOrderByClause("position desc");
-        if (request.getContentName()!=null) {
-            c.andContentNameLike("%"+request.getContentName()+"%");
-        }
-
-        if (request.getImage()!=null) {
-            c.andImageEqualTo(request.getImage());
+        if (request.getPositionId()!=null) {
+            c.andPositionIdEqualTo(request.getPositionId());
          }
 
-        if (request.getLink()!=null) {
-            c.andLinkLike("%"+request.getLink()+"%");
+        if (request.getContentName()!=null) {
+            c.andContentNameLike("%"+request.getContentName()+"%");
         }
 
         convertEntityToResponse(getMapper().selectByExample(example),results);
@@ -163,16 +159,12 @@ public abstract class AbstractBarablahPositionContentService extends BaseService
         c.andDeletedEqualTo(false);
             example.setOrderByClause("position desc");
 
-        if (request.getContentName()!=null) {
-            c.andContentNameLike("%"+request.getContentName()+"%");
-        }
-
-        if (request.getImage()!=null) {
-            c.andImageEqualTo(request.getImage());
+        if (request.getPositionId()!=null) {
+            c.andPositionIdEqualTo(request.getPositionId());
          }
 
-        if (request.getLink()!=null) {
-            c.andLinkLike("%"+request.getLink()+"%");
+        if (request.getContentName()!=null) {
+            c.andContentNameLike("%"+request.getContentName()+"%");
         }
 
         example.setPageSize(request.getSize());

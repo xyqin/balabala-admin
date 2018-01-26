@@ -127,6 +127,10 @@ public abstract class AbstractBarablahTextbookCategoryService extends SimpleTree
         BarablahTextbookCategoryExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
             example.setOrderByClause("position desc");
+        if (request.getCategoryName()!=null) {
+            c.andCategoryNameLike("%"+request.getCategoryName()+"%");
+        }
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -145,6 +149,10 @@ public abstract class AbstractBarablahTextbookCategoryService extends SimpleTree
         BarablahTextbookCategoryExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
             example.setOrderByClause("position desc");
+
+        if (request.getCategoryName()!=null) {
+            c.andCategoryNameLike("%"+request.getCategoryName()+"%");
+        }
 
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());

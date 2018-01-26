@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教材分类表控制器
- * 2018年01月26日 03:39:50
+ * 2018年01月26日 03:43:31
  */
 @Api(tags = "教材分类表", description = "相关的API")
 public abstract class AbstractBarablahTextbookCategoryController extends WebController  {
@@ -111,8 +111,11 @@ public abstract class AbstractBarablahTextbookCategoryController extends WebCont
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "教材分类表ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahTextbookCategoryQueryResponse>> getList() {
+    public ApiEntity<List<SimpleBarablahTextbookCategoryQueryResponse>> getList(@RequestParam(required = false) String categoryName) {
         SimpleBarablahTextbookCategoryQueryListRequest request = new SimpleBarablahTextbookCategoryQueryListRequest();
+        if (!StringUtils.isEmpty(categoryName)) {
+            request.setCategoryName(categoryName);
+        }
         List<SimpleBarablahTextbookCategoryQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBarablahTextbookCategoryQueryResponse>>(sources);
     }
@@ -126,9 +129,13 @@ public abstract class AbstractBarablahTextbookCategoryController extends WebCont
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) String categoryName,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahTextbookCategoryQueryPageRequest request = new SimpleBarablahTextbookCategoryQueryPageRequest();
+        if (!StringUtils.isEmpty(categoryName)) {
+            request.setCategoryName(categoryName);
+        }
         if (page==null) {
             request.setPage(1);
         } else {

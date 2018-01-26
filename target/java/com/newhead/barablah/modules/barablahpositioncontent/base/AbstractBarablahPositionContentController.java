@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 位置内容表控制器
- * 2018年01月26日 03:39:50
+ * 2018年01月26日 03:43:31
  */
 @Api(tags = "位置内容表", description = "相关的API")
 public abstract class AbstractBarablahPositionContentController extends WebController  {
@@ -95,16 +95,13 @@ public abstract class AbstractBarablahPositionContentController extends WebContr
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "位置内容表ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahPositionContentQueryResponse>> getList(@RequestParam(required = false) String contentName,@RequestParam(required = false) String image,@RequestParam(required = false) String link) {
+    public ApiEntity<List<SimpleBarablahPositionContentQueryResponse>> getList(@RequestParam(required = false) Long positionId,@RequestParam(required = false) String contentName) {
         SimpleBarablahPositionContentQueryListRequest request = new SimpleBarablahPositionContentQueryListRequest();
+        if (!StringUtils.isEmpty(positionId)) {
+            request.setPositionId(positionId);
+        }
         if (!StringUtils.isEmpty(contentName)) {
             request.setContentName(contentName);
-        }
-        if (!StringUtils.isEmpty(image)) {
-            request.setImage(image);
-        }
-        if (!StringUtils.isEmpty(link)) {
-            request.setLink(link);
         }
         List<SimpleBarablahPositionContentQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBarablahPositionContentQueryResponse>>(sources);
@@ -119,20 +116,16 @@ public abstract class AbstractBarablahPositionContentController extends WebContr
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) Long positionId,
         @RequestParam(required = false) String contentName,
-        @RequestParam(required = false) String image,
-        @RequestParam(required = false) String link,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahPositionContentQueryPageRequest request = new SimpleBarablahPositionContentQueryPageRequest();
+        if (!StringUtils.isEmpty(positionId)) {
+            request.setPositionId(positionId);
+        }
         if (!StringUtils.isEmpty(contentName)) {
             request.setContentName(contentName);
-        }
-        if (!StringUtils.isEmpty(image)) {
-            request.setImage(image);
-        }
-        if (!StringUtils.isEmpty(link)) {
-            request.setLink(link);
         }
         if (page==null) {
             request.setPage(1);

@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 地区控制器
- * 2018年01月26日 03:39:50
+ * 2018年01月26日 03:43:31
  */
 @Api(tags = "地区", description = "相关的API")
 public abstract class AbstractBarablahRegionController extends WebController  {

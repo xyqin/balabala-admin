@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年01月26日 03:39:51
+ * 生成时间：2018年01月26日 03:43:32
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahTextbookCategoryGetpageReq
  * 接口地址：barablahtextbookcategory/getpage
@@ -17,7 +17,10 @@ class BarablahTextbookCategoryGetpageReq extends BaseRobotReq {
             url: '/barablahtextbookcategory/getpage',
             type: 'Get',        };
         // 请求参数的描述信息，只定义先不用
-        this._paramsDescriptor = [{key: 'page',
+        this._paramsDescriptor = [{key: 'categoryName',
+            desc: '分类名称',
+            isRequired: true
+        },{key: 'page',
             desc: '页码',
             isRequired: false
         },{key: 'size',
@@ -30,7 +33,8 @@ class BarablahTextbookCategoryGetpageReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(page,size) {
+    setSimpleParams(categoryName,page,size) {
+        this.addParams('categoryName', categoryName);
         this.addParams('page', page);
         this.addParams('size', size);
     }

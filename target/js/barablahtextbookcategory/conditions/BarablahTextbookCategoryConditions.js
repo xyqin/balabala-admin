@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月26日 03:39:50
+ * 生成时间：2018年01月26日 03:43:32
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -11,5 +11,10 @@
  * 'data': '附加的数据'
  * }
  */
-const BARABLAHTEXTBOOKCATEGORY_CONDITIONS = [];
+const BARABLAHTEXTBOOKCATEGORY_CONDITIONS = [{
+    key: 'categoryName',
+    type: 'String',
+    label: '分类名称',
+    placeholder: '请输入分类名称'
+}];
 export default BARABLAHTEXTBOOKCATEGORY_CONDITIONS;

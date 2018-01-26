@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年01月26日 03:39:51
+ * 生成时间：2018年01月26日 03:43:32
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahPositionContentGetpageReq
  * 接口地址：barablahpositioncontent/getpage
@@ -17,14 +17,11 @@ class BarablahPositionContentGetpageReq extends BaseRobotReq {
             url: '/barablahpositioncontent/getpage',
             type: 'Get',        };
         // 请求参数的描述信息，只定义先不用
-        this._paramsDescriptor = [{key: 'contentName',
+        this._paramsDescriptor = [{key: 'positionId',
+            desc: '位置ID',
+            isRequired: true
+        },{key: 'contentName',
             desc: '内容名称',
-            isRequired: true
-        },{key: 'image',
-            desc: '内容图片',
-            isRequired: true
-        },{key: 'link',
-            desc: '内容链接地址',
             isRequired: true
         },{key: 'page',
             desc: '页码',
@@ -39,10 +36,9 @@ class BarablahPositionContentGetpageReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(contentName,image,link,page,size) {
+    setSimpleParams(positionId,contentName,page,size) {
+        this.addParams('positionId', positionId);
         this.addParams('contentName', contentName);
-        this.addParams('image', image);
-        this.addParams('link', link);
         this.addParams('page', page);
         this.addParams('size', size);
     }
