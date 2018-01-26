@@ -26,5 +26,6 @@ mybatis:
     config-location: classpath:mybatis-config.xml
 
 storeconfig:
-  storepath: /data/barablah
+  storepath: /data/balabala/
+  storelink: http://47.100.57.236:8000
 

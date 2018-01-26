@@ -13,5 +13,8 @@ public class GlobalConfig extends WebMvcConfigurerAdapter {
     @Value("${storeconfig.storepath}")
     public String storepath;
 
+    @Value("${storeconfig.storelink}")
+    public String storelink;
+
 }
 
