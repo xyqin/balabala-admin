@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 菜单
- * 2018年01月26日 11:59:31
+ * 2018年01月26日 03:39:49
  */
 @Data
 public abstract class AbstractRudderMenuCreateRequest {

@@ -11,7 +11,7 @@ import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 位置内容表服务
- * 2018年01月26日 11:59:29
+ * 2018年01月26日 03:39:47
  */
 @Api(tags = "位置内容表", description = "相关的API")
 @Service

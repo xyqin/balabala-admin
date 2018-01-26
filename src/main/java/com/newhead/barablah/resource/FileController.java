@@ -3,7 +3,6 @@ package com.newhead.barablah.resource;
 import com.newhead.rudderframework.core.config.GlobalConfig;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
-import com.newhead.rudderframework.core.web.controller.FileController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -26,35 +25,30 @@ import java.util.Date;
 /**
  * Created by xyqin on 16/5/25.
  */
-@Api(tags = "视频", description = "视频API")
+@Api(tags = "文件", description = "文件API")
 @RestController
-@RequestMapping("/video")
-public class VideoController extends FileController {
+@RequestMapping("/files")
+public class FileController {
 
-    private static final String[] SUPPORTED_IMAGE_EXTENSIONS = {"mp4", "flv"};
+    private static final String[] SUPPORTED_AUDIO_EXTENSIONS = {"mp3"};
 
-    private static final int MAX_IMAGE_SIZE_KB = 5000;
-
-    @Override
-    protected String[] getSupportedExtensions() {
-        return SUPPORTED_IMAGE_EXTENSIONS;
-    }
-
-    @Override
-    protected int getMaxSize() {
-        return MAX_IMAGE_SIZE_KB;
-    }
+    private static final String[] SUPPORTED_VIDEO_EXTENSIONS = {"mp4", "flv"};
 
     @Autowired
     private GlobalConfig config;
 
-    @ApiOperation(value = "上传视频", notes = "上传视频")
+    @ApiOperation(value = "上传文件", notes = "上传文件")
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public ApiEntity<String> uploadImage(@RequestParam("file") Part file) throws IOException {
         int fileSizeInKB = BigInteger.valueOf(file.getSize()).divide(BigInteger.valueOf(1024)).intValue();
         String submittedFilename = file.getSubmittedFileName();
+        String filePath = null;
 
-        if (!FilenameUtils.isExtension(submittedFilename, SUPPORTED_IMAGE_EXTENSIONS)) {
+        if (FilenameUtils.isExtension(submittedFilename, SUPPORTED_AUDIO_EXTENSIONS)) {
+            filePath = "/audio/";
+        } else if (FilenameUtils.isExtension(submittedFilename, SUPPORTED_VIDEO_EXTENSIONS)) {
+            filePath = "/video/";
+        } else {
             return new ApiEntity(ApiStatus.STATUS_400.getCode(), "不支持的文件类型");
         }
 
@@ -64,7 +58,7 @@ public class VideoController extends FileController {
         try {
             byte[] bytes = IOUtils.toByteArray(file.getInputStream());
             currentDate = DateFormatUtils.format(new Date(), "yyyyMMdd");
-            String localPath = config.storepath + "/video/" + currentDate + "/";
+            String localPath = config.storepath + filePath + currentDate + "/";
             filename = DigestUtils.md5Hex(bytes) + "." + FilenameUtils.getExtension(submittedFilename);
             File local = new File(localPath + filename);
             FileUtils.writeByteArrayToFile(local, bytes);
@@ -72,7 +66,7 @@ public class VideoController extends FileController {
             return new ApiEntity<>(ApiStatus.STATUS_500.getCode(), e.getMessage());
         }
 
-        String link = config.storelink + "/video/" + currentDate + "/" + filename;
+        String link = config.storelink + filePath + currentDate + "/" + filename;
         return new ApiEntity<>(link);
     }
 

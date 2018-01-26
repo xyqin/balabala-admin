@@ -28,7 +28,7 @@ import java.util.Date;
  */
 @Api(tags = "图片", description = "图片API")
 @RestController
-@RequestMapping("/image")
+@RequestMapping("/images")
 public class ImageController extends FileController {
 
     private static final String[] SUPPORTED_IMAGE_EXTENSIONS = {"jpg", "jpeg", "png", "gif"};

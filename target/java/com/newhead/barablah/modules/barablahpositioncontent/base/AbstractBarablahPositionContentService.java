@@ -137,8 +137,8 @@ public abstract class AbstractBarablahPositionContentService extends BaseService
         }
 
         if (request.getImage()!=null) {
-            c.andImageLike("%"+request.getImage()+"%");
-        }
+            c.andImageEqualTo(request.getImage());
+         }
 
         if (request.getLink()!=null) {
             c.andLinkLike("%"+request.getLink()+"%");
@@ -168,8 +168,8 @@ public abstract class AbstractBarablahPositionContentService extends BaseService
         }
 
         if (request.getImage()!=null) {
-            c.andImageLike("%"+request.getImage()+"%");
-        }
+            c.andImageEqualTo(request.getImage());
+         }
 
         if (request.getLink()!=null) {
             c.andLinkLike("%"+request.getLink()+"%");

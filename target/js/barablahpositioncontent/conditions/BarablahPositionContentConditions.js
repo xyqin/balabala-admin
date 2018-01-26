@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月26日 11:59:32
+ * 生成时间：2018年01月26日 03:39:50
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -18,9 +18,8 @@ const BARABLAHPOSITIONCONTENT_CONDITIONS = [{
     placeholder: '请输入内容名称'
 },{
     key: 'image',
-    type: 'String',
+    type: 'Image',
     label: '内容图片',
-    placeholder: '请输入内容图片'
 },{
     key: 'link',
     type: 'String',

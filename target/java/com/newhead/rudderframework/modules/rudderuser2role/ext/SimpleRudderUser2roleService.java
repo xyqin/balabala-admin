@@ -11,7 +11,7 @@ import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 用户角色关系服务
- * 2018年01月26日 11:59:29
+ * 2018年01月26日 03:39:47
  */
 @Api(tags = "用户角色关系", description = "相关的API")
 @Service
