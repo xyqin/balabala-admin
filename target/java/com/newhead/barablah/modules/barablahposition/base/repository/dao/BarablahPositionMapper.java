@@ -11,77 +11,77 @@ public interface BarablahPositionMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     long countByExample(BarablahPositionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int deleteByExample(BarablahPositionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int insert(BarablahPosition record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int insertSelective(BarablahPosition record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     List<BarablahPosition> selectByExample(BarablahPositionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     BarablahPosition selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int updateByExampleSelective(@Param("record") BarablahPosition record, @Param("example") BarablahPositionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int updateByExample(@Param("record") BarablahPosition record, @Param("example") BarablahPositionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int updateByPrimaryKeySelective(BarablahPosition record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int updateByPrimaryKey(BarablahPosition record);
 }

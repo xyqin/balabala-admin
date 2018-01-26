@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月25日 03:24:36
+ * 生成时间：2018年01月26日 11:13:54
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -56,7 +56,7 @@ checked: true
 title: '课时视频缩略图',
 dataIndex: 'thumbnail',
 key: 'thumbnail',
-type:'String',
+type:'Image',
 checked: true
 },{
 title: '课时视频',

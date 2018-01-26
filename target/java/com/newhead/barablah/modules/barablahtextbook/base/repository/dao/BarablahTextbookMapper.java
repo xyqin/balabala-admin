@@ -11,77 +11,77 @@ public interface BarablahTextbookMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     long countByExample(BarablahTextbookExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int deleteByExample(BarablahTextbookExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int insert(BarablahTextbook record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int insertSelective(BarablahTextbook record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     List<BarablahTextbook> selectByExample(BarablahTextbookExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     BarablahTextbook selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int updateByExampleSelective(@Param("record") BarablahTextbook record, @Param("example") BarablahTextbookExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int updateByExample(@Param("record") BarablahTextbook record, @Param("example") BarablahTextbookExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int updateByPrimaryKeySelective(BarablahTextbook record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int updateByPrimaryKey(BarablahTextbook record);
 }

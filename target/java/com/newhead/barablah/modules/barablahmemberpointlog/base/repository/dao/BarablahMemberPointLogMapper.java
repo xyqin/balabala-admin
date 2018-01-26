@@ -11,77 +11,77 @@ public interface BarablahMemberPointLogMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_point_log
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     long countByExample(BarablahMemberPointLogExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_point_log
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int deleteByExample(BarablahMemberPointLogExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_point_log
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_point_log
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int insert(BarablahMemberPointLog record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_point_log
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int insertSelective(BarablahMemberPointLog record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_point_log
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     List<BarablahMemberPointLog> selectByExample(BarablahMemberPointLogExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_point_log
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     BarablahMemberPointLog selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_point_log
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int updateByExampleSelective(@Param("record") BarablahMemberPointLog record, @Param("example") BarablahMemberPointLogExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_point_log
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int updateByExample(@Param("record") BarablahMemberPointLog record, @Param("example") BarablahMemberPointLogExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_point_log
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int updateByPrimaryKeySelective(BarablahMemberPointLog record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_point_log
-     * @generated 2018年1月25日 03:24:33
+     * @generated 2018年1月26日 11:13:51
      */
     int updateByPrimaryKey(BarablahMemberPointLog record);
 }

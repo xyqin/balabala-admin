@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月25日 03:24:36
+ * 生成时间：2018年01月26日 11:13:55
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -18,9 +18,8 @@ const BARABLAHCLASSLESSON_CONDITIONS = [{
     placeholder: '请输入课时名称'
 },{
     key: 'thumbnail',
-    type: 'String',
+    type: 'Image',
     label: '课时视频缩略图',
-    placeholder: '请输入课时视频缩略图'
 },{
     key: 'video',
     type: 'String',

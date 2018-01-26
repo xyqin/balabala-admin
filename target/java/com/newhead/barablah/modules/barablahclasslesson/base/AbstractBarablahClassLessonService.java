@@ -191,8 +191,8 @@ public abstract class AbstractBarablahClassLessonService extends BaseService {
         }
 
         if (request.getThumbnail()!=null) {
-            c.andThumbnailLike("%"+request.getThumbnail()+"%");
-        }
+            c.andThumbnailEqualTo(request.getThumbnail());
+         }
 
         if (request.getVideo()!=null) {
             c.andVideoLike("%"+request.getVideo()+"%");
@@ -233,8 +233,8 @@ public abstract class AbstractBarablahClassLessonService extends BaseService {
         }
 
         if (request.getThumbnail()!=null) {
-            c.andThumbnailLike("%"+request.getThumbnail()+"%");
-        }
+            c.andThumbnailEqualTo(request.getThumbnail());
+         }
 
         if (request.getVideo()!=null) {
             c.andVideoLike("%"+request.getVideo()+"%");
