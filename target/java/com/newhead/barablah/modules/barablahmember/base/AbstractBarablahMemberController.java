@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员控制器
- * 2018年01月26日 11:13:54
+ * 2018年01月26日 11:59:31
  */
 @Api(tags = "会员", description = "相关的API")
 public abstract class AbstractBarablahMemberController extends WebController  {
@@ -95,13 +95,10 @@ public abstract class AbstractBarablahMemberController extends WebController  {
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "会员ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahMemberQueryResponse>> getList(@RequestParam(required = false) String nickname,@RequestParam(required = false) String englishName,@RequestParam(required = false) String gender) {
+    public ApiEntity<List<SimpleBarablahMemberQueryResponse>> getList(@RequestParam(required = false) String nickname,@RequestParam(required = false) String gender) {
         SimpleBarablahMemberQueryListRequest request = new SimpleBarablahMemberQueryListRequest();
         if (!StringUtils.isEmpty(nickname)) {
             request.setNickname(nickname);
-        }
-        if (!StringUtils.isEmpty(englishName)) {
-            request.setEnglishName(englishName);
         }
         if (!StringUtils.isEmpty(gender)) {
             request.setGender(gender);
@@ -120,16 +117,12 @@ public abstract class AbstractBarablahMemberController extends WebController  {
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
         @RequestParam(required = false) String nickname,
-        @RequestParam(required = false) String englishName,
         @RequestParam(required = false) String gender,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahMemberQueryPageRequest request = new SimpleBarablahMemberQueryPageRequest();
         if (!StringUtils.isEmpty(nickname)) {
             request.setNickname(nickname);
-        }
-        if (!StringUtils.isEmpty(englishName)) {
-            request.setEnglishName(englishName);
         }
         if (!StringUtils.isEmpty(gender)) {
             request.setGender(gender);

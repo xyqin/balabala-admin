@@ -141,10 +141,6 @@ public abstract class AbstractBarablahMemberService extends BaseService {
             c.andNicknameLike("%"+request.getNickname()+"%");
         }
 
-        if (request.getEnglishName()!=null) {
-            c.andEnglishNameLike("%"+request.getEnglishName()+"%");
-        }
-
         if (request.getGender()!=null) {
             c.andGenderEqualTo(request.getGender());
          }
@@ -170,10 +166,6 @@ public abstract class AbstractBarablahMemberService extends BaseService {
 
         if (request.getNickname()!=null) {
             c.andNicknameLike("%"+request.getNickname()+"%");
-        }
-
-        if (request.getEnglishName()!=null) {
-            c.andEnglishNameLike("%"+request.getEnglishName()+"%");
         }
 
         if (request.getGender()!=null) {

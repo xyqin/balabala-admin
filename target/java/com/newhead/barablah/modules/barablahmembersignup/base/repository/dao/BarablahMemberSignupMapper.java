@@ -11,77 +11,77 @@ public interface BarablahMemberSignupMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_signup
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     long countByExample(BarablahMemberSignupExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_signup
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     int deleteByExample(BarablahMemberSignupExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_signup
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_signup
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     int insert(BarablahMemberSignup record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_signup
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     int insertSelective(BarablahMemberSignup record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_signup
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     List<BarablahMemberSignup> selectByExample(BarablahMemberSignupExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_signup
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     BarablahMemberSignup selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_signup
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     int updateByExampleSelective(@Param("record") BarablahMemberSignup record, @Param("example") BarablahMemberSignupExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_signup
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     int updateByExample(@Param("record") BarablahMemberSignup record, @Param("example") BarablahMemberSignupExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_signup
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     int updateByPrimaryKeySelective(BarablahMemberSignup record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_signup
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     int updateByPrimaryKey(BarablahMemberSignup record);
 }

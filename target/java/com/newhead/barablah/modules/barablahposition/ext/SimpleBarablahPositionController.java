@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * RudderFramework 自动生成
  * 广告位置表控制
- * 2018年01月26日 11:13:52
+ * 2018年01月26日 11:59:29
  */
 @Api(tags = "广告位置表", description = "相关的API")
 @RestController

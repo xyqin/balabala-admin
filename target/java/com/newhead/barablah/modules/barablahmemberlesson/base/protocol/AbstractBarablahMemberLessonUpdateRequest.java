@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年01月26日 11:13:53
+ * 2018年01月26日 11:59:31
  */
 @Data
 public abstract class AbstractBarablahMemberLessonUpdateRequest {

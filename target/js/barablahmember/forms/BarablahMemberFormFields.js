@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月26日 11:13:55
+ * 生成时间：2018年01月26日 11:59:32
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -32,14 +32,8 @@ const BARABLAHMEMBER_FORM_FIELDS = [{
     placeholder: '请输入昵称'
 },{
     key: 'avatar',
-    type: 'String',
+    type: 'Image',
     label: '头像',
-    placeholder: '请输入头像'
-},{
-    key: 'englishName',
-    type: 'String',
-    label: '英文名',
-    placeholder: '请输入英文名'
 },{
     key: 'gender',
     type: 'Enum',

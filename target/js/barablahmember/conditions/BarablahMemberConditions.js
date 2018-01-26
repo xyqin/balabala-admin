@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月26日 11:13:55
+ * 生成时间：2018年01月26日 11:59:32
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -16,11 +16,6 @@ const BARABLAHMEMBER_CONDITIONS = [{
     type: 'String',
     label: '昵称',
     placeholder: '请输入昵称'
-},{
-    key: 'englishName',
-    type: 'String',
-    label: '英文名',
-    placeholder: '请输入英文名'
 },{
     key: 'gender',
     type: 'Enum',

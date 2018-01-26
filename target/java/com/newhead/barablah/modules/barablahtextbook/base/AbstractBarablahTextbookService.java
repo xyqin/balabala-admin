@@ -136,9 +136,17 @@ public abstract class AbstractBarablahTextbookService extends BaseService {
         BarablahTextbookExample example = new BarablahTextbookExample();
         BarablahTextbookExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        if (request.getCategoryId()!=null) {
+            c.andCategoryIdEqualTo(request.getCategoryId());
+         }
+
         if (request.getType()!=null) {
             c.andTypeEqualTo(request.getType());
          }
+
+        if (request.getTextbookName()!=null) {
+            c.andTextbookNameLike("%"+request.getTextbookName()+"%");
+        }
 
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
@@ -158,9 +166,17 @@ public abstract class AbstractBarablahTextbookService extends BaseService {
         BarablahTextbookExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
 
+        if (request.getCategoryId()!=null) {
+            c.andCategoryIdEqualTo(request.getCategoryId());
+         }
+
         if (request.getType()!=null) {
             c.andTypeEqualTo(request.getType());
          }
+
+        if (request.getTextbookName()!=null) {
+            c.andTextbookNameLike("%"+request.getTextbookName()+"%");
+        }
 
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());

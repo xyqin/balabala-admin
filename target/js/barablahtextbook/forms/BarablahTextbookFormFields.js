@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月26日 11:13:55
+ * 生成时间：2018年01月26日 11:59:32
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -68,13 +68,11 @@ const BARABLAHTEXTBOOK_FORM_FIELDS = [{
     placeholder: '请输入正确答案'
 },{
     key: 'image',
-    type: 'String',
+    type: 'Image',
     label: '图片',
-    placeholder: '请输入图片'
 },{
     key: 'video',
-    type: 'String',
+    type: 'File',
     label: '音频',
-    placeholder: '请输入音频'
 }];
 export default BARABLAHTEXTBOOK_FORM_FIELDS;

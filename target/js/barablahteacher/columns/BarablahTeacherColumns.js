@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月26日 11:13:54
+ * 生成时间：2018年01月26日 11:59:32
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -32,7 +32,7 @@ checked: true
 title: '头像',
 dataIndex: 'avatar',
 key: 'avatar',
-type:'String',
+type:'Image',
 checked: true
 },{
 title: '姓名',

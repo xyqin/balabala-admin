@@ -11,41 +11,41 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * RudderFramework框架自动生成，不允许修改！
  * 表 rudder_user2role
- * @generated do_not_delete_during_merge 2018年1月26日 11:13:51
+ * @generated do_not_delete_during_merge 2018年1月26日 11:59:28
  */
 public class RudderUser2role implements AuditableEntity {
     /**
      *
      * {"name":"资源ID","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     private Long id;
 
     /**
      *
      * {"name":"角色","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"RudderRole","field":"rudderroleName","type":"SingleList"},"valid":true}
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     private Long rudderroleId;
 
     /**
      *
      * {"name":"用户","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"RudderUser","field":"rudderuserName","type":"SingleList"},"valid":true}
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     private Long rudderuserId;
 
     /**
      *
      * {"name":"是否显示","fieldType":"Bool","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     private Boolean visible;
 
     /**
      *
      * {"name":"系统创建时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     @JSONField(serialize=false)
     private Date createdAt;
@@ -53,7 +53,7 @@ public class RudderUser2role implements AuditableEntity {
     /**
      *
      * {"name":"系统修改时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     @JSONField(serialize=false)
     private Date updatedAt;
@@ -61,7 +61,7 @@ public class RudderUser2role implements AuditableEntity {
     /**
      *
      * {"name":"系统创建者","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     @JSONField(serialize=false)
     private Long creator;
@@ -69,7 +69,7 @@ public class RudderUser2role implements AuditableEntity {
     /**
      *
      * {"name":"系统修改者","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     @JSONField(serialize=false)
     private Long lastModifier;
@@ -77,14 +77,14 @@ public class RudderUser2role implements AuditableEntity {
     /**
      *
      * {"name":"逻辑删除标志","fieldType":"Bool","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     @JSONField(serialize=false)
     private Boolean deleted;
 
     /**
      * 返回 id 资源ID
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public Long getId() {
         
@@ -95,7 +95,7 @@ public class RudderUser2role implements AuditableEntity {
      * 设置资源ID
      *
      * @param id
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public void setId(Long id) {
         this.id = id;
@@ -103,7 +103,7 @@ public class RudderUser2role implements AuditableEntity {
 
     /**
      * 返回 rudderrole_id 角色
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public Long getRudderroleId() {
         
@@ -114,7 +114,7 @@ public class RudderUser2role implements AuditableEntity {
      * 设置角色
      *
      * @param rudderroleId
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public void setRudderroleId(Long rudderroleId) {
         this.rudderroleId = rudderroleId;
@@ -122,7 +122,7 @@ public class RudderUser2role implements AuditableEntity {
 
     /**
      * 返回 rudderuser_id 用户
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public Long getRudderuserId() {
         
@@ -133,7 +133,7 @@ public class RudderUser2role implements AuditableEntity {
      * 设置用户
      *
      * @param rudderuserId
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public void setRudderuserId(Long rudderuserId) {
         this.rudderuserId = rudderuserId;
@@ -141,7 +141,7 @@ public class RudderUser2role implements AuditableEntity {
 
     /**
      * 返回 visible 是否显示
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public Boolean getVisible() {
         
@@ -152,7 +152,7 @@ public class RudderUser2role implements AuditableEntity {
      * 设置是否显示
      *
      * @param visible
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public void setVisible(Boolean visible) {
         this.visible = visible;
@@ -160,7 +160,7 @@ public class RudderUser2role implements AuditableEntity {
 
     /**
      * 返回 created_at 系统创建时间
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public Date getCreatedAt() {
         
@@ -171,7 +171,7 @@ public class RudderUser2role implements AuditableEntity {
      * 设置系统创建时间
      *
      * @param createdAt
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -179,7 +179,7 @@ public class RudderUser2role implements AuditableEntity {
 
     /**
      * 返回 updated_at 系统修改时间
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public Date getUpdatedAt() {
         
@@ -190,7 +190,7 @@ public class RudderUser2role implements AuditableEntity {
      * 设置系统修改时间
      *
      * @param updatedAt
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
@@ -198,7 +198,7 @@ public class RudderUser2role implements AuditableEntity {
 
     /**
      * 返回 creator 系统创建者
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public Long getCreator() {
         
@@ -209,7 +209,7 @@ public class RudderUser2role implements AuditableEntity {
      * 设置系统创建者
      *
      * @param creator
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public void setCreator(Long creator) {
         this.creator = creator;
@@ -217,7 +217,7 @@ public class RudderUser2role implements AuditableEntity {
 
     /**
      * 返回 last_modifier 系统修改者
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public Long getLastModifier() {
         
@@ -228,7 +228,7 @@ public class RudderUser2role implements AuditableEntity {
      * 设置系统修改者
      *
      * @param lastModifier
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public void setLastModifier(Long lastModifier) {
         this.lastModifier = lastModifier;
@@ -236,7 +236,7 @@ public class RudderUser2role implements AuditableEntity {
 
     /**
      * 返回 deleted 逻辑删除标志
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public Boolean getDeleted() {
         
@@ -247,7 +247,7 @@ public class RudderUser2role implements AuditableEntity {
      * 设置逻辑删除标志
      *
      * @param deleted
-     * @generated 2018年1月26日 11:13:51
+     * @generated 2018年1月26日 11:59:28
      */
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;

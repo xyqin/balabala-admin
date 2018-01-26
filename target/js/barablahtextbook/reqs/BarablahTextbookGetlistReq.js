@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年01月26日 11:13:55
+ * 生成时间：2018年01月26日 11:59:32
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahTextbookGetlistReq
  * 接口地址：barablahtextbook/getlist
@@ -17,8 +17,14 @@ class BarablahTextbookGetlistReq extends BaseRobotReq {
             url: '/barablahtextbook/getlist',
             type: 'Get',        };
         // 请求参数的描述信息，只定义先不用
-        this._paramsDescriptor = [{key: 'type',
+        this._paramsDescriptor = [{key: 'categoryId',
+            desc: '教材三级分类ID',
+            isRequired: true
+        },{key: 'type',
             desc: '题目类型',
+            isRequired: true
+        },{key: 'textbookName',
+            desc: '题目名称',
             isRequired: true
         }];        this.curd = 'd';
     }
@@ -27,8 +33,10 @@ class BarablahTextbookGetlistReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(type) {
+    setSimpleParams(categoryId,type,textbookName) {
+        this.addParams('categoryId', categoryId);
         this.addParams('type', type);
+        this.addParams('textbookName', textbookName);
     }
 
     /**

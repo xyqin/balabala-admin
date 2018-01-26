@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月26日 11:13:54
+ * 生成时间：2018年01月26日 11:59:32
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -56,13 +56,13 @@ checked: true
 title: '图片',
 dataIndex: 'image',
 key: 'image',
-type:'String',
+type:'Image',
 checked: true
 },{
 title: '音频',
 dataIndex: 'video',
 key: 'video',
-type:'String',
+type:'File',
 checked: true
 }];
 export default BARABLAHTEXTBOOK_COLUMNS;
