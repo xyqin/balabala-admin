@@ -1,12 +1,13 @@
 package com.newhead.barablah.modules.barablahclasslesson.ext;
 
 import com.newhead.barablah.modules.barablahclasslesson.base.AbstractBarablahClassLessonController;
-
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonPostponeBatchRequest;
+import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonUpdateBatchRequest;
+import com.newhead.rudderframework.core.web.api.ApiEntity;
 import io.swagger.annotations.Api;
-
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,5 +27,19 @@ public class SimpleBarablahClassLessonController extends AbstractBarablahClassLe
     @Override
     public SimpleBarablahClassLessonService getService() {
         return service;
+    }
+
+    @ApiOperation(value = "批量更新课时时间", httpMethod = "POST", response = String.class)
+    @RequestMapping(value = "updatebatch", method = RequestMethod.POST)
+    public ApiEntity updatebatch(@RequestBody SimpleBarablahClassLessonUpdateBatchRequest request) {
+        getService().updatebatch(request);
+        return new ApiEntity<>();
+    }
+
+    @ApiOperation(value = "批量延迟课时", httpMethod = "POST", response = String.class)
+    @RequestMapping(value = "postponebatch", method = RequestMethod.POST)
+    public ApiEntity postponebatch(@RequestBody SimpleBarablahClassLessonPostponeBatchRequest request) {
+        getService().postponebatch(request);
+        return new ApiEntity<>();
     }
 }
