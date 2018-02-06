@@ -2,8 +2,6 @@ package com.newhead.barablah.modules.barablahclasslesson.ext;
 
 import com.newhead.barablah.modules.barablahclasslesson.base.AbstractBarablahClassLessonController;
 
-import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonQueryResponse;
-import com.newhead.rudderframework.core.web.api.ApiEntity;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.Api;
@@ -12,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * RudderFramework 自动生成
@@ -30,11 +26,5 @@ public class SimpleBarablahClassLessonController extends AbstractBarablahClassLe
     @Override
     public SimpleBarablahClassLessonService getService() {
         return service;
-    }
-
-
-    @Override
-    public ApiEntity<List<SimpleBarablahClassLessonQueryResponse>> getList(Long classId, String lessonName, String type) {
-        return super.getList(classId, lessonName, type);
     }
 }
