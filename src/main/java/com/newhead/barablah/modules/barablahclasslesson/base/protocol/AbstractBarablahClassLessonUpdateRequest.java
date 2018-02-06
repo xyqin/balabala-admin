@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年01月18日 06:52:59
+ * 2018年02月06日 05:34:56
  */
 @Data
 public abstract class AbstractBarablahClassLessonUpdateRequest {
@@ -25,24 +25,9 @@ public abstract class AbstractBarablahClassLessonUpdateRequest {
     private Long classId;
     /**
      *
-     * 课程ID
-     */
-    private Long courseId;
-    /**
-     *
-     * 教师ID
-     */
-    private Long teacherId;
-    /**
-     *
      * 教材三级分类ID
      */
     private Long categoryId;
-    /**
-     *
-     * 外教教师ID
-     */
-    private Long englishTeacherId;
     /**
      *
      * 课时名称
@@ -63,16 +48,6 @@ public abstract class AbstractBarablahClassLessonUpdateRequest {
      * 课时视频缩略图
      */
     private String thumbnail;
-    /**
-     *
-     * 课时视频
-     */
-    private String video;
-    /**
-     *
-     * 网易云房间
-     */
-    private String room;
     /**
      *
      * 是否备课

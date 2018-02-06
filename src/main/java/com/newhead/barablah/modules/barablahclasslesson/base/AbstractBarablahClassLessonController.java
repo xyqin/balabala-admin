@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 开班课时控制器
- * 2018年01月18日 06:53:00
+ * 2018年02月06日 05:34:57
  */
 @Api(tags = "开班课时", description = "相关的API")
 public abstract class AbstractBarablahClassLessonController extends WebController  {
@@ -95,22 +95,16 @@ public abstract class AbstractBarablahClassLessonController extends WebControlle
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "开班课时ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahClassLessonQueryResponse>> getList(@RequestParam(required = false) String lessonName,@RequestParam(required = false) String thumbnail,@RequestParam(required = false) String video,@RequestParam(required = false) String room,@RequestParam(required = false) Boolean prepared,@RequestParam(required = false) String type) {
+    public ApiEntity<List<SimpleBarablahClassLessonQueryResponse>> getList(@RequestParam(required = false) Long classId,@RequestParam(required = false) Long teacherId,@RequestParam(required = false) String lessonName,@RequestParam(required = false) String type) {
         SimpleBarablahClassLessonQueryListRequest request = new SimpleBarablahClassLessonQueryListRequest();
+        if (!StringUtils.isEmpty(classId)) {
+            request.setClassId(classId);
+        }
+        if (!StringUtils.isEmpty(teacherId)) {
+            request.setTeacherId(teacherId);
+        }
         if (!StringUtils.isEmpty(lessonName)) {
             request.setLessonName(lessonName);
-        }
-        if (!StringUtils.isEmpty(thumbnail)) {
-            request.setThumbnail(thumbnail);
-        }
-        if (!StringUtils.isEmpty(video)) {
-            request.setVideo(video);
-        }
-        if (!StringUtils.isEmpty(room)) {
-            request.setRoom(room);
-        }
-        if (!StringUtils.isEmpty(prepared)) {
-            request.setPrepared(prepared);
         }
         if (!StringUtils.isEmpty(type)) {
             request.setType(type);
@@ -128,29 +122,21 @@ public abstract class AbstractBarablahClassLessonController extends WebControlle
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) Long classId,
+        @RequestParam(required = false) Long teacherId,
         @RequestParam(required = false) String lessonName,
-        @RequestParam(required = false) String thumbnail,
-        @RequestParam(required = false) String video,
-        @RequestParam(required = false) String room,
-        @RequestParam(required = false) Boolean prepared,
         @RequestParam(required = false) String type,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahClassLessonQueryPageRequest request = new SimpleBarablahClassLessonQueryPageRequest();
+        if (!StringUtils.isEmpty(classId)) {
+            request.setClassId(classId);
+        }
+        if (!StringUtils.isEmpty(teacherId)) {
+            request.setTeacherId(teacherId);
+        }
         if (!StringUtils.isEmpty(lessonName)) {
             request.setLessonName(lessonName);
-        }
-        if (!StringUtils.isEmpty(thumbnail)) {
-            request.setThumbnail(thumbnail);
-        }
-        if (!StringUtils.isEmpty(video)) {
-            request.setVideo(video);
-        }
-        if (!StringUtils.isEmpty(room)) {
-            request.setRoom(room);
-        }
-        if (!StringUtils.isEmpty(prepared)) {
-            request.setPrepared(prepared);
         }
         if (!StringUtils.isEmpty(type)) {
             request.setType(type);

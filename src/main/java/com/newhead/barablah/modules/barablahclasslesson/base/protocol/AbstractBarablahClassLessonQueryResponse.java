@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年01月18日 06:52:59
+ * @generated 2018年02月06日 05:34:56
  */
 @Data
 public abstract class AbstractBarablahClassLessonQueryResponse {
@@ -30,27 +30,9 @@ public abstract class AbstractBarablahClassLessonQueryResponse {
 
     /**
      *
-     * 课程ID
-     */
-    private LabelValueItem CourseIdObject = new LabelValueItem();
-
-    /**
-     *
-     * 教师ID
-     */
-    private LabelValueItem TeacherIdObject = new LabelValueItem();
-
-    /**
-     *
      * 教材三级分类ID
      */
     private LabelValueItem CategoryIdObject = new LabelValueItem();
-
-    /**
-     *
-     * 外教教师ID
-     */
-    private LabelValueItem EnglishTeacherIdObject = new LabelValueItem();
 
     /**
      *
@@ -75,18 +57,6 @@ public abstract class AbstractBarablahClassLessonQueryResponse {
      * 课时视频缩略图
      */
      private String thumbnail;
-
-    /**
-     *
-     * 课时视频
-     */
-     private String video;
-
-    /**
-     *
-     * 网易云房间
-     */
-     private String room;
 
     /**
      *
