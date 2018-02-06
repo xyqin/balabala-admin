@@ -5,6 +5,7 @@
 {"moduleTitle":"用户","dataType":"Table","moduleName":"rudderUser","displayField":"rudderuserName","remark":"系统用户","version":"1.0","key":"rudderframework"}
 {"moduleTitle":"用户角色关系","dataType":"Table","moduleName":"rudderUser2role","displayField":"","remark":"用户角色关系","version":"1.0","key":"rudderframework"}
 {"moduleTitle":"校区","dataType":"Table","moduleName":"barablahCampus","displayField":"campusName","remark":"","version":"1.0","key":"barablah"}
+{"moduleTitle":"班级分类","dataType":"Table","moduleName":"barablahClassCategory","displayField":"categoryName","remark":"","version":"1.0","key":"barablah"}
 {"moduleTitle":"开班","dataType":"Table","moduleName":"barablahClass","displayField":"className","remark":"","version":"1.0","key":"barablah"}
 {"moduleTitle":"开班课时","dataType":"Table","moduleName":"barablahClassLesson","displayField":"lessonName","remark":"","version":"1.0","key":"barablah"}
 {"moduleTitle":"开班会员","dataType":"Table","moduleName":"barablahClassMember","displayField":"","remark":"","version":"1.0","key":"barablah"}

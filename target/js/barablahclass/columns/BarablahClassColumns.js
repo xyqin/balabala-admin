@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月26日 03:43:31
+ * 生成时间：2018年02月06日 02:51:00
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -15,6 +15,12 @@ title: '开班ID',
 dataIndex: 'id',
 key: 'id',
 type:'Id',
+checked: true
+},{
+title: '班级分类ID',
+dataIndex: 'categoryIdObject',
+key: 'categoryIdObject',
+type:'Object',
 checked: true
 },{
 title: '课程ID',

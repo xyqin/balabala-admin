@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月26日 03:43:32
+ * 生成时间：2018年02月06日 02:51:00
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -16,6 +16,15 @@ const BARABLAHCLASS_FORM_FIELDS = [{
     type: 'Id',
     label: '开班ID',
         placeholder: '请输入开班ID'
+},{
+    key: 'categoryId',
+    type: 'Object',
+    label: '班级分类ID',
+    placeholder: '请选择班级分类ID',
+    displayType: 'SingleList',
+    url: '/barablahclasscategory/getlist',
+    dataLableKey: 'categoryName',
+    dataValueKey: 'id'
 },{
     key: 'courseId',
     type: 'Object',
@@ -77,7 +86,7 @@ const BARABLAHCLASS_FORM_FIELDS = [{
         },{        value: 'REJECTED',
         label: '审核被拒'
         },{        value: 'ONGOING',
-        label: '进行中'
+        label: '已通过'
         },{        value: 'FINISHED',
         label: '已结束'
         }]}];

@@ -22,6 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 
+import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategory;
+import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategoryExample;
+
+import com.newhead.barablah.modules.barablahclasscategory.base.repository.dao.BarablahClassCategoryMapper;
 import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus;
 import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampusExample;
 
@@ -50,6 +54,8 @@ public abstract class AbstractBarablahClassService extends BaseService {
 
     protected abstract void saveOrUpdate(BarablahClass entity);
 
+    @Autowired
+    protected BarablahClassCategoryMapper barablahclasscategoryMapper;
     @Autowired
     protected BarablahCampusMapper barablahcampusMapper;
     @Autowired
@@ -108,6 +114,14 @@ public abstract class AbstractBarablahClassService extends BaseService {
         }
         SimpleBarablahClassGetDetailResponse response = new SimpleBarablahClassGetDetailResponse();
         BeanUtils.copyProperties(entity, response);
+        BarablahClassCategory  categoryIdEntity = barablahclasscategoryMapper.selectByPrimaryKey(Long.valueOf(entity.getCategoryId()));
+        if (categoryIdEntity!=null) {
+            LabelValueItem categoryIdObject = response.getCategoryIdObject();
+            categoryIdObject.setName("categoryId");
+            categoryIdObject.setLabel(categoryIdEntity.getCategoryName());
+            categoryIdObject.setValue(String.valueOf(entity.getCategoryId()));
+            categoryIdObject.setChecked(false);
+        }
         BarablahCourse  courseIdEntity = barablahcourseMapper.selectByPrimaryKey(Long.valueOf(entity.getCourseId()));
         if (courseIdEntity!=null) {
             LabelValueItem courseIdObject = response.getCourseIdObject();
@@ -243,6 +257,9 @@ public abstract class AbstractBarablahClassService extends BaseService {
      * @param results
      */
     private void convertEntityToResponse(List<BarablahClass> entitys,List<SimpleBarablahClassQueryResponse> results) {
+        Map<Long,Long> categoryIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> categoryIdResultMap = Maps.newHashMap();
+
         Map<Long,Long> courseIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> courseIdResultMap = Maps.newHashMap();
 
@@ -256,10 +273,26 @@ public abstract class AbstractBarablahClassService extends BaseService {
         Map<Long,LabelValueItem> englishTeacherIdResultMap = Maps.newHashMap();
 
        for(BarablahClass entity:entitys) {
+            categoryIdMap.put(entity.getId(),entity.getCategoryId());
             courseIdMap.put(entity.getId(),entity.getCourseId());
             teacherIdMap.put(entity.getId(),entity.getTeacherId());
             campusIdMap.put(entity.getId(),entity.getCampusId());
             englishTeacherIdMap.put(entity.getId(),entity.getEnglishTeacherId());
+        }
+        BarablahClassCategoryExample categoryIdExample = new BarablahClassCategoryExample();
+
+        List<Long> categoryIds = new ArrayList<>();
+        categoryIds.addAll(categoryIdMap.values());
+        if (categoryIds.size()>0) {
+            categoryIdExample.createCriteria().andIdIn(categoryIds);
+        }
+        List<BarablahClassCategory>  categoryIdList = barablahclasscategoryMapper.selectByExample(categoryIdExample);
+        for(BarablahClassCategory item:categoryIdList) {
+           LabelValueItem categoryIdItem = new LabelValueItem();
+           categoryIdItem.setName("categoryId");
+           categoryIdItem.setValue(String.valueOf(item.getId()));
+           categoryIdItem.setLabel(item.getCategoryName());
+           categoryIdResultMap.put(item.getId(),categoryIdItem);
         }
         BarablahCourseExample courseIdExample = new BarablahCourseExample();
 
@@ -325,6 +358,14 @@ public abstract class AbstractBarablahClassService extends BaseService {
         for(BarablahClass entity:entitys) {
             SimpleBarablahClassQueryResponse response = new SimpleBarablahClassQueryResponse();
             BeanUtils.copyProperties(entity,response);
+            Long categoryId = categoryIdMap.get(entity.getId());
+
+            LabelValueItem categoryIdlvi = null;
+            if (categoryId!=null && categoryIdResultMap.get(categoryId)!=null) {
+                categoryIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(categoryIdResultMap.get(categoryId),categoryIdlvi);
+            }
+            response.setCategoryIdObject(categoryIdlvi);
             Long courseId = courseIdMap.get(entity.getId());
 
             LabelValueItem courseIdlvi = null;

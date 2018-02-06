@@ -9,10 +9,16 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年01月26日 03:43:30
+ * 2018年02月06日 02:50:58
  */
 @Data
 public abstract class AbstractBarablahClassCreateRequest {
+    /**
+     *
+     * 班级分类ID
+     */
+    private Long categoryId;
+
     /**
      *
      * 课程ID

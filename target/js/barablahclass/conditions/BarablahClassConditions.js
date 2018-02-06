@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年01月26日 03:43:32
+ * 生成时间：2018年02月06日 02:51:00
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -36,7 +36,7 @@ const BARABLAHCLASS_CONDITIONS = [{
             },{                value: 'REJECTED',
                 label: '审核被拒'
             },{                value: 'ONGOING',
-                label: '进行中'
+                label: '已通过'
             },{                value: 'FINISHED',
                 label: '已结束'
             }]
