@@ -166,6 +166,10 @@ public abstract class AbstractBarablahClassLessonService extends BaseService {
             c.andClassIdEqualTo(request.getClassId());
          }
 
+        if (request.getTeacherId()!=null) {
+            c.andTeacherIdEqualTo(request.getTeacherId());
+         }
+
         if (request.getLessonName()!=null) {
             c.andLessonNameLike("%"+request.getLessonName()+"%");
         }
@@ -194,6 +198,10 @@ public abstract class AbstractBarablahClassLessonService extends BaseService {
 
         if (request.getClassId()!=null) {
             c.andClassIdEqualTo(request.getClassId());
+         }
+
+        if (request.getTeacherId()!=null) {
+            c.andTeacherIdEqualTo(request.getTeacherId());
          }
 
         if (request.getLessonName()!=null) {

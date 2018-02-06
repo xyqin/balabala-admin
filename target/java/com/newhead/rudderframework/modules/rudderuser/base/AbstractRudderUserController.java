@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 用户控制器
- * 2018年02月06日 05:24:58
+ * 2018年02月06日 05:34:57
  */
 @Api(tags = "用户", description = "相关的API")
 public abstract class AbstractRudderUserController extends WebController  {

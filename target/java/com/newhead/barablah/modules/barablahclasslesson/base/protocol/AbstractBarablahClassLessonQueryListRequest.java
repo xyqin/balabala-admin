@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年02月06日 05:24:56
+ * @generated 2018年02月06日 05:34:56
  */
 @Data
 public abstract class AbstractBarablahClassLessonQueryListRequest  {
@@ -15,6 +15,12 @@ public abstract class AbstractBarablahClassLessonQueryListRequest  {
      * 开班ID
      */
      private Long classId;
+
+    /**
+     *
+     * 教师ID
+     */
+     private Long teacherId;
 
     /**
      *

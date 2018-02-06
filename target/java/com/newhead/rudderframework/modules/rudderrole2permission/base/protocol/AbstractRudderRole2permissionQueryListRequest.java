@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 /**
  * 角色权限关系
- * @generated 2018年02月06日 05:24:57
+ * @generated 2018年02月06日 05:34:57
  */
 @Data
 public abstract class AbstractRudderRole2permissionQueryListRequest  {
