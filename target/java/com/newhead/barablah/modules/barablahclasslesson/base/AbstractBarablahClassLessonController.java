@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 开班课时控制器
- * 2018年02月06日 03:38:25
+ * 2018年02月06日 03:55:40
  */
 @Api(tags = "开班课时", description = "相关的API")
 public abstract class AbstractBarablahClassLessonController extends WebController  {
@@ -95,8 +95,11 @@ public abstract class AbstractBarablahClassLessonController extends WebControlle
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "开班课时ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahClassLessonQueryResponse>> getList(@RequestParam(required = false) String lessonName,@RequestParam(required = false) String thumbnail,@RequestParam(required = false) String video,@RequestParam(required = false) String room,@RequestParam(required = false) Boolean prepared,@RequestParam(required = false) String type) {
+    public ApiEntity<List<SimpleBarablahClassLessonQueryResponse>> getList(@RequestParam(required = false) Long classId,@RequestParam(required = false) String lessonName,@RequestParam(required = false) String thumbnail,@RequestParam(required = false) String video,@RequestParam(required = false) String room,@RequestParam(required = false) Boolean prepared,@RequestParam(required = false) String type) {
         SimpleBarablahClassLessonQueryListRequest request = new SimpleBarablahClassLessonQueryListRequest();
+        if (!StringUtils.isEmpty(classId)) {
+            request.setClassId(classId);
+        }
         if (!StringUtils.isEmpty(lessonName)) {
             request.setLessonName(lessonName);
         }
@@ -128,6 +131,7 @@ public abstract class AbstractBarablahClassLessonController extends WebControlle
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) Long classId,
         @RequestParam(required = false) String lessonName,
         @RequestParam(required = false) String thumbnail,
         @RequestParam(required = false) String video,
@@ -137,6 +141,9 @@ public abstract class AbstractBarablahClassLessonController extends WebControlle
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahClassLessonQueryPageRequest request = new SimpleBarablahClassLessonQueryPageRequest();
+        if (!StringUtils.isEmpty(classId)) {
+            request.setClassId(classId);
+        }
         if (!StringUtils.isEmpty(lessonName)) {
             request.setLessonName(lessonName);
         }

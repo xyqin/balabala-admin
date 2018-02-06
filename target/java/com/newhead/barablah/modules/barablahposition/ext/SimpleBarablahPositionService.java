@@ -11,7 +11,7 @@ import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 广告位置表服务
- * 2018年02月06日 03:38:23
+ * 2018年02月06日 03:55:37
  */
 @Api(tags = "广告位置表", description = "相关的API")
 @Service

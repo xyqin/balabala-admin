@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 权限控制器
- * 2018年02月06日 03:38:26
+ * 2018年02月06日 03:55:40
  */
 @Api(tags = "权限", description = "相关的API")
 public abstract class AbstractRudderPermissionController extends WebController  {

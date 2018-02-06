@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年02月06日 03:38:26
+ * 生成时间：2018年02月06日 03:55:40
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahClassLessonGetlistReq
  * 接口地址：barablahclasslesson/getlist
@@ -17,7 +17,10 @@ class BarablahClassLessonGetlistReq extends BaseRobotReq {
             url: '/barablahclasslesson/getlist',
             type: 'Get',        };
         // 请求参数的描述信息，只定义先不用
-        this._paramsDescriptor = [{key: 'lessonName',
+        this._paramsDescriptor = [{key: 'classId',
+            desc: '开班ID',
+            isRequired: true
+        },{key: 'lessonName',
             desc: '课时名称',
             isRequired: true
         },{key: 'thumbnail',
@@ -42,7 +45,8 @@ class BarablahClassLessonGetlistReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(lessonName,thumbnail,video,room,prepared,type) {
+    setSimpleParams(classId,lessonName,thumbnail,video,room,prepared,type) {
+        this.addParams('classId', classId);
         this.addParams('lessonName', lessonName);
         this.addParams('thumbnail', thumbnail);
         this.addParams('video', video);
