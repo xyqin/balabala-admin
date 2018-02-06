@@ -8,6 +8,7 @@
     </settings>
     <typeAliases>
         <package name="com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus"/>
+        <package name="com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategory"/>
         <package name="com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass"/>
         <package name="com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLesson"/>
         <package name="com.newhead.barablah.modules.barablahclassmember.base.repository.entity.BarablahClassMember"/>
@@ -38,6 +39,7 @@
     </typeAliases>
     <mappers>
          <mapper resource="com/newhead/barablah/modules/barablahcampus/base/repository/entity/BarablahCampusMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahclasscategory/base/repository/entity/BarablahClassCategoryMapper.xml"/>
          <mapper resource="com/newhead/barablah/modules/barablahclass/base/repository/entity/BarablahClassMapper.xml"/>
          <mapper resource="com/newhead/barablah/modules/barablahclasslesson/base/repository/entity/BarablahClassLessonMapper.xml"/>
          <mapper resource="com/newhead/barablah/modules/barablahclassmember/base/repository/entity/BarablahClassMemberMapper.xml"/>
