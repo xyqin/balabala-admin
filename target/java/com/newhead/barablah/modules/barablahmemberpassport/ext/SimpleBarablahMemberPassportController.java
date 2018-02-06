@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * RudderFramework 自动生成
  * 会员通行证控制
- * 2018年02月06日 03:58:38
+ * 2018年02月06日 05:24:55
  */
 @Api(tags = "会员通行证", description = "相关的API")
 @RestController

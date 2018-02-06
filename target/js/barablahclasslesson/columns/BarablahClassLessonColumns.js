@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年02月06日 03:58:40
+ * 生成时间：2018年02月06日 05:24:58
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -23,27 +23,9 @@ key: 'classIdObject',
 type:'Object',
 checked: true
 },{
-title: '课程ID',
-dataIndex: 'courseIdObject',
-key: 'courseIdObject',
-type:'Object',
-checked: true
-},{
-title: '教师ID',
-dataIndex: 'teacherIdObject',
-key: 'teacherIdObject',
-type:'Object',
-checked: true
-},{
 title: '教材三级分类ID',
 dataIndex: 'categoryIdObject',
 key: 'categoryIdObject',
-type:'Object',
-checked: true
-},{
-title: '外教教师ID',
-dataIndex: 'englishTeacherIdObject',
-key: 'englishTeacherIdObject',
 type:'Object',
 checked: true
 },{
@@ -57,18 +39,6 @@ title: '课时视频缩略图',
 dataIndex: 'thumbnail',
 key: 'thumbnail',
 type:'Image',
-checked: true
-},{
-title: '课时视频',
-dataIndex: 'video',
-key: 'video',
-type:'String',
-checked: true
-},{
-title: '网易云房间',
-dataIndex: 'room',
-key: 'room',
-type:'String',
 checked: true
 },{
 title: '是否备课',
