@@ -11,41 +11,41 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * RudderFramework框架自动生成，不允许修改！
  * 表 barablah_member_homework_item
- * @generated do_not_delete_during_merge 2018年2月6日 03:55:36
+ * @generated do_not_delete_during_merge 2018年2月6日 03:58:37
  */
 public class BarablahMemberHomeworkItem implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"1","formid":"1"},"name":"主键","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     private Long id;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"会员ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BarablahMember","field":"nickname","type":"SingleList"},"valid":true}
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     private Long memberId;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"会员作业ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BarablahMemberHomework","field":"homeworkName","type":"SingleList"},"valid":true}
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     private Long homeworkId;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"题目ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BarablahTextbook","field":"textbookName","type":"SingleList"},"valid":true}
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     private Long textbookId;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"答案","checkName":true,"fieldType":"String","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     @NotEmpty(message="答案不能为空")
     @Size(max=0,message = "答案长度无效")
@@ -55,7 +55,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
     /**
      *
      * {"name":"创建时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     @JSONField(serialize=false)
     private Date createdAt;
@@ -63,7 +63,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
     /**
      *
      * {"name":"修改时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     @JSONField(serialize=false)
     private Date updatedAt;
@@ -71,7 +71,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
     /**
      *
      * {"name":"创建者","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     @JSONField(serialize=false)
     private Long creator;
@@ -79,7 +79,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
     /**
      *
      * {"name":"修改人","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     @JSONField(serialize=false)
     private Long lastModifier;
@@ -87,14 +87,14 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
     /**
      *
      * {"name":"删除标志","fieldType":"Bool","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     @JSONField(serialize=false)
     private Boolean deleted;
 
     /**
      * 返回 id 主键
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public Long getId() {
         
@@ -105,7 +105,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
      * 设置主键
      *
      * @param id
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public void setId(Long id) {
         this.id = id;
@@ -113,7 +113,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
 
     /**
      * 返回 member_id 会员ID
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public Long getMemberId() {
         
@@ -124,7 +124,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
      * 设置会员ID
      *
      * @param memberId
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
@@ -132,7 +132,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
 
     /**
      * 返回 homework_id 会员作业ID
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public Long getHomeworkId() {
         
@@ -143,7 +143,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
      * 设置会员作业ID
      *
      * @param homeworkId
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public void setHomeworkId(Long homeworkId) {
         this.homeworkId = homeworkId;
@@ -151,7 +151,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
 
     /**
      * 返回 textbook_id 题目ID
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public Long getTextbookId() {
         
@@ -162,7 +162,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
      * 设置题目ID
      *
      * @param textbookId
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public void setTextbookId(Long textbookId) {
         this.textbookId = textbookId;
@@ -170,7 +170,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
 
     /**
      * 返回 answer 答案
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public String getAnswer() {
         
@@ -181,7 +181,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
      * 设置答案
      *
      * @param answer
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public void setAnswer(String answer) {
         this.answer = answer == null ? null : answer.trim();
@@ -189,7 +189,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
 
     /**
      * 返回 created_at 创建时间
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public Date getCreatedAt() {
         
@@ -200,7 +200,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
      * 设置创建时间
      *
      * @param createdAt
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -208,7 +208,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
 
     /**
      * 返回 updated_at 修改时间
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public Date getUpdatedAt() {
         
@@ -219,7 +219,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
      * 设置修改时间
      *
      * @param updatedAt
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
@@ -227,7 +227,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
 
     /**
      * 返回 creator 创建者
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public Long getCreator() {
         
@@ -238,7 +238,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
      * 设置创建者
      *
      * @param creator
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public void setCreator(Long creator) {
         this.creator = creator;
@@ -246,7 +246,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
 
     /**
      * 返回 last_modifier 修改人
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public Long getLastModifier() {
         
@@ -257,7 +257,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
      * 设置修改人
      *
      * @param lastModifier
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public void setLastModifier(Long lastModifier) {
         this.lastModifier = lastModifier;
@@ -265,7 +265,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
 
     /**
      * 返回 deleted 删除标志
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public Boolean getDeleted() {
         
@@ -276,7 +276,7 @@ public class BarablahMemberHomeworkItem implements AuditableEntity {
      * 设置删除标志
      *
      * @param deleted
-     * @generated 2018年2月6日 03:55:36
+     * @generated 2018年2月6日 03:58:37
      */
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;

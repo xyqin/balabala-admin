@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年02月06日 03:55:38
+ * @generated 2018年02月06日 03:58:39
  */
 @Data
 public abstract class AbstractBarablahClassLessonQueryPageRequest extends PageRequest {
@@ -23,30 +23,6 @@ public abstract class AbstractBarablahClassLessonQueryPageRequest extends PageRe
      * 课时名称
      */
      private String lessonName;
-
-    /**
-     *
-     * 课时视频缩略图
-     */
-     private String thumbnail;
-
-    /**
-     *
-     * 课时视频
-     */
-     private String video;
-
-    /**
-     *
-     * 网易云房间
-     */
-     private String room;
-
-    /**
-     *
-     * 是否备课
-     */
-     private Boolean prepared;
 
     /**
      *

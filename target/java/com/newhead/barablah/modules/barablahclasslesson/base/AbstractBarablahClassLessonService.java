@@ -194,22 +194,6 @@ public abstract class AbstractBarablahClassLessonService extends BaseService {
             c.andLessonNameLike("%"+request.getLessonName()+"%");
         }
 
-        if (request.getThumbnail()!=null) {
-            c.andThumbnailEqualTo(request.getThumbnail());
-         }
-
-        if (request.getVideo()!=null) {
-            c.andVideoLike("%"+request.getVideo()+"%");
-        }
-
-        if (request.getRoom()!=null) {
-            c.andRoomLike("%"+request.getRoom()+"%");
-        }
-
-        if (request.getPrepared()!=null) {
-            c.andPreparedEqualTo(request.getPrepared());
-         }
-
         if (request.getType()!=null) {
             c.andTypeEqualTo(request.getType());
          }
@@ -239,22 +223,6 @@ public abstract class AbstractBarablahClassLessonService extends BaseService {
         if (request.getLessonName()!=null) {
             c.andLessonNameLike("%"+request.getLessonName()+"%");
         }
-
-        if (request.getThumbnail()!=null) {
-            c.andThumbnailEqualTo(request.getThumbnail());
-         }
-
-        if (request.getVideo()!=null) {
-            c.andVideoLike("%"+request.getVideo()+"%");
-        }
-
-        if (request.getRoom()!=null) {
-            c.andRoomLike("%"+request.getRoom()+"%");
-        }
-
-        if (request.getPrepared()!=null) {
-            c.andPreparedEqualTo(request.getPrepared());
-         }
 
         if (request.getType()!=null) {
             c.andTypeEqualTo(request.getType());

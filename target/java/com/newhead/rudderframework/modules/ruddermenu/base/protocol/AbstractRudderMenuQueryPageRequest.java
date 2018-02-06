@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 /**
  * 菜单
- * @generated 2018年02月06日 03:55:39
+ * @generated 2018年02月06日 03:58:40
  */
 @Data
 public abstract class AbstractRudderMenuQueryPageRequest extends PageRequest {
