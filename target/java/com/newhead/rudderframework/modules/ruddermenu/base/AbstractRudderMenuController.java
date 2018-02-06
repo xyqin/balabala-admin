@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 菜单控制器
- * 2018年02月06日 02:51:00
+ * 2018年02月06日 03:38:25
  */
 @Api(tags = "菜单", description = "相关的API")
 public abstract class AbstractRudderMenuController extends WebController  {

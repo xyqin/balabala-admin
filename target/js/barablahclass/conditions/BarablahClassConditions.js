@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年02月06日 02:51:00
+ * 生成时间：2018年02月06日 03:38:26
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -12,6 +12,15 @@
  * }
  */
 const BARABLAHCLASS_CONDITIONS = [{
+    key: 'categoryId',
+    type: 'Object',
+    label: '班级分类ID',
+    placeholder: '请选择班级分类ID',
+    displayType: 'SingleList',
+    url: '/barablahclasscategory/getlist',
+    dataLableKey: 'categoryName',
+    dataValueKey: 'id'
+},{
     key: 'className',
     type: 'String',
     label: '班级名称',

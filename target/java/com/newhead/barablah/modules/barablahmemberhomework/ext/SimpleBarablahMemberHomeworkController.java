@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * RudderFramework 自动生成
  * 学生作业表控制
- * 2018年02月06日 02:50:56
+ * 2018年02月06日 03:38:23
  */
 @Api(tags = "学生作业表", description = "相关的API")
 @RestController
