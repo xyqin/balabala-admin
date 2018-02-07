@@ -109,6 +109,11 @@ public abstract class AbstractBarablahMemberService extends BaseService {
         genderEnum.setLabel(com.newhead.barablah.modules.barablahmember.BarablahMemberGenderEnum.getLabel(entity.getGender()));
         genderEnum.setValue(entity.getGender());
         genderEnum.setChecked(true);
+        LabelValueItem statusEnum = response.getStatusEnum();
+        statusEnum.setName("status");
+        statusEnum.setLabel(com.newhead.barablah.modules.barablahmember.BarablahMemberStatusEnum.getLabel(entity.getStatus()));
+        statusEnum.setValue(entity.getStatus());
+        statusEnum.setChecked(true);
         return response;
     }
 
@@ -145,6 +150,10 @@ public abstract class AbstractBarablahMemberService extends BaseService {
             c.andGenderEqualTo(request.getGender());
          }
 
+        if (request.getStatus()!=null) {
+            c.andStatusEqualTo(request.getStatus());
+         }
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -170,6 +179,10 @@ public abstract class AbstractBarablahMemberService extends BaseService {
 
         if (request.getGender()!=null) {
             c.andGenderEqualTo(request.getGender());
+         }
+
+        if (request.getStatus()!=null) {
+            c.andStatusEqualTo(request.getStatus());
          }
 
         example.setPageSize(request.getSize());
@@ -231,6 +244,11 @@ public abstract class AbstractBarablahMemberService extends BaseService {
             genderEnum.setLabel(com.newhead.barablah.modules.barablahmember.BarablahMemberGenderEnum.getLabel(entity.getGender()));
             genderEnum.setValue(entity.getGender());
             genderEnum.setChecked(true);
+            LabelValueItem statusEnum = response.getStatusEnum();
+            statusEnum.setName("status");
+            statusEnum.setLabel(com.newhead.barablah.modules.barablahmember.BarablahMemberStatusEnum.getLabel(entity.getStatus()));
+            statusEnum.setValue(entity.getStatus());
+            statusEnum.setChecked(true);
             results.add(response);
         }
     }

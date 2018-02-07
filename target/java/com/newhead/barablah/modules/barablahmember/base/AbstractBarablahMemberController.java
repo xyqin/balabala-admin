@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员控制器
- * 2018年02月07日 04:00:59
+ * 2018年02月07日 04:55:39
  */
 @Api(tags = "会员", description = "相关的API")
 public abstract class AbstractBarablahMemberController extends WebController  {
@@ -95,13 +95,16 @@ public abstract class AbstractBarablahMemberController extends WebController  {
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "会员ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahMemberQueryResponse>> getList(@RequestParam(required = false) String nickname,@RequestParam(required = false) String gender) {
+    public ApiEntity<List<SimpleBarablahMemberQueryResponse>> getList(@RequestParam(required = false) String nickname,@RequestParam(required = false) String gender,@RequestParam(required = false) String status) {
         SimpleBarablahMemberQueryListRequest request = new SimpleBarablahMemberQueryListRequest();
         if (!StringUtils.isEmpty(nickname)) {
             request.setNickname(nickname);
         }
         if (!StringUtils.isEmpty(gender)) {
             request.setGender(gender);
+        }
+        if (!StringUtils.isEmpty(status)) {
+            request.setStatus(status);
         }
         List<SimpleBarablahMemberQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBarablahMemberQueryResponse>>(sources);
@@ -118,6 +121,7 @@ public abstract class AbstractBarablahMemberController extends WebController  {
     public ApiEntity getPage(
         @RequestParam(required = false) String nickname,
         @RequestParam(required = false) String gender,
+        @RequestParam(required = false) String status,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahMemberQueryPageRequest request = new SimpleBarablahMemberQueryPageRequest();
@@ -126,6 +130,9 @@ public abstract class AbstractBarablahMemberController extends WebController  {
         }
         if (!StringUtils.isEmpty(gender)) {
             request.setGender(gender);
+        }
+        if (!StringUtils.isEmpty(status)) {
+            request.setStatus(status);
         }
         if (page==null) {
             request.setPage(1);

@@ -11,77 +11,77 @@ public interface RudderPermissionMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_permission
-     * @generated 2018年2月7日 04:00:56
+     * @generated 2018年2月7日 04:55:36
      */
     long countByExample(RudderPermissionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_permission
-     * @generated 2018年2月7日 04:00:56
+     * @generated 2018年2月7日 04:55:36
      */
     int deleteByExample(RudderPermissionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_permission
-     * @generated 2018年2月7日 04:00:56
+     * @generated 2018年2月7日 04:55:36
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_permission
-     * @generated 2018年2月7日 04:00:56
+     * @generated 2018年2月7日 04:55:36
      */
     int insert(RudderPermission record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_permission
-     * @generated 2018年2月7日 04:00:56
+     * @generated 2018年2月7日 04:55:36
      */
     int insertSelective(RudderPermission record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_permission
-     * @generated 2018年2月7日 04:00:56
+     * @generated 2018年2月7日 04:55:36
      */
     List<RudderPermission> selectByExample(RudderPermissionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_permission
-     * @generated 2018年2月7日 04:00:56
+     * @generated 2018年2月7日 04:55:36
      */
     RudderPermission selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_permission
-     * @generated 2018年2月7日 04:00:56
+     * @generated 2018年2月7日 04:55:36
      */
     int updateByExampleSelective(@Param("record") RudderPermission record, @Param("example") RudderPermissionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_permission
-     * @generated 2018年2月7日 04:00:56
+     * @generated 2018年2月7日 04:55:36
      */
     int updateByExample(@Param("record") RudderPermission record, @Param("example") RudderPermissionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_permission
-     * @generated 2018年2月7日 04:00:56
+     * @generated 2018年2月7日 04:55:36
      */
     int updateByPrimaryKeySelective(RudderPermission record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_permission
-     * @generated 2018年2月7日 04:00:56
+     * @generated 2018年2月7日 04:55:36
      */
     int updateByPrimaryKey(RudderPermission record);
 }

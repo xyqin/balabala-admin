@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年02月07日 04:00:59
+ * 生成时间：2018年02月07日 04:55:40
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -49,6 +49,15 @@ const BARABLAHMEMBER_FORM_FIELDS = [{
     label: '生日',
     placeholder: '请输入生日'
 },{
+    key: 'status',
+    type: 'Enum',
+    label: '状态',
+        placeholder: '请选择状态',
+        data: [{        value: 'ENABLED',
+        label: '启用'
+        },{        value: 'DISABLED',
+        label: '禁用'
+        }]},{
     key: 'points',
     type: 'Number',
     label: '积分',

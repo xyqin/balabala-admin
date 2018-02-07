@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2018年02月07日 04:00:58
+ * 2018年02月07日 04:55:38
  */
 @Data
 public abstract class AbstractBarablahMemberGetDetailResponse {
@@ -50,6 +50,12 @@ public abstract class AbstractBarablahMemberGetDetailResponse {
      * 生日
      */
      private String birthday;
+
+    /**
+     *
+     * 状态
+     */
+    private LabelValueItem StatusEnum = new LabelValueItem();
 
     /**
      *

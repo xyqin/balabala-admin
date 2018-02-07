@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年02月07日 04:00:59
+ * 生成时间：2018年02月07日 04:55:40
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -25,6 +25,16 @@ const BARABLAHMEMBER_CONDITIONS = [{
                 label: '男'
             },{                value: 'FEMALE',
                 label: '女'
+            }]
+},{
+    key: 'status',
+    type: 'Enum',
+    label: '状态',
+        placeholder: '请选择状态',
+         data: [{                value: 'ENABLED',
+                label: '启用'
+            },{                value: 'DISABLED',
+                label: '禁用'
             }]
 }];
 export default BARABLAHMEMBER_CONDITIONS;

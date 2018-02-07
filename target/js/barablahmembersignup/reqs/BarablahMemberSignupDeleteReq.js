@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年02月07日 04:01:00
+ * 生成时间：2018年02月07日 04:55:41
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahMemberSignupDeleteReq
  * 接口地址：barablahmembersignup/delete/:id
