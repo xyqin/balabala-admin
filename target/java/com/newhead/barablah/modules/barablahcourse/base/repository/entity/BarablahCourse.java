@@ -12,34 +12,34 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * RudderFramework框架自动生成，不允许修改！
  * 表 barablah_course
- * @generated do_not_delete_during_merge 2018年2月7日 04:55:36
+ * @generated do_not_delete_during_merge 2018年2月7日 10:47:06
  */
 public class BarablahCourse implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"1","formid":"1"},"name":"课程ID","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     private Long id;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"课程分类ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BarablahCourseCategory","field":"categoryName","type":"SingleList"},"valid":true}
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     private Long categoryId;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"教材二级分类ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BarablahTextbookCategory","field":"categoryName","type":"SingleTree"},"valid":true}
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     private Long textbookCategoryId;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"课程名称","fieldType":"String","visible":true,"checkName":false,"queryType":2,"displayOrder”:0,”length":16,"types":[],"valid":true}
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     @NotEmpty(message="课程名称不能为空")
     @Size(max=0,message = "课程名称长度无效")
@@ -49,42 +49,42 @@ public class BarablahCourse implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"线上授课次数","fieldType":"Number","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     private Short onlineLessons;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"线上授课时长","fieldType":"Number","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     private Short onlineDuration;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"线下授课次数","fieldType":"Number","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     private Short offlineLessons;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"线下授课时长","fieldType":"Number","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     private Short offlineDuration;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"总部抽取佣金（元/每位学生）","fieldType":"Number","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     private BigDecimal commission;
 
     /**
      *
      * {"name":"创建时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     @JSONField(serialize=false)
     private Date createdAt;
@@ -92,7 +92,7 @@ public class BarablahCourse implements AuditableEntity {
     /**
      *
      * {"name":"修改时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     @JSONField(serialize=false)
     private Date updatedAt;
@@ -100,7 +100,7 @@ public class BarablahCourse implements AuditableEntity {
     /**
      *
      * {"name":"创建者","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     @JSONField(serialize=false)
     private Long creator;
@@ -108,7 +108,7 @@ public class BarablahCourse implements AuditableEntity {
     /**
      *
      * {"name":"修改人","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     @JSONField(serialize=false)
     private Long lastModifier;
@@ -116,14 +116,14 @@ public class BarablahCourse implements AuditableEntity {
     /**
      *
      * {"name":"删除标志","fieldType":"Bool","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     @JSONField(serialize=false)
     private Boolean deleted;
 
     /**
      * 返回 id 课程ID
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public Long getId() {
         
@@ -134,7 +134,7 @@ public class BarablahCourse implements AuditableEntity {
      * 设置课程ID
      *
      * @param id
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public void setId(Long id) {
         this.id = id;
@@ -142,7 +142,7 @@ public class BarablahCourse implements AuditableEntity {
 
     /**
      * 返回 category_id 课程分类ID
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public Long getCategoryId() {
         
@@ -153,7 +153,7 @@ public class BarablahCourse implements AuditableEntity {
      * 设置课程分类ID
      *
      * @param categoryId
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
@@ -161,7 +161,7 @@ public class BarablahCourse implements AuditableEntity {
 
     /**
      * 返回 textbook_category_id 教材二级分类ID
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public Long getTextbookCategoryId() {
         
@@ -172,7 +172,7 @@ public class BarablahCourse implements AuditableEntity {
      * 设置教材二级分类ID
      *
      * @param textbookCategoryId
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public void setTextbookCategoryId(Long textbookCategoryId) {
         this.textbookCategoryId = textbookCategoryId;
@@ -180,7 +180,7 @@ public class BarablahCourse implements AuditableEntity {
 
     /**
      * 返回 course_name 课程名称
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public String getCourseName() {
         
@@ -191,7 +191,7 @@ public class BarablahCourse implements AuditableEntity {
      * 设置课程名称
      *
      * @param courseName
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public void setCourseName(String courseName) {
         this.courseName = courseName == null ? null : courseName.trim();
@@ -199,7 +199,7 @@ public class BarablahCourse implements AuditableEntity {
 
     /**
      * 返回 online_lessons 线上授课次数
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public Short getOnlineLessons() {
         
@@ -210,7 +210,7 @@ public class BarablahCourse implements AuditableEntity {
      * 设置线上授课次数
      *
      * @param onlineLessons
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public void setOnlineLessons(Short onlineLessons) {
         this.onlineLessons = onlineLessons;
@@ -218,7 +218,7 @@ public class BarablahCourse implements AuditableEntity {
 
     /**
      * 返回 online_duration 线上授课时长
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public Short getOnlineDuration() {
         
@@ -229,7 +229,7 @@ public class BarablahCourse implements AuditableEntity {
      * 设置线上授课时长
      *
      * @param onlineDuration
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public void setOnlineDuration(Short onlineDuration) {
         this.onlineDuration = onlineDuration;
@@ -237,7 +237,7 @@ public class BarablahCourse implements AuditableEntity {
 
     /**
      * 返回 offline_lessons 线下授课次数
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public Short getOfflineLessons() {
         
@@ -248,7 +248,7 @@ public class BarablahCourse implements AuditableEntity {
      * 设置线下授课次数
      *
      * @param offlineLessons
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public void setOfflineLessons(Short offlineLessons) {
         this.offlineLessons = offlineLessons;
@@ -256,7 +256,7 @@ public class BarablahCourse implements AuditableEntity {
 
     /**
      * 返回 offline_duration 线下授课时长
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public Short getOfflineDuration() {
         
@@ -267,7 +267,7 @@ public class BarablahCourse implements AuditableEntity {
      * 设置线下授课时长
      *
      * @param offlineDuration
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public void setOfflineDuration(Short offlineDuration) {
         this.offlineDuration = offlineDuration;
@@ -275,7 +275,7 @@ public class BarablahCourse implements AuditableEntity {
 
     /**
      * 返回 commission 总部抽取佣金（元/每位学生）
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public BigDecimal getCommission() {
         
@@ -286,7 +286,7 @@ public class BarablahCourse implements AuditableEntity {
      * 设置总部抽取佣金（元/每位学生）
      *
      * @param commission
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public void setCommission(BigDecimal commission) {
         this.commission = commission;
@@ -294,7 +294,7 @@ public class BarablahCourse implements AuditableEntity {
 
     /**
      * 返回 created_at 创建时间
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public Date getCreatedAt() {
         
@@ -305,7 +305,7 @@ public class BarablahCourse implements AuditableEntity {
      * 设置创建时间
      *
      * @param createdAt
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -313,7 +313,7 @@ public class BarablahCourse implements AuditableEntity {
 
     /**
      * 返回 updated_at 修改时间
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public Date getUpdatedAt() {
         
@@ -324,7 +324,7 @@ public class BarablahCourse implements AuditableEntity {
      * 设置修改时间
      *
      * @param updatedAt
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
@@ -332,7 +332,7 @@ public class BarablahCourse implements AuditableEntity {
 
     /**
      * 返回 creator 创建者
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public Long getCreator() {
         
@@ -343,7 +343,7 @@ public class BarablahCourse implements AuditableEntity {
      * 设置创建者
      *
      * @param creator
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public void setCreator(Long creator) {
         this.creator = creator;
@@ -351,7 +351,7 @@ public class BarablahCourse implements AuditableEntity {
 
     /**
      * 返回 last_modifier 修改人
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public Long getLastModifier() {
         
@@ -362,7 +362,7 @@ public class BarablahCourse implements AuditableEntity {
      * 设置修改人
      *
      * @param lastModifier
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public void setLastModifier(Long lastModifier) {
         this.lastModifier = lastModifier;
@@ -370,7 +370,7 @@ public class BarablahCourse implements AuditableEntity {
 
     /**
      * 返回 deleted 删除标志
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public Boolean getDeleted() {
         
@@ -381,7 +381,7 @@ public class BarablahCourse implements AuditableEntity {
      * 设置删除标志
      *
      * @param deleted
-     * @generated 2018年2月7日 04:55:36
+     * @generated 2018年2月7日 10:47:06
      */
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;

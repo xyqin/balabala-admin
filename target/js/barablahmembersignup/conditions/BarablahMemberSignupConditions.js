@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年02月07日 04:55:40
+ * 生成时间：2018年02月07日 10:47:10
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -12,6 +12,24 @@
  * }
  */
 const BARABLAHMEMBERSIGNUP_CONDITIONS = [{
+    key: 'memberId',
+    type: 'Object',
+    label: '会员ID',
+    placeholder: '请选择会员ID',
+    displayType: 'SingleList',
+    url: '/barablahmember/getlist',
+    dataLableKey: 'nickname',
+    dataValueKey: 'id'
+},{
+    key: 'classId',
+    type: 'Object',
+    label: '开班ID',
+    placeholder: '请选择开班ID',
+    displayType: 'SingleList',
+    url: '/barablahclass/getlist',
+    dataLableKey: 'className',
+    dataValueKey: 'id'
+},{
     key: 'payment',
     type: 'String',
     label: '支付方式',

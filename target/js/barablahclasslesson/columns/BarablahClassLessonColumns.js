@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年02月07日 04:55:40
+ * 生成时间：2018年02月07日 10:47:10
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -33,6 +33,18 @@ title: '课时名称',
 dataIndex: 'lessonName',
 key: 'lessonName',
 type:'String',
+checked: true
+},{
+title: '开始时间',
+dataIndex: 'startAt',
+key: 'startAt',
+type:'Date',
+checked: true
+},{
+title: '结束时间',
+dataIndex: 'endAt',
+key: 'endAt',
+type:'Date',
 checked: true
 },{
 title: '课时视频缩略图',

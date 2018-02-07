@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年02月07日 04:55:41
+ * 生成时间：2018年02月07日 10:47:11
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahMemberSignupGetpageReq
  * 接口地址：barablahmembersignup/getpage
@@ -17,7 +17,13 @@ class BarablahMemberSignupGetpageReq extends BaseRobotReq {
             url: '/barablahmembersignup/getpage',
             type: 'Get',        };
         // 请求参数的描述信息，只定义先不用
-        this._paramsDescriptor = [{key: 'payment',
+        this._paramsDescriptor = [{key: 'memberId',
+            desc: '会员ID',
+            isRequired: true
+        },{key: 'classId',
+            desc: '开班ID',
+            isRequired: true
+        },{key: 'payment',
             desc: '支付方式',
             isRequired: true
         },{key: 'page',
@@ -33,7 +39,9 @@ class BarablahMemberSignupGetpageReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(payment,page,size) {
+    setSimpleParams(memberId,classId,payment,page,size) {
+        this.addParams('memberId', memberId);
+        this.addParams('classId', classId);
         this.addParams('payment', payment);
         this.addParams('page', page);
         this.addParams('size', size);

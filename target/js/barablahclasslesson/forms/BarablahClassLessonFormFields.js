@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年02月07日 04:55:40
+ * 生成时间：2018年02月07日 10:47:10
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -39,6 +39,16 @@ const BARABLAHCLASSLESSON_FORM_FIELDS = [{
     type: 'String',
     label: '课时名称',
     placeholder: '请输入课时名称'
+},{
+    key: 'startAt',
+    type: 'Date',
+    label: '开始时间',
+placeholder: '请输入开始时间'
+},{
+    key: 'endAt',
+    type: 'Date',
+    label: '结束时间',
+placeholder: '请输入结束时间'
 },{
     key: 'thumbnail',
     type: 'Image',

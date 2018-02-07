@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年02月07日 04:55:40
+ * 生成时间：2018年02月07日 10:47:10
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -39,6 +39,12 @@ title: '支付方式',
 dataIndex: 'payment',
 key: 'payment',
 type:'String',
+checked: true
+},{
+title: '系统创建时间',
+dataIndex: 'createdAt',
+key: 'createdAt',
+type:'Date',
 checked: true
 }];
 export default BARABLAHMEMBERSIGNUP_COLUMNS;

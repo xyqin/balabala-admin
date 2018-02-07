@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年02月07日 04:55:40
+ * 生成时间：2018年02月07日 10:47:10
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -44,5 +44,10 @@ const BARABLAHMEMBERSIGNUP_FORM_FIELDS = [{
     type: 'String',
     label: '支付方式',
     placeholder: '请输入支付方式'
+},{
+    key: 'createdAt',
+    type: 'Date',
+    label: '系统创建时间',
+placeholder: '请输入系统创建时间'
 }];
 export default BARABLAHMEMBERSIGNUP_FORM_FIELDS;

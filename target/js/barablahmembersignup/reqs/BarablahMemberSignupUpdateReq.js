@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年02月07日 04:55:41
+ * 生成时间：2018年02月07日 10:47:11
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahMemberSignupUpdateReq
  * 接口地址：barablahmembersignup/update
@@ -33,6 +33,9 @@ class BarablahMemberSignupUpdateReq extends BaseRobotReq {
         },{key: 'payment',
             desc: '支付方式',
             isRequired: true
+        },{key: 'createdAt',
+            desc: '系统创建时间',
+            isRequired: false
         }];        this.curd = 'd';
     }
 
@@ -40,12 +43,13 @@ class BarablahMemberSignupUpdateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,memberId,classId,amount,payment) {
+    setSimpleParams(id,memberId,classId,amount,payment,createdAt) {
         this.addParams('id', id);
         this.addParams('memberId', memberId);
         this.addParams('classId', classId);
         this.addParams('amount', amount);
         this.addParams('payment', payment);
+        this.addParams('createdAt', createdAt);
     }
 
     /**
