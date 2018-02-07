@@ -1,12 +1,12 @@
 package com.newhead.barablah.modules.barablahclass.ext;
 
 import com.newhead.barablah.modules.barablahclass.base.AbstractBarablahClassController;
-
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassOpenRequest;
+import com.newhead.rudderframework.core.web.api.ApiEntity;
 import io.swagger.annotations.Api;
-
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,5 +26,12 @@ public class SimpleBarablahClassController extends AbstractBarablahClassControll
     @Override
     public SimpleBarablahClassService getService() {
         return service;
+    }
+
+    @ApiOperation(value = "开班", httpMethod = "POST", response = String.class)
+    @RequestMapping(value = "open", method = RequestMethod.POST)
+    public ApiEntity open(@RequestBody SimpleBarablahClassOpenRequest request) {
+        getService().open(request);
+        return new ApiEntity<>();
     }
 }

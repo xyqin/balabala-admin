@@ -3,7 +3,7 @@ package com.newhead.barablah.modules.barablahclass.ext;
 import com.newhead.barablah.modules.barablahclass.base.AbstractBarablahClassService;
 import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
-import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassCreateRequest;
+import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassOpenRequest;
 import com.newhead.barablah.modules.barablahclasslesson.BarablahClassLessonTypeEnum;
 import com.newhead.barablah.modules.barablahclasslesson.base.repository.dao.BarablahClassLessonMapper;
 import com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLesson;
@@ -14,7 +14,6 @@ import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.ent
 import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategoryExample;
 import io.swagger.annotations.Api;
 import org.apache.commons.lang3.time.DateUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,19 +55,9 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
     }
 
     @Transactional
-    @Override
-    public BarablahClass create(SimpleBarablahClassCreateRequest request) {
-        BarablahClass entity = new BarablahClass();
-        BeanUtils.copyProperties(request, entity);
-        entity.setCreatedAt(new Date());
-        entity.setUpdatedAt(new Date());
-        entity.setDeleted(false);
-        entity.setCreator(getCurrentUser().getId());
-        entity.setLastModifier(getCurrentUser().getId());
-        saveOrUpdate(entity);
-        getMapper().insert(entity);
-
-        BarablahCourse course = courseMapper.selectByPrimaryKey(request.getCourseId());
+    public void open(SimpleBarablahClassOpenRequest request) {
+        BarablahClass aClass = mapper.selectByPrimaryKey(request.getId());
+        BarablahCourse course = courseMapper.selectByPrimaryKey(aClass.getCourseId());
 
         BarablahTextbookCategoryExample textbookCategoryExample = new BarablahTextbookCategoryExample();
         textbookCategoryExample.createCriteria()
@@ -100,10 +89,10 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
         for (BarablahTextbookCategory category : textbookCategories) {
             if (countOnline < onlineLessons) {
                 BarablahClassLesson onlineLesson = new BarablahClassLesson();
-                onlineLesson.setClassId(entity.getId());
-                onlineLesson.setCourseId(request.getCourseId());
-                onlineLesson.setTeacherId(request.getTeacherId());
-                onlineLesson.setEnglishTeacherId(request.getEnglishTeacherId());
+                onlineLesson.setClassId(aClass.getId());
+                onlineLesson.setCourseId(aClass.getCourseId());
+                onlineLesson.setTeacherId(aClass.getTeacherId());
+                onlineLesson.setEnglishTeacherId(aClass.getEnglishTeacherId());
                 onlineLesson.setCategoryId(category.getId());
                 onlineLesson.setLessonName(category.getCategoryName());
                 onlineLesson.setStartAt(startAtOnline);
@@ -138,10 +127,10 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
 
         for (int i = 0; i < offlineLessons; i = i + 2) {
             BarablahClassLesson offlineLesson = new BarablahClassLesson();
-            offlineLesson.setClassId(entity.getId());
-            offlineLesson.setCourseId(request.getCourseId());
-            offlineLesson.setTeacherId(request.getTeacherId());
-            offlineLesson.setEnglishTeacherId(request.getEnglishTeacherId());
+            offlineLesson.setClassId(aClass.getId());
+            offlineLesson.setCourseId(aClass.getCourseId());
+            offlineLesson.setTeacherId(aClass.getTeacherId());
+            offlineLesson.setEnglishTeacherId(aClass.getEnglishTeacherId());
             offlineLesson.setLessonName("线下课时" + (i + 1));
             offlineLesson.setStartAt(startAtOffline);
             offlineLesson.setEndAt(endAtOffline);
@@ -151,8 +140,5 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
             startAtOffline = DateUtils.addWeeks(startAtOffline, 1);
             endAtOffline = DateUtils.addWeeks(endAtOffline, 1);
         }
-
-        //添加关系
-        return entity;
     }
 }

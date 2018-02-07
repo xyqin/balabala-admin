@@ -8,10 +8,16 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年02月06日 02:50:58
+ * @generated 2018年02月07日 04:00:58
  */
 @Data
 public abstract class AbstractBarablahClassQueryPageRequest extends PageRequest {
+    /**
+     *
+     * 班级分类ID
+     */
+     private Long categoryId;
+
     /**
      *
      * 班级名称

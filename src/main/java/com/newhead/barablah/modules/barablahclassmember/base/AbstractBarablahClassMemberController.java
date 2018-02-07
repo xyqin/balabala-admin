@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 开班会员控制器
- * 2018年01月18日 06:53:00
+ * 2018年02月07日 04:00:59
  */
 @Api(tags = "开班会员", description = "相关的API")
 public abstract class AbstractBarablahClassMemberController extends WebController  {
@@ -95,8 +95,14 @@ public abstract class AbstractBarablahClassMemberController extends WebControlle
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "开班会员ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahClassMemberQueryResponse>> getList(@RequestParam(required = false) String status) {
+    public ApiEntity<List<SimpleBarablahClassMemberQueryResponse>> getList(@RequestParam(required = false) Long classId,@RequestParam(required = false) Long memberId,@RequestParam(required = false) String status) {
         SimpleBarablahClassMemberQueryListRequest request = new SimpleBarablahClassMemberQueryListRequest();
+        if (!StringUtils.isEmpty(classId)) {
+            request.setClassId(classId);
+        }
+        if (!StringUtils.isEmpty(memberId)) {
+            request.setMemberId(memberId);
+        }
         if (!StringUtils.isEmpty(status)) {
             request.setStatus(status);
         }
@@ -113,10 +119,18 @@ public abstract class AbstractBarablahClassMemberController extends WebControlle
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) Long classId,
+        @RequestParam(required = false) Long memberId,
         @RequestParam(required = false) String status,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahClassMemberQueryPageRequest request = new SimpleBarablahClassMemberQueryPageRequest();
+        if (!StringUtils.isEmpty(classId)) {
+            request.setClassId(classId);
+        }
+        if (!StringUtils.isEmpty(memberId)) {
+            request.setMemberId(memberId);
+        }
         if (!StringUtils.isEmpty(status)) {
             request.setStatus(status);
         }
