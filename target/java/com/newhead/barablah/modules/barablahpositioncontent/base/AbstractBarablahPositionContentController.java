@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 位置内容表控制器
- * 2018年02月06日 05:34:57
+ * 2018年02月07日 04:00:59
  */
 @Api(tags = "位置内容表", description = "相关的API")
 public abstract class AbstractBarablahPositionContentController extends WebController  {

@@ -11,77 +11,77 @@ public interface BarablahMemberHomeworkItemMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_homework_item
-     * @generated 2018年2月6日 05:34:54
+     * @generated 2018年2月7日 04:00:56
      */
     long countByExample(BarablahMemberHomeworkItemExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_homework_item
-     * @generated 2018年2月6日 05:34:54
+     * @generated 2018年2月7日 04:00:56
      */
     int deleteByExample(BarablahMemberHomeworkItemExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_homework_item
-     * @generated 2018年2月6日 05:34:54
+     * @generated 2018年2月7日 04:00:56
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_homework_item
-     * @generated 2018年2月6日 05:34:54
+     * @generated 2018年2月7日 04:00:56
      */
     int insert(BarablahMemberHomeworkItem record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_homework_item
-     * @generated 2018年2月6日 05:34:54
+     * @generated 2018年2月7日 04:00:56
      */
     int insertSelective(BarablahMemberHomeworkItem record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_homework_item
-     * @generated 2018年2月6日 05:34:54
+     * @generated 2018年2月7日 04:00:56
      */
     List<BarablahMemberHomeworkItem> selectByExample(BarablahMemberHomeworkItemExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_homework_item
-     * @generated 2018年2月6日 05:34:54
+     * @generated 2018年2月7日 04:00:56
      */
     BarablahMemberHomeworkItem selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_homework_item
-     * @generated 2018年2月6日 05:34:54
+     * @generated 2018年2月7日 04:00:56
      */
     int updateByExampleSelective(@Param("record") BarablahMemberHomeworkItem record, @Param("example") BarablahMemberHomeworkItemExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_homework_item
-     * @generated 2018年2月6日 05:34:54
+     * @generated 2018年2月7日 04:00:56
      */
     int updateByExample(@Param("record") BarablahMemberHomeworkItem record, @Param("example") BarablahMemberHomeworkItemExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_homework_item
-     * @generated 2018年2月6日 05:34:54
+     * @generated 2018年2月7日 04:00:56
      */
     int updateByPrimaryKeySelective(BarablahMemberHomeworkItem record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_homework_item
-     * @generated 2018年2月6日 05:34:54
+     * @generated 2018年2月7日 04:00:56
      */
     int updateByPrimaryKey(BarablahMemberHomeworkItem record);
 }

@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 /**
  * 系统用户
- * @generated 2018年02月06日 05:34:57
+ * @generated 2018年02月07日 04:00:58
  */
 @Data
 public abstract class AbstractRudderUserQueryPageRequest extends PageRequest {
