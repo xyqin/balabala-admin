@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员报名表控制器
- * 2018年01月18日 06:53:01
+ * 2018年02月07日 10:47:10
  */
 @Api(tags = "会员报名表", description = "相关的API")
 public abstract class AbstractBarablahMemberSignupController extends WebController  {
@@ -95,8 +95,14 @@ public abstract class AbstractBarablahMemberSignupController extends WebControll
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "会员报名表ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahMemberSignupQueryResponse>> getList(@RequestParam(required = false) String payment) {
+    public ApiEntity<List<SimpleBarablahMemberSignupQueryResponse>> getList(@RequestParam(required = false) Long memberId,@RequestParam(required = false) Long classId,@RequestParam(required = false) String payment) {
         SimpleBarablahMemberSignupQueryListRequest request = new SimpleBarablahMemberSignupQueryListRequest();
+        if (!StringUtils.isEmpty(memberId)) {
+            request.setMemberId(memberId);
+        }
+        if (!StringUtils.isEmpty(classId)) {
+            request.setClassId(classId);
+        }
         if (!StringUtils.isEmpty(payment)) {
             request.setPayment(payment);
         }
@@ -113,10 +119,18 @@ public abstract class AbstractBarablahMemberSignupController extends WebControll
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) Long memberId,
+        @RequestParam(required = false) Long classId,
         @RequestParam(required = false) String payment,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahMemberSignupQueryPageRequest request = new SimpleBarablahMemberSignupQueryPageRequest();
+        if (!StringUtils.isEmpty(memberId)) {
+            request.setMemberId(memberId);
+        }
+        if (!StringUtils.isEmpty(classId)) {
+            request.setClassId(classId);
+        }
         if (!StringUtils.isEmpty(payment)) {
             request.setPayment(payment);
         }

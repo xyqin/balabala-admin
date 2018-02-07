@@ -145,6 +145,14 @@ public abstract class AbstractBarablahMemberSignupService extends BaseService {
         BarablahMemberSignupExample example = new BarablahMemberSignupExample();
         BarablahMemberSignupExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        if (request.getMemberId()!=null) {
+            c.andMemberIdEqualTo(request.getMemberId());
+         }
+
+        if (request.getClassId()!=null) {
+            c.andClassIdEqualTo(request.getClassId());
+         }
+
         if (request.getPayment()!=null) {
             c.andPaymentLike("%"+request.getPayment()+"%");
         }
@@ -166,6 +174,14 @@ public abstract class AbstractBarablahMemberSignupService extends BaseService {
         BarablahMemberSignupExample example = new BarablahMemberSignupExample();
         BarablahMemberSignupExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+
+        if (request.getMemberId()!=null) {
+            c.andMemberIdEqualTo(request.getMemberId());
+         }
+
+        if (request.getClassId()!=null) {
+            c.andClassIdEqualTo(request.getClassId());
+         }
 
         if (request.getPayment()!=null) {
             c.andPaymentLike("%"+request.getPayment()+"%");

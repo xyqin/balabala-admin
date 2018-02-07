@@ -8,10 +8,22 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年01月18日 06:53:00
+ * @generated 2018年02月07日 10:47:09
  */
 @Data
 public abstract class AbstractBarablahMemberSignupQueryPageRequest extends PageRequest {
+    /**
+     *
+     * 会员ID
+     */
+     private Long memberId;
+
+    /**
+     *
+     * 开班ID
+     */
+     private Long classId;
+
     /**
      *
      * 支付方式

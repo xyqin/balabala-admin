@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年01月18日 06:53:00
+ * 2018年02月07日 10:47:09
  */
 @Data
 public abstract class AbstractBarablahMemberSignupCreateRequest {
@@ -36,5 +36,11 @@ public abstract class AbstractBarablahMemberSignupCreateRequest {
      * 支付方式
      */
     private String payment;
+
+    /**
+     *
+     * 系统创建时间
+     */
+    private Date createdAt;
 
 }
