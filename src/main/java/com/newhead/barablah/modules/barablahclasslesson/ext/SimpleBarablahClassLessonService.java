@@ -3,6 +3,7 @@ package com.newhead.barablah.modules.barablahclasslesson.ext;
 import com.newhead.barablah.modules.barablahclasslesson.base.AbstractBarablahClassLessonService;
 import com.newhead.barablah.modules.barablahclasslesson.base.repository.dao.BarablahClassLessonMapper;
 import com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLesson;
+import com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLessonExample;
 import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonPostponeBatchRequest;
 import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonUpdateBatchRequest;
 import com.newhead.barablah.modules.barablahmemberlesson.base.repository.dao.BarablahMemberLessonMapper;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 /**
  * RudderFramework 自动生成
@@ -46,24 +48,18 @@ public class SimpleBarablahClassLessonService extends AbstractBarablahClassLesso
 
     @Transactional
     public void postponebatch(SimpleBarablahClassLessonPostponeBatchRequest request) {
-        if (CollectionUtils.isNotEmpty(request.getLessonIds())) {
-            for (Long lessonId : request.getLessonIds()) {
-                BarablahClassLesson lesson = mapper.selectByPrimaryKey(lessonId);
-                BarablahClassLesson lessonToBeUpdated = new BarablahClassLesson();
-                lessonToBeUpdated.setId(lesson.getId());
-                lessonToBeUpdated.setStartAt(DateUtils.addWeeks(lesson.getStartAt(), 1));
-                lessonToBeUpdated.setEndAt(DateUtils.addWeeks(lesson.getEndAt(), 1));
-                mapper.updateByPrimaryKeySelective(lessonToBeUpdated);
+        BarablahClassLesson lesson = mapper.selectByPrimaryKey(request.getId());
+        postpone(lesson);
 
-                BarablahMemberLessonExample example = new BarablahMemberLessonExample();
-                example.createCriteria()
-                        .andLessonIdEqualTo(lessonId)
-                        .andDeletedEqualTo(Boolean.FALSE);
-                BarablahMemberLesson memberLessonToBeUpdated = new BarablahMemberLesson();
-                memberLessonToBeUpdated.setStartAt(DateUtils.addWeeks(lesson.getStartAt(), 1));
-                memberLessonToBeUpdated.setEndAt(DateUtils.addWeeks(lesson.getEndAt(), 1));
-                memberLessonMapper.updateByExampleSelective(memberLessonToBeUpdated, example);
-            }
+        BarablahClassLessonExample example = new BarablahClassLessonExample();
+        example.createCriteria()
+                .andClassIdEqualTo(lesson.getClassId())
+                .andStartAtGreaterThan(lesson.getStartAt())
+                .andDeletedEqualTo(Boolean.FALSE);
+        List<BarablahClassLesson> lessonsAfter = mapper.selectByExample(example);
+
+        for (BarablahClassLesson lessonAfter : lessonsAfter) {
+            postpone(lessonAfter);
         }
     }
 
@@ -97,5 +93,22 @@ public class SimpleBarablahClassLessonService extends AbstractBarablahClassLesso
                 memberLessonMapper.updateByExampleSelective(memberLessonToBeUpdated, example);
             }
         }
+    }
+
+    private void postpone(BarablahClassLesson lesson) {
+        BarablahClassLesson lessonToBeUpdated = new BarablahClassLesson();
+        lessonToBeUpdated.setId(lesson.getId());
+        lessonToBeUpdated.setStartAt(DateUtils.addWeeks(lesson.getStartAt(), 1));
+        lessonToBeUpdated.setEndAt(DateUtils.addWeeks(lesson.getEndAt(), 1));
+        mapper.updateByPrimaryKeySelective(lessonToBeUpdated);
+
+        BarablahMemberLessonExample example = new BarablahMemberLessonExample();
+        example.createCriteria()
+                .andLessonIdEqualTo(lesson.getId())
+                .andDeletedEqualTo(Boolean.FALSE);
+        BarablahMemberLesson memberLessonToBeUpdated = new BarablahMemberLesson();
+        memberLessonToBeUpdated.setStartAt(DateUtils.addWeeks(lesson.getStartAt(), 1));
+        memberLessonToBeUpdated.setEndAt(DateUtils.addWeeks(lesson.getEndAt(), 1));
+        memberLessonMapper.updateByExampleSelective(memberLessonToBeUpdated, example);
     }
 }

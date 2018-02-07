@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * RudderFramework 自动生成
@@ -32,6 +33,7 @@ public class SimpleBarablahTeacherService extends AbstractBarablahTeacherService
 
     }
 
+    @Transactional
     public void updatebatch(SimpleBarablahTeacherUpdateBatchRequest request) {
         if (CollectionUtils.isNotEmpty(request.getTeacherIds())) {
             for (Long teacherId : request.getTeacherIds()) {
