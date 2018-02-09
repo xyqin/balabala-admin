@@ -11,6 +11,7 @@ import com.newhead.barablah.modules.barablahmemberlesson.base.repository.entity.
 import com.newhead.barablah.modules.barablahmemberlesson.base.repository.entity.BarablahMemberLessonExample;
 import io.swagger.annotations.Api;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,8 +71,13 @@ public class SimpleBarablahClassLessonService extends AbstractBarablahClassLesso
 
         if (CollectionUtils.isNotEmpty(request.getLessonIds())) {
             try {
-                startAt = DateUtils.parseDate(request.getStartAt(), "yyyyMMddHHmmss");
-                endAt = DateUtils.parseDate(request.getEndAt(), "yyyyMMddHHmmss");
+                if (StringUtils.isNotBlank(request.getStartAt())) {
+                    startAt = DateUtils.parseDate(request.getStartAt(), "yyyyMMddHHmmss");
+                }
+
+                if (StringUtils.isNotBlank(request.getEndAt())) {
+                    endAt = DateUtils.parseDate(request.getEndAt(), "yyyyMMddHHmmss");
+                }
             } catch (ParseException e) {
                 e.printStackTrace();
             }

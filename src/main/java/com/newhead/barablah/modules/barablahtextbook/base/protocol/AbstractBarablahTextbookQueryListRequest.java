@@ -6,14 +6,26 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年01月18日 06:53:00
+ * @generated 2018年02月07日 10:47:09
  */
 @Data
 public abstract class AbstractBarablahTextbookQueryListRequest  {
     /**
      *
+     * 教材三级分类ID
+     */
+     private Long categoryId;
+
+    /**
+     *
      * 题目类型
      */
      private String type;
+
+    /**
+     *
+     * 题目名称
+     */
+     private String textbookName;
 
 }

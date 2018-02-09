@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教材表控制器
- * 2018年01月18日 06:53:00
+ * 2018年02月07日 10:47:10
  */
 @Api(tags = "教材表", description = "相关的API")
 public abstract class AbstractBarablahTextbookController extends WebController  {
@@ -143,10 +143,16 @@ public abstract class AbstractBarablahTextbookController extends WebController  
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "教材表ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahTextbookQueryResponse>> getList(@RequestParam(required = false) String type) {
+    public ApiEntity<List<SimpleBarablahTextbookQueryResponse>> getList(@RequestParam(required = false) Long categoryId,@RequestParam(required = false) String type,@RequestParam(required = false) String textbookName) {
         SimpleBarablahTextbookQueryListRequest request = new SimpleBarablahTextbookQueryListRequest();
+        if (!StringUtils.isEmpty(categoryId)) {
+            request.setCategoryId(categoryId);
+        }
         if (!StringUtils.isEmpty(type)) {
             request.setType(type);
+        }
+        if (!StringUtils.isEmpty(textbookName)) {
+            request.setTextbookName(textbookName);
         }
         List<SimpleBarablahTextbookQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBarablahTextbookQueryResponse>>(sources);
@@ -161,12 +167,20 @@ public abstract class AbstractBarablahTextbookController extends WebController  
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) Long categoryId,
         @RequestParam(required = false) String type,
+        @RequestParam(required = false) String textbookName,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahTextbookQueryPageRequest request = new SimpleBarablahTextbookQueryPageRequest();
+        if (!StringUtils.isEmpty(categoryId)) {
+            request.setCategoryId(categoryId);
+        }
         if (!StringUtils.isEmpty(type)) {
             request.setType(type);
+        }
+        if (!StringUtils.isEmpty(textbookName)) {
+            request.setTextbookName(textbookName);
         }
         if (page==null) {
             request.setPage(1);
