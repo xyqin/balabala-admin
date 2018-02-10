@@ -67,7 +67,8 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
         List<BarablahTextbookCategory> textbookCategories = textbookCategoryMapper.selectByExample(textbookCategoryExample);
 
         // 自动生成在线课时
-        int onlineLessons = course.getOnlineLessons();
+        int onlineLessons = request.getOnlineLessons(); // 总课时次数
+        int onlineLessonsPerTime = request.getOnlineLessonsPerTime() > 0 ? request.getOnlineLessonsPerTime() : course.getOnlineLessons(); // 每次几节
         int onlineDuration = course.getOnlineDuration();
 
         if (request.getOnlineLessons() > 0 && request.getOnlineDuration() > 0) {
@@ -81,7 +82,7 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
 
         try {
             startAtOnline = DateUtils.parseDate(request.getStartAtOnline(), "yyyyMMddHHmmss");
-            endAtOnline = DateUtils.addMinutes(startAtOnline, onlineDuration);
+            endAtOnline = DateUtils.addMinutes(startAtOnline, onlineDuration * onlineLessonsPerTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -102,12 +103,13 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
 
                 startAtOnline = DateUtils.addWeeks(startAtOnline, 1);
                 endAtOnline = DateUtils.addWeeks(endAtOnline, 1);
-                countOnline++;
+                countOnline = countOnline + onlineLessonsPerTime;
             }
         }
 
         // 自动生成离线课时
-        int offlineLessons = course.getOfflineLessons();
+        int offlineLessons = request.getOfflineLessons(); // 总课时次数
+        int offlineLessonsPerTime = request.getOfflineLessonsPerTime() > 0 ? request.getOfflineLessonsPerTime() : course.getOnlineLessons(); // 每次几节
         int offlineDuration = course.getOfflineDuration();
 
         if (request.getOfflineLessons() > 0 && request.getOfflineDuration() > 0) {
@@ -120,12 +122,12 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
 
         try {
             startAtOffline = DateUtils.parseDate(request.getStartAtOffline(), "yyyyMMddHHmmss");
-            endAtOffline = DateUtils.addMinutes(startAtOffline, offlineDuration * 2);
+            endAtOffline = DateUtils.addMinutes(startAtOffline, offlineDuration * offlineLessonsPerTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        for (int i = 0; i < offlineLessons; i = i + 2) {
+        for (int i = 0; i < offlineLessons; i = i + offlineLessonsPerTime) {
             BarablahClassLesson offlineLesson = new BarablahClassLesson();
             offlineLesson.setClassId(aClass.getId());
             offlineLesson.setCourseId(aClass.getCourseId());

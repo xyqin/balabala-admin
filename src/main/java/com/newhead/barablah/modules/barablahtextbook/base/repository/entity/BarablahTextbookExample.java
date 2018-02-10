@@ -534,72 +534,72 @@ public class BarablahTextbookExample {
         }
 
         public Criteria andOptionIsNull() {
-            addCriterion("option is null");
+            addCriterion("`option` is null");
             return (Criteria) this;
         }
 
         public Criteria andOptionIsNotNull() {
-            addCriterion("option is not null");
+            addCriterion("`option` is not null");
             return (Criteria) this;
         }
 
         public Criteria andOptionEqualTo(String value) {
-            addCriterion("option =", value, "option");
+            addCriterion("`option` =", value, "option");
             return (Criteria) this;
         }
 
         public Criteria andOptionNotEqualTo(String value) {
-            addCriterion("option <>", value, "option");
+            addCriterion("`option` <>", value, "option");
             return (Criteria) this;
         }
 
         public Criteria andOptionGreaterThan(String value) {
-            addCriterion("option >", value, "option");
+            addCriterion("`option` >", value, "option");
             return (Criteria) this;
         }
 
         public Criteria andOptionGreaterThanOrEqualTo(String value) {
-            addCriterion("option >=", value, "option");
+            addCriterion("`option` >=", value, "option");
             return (Criteria) this;
         }
 
         public Criteria andOptionLessThan(String value) {
-            addCriterion("option <", value, "option");
+            addCriterion("`option` <", value, "option");
             return (Criteria) this;
         }
 
         public Criteria andOptionLessThanOrEqualTo(String value) {
-            addCriterion("option <=", value, "option");
+            addCriterion("`option` <=", value, "option");
             return (Criteria) this;
         }
 
         public Criteria andOptionLike(String value) {
-            addCriterion("option like", value, "option");
+            addCriterion("`option` like", value, "option");
             return (Criteria) this;
         }
 
         public Criteria andOptionNotLike(String value) {
-            addCriterion("option not like", value, "option");
+            addCriterion("`option` not like", value, "option");
             return (Criteria) this;
         }
 
         public Criteria andOptionIn(List<String> values) {
-            addCriterion("option in", values, "option");
+            addCriterion("`option` in", values, "option");
             return (Criteria) this;
         }
 
         public Criteria andOptionNotIn(List<String> values) {
-            addCriterion("option not in", values, "option");
+            addCriterion("`option` not in", values, "option");
             return (Criteria) this;
         }
 
         public Criteria andOptionBetween(String value1, String value2) {
-            addCriterion("option between", value1, value2, "option");
+            addCriterion("`option` between", value1, value2, "option");
             return (Criteria) this;
         }
 
         public Criteria andOptionNotBetween(String value1, String value2) {
-            addCriterion("option not between", value1, value2, "option");
+            addCriterion("`option` not between", value1, value2, "option");
             return (Criteria) this;
         }
 
