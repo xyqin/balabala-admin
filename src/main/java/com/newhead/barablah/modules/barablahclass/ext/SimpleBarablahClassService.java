@@ -7,8 +7,13 @@ import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahCla
 import com.newhead.barablah.modules.barablahclasslesson.BarablahClassLessonTypeEnum;
 import com.newhead.barablah.modules.barablahclasslesson.base.repository.dao.BarablahClassLessonMapper;
 import com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLesson;
+import com.newhead.barablah.modules.barablahclassmember.base.repository.dao.BarablahClassMemberMapper;
+import com.newhead.barablah.modules.barablahclassmember.base.repository.entity.BarablahClassMember;
+import com.newhead.barablah.modules.barablahclassmember.base.repository.entity.BarablahClassMemberExample;
 import com.newhead.barablah.modules.barablahcourse.base.repository.dao.BarablahCourseMapper;
 import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourse;
+import com.newhead.barablah.modules.barablahmemberlesson.base.repository.dao.BarablahMemberLessonMapper;
+import com.newhead.barablah.modules.barablahmemberlesson.base.repository.entity.BarablahMemberLesson;
 import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.dao.BarablahTextbookCategoryMapper;
 import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategory;
 import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategoryExample;
@@ -43,6 +48,12 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
     @Autowired
     private BarablahTextbookCategoryMapper textbookCategoryMapper;
 
+    @Autowired
+    private BarablahClassMemberMapper classMemberMapper;
+
+    @Autowired
+    private BarablahMemberLessonMapper memberLessonMapper;
+
     @Override
     protected BarablahClassMapper getMapper() {
         return this.mapper;
@@ -65,6 +76,13 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
                 .andDeletedEqualTo(Boolean.FALSE);
         textbookCategoryExample.setOrderByClause("position DESC");
         List<BarablahTextbookCategory> textbookCategories = textbookCategoryMapper.selectByExample(textbookCategoryExample);
+
+        // 获取班级所有成员
+        BarablahClassMemberExample example = new BarablahClassMemberExample();
+        example.createCriteria()
+                .andClassIdEqualTo(aClass.getId())
+                .andDeletedEqualTo(Boolean.FALSE);
+        List<BarablahClassMember> classMembers = classMemberMapper.selectByExample(example);
 
         // 自动生成在线课时
         int onlineLessons = request.getOnlineLessons(); // 总课时次数
@@ -104,6 +122,19 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
                 startAtOnline = DateUtils.addWeeks(startAtOnline, 1);
                 endAtOnline = DateUtils.addWeeks(endAtOnline, 1);
                 countOnline = countOnline + onlineLessonsPerTime;
+
+                // 创建学员课时
+                for (BarablahClassMember classMember : classMembers) {
+                    BarablahMemberLesson memberLesson = new BarablahMemberLesson();
+                    memberLesson.setClassId(onlineLesson.getClassId());
+                    memberLesson.setLessonId(onlineLesson.getId());
+                    memberLesson.setMemberId(classMember.getMemberId());
+                    memberLesson.setType(onlineLesson.getType());
+                    memberLesson.setStartAt(onlineLesson.getStartAt());
+                    memberLesson.setEndAt(onlineLesson.getEndAt());
+                    memberLesson.setProbational(Boolean.FALSE);
+                    memberLessonMapper.insertSelective(memberLesson);
+                }
             }
         }
 
@@ -141,6 +172,19 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
 
             startAtOffline = DateUtils.addWeeks(startAtOffline, 1);
             endAtOffline = DateUtils.addWeeks(endAtOffline, 1);
+
+            // 创建学员课时
+            for (BarablahClassMember classMember : classMembers) {
+                BarablahMemberLesson memberLesson = new BarablahMemberLesson();
+                memberLesson.setClassId(offlineLesson.getClassId());
+                memberLesson.setLessonId(offlineLesson.getId());
+                memberLesson.setMemberId(classMember.getMemberId());
+                memberLesson.setType(offlineLesson.getType());
+                memberLesson.setStartAt(offlineLesson.getStartAt());
+                memberLesson.setEndAt(offlineLesson.getEndAt());
+                memberLesson.setProbational(Boolean.FALSE);
+                memberLessonMapper.insertSelective(memberLesson);
+            }
         }
     }
 }
