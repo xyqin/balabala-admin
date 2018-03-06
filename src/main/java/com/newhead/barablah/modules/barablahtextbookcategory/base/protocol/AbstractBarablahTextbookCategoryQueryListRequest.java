@@ -6,8 +6,14 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年01月25日 02:58:40
+ * @generated 2018年03月06日 04:53:29
  */
 @Data
 public abstract class AbstractBarablahTextbookCategoryQueryListRequest  {
+    /**
+     *
+     * 分类名称
+     */
+     private String categoryName;
+
 }

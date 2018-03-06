@@ -136,7 +136,11 @@ public abstract class AbstractBarablahMemberPointLogService extends BaseService 
         BarablahMemberPointLogExample example = new BarablahMemberPointLogExample();
         BarablahMemberPointLogExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-            example.setOrderByClause("points desc");
+        String ordersrc ="";
+            ordersrc = "points desc,";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         if (request.getType()!=null) {
             c.andTypeEqualTo(request.getType());
          }
@@ -158,8 +162,10 @@ public abstract class AbstractBarablahMemberPointLogService extends BaseService 
         BarablahMemberPointLogExample example = new BarablahMemberPointLogExample();
         BarablahMemberPointLogExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-            example.setOrderByClause("points desc");
-
+        String ordersrc ="";
+            ordersrc = "points desc,";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         if (request.getType()!=null) {
             c.andTypeEqualTo(request.getType());
          }

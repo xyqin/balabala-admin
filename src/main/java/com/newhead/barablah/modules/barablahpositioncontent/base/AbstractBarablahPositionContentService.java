@@ -131,17 +131,17 @@ public abstract class AbstractBarablahPositionContentService extends BaseService
         BarablahPositionContentExample example = new BarablahPositionContentExample();
         BarablahPositionContentExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-            example.setOrderByClause("position desc");
+        String ordersrc ="";
+            ordersrc = "position desc,";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
+        if (request.getPositionId()!=null) {
+            c.andPositionIdEqualTo(request.getPositionId());
+         }
+
         if (request.getContentName()!=null) {
             c.andContentNameLike("%"+request.getContentName()+"%");
-        }
-
-        if (request.getImage()!=null) {
-            c.andImageLike("%"+request.getImage()+"%");
-        }
-
-        if (request.getLink()!=null) {
-            c.andLinkLike("%"+request.getLink()+"%");
         }
 
         convertEntityToResponse(getMapper().selectByExample(example),results);
@@ -161,18 +161,16 @@ public abstract class AbstractBarablahPositionContentService extends BaseService
         BarablahPositionContentExample example = new BarablahPositionContentExample();
         BarablahPositionContentExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-            example.setOrderByClause("position desc");
+        String ordersrc ="";
+            ordersrc = "position desc,";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+        if (request.getPositionId()!=null) {
+            c.andPositionIdEqualTo(request.getPositionId());
+         }
 
         if (request.getContentName()!=null) {
             c.andContentNameLike("%"+request.getContentName()+"%");
-        }
-
-        if (request.getImage()!=null) {
-            c.andImageLike("%"+request.getImage()+"%");
-        }
-
-        if (request.getLink()!=null) {
-            c.andLinkLike("%"+request.getLink()+"%");
         }
 
         example.setPageSize(request.getSize());

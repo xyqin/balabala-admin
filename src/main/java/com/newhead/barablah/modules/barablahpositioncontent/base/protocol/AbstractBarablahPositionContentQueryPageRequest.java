@@ -8,26 +8,20 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年01月18日 06:53:00
+ * @generated 2018年03月06日 04:53:29
  */
 @Data
 public abstract class AbstractBarablahPositionContentQueryPageRequest extends PageRequest {
     /**
      *
+     * 位置ID
+     */
+     private Long positionId;
+
+    /**
+     *
      * 内容名称
      */
      private String contentName;
-
-    /**
-     *
-     * 内容图片
-     */
-     private String image;
-
-    /**
-     *
-     * 内容链接地址
-     */
-     private String link;
 
 }

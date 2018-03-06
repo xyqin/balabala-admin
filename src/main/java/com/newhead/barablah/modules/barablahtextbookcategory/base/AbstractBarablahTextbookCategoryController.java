@@ -1,33 +1,28 @@
 package com.newhead.barablah.modules.barablahtextbookcategory.base;
 
 import com.google.common.collect.Maps;
+import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategory;
+import com.newhead.barablah.modules.barablahtextbookcategory.ext.SimpleBarablahTextbookCategoryService;
+import com.newhead.barablah.modules.barablahtextbookcategory.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 import com.newhead.rudderframework.core.web.component.tree.Tree;
-import com.newhead.rudderframework.modules.LabelValueItem;
-
-
 import com.newhead.rudderframework.core.web.controller.WebController;
-import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategory;
-import com.newhead.barablah.modules.barablahtextbookcategory.ext.SimpleBarablahTextbookCategoryService;
-import com.newhead.barablah.modules.barablahtextbookcategory.ext.protocol.*;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 教材分类表控制器
- * 2018年01月25日 02:58:40
+ * 2018年03月06日 04:53:32
  */
 @Api(tags = "教材分类表", description = "相关的API")
 public abstract class AbstractBarablahTextbookCategoryController extends WebController  {
@@ -111,8 +106,11 @@ public abstract class AbstractBarablahTextbookCategoryController extends WebCont
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "教材分类表ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahTextbookCategoryQueryResponse>> getList() {
+    public ApiEntity<List<SimpleBarablahTextbookCategoryQueryResponse>> getList(@RequestParam(required = false) String categoryName) {
         SimpleBarablahTextbookCategoryQueryListRequest request = new SimpleBarablahTextbookCategoryQueryListRequest();
+        if (!StringUtils.isEmpty(categoryName)) {
+            request.setCategoryName(categoryName);
+        }
         List<SimpleBarablahTextbookCategoryQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBarablahTextbookCategoryQueryResponse>>(sources);
     }
@@ -126,9 +124,13 @@ public abstract class AbstractBarablahTextbookCategoryController extends WebCont
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) String categoryName,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahTextbookCategoryQueryPageRequest request = new SimpleBarablahTextbookCategoryQueryPageRequest();
+        if (!StringUtils.isEmpty(categoryName)) {
+            request.setCategoryName(categoryName);
+        }
         if (page==null) {
             request.setPage(1);
         } else {

@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年02月07日 10:47:11
+ * 生成时间：2018年03月06日 04:53:40
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahTeacherCreateReq
  * 接口地址：barablahteacher/create
@@ -26,6 +26,9 @@ class BarablahTeacherCreateReq extends BaseRobotReq {
             isRequired: true
         },{key: 'username',
             desc: '账号',
+            isRequired: true
+        },{key: 'password',
+            desc: '密码',
             isRequired: true
         },{key: 'avatar',
             desc: '头像',
@@ -52,10 +55,11 @@ class BarablahTeacherCreateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,campusId,username,avatar,fullName,phoneNumber,major,comeFrom,status) {
+    setSimpleParams(id,campusId,username,password,avatar,fullName,phoneNumber,major,comeFrom,status) {
         this.addParams('id', id);
         this.addParams('campusId', campusId);
         this.addParams('username', username);
+        this.addParams('password', password);
         this.addParams('avatar', avatar);
         this.addParams('fullName', fullName);
         this.addParams('phoneNumber', phoneNumber);

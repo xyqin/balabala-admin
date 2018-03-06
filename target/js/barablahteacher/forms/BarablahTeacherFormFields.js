@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年02月07日 10:47:10
+ * 生成时间：2018年03月06日 04:53:36
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -30,6 +30,11 @@ const BARABLAHTEACHER_FORM_FIELDS = [{
     type: 'String',
     label: '账号',
     placeholder: '请输入账号'
+},{
+    key: 'password',
+    type: 'String',
+    label: '密码',
+    placeholder: '请输入密码'
 },{
     key: 'avatar',
     type: 'Image',

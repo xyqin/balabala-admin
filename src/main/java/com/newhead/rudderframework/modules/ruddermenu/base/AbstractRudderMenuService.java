@@ -1,32 +1,24 @@
 package com.newhead.rudderframework.modules.ruddermenu.base;
 
-import com.newhead.rudderframework.core.services.SimpleTreeService;
-import com.newhead.rudderframework.core.web.component.pagination.Page;
-
 import com.google.common.collect.Maps;
+import com.newhead.rudderframework.core.services.SimpleTreeService;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
-import com.newhead.rudderframework.core.web.component.tree.Tree;
+import com.newhead.rudderframework.core.web.component.pagination.Page;
 import com.newhead.rudderframework.core.web.component.tree.ExtNode;
 import com.newhead.rudderframework.core.web.component.tree.Node;
 import com.newhead.rudderframework.core.web.component.tree.TransitionTree;
-import com.newhead.rudderframework.core.services.BaseService;
-
 import com.newhead.rudderframework.modules.LabelValueItem;
 import com.newhead.rudderframework.modules.ruddermenu.base.repository.dao.RudderMenuMapper;
 import com.newhead.rudderframework.modules.ruddermenu.base.repository.entity.RudderMenu;
 import com.newhead.rudderframework.modules.ruddermenu.base.repository.entity.RudderMenuExample;
 import com.newhead.rudderframework.modules.ruddermenu.ext.protocol.*;
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.dao.RudderPermissionMapper;
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermission;
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermissionExample;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
-
-
-import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermission;
-import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermissionExample;
-
-import com.newhead.rudderframework.modules.rudderpermission.base.repository.dao.RudderPermissionMapper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -135,7 +127,6 @@ public abstract class AbstractRudderMenuService extends SimpleTreeService {
      */
     public List<SimpleRudderMenuQueryResponse> queryList(SimpleRudderMenuQueryListRequest request) {
         List<SimpleRudderMenuQueryResponse> results = new ArrayList<SimpleRudderMenuQueryResponse>();
-
         //构造查询对象
         RudderMenuExample example = new RudderMenuExample();
         RudderMenuExample.Criteria c = example.createCriteria();
@@ -143,7 +134,7 @@ public abstract class AbstractRudderMenuService extends SimpleTreeService {
         if (request.getRuddermenuName()!=null) {
             c.andRuddermenuNameLike("%"+request.getRuddermenuName()+"%");
         }
-
+        example.setOrderByClause("order_number desc");
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }

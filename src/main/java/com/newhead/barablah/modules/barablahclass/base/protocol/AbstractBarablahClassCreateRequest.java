@@ -1,15 +1,10 @@
 package com.newhead.barablah.modules.barablahclass.base.protocol;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
-import java.util.Date;
-import java.math.BigDecimal;
-
-import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年02月07日 04:00:58
+ * 2018年03月06日 04:53:27
  */
 @Data
 public abstract class AbstractBarablahClassCreateRequest {

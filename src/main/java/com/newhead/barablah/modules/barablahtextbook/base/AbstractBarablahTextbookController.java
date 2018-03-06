@@ -1,33 +1,27 @@
 package com.newhead.barablah.modules.barablahtextbook.base;
 
 import com.google.common.collect.Maps;
+import com.newhead.barablah.modules.barablahtextbook.base.repository.entity.BarablahTextbook;
+import com.newhead.barablah.modules.barablahtextbook.ext.SimpleBarablahTextbookService;
+import com.newhead.barablah.modules.barablahtextbook.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
-import com.newhead.rudderframework.core.web.component.tree.Tree;
-import com.newhead.rudderframework.modules.LabelValueItem;
-
-
 import com.newhead.rudderframework.core.web.controller.WebController;
-import com.newhead.barablah.modules.barablahtextbook.base.repository.entity.BarablahTextbook;
-import com.newhead.barablah.modules.barablahtextbook.ext.SimpleBarablahTextbookService;
-import com.newhead.barablah.modules.barablahtextbook.ext.protocol.*;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 教材表控制器
- * 2018年02月07日 10:47:10
+ * 2018年03月06日 04:53:32
  */
 @Api(tags = "教材表", description = "相关的API")
 public abstract class AbstractBarablahTextbookController extends WebController  {
@@ -47,6 +41,7 @@ public abstract class AbstractBarablahTextbookController extends WebController  
         if (textbookName != null) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称'"+request.getTextbookName()+"'已经存在！");
         }
+
         BarablahTextbook question = getService().existByQuestion(request.getQuestion());
         if (question != null) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题'"+request.getQuestion()+"'已经存在！");

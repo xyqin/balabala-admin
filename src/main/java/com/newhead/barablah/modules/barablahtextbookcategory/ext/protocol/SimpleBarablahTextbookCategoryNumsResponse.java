@@ -5,8 +5,9 @@ import lombok.Data;
 
 /**
  * 
- * 2018年02月07日 10:47:08
+ * 2018年01月25日 02:58:39
  */
 @Data
-public class SimpleBarablahTextbookCategoryCreateRequest extends AbstractBarablahTextbookCategoryCreateRequest {
+public class SimpleBarablahTextbookCategoryNumsResponse extends AbstractBarablahTextbookCategoryCreateRequest {
+  private int nums;
 }

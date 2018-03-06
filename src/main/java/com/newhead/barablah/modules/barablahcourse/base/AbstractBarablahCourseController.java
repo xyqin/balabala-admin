@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 课程控制器
- * 2018年01月18日 06:53:00
+ * 2018年03月06日 04:53:32
  */
 @Api(tags = "课程", description = "相关的API")
 public abstract class AbstractBarablahCourseController extends WebController  {

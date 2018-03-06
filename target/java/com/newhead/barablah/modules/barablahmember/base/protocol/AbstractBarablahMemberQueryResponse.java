@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年02月07日 10:47:09
+ * @generated 2018年03月06日 04:53:28
  */
 @Data
 public abstract class AbstractBarablahMemberQueryResponse {
@@ -39,6 +39,12 @@ public abstract class AbstractBarablahMemberQueryResponse {
      * 头像
      */
      private String avatar;
+
+    /**
+     *
+     * 英文名
+     */
+     private String englishName;
 
     /**
      *

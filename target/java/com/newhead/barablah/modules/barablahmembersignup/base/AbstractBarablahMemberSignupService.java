@@ -145,6 +145,10 @@ public abstract class AbstractBarablahMemberSignupService extends BaseService {
         BarablahMemberSignupExample example = new BarablahMemberSignupExample();
         BarablahMemberSignupExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         if (request.getMemberId()!=null) {
             c.andMemberIdEqualTo(request.getMemberId());
          }
@@ -174,7 +178,9 @@ public abstract class AbstractBarablahMemberSignupService extends BaseService {
         BarablahMemberSignupExample example = new BarablahMemberSignupExample();
         BarablahMemberSignupExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         if (request.getMemberId()!=null) {
             c.andMemberIdEqualTo(request.getMemberId());
          }

@@ -139,6 +139,10 @@ public abstract class AbstractRudderRoleService extends BaseService {
         RudderRoleExample example = new RudderRoleExample();
         RudderRoleExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         if (request.getRudderroleName()!=null) {
             c.andRudderroleNameLike("%"+request.getRudderroleName()+"%");
         }
@@ -160,7 +164,9 @@ public abstract class AbstractRudderRoleService extends BaseService {
         RudderRoleExample example = new RudderRoleExample();
         RudderRoleExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         if (request.getRudderroleName()!=null) {
             c.andRudderroleNameLike("%"+request.getRudderroleName()+"%");
         }

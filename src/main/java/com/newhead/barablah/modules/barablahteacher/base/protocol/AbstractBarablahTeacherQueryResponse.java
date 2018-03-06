@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年01月18日 06:53:00
+ * @generated 2018年03月06日 04:53:28
  */
 @Data
 public abstract class AbstractBarablahTeacherQueryResponse {
@@ -75,17 +75,5 @@ public abstract class AbstractBarablahTeacherQueryResponse {
      * 状态
      */
     private LabelValueItem StatusEnum = new LabelValueItem();
-
-    /**
-     *
-     * 网易云ID
-     */
-     private String accid;
-
-    /**
-     *
-     * 网易云登录token
-     */
-     private String token;
 
 }

@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2018年01月18日 06:53:00
+ * 2018年03月06日 04:53:29
  */
 @Data
 public abstract class AbstractBarablahMemberPointLogGetDetailResponse {

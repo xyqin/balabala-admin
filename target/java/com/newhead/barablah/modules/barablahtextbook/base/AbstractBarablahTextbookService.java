@@ -136,6 +136,10 @@ public abstract class AbstractBarablahTextbookService extends BaseService {
         BarablahTextbookExample example = new BarablahTextbookExample();
         BarablahTextbookExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         if (request.getCategoryId()!=null) {
             c.andCategoryIdEqualTo(request.getCategoryId());
          }
@@ -165,7 +169,9 @@ public abstract class AbstractBarablahTextbookService extends BaseService {
         BarablahTextbookExample example = new BarablahTextbookExample();
         BarablahTextbookExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         if (request.getCategoryId()!=null) {
             c.andCategoryIdEqualTo(request.getCategoryId());
          }

@@ -11,77 +11,77 @@ public interface BarablahPositionContentMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position_content
-     * @generated 2018年2月7日 10:47:06
+     * @generated 2018年3月6日 04:53:26
      */
     long countByExample(BarablahPositionContentExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position_content
-     * @generated 2018年2月7日 10:47:06
+     * @generated 2018年3月6日 04:53:26
      */
     int deleteByExample(BarablahPositionContentExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position_content
-     * @generated 2018年2月7日 10:47:06
+     * @generated 2018年3月6日 04:53:26
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position_content
-     * @generated 2018年2月7日 10:47:06
+     * @generated 2018年3月6日 04:53:26
      */
     int insert(BarablahPositionContent record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position_content
-     * @generated 2018年2月7日 10:47:06
+     * @generated 2018年3月6日 04:53:26
      */
     int insertSelective(BarablahPositionContent record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position_content
-     * @generated 2018年2月7日 10:47:06
+     * @generated 2018年3月6日 04:53:26
      */
     List<BarablahPositionContent> selectByExample(BarablahPositionContentExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position_content
-     * @generated 2018年2月7日 10:47:06
+     * @generated 2018年3月6日 04:53:26
      */
     BarablahPositionContent selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position_content
-     * @generated 2018年2月7日 10:47:06
+     * @generated 2018年3月6日 04:53:26
      */
     int updateByExampleSelective(@Param("record") BarablahPositionContent record, @Param("example") BarablahPositionContentExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position_content
-     * @generated 2018年2月7日 10:47:06
+     * @generated 2018年3月6日 04:53:26
      */
     int updateByExample(@Param("record") BarablahPositionContent record, @Param("example") BarablahPositionContentExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position_content
-     * @generated 2018年2月7日 10:47:06
+     * @generated 2018年3月6日 04:53:26
      */
     int updateByPrimaryKeySelective(BarablahPositionContent record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_position_content
-     * @generated 2018年2月7日 10:47:06
+     * @generated 2018年3月6日 04:53:26
      */
     int updateByPrimaryKey(BarablahPositionContent record);
 }

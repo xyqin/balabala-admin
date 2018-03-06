@@ -126,6 +126,10 @@ public abstract class AbstractRudderPermissionService extends SimpleTreeService 
         RudderPermissionExample example = new RudderPermissionExample();
         RudderPermissionExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         if (request.getRudderpermissionName()!=null) {
             c.andRudderpermissionNameLike("%"+request.getRudderpermissionName()+"%");
         }
@@ -147,7 +151,9 @@ public abstract class AbstractRudderPermissionService extends SimpleTreeService 
         RudderPermissionExample example = new RudderPermissionExample();
         RudderPermissionExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         if (request.getRudderpermissionName()!=null) {
             c.andRudderpermissionNameLike("%"+request.getRudderpermissionName()+"%");
         }

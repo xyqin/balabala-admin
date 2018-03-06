@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年02月07日 10:47:09
+ * 2018年03月06日 04:53:28
  */
 @Data
 public abstract class AbstractBarablahTeacherCreateRequest {
@@ -24,6 +24,12 @@ public abstract class AbstractBarablahTeacherCreateRequest {
      * 账号
      */
     private String username;
+
+    /**
+     *
+     * 密码
+     */
+    private String password;
 
     /**
      *

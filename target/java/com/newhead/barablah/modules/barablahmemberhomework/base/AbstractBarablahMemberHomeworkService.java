@@ -150,6 +150,10 @@ public abstract class AbstractBarablahMemberHomeworkService extends BaseService 
         BarablahMemberHomeworkExample example = new BarablahMemberHomeworkExample();
         BarablahMemberHomeworkExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         if (request.getHomeworkName()!=null) {
             c.andHomeworkNameLike("%"+request.getHomeworkName()+"%");
         }
@@ -175,7 +179,9 @@ public abstract class AbstractBarablahMemberHomeworkService extends BaseService 
         BarablahMemberHomeworkExample example = new BarablahMemberHomeworkExample();
         BarablahMemberHomeworkExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         if (request.getHomeworkName()!=null) {
             c.andHomeworkNameLike("%"+request.getHomeworkName()+"%");
         }

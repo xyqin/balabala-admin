@@ -162,6 +162,10 @@ public abstract class AbstractBarablahClassLessonService extends BaseService {
         BarablahClassLessonExample example = new BarablahClassLessonExample();
         BarablahClassLessonExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         if (request.getClassId()!=null) {
             c.andClassIdEqualTo(request.getClassId());
          }
@@ -195,7 +199,9 @@ public abstract class AbstractBarablahClassLessonService extends BaseService {
         BarablahClassLessonExample example = new BarablahClassLessonExample();
         BarablahClassLessonExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         if (request.getClassId()!=null) {
             c.andClassIdEqualTo(request.getClassId());
          }

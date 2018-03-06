@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年02月07日 10:47:10
+ * 生成时间：2018年03月06日 04:53:34
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -26,6 +26,12 @@ checked: true
 title: '账号',
 dataIndex: 'username',
 key: 'username',
+type:'String',
+checked: true
+},{
+title: '密码',
+dataIndex: 'password',
+key: 'password',
 type:'String',
 checked: true
 },{

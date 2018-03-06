@@ -1,31 +1,22 @@
 package com.newhead.barablah.modules.barablahtextbook.base;
 
-import com.newhead.rudderframework.core.web.component.pagination.Page;
-
 import com.google.common.collect.Maps;
-import com.newhead.rudderframework.core.web.api.ApiStatus;
-import com.newhead.rudderframework.core.web.api.ApiValidateException;
-import com.newhead.rudderframework.core.web.component.tree.Tree;
-import com.newhead.rudderframework.core.web.component.tree.ExtNode;
-import com.newhead.rudderframework.core.web.component.tree.Node;
-import com.newhead.rudderframework.core.web.component.tree.TransitionTree;
-import com.newhead.rudderframework.core.services.BaseService;
-
-import com.newhead.rudderframework.modules.LabelValueItem;
 import com.newhead.barablah.modules.barablahtextbook.base.repository.dao.BarablahTextbookMapper;
 import com.newhead.barablah.modules.barablahtextbook.base.repository.entity.BarablahTextbook;
 import com.newhead.barablah.modules.barablahtextbook.base.repository.entity.BarablahTextbookExample;
 import com.newhead.barablah.modules.barablahtextbook.ext.protocol.*;
+import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.dao.BarablahTextbookCategoryMapper;
+import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategory;
+import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategoryExample;
+import com.newhead.rudderframework.core.services.BaseService;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.api.ApiValidateException;
+import com.newhead.rudderframework.core.web.component.pagination.Page;
+import com.newhead.rudderframework.core.web.component.tree.Node;
+import com.newhead.rudderframework.modules.LabelValueItem;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
-
-
-import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategory;
-import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategoryExample;
-
-import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.dao.BarablahTextbookCategoryMapper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -136,6 +127,10 @@ public abstract class AbstractBarablahTextbookService extends BaseService {
         BarablahTextbookExample example = new BarablahTextbookExample();
         BarablahTextbookExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         if (request.getCategoryId()!=null) {
             c.andCategoryIdEqualTo(request.getCategoryId());
          }
@@ -165,7 +160,9 @@ public abstract class AbstractBarablahTextbookService extends BaseService {
         BarablahTextbookExample example = new BarablahTextbookExample();
         BarablahTextbookExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         if (request.getCategoryId()!=null) {
             c.andCategoryIdEqualTo(request.getCategoryId());
          }

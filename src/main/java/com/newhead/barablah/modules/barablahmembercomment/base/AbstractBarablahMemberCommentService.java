@@ -145,6 +145,10 @@ public abstract class AbstractBarablahMemberCommentService extends BaseService {
         BarablahMemberCommentExample example = new BarablahMemberCommentExample();
         BarablahMemberCommentExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         if (request.getContent()!=null) {
             c.andContentLike("%"+request.getContent()+"%");
         }
@@ -166,7 +170,9 @@ public abstract class AbstractBarablahMemberCommentService extends BaseService {
         BarablahMemberCommentExample example = new BarablahMemberCommentExample();
         BarablahMemberCommentExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         if (request.getContent()!=null) {
             c.andContentLike("%"+request.getContent()+"%");
         }

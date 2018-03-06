@@ -174,11 +174,15 @@ public abstract class Abstract${vo.bmoduleName}Service <%if(vo.dataType=='Tree')
         ${vo.bmoduleName}Example example = new ${vo.bmoduleName}Example();
         ${vo.bmoduleName}Example.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
         <% for(field in vo.fields ){%>
             <% if (field.orderkey) { %>
-            example.setOrderByClause("${field.name} desc");
+            ordersrc = "${field.name} desc,";
             <% } %>
         <%}%>
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
 <% for(field in vo.queryfields ){%>
     <% if (field.fieldType=="String") { %>
         if (request.get${field.bname}()!=null) {
@@ -218,12 +222,14 @@ public abstract class Abstract${vo.bmoduleName}Service <%if(vo.dataType=='Tree')
         ${vo.bmoduleName}Example example = new ${vo.bmoduleName}Example();
         ${vo.bmoduleName}Example.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
         <% for(field in vo.fields ){%>
             <% if (field.orderkey) { %>
-            example.setOrderByClause("${field.name} desc");
+            ordersrc = "${field.name} desc,";
             <% } %>
         <%}%>
-
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
 <% for(field in vo.queryfields ){%>
     <% if (field.fieldType=="String") { %>
         if (request.get${field.bname}()!=null) {

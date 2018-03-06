@@ -131,6 +131,10 @@ public abstract class AbstractBarablahMemberPassportService extends BaseService 
         BarablahMemberPassportExample example = new BarablahMemberPassportExample();
         BarablahMemberPassportExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -148,7 +152,9 @@ public abstract class AbstractBarablahMemberPassportService extends BaseService 
         BarablahMemberPassportExample example = new BarablahMemberPassportExample();
         BarablahMemberPassportExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 

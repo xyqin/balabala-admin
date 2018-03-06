@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年02月07日 10:47:11
+ * 生成时间：2018年03月06日 04:53:42
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahMemberHomeworkGetpageReq
  * 接口地址：barablahmemberhomework/getpage

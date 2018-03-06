@@ -140,6 +140,10 @@ public abstract class AbstractRudderMenuService extends SimpleTreeService {
         RudderMenuExample example = new RudderMenuExample();
         RudderMenuExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         if (request.getRuddermenuName()!=null) {
             c.andRuddermenuNameLike("%"+request.getRuddermenuName()+"%");
         }
@@ -161,7 +165,9 @@ public abstract class AbstractRudderMenuService extends SimpleTreeService {
         RudderMenuExample example = new RudderMenuExample();
         RudderMenuExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         if (request.getRuddermenuName()!=null) {
             c.andRuddermenuNameLike("%"+request.getRuddermenuName()+"%");
         }

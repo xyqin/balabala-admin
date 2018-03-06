@@ -9,4 +9,6 @@ import lombok.Data;
  */
 @Data
 public class SimpleBarablahTextbookCategoryUpdateRequest extends AbstractBarablahTextbookCategoryUpdateRequest {
+  private String path;
+
 }

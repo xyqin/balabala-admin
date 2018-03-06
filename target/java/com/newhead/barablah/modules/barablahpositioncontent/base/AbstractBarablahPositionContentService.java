@@ -131,7 +131,11 @@ public abstract class AbstractBarablahPositionContentService extends BaseService
         BarablahPositionContentExample example = new BarablahPositionContentExample();
         BarablahPositionContentExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-            example.setOrderByClause("position desc");
+        String ordersrc ="";
+            ordersrc = "position desc,";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         if (request.getPositionId()!=null) {
             c.andPositionIdEqualTo(request.getPositionId());
          }
@@ -157,8 +161,10 @@ public abstract class AbstractBarablahPositionContentService extends BaseService
         BarablahPositionContentExample example = new BarablahPositionContentExample();
         BarablahPositionContentExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-            example.setOrderByClause("position desc");
-
+        String ordersrc ="";
+            ordersrc = "position desc,";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         if (request.getPositionId()!=null) {
             c.andPositionIdEqualTo(request.getPositionId());
          }

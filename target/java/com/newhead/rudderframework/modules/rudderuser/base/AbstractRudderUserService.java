@@ -155,6 +155,10 @@ public abstract class AbstractRudderUserService extends BaseService {
         RudderUserExample example = new RudderUserExample();
         RudderUserExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         if (request.getRudderuserName()!=null) {
             c.andRudderuserNameLike("%"+request.getRudderuserName()+"%");
         }
@@ -180,7 +184,9 @@ public abstract class AbstractRudderUserService extends BaseService {
         RudderUserExample example = new RudderUserExample();
         RudderUserExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         if (request.getRudderuserName()!=null) {
             c.andRudderuserNameLike("%"+request.getRudderuserName()+"%");
         }

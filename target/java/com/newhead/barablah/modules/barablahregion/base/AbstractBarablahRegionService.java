@@ -126,6 +126,10 @@ public abstract class AbstractBarablahRegionService extends SimpleTreeService {
         BarablahRegionExample example = new BarablahRegionExample();
         BarablahRegionExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -143,7 +147,9 @@ public abstract class AbstractBarablahRegionService extends SimpleTreeService {
         BarablahRegionExample example = new BarablahRegionExample();
         BarablahRegionExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 

@@ -1,43 +1,31 @@
 package com.newhead.barablah.modules.barablahclass.base;
 
-import com.newhead.rudderframework.core.web.component.pagination.Page;
-
 import com.google.common.collect.Maps;
-import com.newhead.rudderframework.core.web.api.ApiStatus;
-import com.newhead.rudderframework.core.web.api.ApiValidateException;
-import com.newhead.rudderframework.core.web.component.tree.Tree;
-import com.newhead.rudderframework.core.web.component.tree.ExtNode;
-import com.newhead.rudderframework.core.web.component.tree.Node;
-import com.newhead.rudderframework.core.web.component.tree.TransitionTree;
-import com.newhead.rudderframework.core.services.BaseService;
-
-import com.newhead.rudderframework.modules.LabelValueItem;
+import com.newhead.barablah.modules.barablahcampus.base.repository.dao.BarablahCampusMapper;
+import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus;
+import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampusExample;
 import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClassExample;
 import com.newhead.barablah.modules.barablahclass.ext.protocol.*;
+import com.newhead.barablah.modules.barablahclasscategory.base.repository.dao.BarablahClassCategoryMapper;
+import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategory;
+import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategoryExample;
+import com.newhead.barablah.modules.barablahcourse.base.repository.dao.BarablahCourseMapper;
+import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourse;
+import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourseExample;
+import com.newhead.barablah.modules.barablahteacher.base.repository.dao.BarablahTeacherMapper;
+import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
+import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
+import com.newhead.rudderframework.core.services.BaseService;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.api.ApiValidateException;
+import com.newhead.rudderframework.core.web.component.pagination.Page;
+import com.newhead.rudderframework.core.web.component.tree.Node;
+import com.newhead.rudderframework.modules.LabelValueItem;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
-
-
-import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategory;
-import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategoryExample;
-
-import com.newhead.barablah.modules.barablahclasscategory.base.repository.dao.BarablahClassCategoryMapper;
-import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus;
-import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampusExample;
-
-import com.newhead.barablah.modules.barablahcampus.base.repository.dao.BarablahCampusMapper;
-import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
-import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
-
-import com.newhead.barablah.modules.barablahteacher.base.repository.dao.BarablahTeacherMapper;
-import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourse;
-import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourseExample;
-
-import com.newhead.barablah.modules.barablahcourse.base.repository.dao.BarablahCourseMapper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -186,6 +174,10 @@ public abstract class AbstractBarablahClassService extends BaseService {
         BarablahClassExample example = new BarablahClassExample();
         BarablahClassExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
         if (request.getCategoryId()!=null) {
             c.andCategoryIdEqualTo(request.getCategoryId());
          }
@@ -223,7 +215,9 @@ public abstract class AbstractBarablahClassService extends BaseService {
         BarablahClassExample example = new BarablahClassExample();
         BarablahClassExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
-
+        String ordersrc ="";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
         if (request.getCategoryId()!=null) {
             c.andCategoryIdEqualTo(request.getCategoryId());
          }
