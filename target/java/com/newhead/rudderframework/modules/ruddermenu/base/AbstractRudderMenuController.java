@@ -6,21 +6,28 @@ import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 import com.newhead.rudderframework.core.web.component.tree.Tree;
+import com.newhead.rudderframework.modules.LabelValueItem;
+
+
 import com.newhead.rudderframework.core.web.controller.WebController;
 import com.newhead.rudderframework.modules.ruddermenu.base.repository.entity.RudderMenu;
 import com.newhead.rudderframework.modules.ruddermenu.ext.SimpleRudderMenuService;
+import com.newhead.rudderframework.modules.ruddermenu.ext.protocol.*;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 菜单控制器
- * 2018年03月06日 04:53:33
+ * 2018年03月10日 07:58:17
  */
 @Api(tags = "菜单", description = "相关的API")
 public abstract class AbstractRudderMenuController extends WebController  {

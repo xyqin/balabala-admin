@@ -1,10 +1,12 @@
 package com.newhead.rudderframework.modules.ruddermenu.base.protocol;
 
 import lombok.Data;
+import java.util.Date;
+import java.math.BigDecimal;
 
 /**
  * 菜单
- * @generated 2018年03月06日 04:53:29
+ * @generated 2018年03月10日 07:58:15
  */
 @Data
 public abstract class AbstractRudderMenuQueryListRequest  {

@@ -1,23 +1,36 @@
 package com.newhead.rudderframework.modules.rudderrole.base;
 
+import com.newhead.rudderframework.core.web.component.pagination.Page;
+
 import com.google.common.collect.Maps;
-import com.newhead.rudderframework.core.services.BaseService;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
-import com.newhead.rudderframework.core.web.component.pagination.Page;
-import com.newhead.rudderframework.core.web.component.tree.Node;
 import com.newhead.rudderframework.core.web.component.tree.Tree;
-import com.newhead.rudderframework.modules.rudderpermission.base.repository.dao.RudderPermissionMapper;
-import com.newhead.rudderframework.modules.rudderpermission.ext.SimpleRudderPermissionService;
+import com.newhead.rudderframework.core.web.component.tree.ExtNode;
+import com.newhead.rudderframework.core.web.component.tree.Node;
+import com.newhead.rudderframework.core.web.component.tree.TransitionTree;
+import com.newhead.rudderframework.core.services.BaseService;
+
+import com.newhead.rudderframework.modules.LabelValueItem;
 import com.newhead.rudderframework.modules.rudderrole.base.repository.dao.RudderRoleMapper;
 import com.newhead.rudderframework.modules.rudderrole.base.repository.entity.RudderRole;
 import com.newhead.rudderframework.modules.rudderrole.base.repository.entity.RudderRoleExample;
-import com.newhead.rudderframework.modules.rudderrole2permission.base.repository.dao.RudderRole2permissionMapper;
-import com.newhead.rudderframework.modules.rudderrole2permission.base.repository.entity.RudderRole2permission;
-import com.newhead.rudderframework.modules.rudderrole2permission.base.repository.entity.RudderRole2permissionExample;
+import com.newhead.rudderframework.modules.rudderrole.ext.protocol.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+import com.newhead.rudderframework.modules.rudderpermission.ext.SimpleRudderPermissionService;
+
+import com.newhead.rudderframework.modules.rudderrole2permission.base.repository.entity.RudderRole2permission;
+import com.newhead.rudderframework.modules.rudderrole2permission.base.repository.entity.RudderRole2permissionExample;
+
+import com.newhead.rudderframework.modules.rudderrole2permission.base.repository.dao.RudderRole2permissionMapper;
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermission;
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermissionExample;
+
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.dao.RudderPermissionMapper;
 
 import java.util.ArrayList;
 import java.util.Date;

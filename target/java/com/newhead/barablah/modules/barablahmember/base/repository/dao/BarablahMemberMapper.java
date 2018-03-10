@@ -11,77 +11,77 @@ public interface BarablahMemberMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     long countByExample(BarablahMemberExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int deleteByExample(BarablahMemberExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int insert(BarablahMember record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int insertSelective(BarablahMember record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     List<BarablahMember> selectByExample(BarablahMemberExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     BarablahMember selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int updateByExampleSelective(@Param("record") BarablahMember record, @Param("example") BarablahMemberExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int updateByExample(@Param("record") BarablahMember record, @Param("example") BarablahMemberExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int updateByPrimaryKeySelective(BarablahMember record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int updateByPrimaryKey(BarablahMember record);
 }

@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月06日 04:53:36
+ * 生成时间：2018年03月10日 07:58:18
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -65,9 +65,7 @@ const BARABLAHTEACHER_FORM_FIELDS = [{
     label: '状态',
         placeholder: '请选择状态',
         data: [{        value: 'IN_REVIEW',
-        label: '审核中'
-        },{        value: 'REJECTED',
-        label: '审核被拒'
+        label: '待审核'
         },{        value: 'ENABLED',
         label: '启用'
         },{        value: 'DISABLED',

@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月06日 04:53:35
+ * 生成时间：2018年03月10日 07:58:17
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -42,9 +42,7 @@ const BARABLAHTEACHER_CONDITIONS = [{
     label: '状态',
         placeholder: '请选择状态',
          data: [{                value: 'IN_REVIEW',
-                label: '审核中'
-            },{                value: 'REJECTED',
-                label: '审核被拒'
+                label: '待审核'
             },{                value: 'ENABLED',
                 label: '启用'
             },{                value: 'DISABLED',

@@ -1,15 +1,16 @@
 package com.newhead.barablah.modules.barablahclass.ext;
 
+import com.newhead.barablah.modules.barablahclass.BarablahClassStatusEnum;
 import com.newhead.barablah.modules.barablahclass.base.AbstractBarablahClassController;
-import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassOpenRequest;
+import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
+import com.newhead.barablah.modules.barablahclass.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
+import com.newhead.rudderframework.core.web.component.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * RudderFramework 自动生成
@@ -32,6 +33,65 @@ public class SimpleBarablahClassController extends AbstractBarablahClassControll
     @RequestMapping(value = "open", method = RequestMethod.POST)
     public ApiEntity open(@RequestBody SimpleBarablahClassOpenRequest request) {
         getService().open(request);
+        return new ApiEntity<>();
+    }
+
+    /**
+     * 得到翻页数据
+     *
+     * @return
+     */
+    @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
+    @RequestMapping(value = "getcheckpage", method = RequestMethod.GET)
+    public ApiEntity getCheckPage(
+            @RequestParam(required = false) Long categoryId,
+            @RequestParam(required = false) String className,
+            @RequestParam(required = false) String monitor,
+            @RequestParam(required = false) String monitorPhoneNumber,
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer size) {
+        SimpleBarablahClassQueryPageRequest request = new SimpleBarablahClassQueryPageRequest();
+        if (!StringUtils.isEmpty(categoryId)) {
+            request.setCategoryId(categoryId);
+        }
+        if (!StringUtils.isEmpty(className)) {
+            request.setClassName(className);
+        }
+        if (!StringUtils.isEmpty(monitor)) {
+            request.setMonitor(monitor);
+        }
+        if (!StringUtils.isEmpty(monitorPhoneNumber)) {
+            request.setMonitorPhoneNumber(monitorPhoneNumber);
+        }
+        request.setStatus(BarablahClassStatusEnum.审核中.getValue());
+        if (page==null) {
+            request.setPage(1);
+        } else {
+            request.setPage(page);
+        }
+        if (size==null) {
+            request.setPage(10);
+        } else  {
+            request.setSize(size);
+        }
+        Page<SimpleBarablahClassQueryResponse> sources = getService().queryPage(request);
+        return new ApiEntity<>(sources);
+    }
+
+
+
+    /**
+     * 得到翻页数据
+     *
+     * @return
+     */
+    @ApiOperation(value = "审核通过或拒绝", response = ApiEntity.class, notes = "")
+    @RequestMapping(value = "check", method = RequestMethod.POST)
+    public ApiEntity check(
+            @RequestParam(required = true) Long classid, @RequestParam(required = true) String status) {
+        BarablahClass c = getService().getMapper().selectByPrimaryKey(classid);
+        c.setStatus(status);
+        getService().getMapper().updateByPrimaryKey(c);
         return new ApiEntity<>();
     }
 }

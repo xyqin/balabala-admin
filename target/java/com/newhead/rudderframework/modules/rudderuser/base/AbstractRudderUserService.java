@@ -1,27 +1,39 @@
 package com.newhead.rudderframework.modules.rudderuser.base;
 
+import com.newhead.rudderframework.core.web.component.pagination.Page;
+
 import com.google.common.collect.Maps;
-import com.newhead.barablah.modules.barablahcampus.base.repository.dao.BarablahCampusMapper;
-import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus;
-import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampusExample;
-import com.newhead.rudderframework.core.services.BaseService;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
-import com.newhead.rudderframework.core.web.component.pagination.Page;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+import com.newhead.rudderframework.core.web.component.tree.ExtNode;
 import com.newhead.rudderframework.core.web.component.tree.Node;
+import com.newhead.rudderframework.core.web.component.tree.TransitionTree;
+import com.newhead.rudderframework.core.services.BaseService;
+
 import com.newhead.rudderframework.modules.LabelValueItem;
-import com.newhead.rudderframework.modules.rudderrole.base.repository.dao.RudderRoleMapper;
-import com.newhead.rudderframework.modules.rudderrole.base.repository.entity.RudderRole;
-import com.newhead.rudderframework.modules.rudderrole.base.repository.entity.RudderRoleExample;
 import com.newhead.rudderframework.modules.rudderuser.base.repository.dao.RudderUserMapper;
 import com.newhead.rudderframework.modules.rudderuser.base.repository.entity.RudderUser;
 import com.newhead.rudderframework.modules.rudderuser.base.repository.entity.RudderUserExample;
-import com.newhead.rudderframework.modules.rudderuser2role.base.repository.dao.RudderUser2roleMapper;
-import com.newhead.rudderframework.modules.rudderuser2role.base.repository.entity.RudderUser2role;
-import com.newhead.rudderframework.modules.rudderuser2role.base.repository.entity.RudderUser2roleExample;
+import com.newhead.rudderframework.modules.rudderuser.ext.protocol.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+
+import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus;
+import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampusExample;
+
+import com.newhead.barablah.modules.barablahcampus.base.repository.dao.BarablahCampusMapper;
+import com.newhead.rudderframework.modules.rudderuser2role.base.repository.entity.RudderUser2role;
+import com.newhead.rudderframework.modules.rudderuser2role.base.repository.entity.RudderUser2roleExample;
+
+import com.newhead.rudderframework.modules.rudderuser2role.base.repository.dao.RudderUser2roleMapper;
+import com.newhead.rudderframework.modules.rudderrole.base.repository.entity.RudderRole;
+import com.newhead.rudderframework.modules.rudderrole.base.repository.entity.RudderRoleExample;
+
+import com.newhead.rudderframework.modules.rudderrole.base.repository.dao.RudderRoleMapper;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -11,77 +11,77 @@ public interface BarablahMemberPassportMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_passport
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     long countByExample(BarablahMemberPassportExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_passport
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int deleteByExample(BarablahMemberPassportExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_passport
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_passport
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int insert(BarablahMemberPassport record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_passport
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int insertSelective(BarablahMemberPassport record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_passport
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     List<BarablahMemberPassport> selectByExample(BarablahMemberPassportExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_passport
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     BarablahMemberPassport selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_passport
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int updateByExampleSelective(@Param("record") BarablahMemberPassport record, @Param("example") BarablahMemberPassportExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_passport
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int updateByExample(@Param("record") BarablahMemberPassport record, @Param("example") BarablahMemberPassportExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_passport
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int updateByPrimaryKeySelective(BarablahMemberPassport record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_passport
-     * @generated 2018年3月6日 04:53:26
+     * @generated 2018年3月10日 07:58:13
      */
     int updateByPrimaryKey(BarablahMemberPassport record);
 }
