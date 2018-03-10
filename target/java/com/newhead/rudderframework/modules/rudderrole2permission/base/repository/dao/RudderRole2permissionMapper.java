@@ -2,9 +2,10 @@ package com.newhead.rudderframework.modules.rudderrole2permission.base.repositor
 
 import com.newhead.rudderframework.modules.rudderrole2permission.base.repository.entity.RudderRole2permission;
 import com.newhead.rudderframework.modules.rudderrole2permission.base.repository.entity.RudderRole2permissionExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface RudderRole2permissionMapper {

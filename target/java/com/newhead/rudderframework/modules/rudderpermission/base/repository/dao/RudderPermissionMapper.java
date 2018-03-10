@@ -2,9 +2,10 @@ package com.newhead.rudderframework.modules.rudderpermission.base.repository.dao
 
 import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermission;
 import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermissionExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface RudderPermissionMapper {

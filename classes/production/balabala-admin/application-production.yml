@@ -1,0 +1,30 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: admin-service
+  datasource:
+    url: jdbc:mysql://114.55.250.37:3306/anywave?autoReconnect=true&rewriteBatchedStatements=true
+    username: anywave
+    password: 7xiVxR67Oh#Wjh5l
+    driver-class-name: org.mariadb.jdbc.Driver
+  redis:
+    host: 114.55.250.37
+    port: 6379
+    password: B7pa)Aa[K2MX5RJy
+  session:
+    store-type: none
+  http:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+management:
+  security:
+    enabled: false
+
+mybatis:
+    config-location: classpath:mybatis-config.xml
+
+storeconfig:
+  storepath: /data/aw
+

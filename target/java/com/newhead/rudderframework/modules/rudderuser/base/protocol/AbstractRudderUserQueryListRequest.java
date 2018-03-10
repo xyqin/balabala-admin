@@ -1,8 +1,6 @@
 package com.newhead.rudderframework.modules.rudderuser.base.protocol;
 
 import lombok.Data;
-import java.util.Date;
-import java.math.BigDecimal;
 
 /**
  * 系统用户

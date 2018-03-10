@@ -1,0 +1,43 @@
+/**
+ * 生成时间：${vo.date}
+ * 该文件系自动生成，手动修改可能会被替换
+ * 根据创建或修改接口的请求字段生成
+ * 表单数据：
+ * {
+ * 'key': '关键字',
+ * 'type': '类型',
+ * 'label': '显示名称',
+ * 'placeholder': '默认占位文字',
+ * 'data': '附加的数据'
+ * }
+ */
+const ${vo.name}_FORM_FIELDS = [<% for(field in vo.fields ){%>{
+    key: '${field.name}',
+    type: '${field.fieldType}',
+    label: '${field.desc}',
+    <% if (field.fieldType=='String') {%>
+    placeholder: '请输入${field.desc}'
+    <%} else if (field.fieldType=='Enum') {%>
+        placeholder: '请选择${field.desc}',
+        data: [<% for(item in field.types ){%>{
+        value: '${item.value}',
+        label: '${item.label}'
+        }<% if (!itemLP.last){%>,<%}%><%}%>]
+    <%} else if (field.fieldType=='Number') {%>
+        placeholder: '请输入${field.desc}'
+    <% } else if (field.fieldType=='Id') {%>
+        placeholder: '请输入${field.desc}'
+    <% } else if (field.fieldType=='Object') {%>
+    placeholder: '请选择${field.desc}',
+    displayType: '${field.displayType}',
+    url: '${field.url}',
+    dataLableKey: '${field.dataLableKey}',
+    dataValueKey: '${field.dataValueKey}'
+    <% } else if (field.fieldType=='Bool') {%>
+placeholder: '请输入${field.desc}'
+    <% } else if (field.fieldType=='Date') {%>
+placeholder: '请输入${field.desc}'
+    <% } %>
+}<% if (!fieldLP.last)  {%>,<%}%><%}%>];
+
+export default ${vo.name}_FORM_FIELDS;

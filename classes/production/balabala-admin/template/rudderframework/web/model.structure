@@ -1,0 +1,12 @@
+/**
+ * 生成时间：${vo.date}
+ * 该文件系自动生成，手动修改可能会被替换
+ * 目录结构，从接口定义中解析出当前的目录结构
+ * 规则：
+ */
+ [<% for(model in vo.modules ){%>
+ {
+    "module": "${model.smoduleName}",
+    "template": "${model.smoduleName}",
+    "desc": "${model.remark}"
+ }<% if (!modelLP.last)  {%>,<%}%><%}%>]

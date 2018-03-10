@@ -1,0 +1,32 @@
+package com.newhead.${vo.key}.modules.${vo.smoduleName}.base.protocol;
+
+import lombok.Data;
+import java.util.Date;
+import java.math.BigDecimal;
+
+/**
+ * ${vo.remark}
+ * @generated ${vo.date}
+ */
+@Data
+public abstract class Abstract${vo.bmoduleName}QueryListRequest  {
+ <%for(field in vo.queryfields) {%>
+    <% if (field.fieldType=='Date') { %>
+    /**
+     *
+     * ${field.desc}
+     */
+     private ${field.javaType} startDate${field.bname};
+
+     private ${field.javaType} endDate${field.bname};
+
+    <% } else {%>
+    /**
+     *
+     * ${field.desc}
+     */
+     private ${field.javaType} ${field.name};
+
+    <% } %>
+ <%}%>
+}

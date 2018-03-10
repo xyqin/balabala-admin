@@ -1,0 +1,491 @@
+package com.newhead.${vo.key}.modules.${vo.smoduleName}.base;
+
+<%if(vo.dataType=='Tree') {%>
+import com.newhead.rudderframework.core.services.SimpleTreeService;
+<%}%>
+import com.newhead.rudderframework.core.web.component.pagination.Page;
+
+import com.google.common.collect.Maps;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.api.ApiValidateException;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+import com.newhead.rudderframework.core.web.component.tree.ExtNode;
+import com.newhead.rudderframework.core.web.component.tree.Node;
+import com.newhead.rudderframework.core.web.component.tree.TransitionTree;
+import com.newhead.rudderframework.core.services.BaseService;
+
+import com.newhead.rudderframework.modules.LabelValueItem;
+import com.newhead.${vo.key}.modules.${vo.smoduleName}.base.repository.dao.${vo.bmoduleName}Mapper;
+import com.newhead.${vo.key}.modules.${vo.smoduleName}.base.repository.entity.${vo.bmoduleName};
+import com.newhead.${vo.key}.modules.${vo.smoduleName}.base.repository.entity.${vo.bmoduleName}Example;
+import com.newhead.${vo.key}.modules.${vo.smoduleName}.ext.protocol.*;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+<% for(ref in vo.refs ){%>
+<% if (ref.displayType=='TreeSelect') {%>
+import com.newhead.${ref.rnprj}.modules.${ref.srnref}.ext.Simple${ref.brnref}Service;
+<% } %>
+<% } %>
+
+<% for (m in vo.mappers) {%>
+import com.newhead.${m.key}.modules.${m.smoduleName}.base.repository.entity.${m.bmoduleName};
+import com.newhead.${m.key}.modules.${m.smoduleName}.base.repository.entity.${m.bmoduleName}Example;
+
+import com.newhead.${m.key}.modules.${m.smoduleName}.base.repository.dao.${m.bmoduleName}Mapper;
+<%}%>
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * RudderFramework 自动生成
+ * 菜单服务
+ * 2017年05月03日 06:31:12
+ */
+public abstract class Abstract${vo.bmoduleName}Service <%if(vo.dataType=='Tree') {%>extends SimpleTreeService<%} else {%>extends BaseService<%}%> {
+<% for(ref in vo.refs ){%>
+   <% if (ref.displayType=='TreeSelect') {%>
+    @Autowired
+    private Simple${ref.brnref}Service ${ref.rnref}Service;
+    <% } %>
+<% } %>
+    protected abstract ${vo.bmoduleName}Mapper getMapper();
+
+    protected abstract void saveOrUpdate(${vo.bmoduleName} entity);
+
+<% for (m in vo.mappers) {%>
+    @Autowired
+    protected ${m.bmoduleName}Mapper ${m.smoduleName}Mapper;
+<%}%>
+
+    /**
+     * 创建
+     * @param request
+     * @return entity
+     */
+    @Transactional
+    public ${vo.bmoduleName} create(Simple${vo.bmoduleName}CreateRequest request) {
+        ${vo.bmoduleName} entity = new ${vo.bmoduleName}();
+        BeanUtils.copyProperties(request,entity);
+        entity.setCreatedAt(new Date());
+        entity.setUpdatedAt(new Date());
+        entity.setDeleted(false);
+        entity.setCreator(getCurrentUser().getId());
+        entity.setLastModifier(getCurrentUser().getId());
+        saveOrUpdate(entity);
+        getMapper().insert(entity);
+
+        //添加关系
+        <% for(ref in vo.refs ){%>
+            add${ref.br2}(request.get${ref.brnref}s(),entity.getId());
+		<% } %>
+        return entity;
+    }
+
+    /**
+     * 修改
+     * @param request
+     * @return
+     */
+    @Transactional
+    public ${vo.bmoduleName} update(Simple${vo.bmoduleName}UpdateRequest request) {
+        ${vo.bmoduleName} entity = new ${vo.bmoduleName}();
+        BeanUtils.copyProperties(request,entity);
+        entity.setUpdatedAt(new Date());
+        entity.setDeleted(false);
+        entity.setLastModifier(getCurrentUser().getId());
+        saveOrUpdate(entity);
+        getMapper().updateByPrimaryKeySelective(entity);
+
+        <% for(ref in vo.refs ){%>
+        //删除关系
+        ${ref.br2}Example example = new ${ref.br2}Example();
+        example.createCriteria().and${ref.brmid}EqualTo(entity.getId());
+        ${ref.sr2}Mapper.deleteByExample(example);
+        //添加关系
+        add${ref.br2}(request.get${ref.brnref}s(),entity.getId());
+        <% } %>
+        return entity;
+    }
+
+    /**
+     * 查看菜单详情
+     * @param id
+     * @return
+     */
+    public Simple${vo.bmoduleName}GetDetailResponse getDetail(Long id) {
+        ${vo.bmoduleName} entity = getMapper().selectByPrimaryKey(id);
+        if (entity.getDeleted()) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源名称已经被删除或者并不存在！");
+        }
+        Simple${vo.bmoduleName}GetDetailResponse response = new Simple${vo.bmoduleName}GetDetailResponse();
+        BeanUtils.copyProperties(entity, response);
+            <% for (field in vo.fields) {%>
+            <%if(field.visible && field.fieldType=='Object') {%>
+            <%if(field.ref.smodule==vo.smoduleName) {%>
+        ${field.ref.bmodule}  ${field.name}Entity = getMapper().selectByPrimaryKey(Long.valueOf(entity.get${field.bname}()));
+            <%} else {%>
+        ${field.ref.bmodule}  ${field.name}Entity = ${field.ref.smodule}Mapper.selectByPrimaryKey(Long.valueOf(entity.get${field.bname}()));
+            <%}%>
+        if (${field.name}Entity!=null) {
+            LabelValueItem ${field.name}Object = response.get${field.bname}Object();
+            ${field.name}Object.setName("${field.name}");
+            ${field.name}Object.setLabel(${field.name}Entity.get${field.ref.bfield}());
+            ${field.name}Object.setValue(String.valueOf(entity.get${field.bname}()));
+            ${field.name}Object.setChecked(false);
+        }
+            <%} else if (field.visible && field.fieldType=='Enum') {%>
+        LabelValueItem ${field.name}Enum = response.get${field.bname}Enum();
+        ${field.name}Enum.setName("${field.name}");
+        ${field.name}Enum.setLabel(com.newhead.${vo.key}.modules.${vo.smoduleName}.${vo.bmoduleName}${field.bname}Enum.getLabel(entity.get${field.bname}()));
+        ${field.name}Enum.setValue(entity.get${field.bname}());
+        ${field.name}Enum.setChecked(true);
+            <%}%>
+            <%}%>
+        return response;
+    }
+
+    @Transactional
+    /**
+     * 删除
+     * @param id
+     */
+    public void delete(Long id) {
+        ${vo.bmoduleName} entity = new ${vo.bmoduleName}();
+        entity.setId(id);
+        entity.setDeleted(true);
+        getMapper().updateByPrimaryKeySelective(entity);
+    }
+
+    /**
+     * 查询
+     * @param request
+     * @return list
+     */
+    public List<Simple${vo.bmoduleName}QueryResponse> queryList(Simple${vo.bmoduleName}QueryListRequest request) {
+        List<Simple${vo.bmoduleName}QueryResponse> results = new ArrayList<Simple${vo.bmoduleName}QueryResponse>();
+
+        //构造查询对象
+        ${vo.bmoduleName}Example example = new ${vo.bmoduleName}Example();
+        ${vo.bmoduleName}Example.Criteria c = example.createCriteria();
+        c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        <% for(field in vo.fields ){%>
+            <% if (field.orderkey) { %>
+            ordersrc = "${field.name} desc,";
+            <% } %>
+        <%}%>
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
+<% for(field in vo.queryfields ){%>
+    <% if (field.fieldType=="String") { %>
+        if (request.get${field.bname}()!=null) {
+            c.and${field.bname}Like("%"+request.get${field.bname}()+"%");
+        }
+    <%} else if (field.fieldType=='Date') {%>
+        Date startDate${field.bname} = request.getStartDate${field.bname}();
+        Date endDate${field.bname} = request.getEndDate${field.bname}();
+        if (startDate${field.bname}!=null && endDate${field.bname} !=null) {
+            c.and${field.bname}Between(startDate${field.bname},endDate${field.bname});
+        } else if (startDate${field.bname}!=null && endDate${field.bname} ==null) {
+            c.and${field.bname}GreaterThanOrEqualTo(startDate${field.bname});
+        } else if (startDate${field.bname}==null && endDate${field.bname} !=null) {
+            c.and${field.bname}LessThanOrEqualTo(endDate${field.bname});
+        }
+    <%} else {%>
+        if (request.get${field.bname}()!=null) {
+            c.and${field.bname}EqualTo(request.get${field.bname}());
+         }
+    <%} %>
+
+<%}%>
+        convertEntityToResponse(getMapper().selectByExample(example),results);
+        return results;
+    }
+
+    /**
+     * 查询
+     * @param request
+     * @return page
+     */
+    public Page<Simple${vo.bmoduleName}QueryResponse> queryPage(Simple${vo.bmoduleName}QueryPageRequest request) {
+        //结果
+        List<Simple${vo.bmoduleName}QueryResponse> results = new ArrayList<Simple${vo.bmoduleName}QueryResponse>();
+
+        //构造查询对象
+        ${vo.bmoduleName}Example example = new ${vo.bmoduleName}Example();
+        ${vo.bmoduleName}Example.Criteria c = example.createCriteria();
+        c.andDeletedEqualTo(false);
+        String ordersrc ="";
+        <% for(field in vo.fields ){%>
+            <% if (field.orderkey) { %>
+            ordersrc = "${field.name} desc,";
+            <% } %>
+        <%}%>
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+<% for(field in vo.queryfields ){%>
+    <% if (field.fieldType=="String") { %>
+        if (request.get${field.bname}()!=null) {
+            c.and${field.bname}Like("%"+request.get${field.bname}()+"%");
+        }
+    <%} else if (field.fieldType=='Date') {%>
+        Date startDate${field.bname} = request.getStartDate${field.bname}();
+        Date endDate${field.bname} = request.getEndDate${field.bname}();
+        if (startDate${field.bname}!=null && endDate${field.bname} !=null) {
+            c.and${field.bname}Between(startDate${field.bname},endDate${field.bname});
+        } else if (startDate${field.bname}!=null && endDate${field.bname} ==null) {
+            c.and${field.bname}GreaterThanOrEqualTo(startDate${field.bname});
+        } else if (startDate${field.bname}==null && endDate${field.bname} !=null) {
+            c.and${field.bname}LessThanOrEqualTo(endDate${field.bname});
+        }
+    <%} else {%>
+        if (request.get${field.bname}()!=null) {
+            c.and${field.bname}EqualTo(request.get${field.bname}());
+         }
+    <%} %>
+
+<%}%>
+        example.setPageSize(request.getSize());
+        example.setStartRow(request.getOffset());
+
+        long count = getMapper().countByExample(example);
+
+        convertEntityToResponse(getMapper().selectByExample(example),results);
+
+        Page page = new Page();
+        page.setNumber(request.getPage());
+        page.setSize(request.getSize());
+        page.setContent(results);
+        page.setTotalElements(count);
+        return page;
+    }
+
+    /**
+     * 对象转换
+     * @param entitys
+     * @param results
+     */
+    private void convertEntityToResponse(List<${vo.bmoduleName}> entitys,List<Simple${vo.bmoduleName}QueryResponse> results) {
+<%for(field in vo.fields) {%>
+    <%if (field.visible) {%>
+    		<%if(field.fieldType=='Object') {%>
+        Map<Long,Long> ${field.name}Map = Maps.newHashMap();
+        Map<Long,LabelValueItem> ${field.name}ResultMap = Maps.newHashMap();
+
+        <%}%>
+    <% } %>
+<% } %>
+       for(${vo.bmoduleName} entity:entitys) {
+<%for(field in vo.fields) {%>
+    <%if (field.visible) {%>
+        <%if(field.fieldType=='Object') {%>
+            ${field.name}Map.put(entity.getId(),entity.get${field.bname}());
+        <%}%>
+    <% } %>
+<% } %>
+        }
+<%for(field in vo.fields) {%>
+    <%if (field.visible) {%>
+			<%if(field.fieldType=='Object') {%>
+        ${field.ref.bmodule}Example ${field.name}Example = new ${field.ref.bmodule}Example();
+
+        List<Long> ${field.name}s = new ArrayList<>();
+        ${field.name}s.addAll(${field.name}Map.values());
+        if (${field.name}s.size()>0) {
+            ${field.name}Example.createCriteria().andIdIn(${field.name}s);
+        }
+            <%if(field.ref.smodule==vo.smoduleName) {%>
+        List<${field.ref.bmodule}> ${field.name}List = getMapper().selectByExample(${field.name}Example);
+            <%} else {%>
+        List<${field.ref.bmodule}>  ${field.name}List = ${field.ref.smodule}Mapper.selectByExample(${field.name}Example);
+            <%}%>
+        for(${field.ref.bmodule} item:${field.name}List) {
+           LabelValueItem ${field.name}Item = new LabelValueItem();
+           ${field.name}Item.setName("${field.name}");
+           ${field.name}Item.setValue(String.valueOf(item.getId()));
+           ${field.name}Item.setLabel(item.get${field.ref.bfield}());
+           ${field.name}ResultMap.put(item.getId(),${field.name}Item);
+        }
+      <%}%>
+  <% } %>
+<% } %>
+        //第一组
+        for(${vo.bmoduleName} entity:entitys) {
+            Simple${vo.bmoduleName}QueryResponse response = new Simple${vo.bmoduleName}QueryResponse();
+            BeanUtils.copyProperties(entity,response);
+<%for(field in vo.fields) {%>
+    <%if (field.visible) {%>
+        <%if(field.fieldType=='Object') {%>
+            Long ${field.name} = ${field.name}Map.get(entity.getId());
+
+            LabelValueItem ${field.name}lvi = null;
+            if (${field.name}!=null && ${field.name}ResultMap.get(${field.name})!=null) {
+                ${field.name}lvi = new LabelValueItem();
+                BeanUtils.copyProperties(${field.name}ResultMap.get(${field.name}),${field.name}lvi);
+            }
+            response.set${field.bname}Object(${field.name}lvi);
+        <%} else if (field.visible && field.fieldType=='Enum') {%>
+            LabelValueItem ${field.name}Enum = response.get${field.bname}Enum();
+            ${field.name}Enum.setName("${field.name}");
+            ${field.name}Enum.setLabel(com.newhead.${vo.key}.modules.${vo.smoduleName}.${vo.bmoduleName}${field.bname}Enum.getLabel(entity.get${field.bname}()));
+            ${field.name}Enum.setValue(entity.get${field.bname}());
+            ${field.name}Enum.setChecked(true);
+          <%}%>
+  <% } %>
+<% } %>
+            results.add(response);
+        }
+    }
+
+    /**
+     *
+     * @param node
+     * @param selectMap
+     */
+    private void traversalTree(Node node,Map<Long,Boolean> selectMap) {
+        if (node.getValue()!=null && org.apache.commons.lang3.math.NumberUtils.isNumber(node.getValue())) {
+            if (selectMap.containsKey(Long.valueOf(node.getValue()))) {
+                node.setSelected(true);
+            }
+        }
+        if (node.getChildren()!=null) {
+            for(Node child:node.getChildren()) {
+                traversalTree(child,selectMap);
+            }
+        }
+    }
+
+<% for(field in vo.fields ){%>
+<% if(field.checkName) {%>
+    /**
+     * 是否存在同名数据
+     * @param ${field.name}
+     * @return
+     */
+    public ${vo.bmoduleName} existBy${field.bname}(String ${field.name}) {
+        //构造查询对象
+        ${vo.bmoduleName}Example example = new ${vo.bmoduleName}Example();
+        ${vo.bmoduleName}Example.Criteria c = example.createCriteria();
+        c.and${field.bname}EqualTo(${field.name});
+        List<${vo.bmoduleName}> list = getMapper().selectByExample(example);
+        if (list!=null && list.size()==1) {
+            return list.get(0);
+        }
+        return null;
+    }
+<% } %>
+<% } %>
+
+<%if(vo.dataType=='Tree'){%>
+    @Override
+    protected TransitionTree getTransitionTree() {
+        TransitionTree tree = new TransitionTree();
+        tree.setUrl("/${vo.smoduleName}/gettree");
+
+        Simple${vo.bmoduleName}QueryListRequest request = new Simple${vo.bmoduleName}QueryListRequest();
+        List<Simple${vo.bmoduleName}QueryResponse> sources = queryList(request);
+
+        for(Simple${vo.bmoduleName}QueryResponse response:sources) {
+            ExtNode node = new ExtNode();
+            node.setId(response.getId());
+            node.getNode().setUrl(response.getUrl());
+            node.getNode().setLeaf(true);
+            node.getNode().setLabel(response.get${vo.bdisplayField}());
+            node.getNode().setValue(String.valueOf(response.getId()));
+            node.getNode().setSelected(false);
+            if (response.getParentIdObject()!=null) {
+                node.getNode().setParentId(response.getParentIdObject().getValue());
+            } else {
+                node.getNode().setParentId("0");
+            }
+            tree.getNdoes().add(node);
+        }
+        return tree;
+    }
+<%}%>
+
+<% for(ref in vo.refs ){%>
+    /**
+     *  添加引用对象
+     */
+    private void add${ref.br2}(String[] str,Long rmid) {
+        if (str==null || str.length==0) return;
+        for(String id:str) {
+            ${ref.br2} m2n = new ${ref.br2}();
+            m2n.setVisible(true);
+            m2n.setCreatedAt(new Date());
+            m2n.setDeleted(false);
+            m2n.set${ref.brnid}(Long.valueOf(id));
+            m2n.setUpdatedAt(new Date());
+            m2n.set${ref.brmid}(rmid);
+            ${ref.sr2}Mapper.insert(m2n);
+        }
+    }
+<% } %>
+
+<% for(ref in vo.refs ){%>
+<% if(ref.displayType=='ListSelect') { %>
+    /**
+     * 获得引用对象集
+     * @param rmid
+     * @return results
+     */
+    public List<LabelValueItem> get${ref.brnref}s(Long rmid) {
+        List<LabelValueItem> results = new ArrayList<>();
+        Map<Long,${ref.br2}> maps = Maps.newHashMap();
+
+        if (rmid!=null && rmid>0) {
+            ${ref.br2}Example example = new ${ref.br2}Example();
+            example.createCriteria().and${ref.brmid}EqualTo(rmid);
+            List<${ref.br2}> m2n = ${ref.sr2}Mapper.selectByExample(example);
+            for (${ref.br2} item:m2n) {
+                maps.put(item.get${ref.brnid}(),item);
+            }
+        }
+        List<${ref.brnref}> items = ${ref.srnref}Mapper.selectByExample(new ${ref.brnref}Example());
+        for (${ref.brnref} item:items) {
+            LabelValueItem lvi = new LabelValueItem();
+            lvi.setLabel(item.get${ref.brnname}());
+            lvi.setValue(String.valueOf(item.getId()));
+            if (maps.containsKey(item.getId())) {
+                lvi.setChecked(true);
+            } else {
+                lvi.setChecked(false);
+            }
+            results.add(lvi);
+        }
+        return results;
+    }
+<% } else if(ref.displayType=='TreeSelect') { %>
+    /**
+     * 获得引用对象集
+     * @param rmid
+     * @return results
+     */
+    public Tree get${ref.brnref}s(Long rmid) {
+        Map<Long,Boolean> selectMap = Maps.newHashMap();
+        if (rmid!=null && rmid>0) {
+            ${ref.br2}Example example = new ${ref.br2}Example();
+            example.createCriteria().and${ref.brmid}EqualTo(rmid);
+            List<${ref.br2}> r2ps = ${ref.sr2}Mapper.selectByExample(example);
+            for(${ref.br2} r2p:r2ps) {
+                selectMap.put(r2p.getId(),true);
+            }
+        }
+        //遍历
+        Tree tree = ${ref.rnref}Service.getTree();
+        traversalTree(tree.getRootNode(),selectMap);
+        return tree;
+    }
+<% } %>
+<% } %>
+
+
+}

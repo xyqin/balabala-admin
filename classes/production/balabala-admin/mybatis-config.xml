@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <typeAliases>
+        <package name="com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus"/>
+        <package name="com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategory"/>
+        <package name="com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass"/>
+        <package name="com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLesson"/>
+        <package name="com.newhead.barablah.modules.barablahclassmember.base.repository.entity.BarablahClassMember"/>
+        <package name="com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourse"/>
+        <package name="com.newhead.barablah.modules.barablahcoursecategory.base.repository.entity.BarablahCourseCategory"/>
+        <package name="com.newhead.barablah.modules.barablahmember.base.repository.entity.BarablahMember"/>
+        <package name="com.newhead.barablah.modules.barablahmemberpassport.base.repository.entity.BarablahMemberPassport"/>
+        <package name="com.newhead.barablah.modules.barablahregion.base.repository.entity.BarablahRegion"/>
+        <package name="com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher"/>
+        <package name="com.newhead.barablah.modules.barablahmemberlesson.base.repository.entity.BarablahMemberLesson"/>
+        <package name="com.newhead.barablah.modules.barablahmembercomment.base.repository.entity.BarablahMemberComment"/>
+        <package name="com.newhead.barablah.modules.barablahtextbook.base.repository.entity.BarablahTextbook"/>
+        <package name="com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategory"/>
+        <package name="com.newhead.barablah.modules.barablahteacherhomework.base.repository.entity.BarablahTeacherHomework"/>
+        <package name="com.newhead.barablah.modules.barablahteacherhomeworkitem.base.repository.entity.BarablahTeacherHomeworkItem"/>
+        <package name="com.newhead.barablah.modules.barablahmemberhomework.base.repository.entity.BarablahMemberHomework"/>
+        <package name="com.newhead.barablah.modules.barablahmemberhomeworkitem.base.repository.entity.BarablahMemberHomeworkItem"/>
+        <package name="com.newhead.barablah.modules.barablahmemberpointlog.base.repository.entity.BarablahMemberPointLog"/>
+        <package name="com.newhead.barablah.modules.barablahposition.base.repository.entity.BarablahPosition"/>
+        <package name="com.newhead.barablah.modules.barablahpositioncontent.base.repository.entity.BarablahPositionContent"/>
+        <package name="com.newhead.barablah.modules.barablahmembersignup.base.repository.entity.BarablahMemberSignup"/>
+        <package name="com.newhead.rudderframework.modules.ruddermenu.base.repository.entity.RudderMenu"/>
+        <package name="com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermission"/>
+        <package name="com.newhead.rudderframework.modules.rudderrole.base.repository.entity.RudderRole"/>
+        <package name="com.newhead.rudderframework.modules.rudderrole2permission.base.repository.entity.RudderRole2permission"/>
+        <package name="com.newhead.rudderframework.modules.rudderuser.base.repository.entity.RudderUser"/>
+        <package name="com.newhead.rudderframework.modules.rudderuser2role.base.repository.entity.RudderUser2role"/>
+    </typeAliases>
+    <mappers>
+         <mapper resource="com/newhead/barablah/modules/barablahcampus/base/repository/entity/BarablahCampusMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahclasscategory/base/repository/entity/BarablahClassCategoryMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahclass/base/repository/entity/BarablahClassMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahclasslesson/base/repository/entity/BarablahClassLessonMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahclassmember/base/repository/entity/BarablahClassMemberMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahcourse/base/repository/entity/BarablahCourseMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahcoursecategory/base/repository/entity/BarablahCourseCategoryMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahmember/base/repository/entity/BarablahMemberMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahmemberpassport/base/repository/entity/BarablahMemberPassportMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahregion/base/repository/entity/BarablahRegionMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahteacher/base/repository/entity/BarablahTeacherMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahmemberlesson/base/repository/entity/BarablahMemberLessonMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahmembercomment/base/repository/entity/BarablahMemberCommentMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahtextbook/base/repository/entity/BarablahTextbookMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahtextbookcategory/base/repository/entity/BarablahTextbookCategoryMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahteacherhomework/base/repository/entity/BarablahTeacherHomeworkMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahteacherhomeworkitem/base/repository/entity/BarablahTeacherHomeworkItemMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahmemberhomework/base/repository/entity/BarablahMemberHomeworkMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahmemberhomeworkitem/base/repository/entity/BarablahMemberHomeworkItemMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahmemberpointlog/base/repository/entity/BarablahMemberPointLogMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahposition/base/repository/entity/BarablahPositionMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahpositioncontent/base/repository/entity/BarablahPositionContentMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahmembersignup/base/repository/entity/BarablahMemberSignupMapper.xml"/>
+         <mapper resource="com/newhead/rudderframework/modules/ruddermenu/base/repository/entity/RudderMenuMapper.xml"/>
+         <mapper resource="com/newhead/rudderframework/modules/rudderpermission/base/repository/entity/RudderPermissionMapper.xml"/>
+         <mapper resource="com/newhead/rudderframework/modules/rudderrole/base/repository/entity/RudderRoleMapper.xml"/>
+         <mapper resource="com/newhead/rudderframework/modules/rudderrole2permission/base/repository/entity/RudderRole2permissionMapper.xml"/>
+         <mapper resource="com/newhead/rudderframework/modules/rudderuser/base/repository/entity/RudderUserMapper.xml"/>
+         <mapper resource="com/newhead/rudderframework/modules/rudderuser2role/base/repository/entity/RudderUser2roleMapper.xml"/>
+    </mappers>
+</configuration>

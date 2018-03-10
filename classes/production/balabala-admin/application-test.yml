@@ -1,0 +1,31 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: admin-service
+  datasource:
+    url: jdbc:mysql://47.100.57.236:3306/barablah?autoReconnect=true&rewriteBatchedStatements=true
+    username: bara
+    password: WZCr(P-%2F@R@ZjS
+    driver-class-name: org.mariadb.jdbc.Driver
+  redis:
+    host: 47.100.57.236
+    port: 6379
+    password: 9wCLi7XVozMWttC6
+  session:
+    store-type: none
+  http:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+management:
+  security:
+    enabled: false
+
+mybatis:
+    config-location: classpath:mybatis-config.xml
+
+storeconfig:
+  storepath: /data/balabala/
+  storelink: http://47.100.57.236:8000
+

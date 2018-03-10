@@ -9,5 +9,6 @@ import lombok.Data;
  */
 @Data
 public class SimpleBarablahClassLessonQueryResponse extends AbstractBarablahClassLessonQueryResponse {
+    private String status;
 
 }

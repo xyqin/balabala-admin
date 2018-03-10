@@ -1,0 +1,33 @@
+package com.newhead.${vo.key}.modules.${vo.smoduleName}.ext;
+
+import com.newhead.${vo.key}.modules.${vo.smoduleName}.base.Abstract${vo.bmoduleName}Service;
+import com.newhead.${vo.key}.modules.${vo.smoduleName}.base.repository.dao.${vo.bmoduleName}Mapper;
+import com.newhead.${vo.key}.modules.${vo.smoduleName}.base.repository.entity.${vo.bmoduleName};
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Api;
+/**
+ * RudderFramework 自动生成
+ * ${vo.moduleTitle}服务
+ * ${vo.date}
+ */
+@Api(tags = "${vo.moduleTitle}", description = "相关的API")
+@Service
+public class Simple${vo.bmoduleName}Service extends Abstract${vo.bmoduleName}Service {
+
+    @Autowired
+    private ${vo.bmoduleName}Mapper mapper;
+
+    @Override
+    protected ${vo.bmoduleName}Mapper getMapper() {
+        return this.mapper;
+    }
+
+
+    @Override
+    protected void saveOrUpdate(${vo.bmoduleName} entity) {
+
+    }
+}
