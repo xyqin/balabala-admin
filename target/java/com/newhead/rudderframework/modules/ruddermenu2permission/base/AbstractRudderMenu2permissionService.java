@@ -13,7 +13,6 @@ import com.newhead.rudderframework.modules.ruddermenu.base.repository.entity.Rud
 import com.newhead.rudderframework.modules.ruddermenu2permission.base.repository.dao.RudderMenu2permissionMapper;
 import com.newhead.rudderframework.modules.ruddermenu2permission.base.repository.entity.RudderMenu2permission;
 import com.newhead.rudderframework.modules.ruddermenu2permission.base.repository.entity.RudderMenu2permissionExample;
-import com.newhead.rudderframework.modules.ruddermenu2permission.ext.protocol.*;
 import com.newhead.rudderframework.modules.rudderpermission.base.repository.dao.RudderPermissionMapper;
 import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermission;
 import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermissionExample;
@@ -96,7 +95,7 @@ public abstract class AbstractRudderMenu2permissionService extends BaseService {
         if (ruddermenuIdEntity!=null) {
             LabelValueItem ruddermenuIdObject = response.getRuddermenuIdObject();
             ruddermenuIdObject.setName("ruddermenuId");
-            ruddermenuIdObject.setLabel(ruddermenuIdEntity.getRuddermenuName());
+            ruddermenuIdObject.setLabel(ruddermenuIdEntity.getRudderMenuName());
             ruddermenuIdObject.setValue(String.valueOf(entity.getRuddermenuId()));
             ruddermenuIdObject.setChecked(false);
         }
@@ -202,7 +201,7 @@ public abstract class AbstractRudderMenu2permissionService extends BaseService {
            LabelValueItem ruddermenuIdItem = new LabelValueItem();
            ruddermenuIdItem.setName("ruddermenuId");
            ruddermenuIdItem.setValue(String.valueOf(item.getId()));
-           ruddermenuIdItem.setLabel(item.getRuddermenuName());
+           ruddermenuIdItem.setLabel(item.getRudderMenuName());
            ruddermenuIdResultMap.put(item.getId(),ruddermenuIdItem);
         }
         RudderPermissionExample rudderpermissionIdExample = new RudderPermissionExample();

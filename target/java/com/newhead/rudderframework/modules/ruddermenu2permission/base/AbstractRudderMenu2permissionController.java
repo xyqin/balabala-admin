@@ -6,11 +6,9 @@ import com.newhead.rudderframework.core.web.component.pagination.Page;
 import com.newhead.rudderframework.core.web.controller.WebController;
 import com.newhead.rudderframework.modules.ruddermenu2permission.base.repository.entity.RudderMenu2permission;
 import com.newhead.rudderframework.modules.ruddermenu2permission.ext.SimpleRudderMenu2permissionService;
-import com.newhead.rudderframework.modules.ruddermenu2permission.ext.protocol.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +16,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 菜单权限关系控制器
- * 2018年03月11日 11:35:42
+ * 2018年03月11日 09:42:04
  */
 @Api(tags = "菜单权限关系", description = "相关的API")
 public abstract class AbstractRudderMenu2permissionController extends WebController  {

@@ -6,18 +6,25 @@ import com.barablah.netease.request.ImUserUpdateRequest;
 import com.barablah.netease.response.ImUserCreateResponse;
 import com.newhead.barablah.modules.barablahteacher.BarablahTeacherStatusEnum;
 import com.newhead.barablah.modules.barablahteacher.base.AbstractBarablahTeacherController;
+import com.newhead.barablah.modules.barablahteacher.base.repository.dao.BarablahTeacherMapper;
+import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
 import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
-import com.newhead.barablah.modules.barablahteacher.ext.protocol.*;
+import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherCreateRequest;
+import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherQueryPageRequest;
+import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherQueryResponse;
+import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherUpdateBatchRequest;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +40,8 @@ public class SimpleBarablahTeacherController extends AbstractBarablahTeacherCont
     private SimpleBarablahTeacherService service;
     @Autowired
     private NeteaseClient neteaseClient;
+    @Autowired
+    private BarablahTeacherMapper mapper;
     @Override
     public SimpleBarablahTeacherService getService() {
         return service;
@@ -53,9 +62,13 @@ public class SimpleBarablahTeacherController extends AbstractBarablahTeacherCont
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "教师ID")
     @RequestMapping(value = "getlistbyarea", method = RequestMethod.GET)
     public ApiEntity<List<SimpleBarablahTeacherQueryResponse>> getList(@RequestParam(required = false) long area) {
-        SimpleBarablahTeacherQueryListRequest request = new SimpleBarablahTeacherQueryListRequest();
-        request.setArea(area);
-        List<SimpleBarablahTeacherQueryResponse> sources = getService().queryList(request);
+
+        BarablahTeacherExample example = new BarablahTeacherExample();
+        example.createCriteria().andCampusIdEqualTo(area);
+        List<BarablahTeacher> results = mapper.selectByExample(example);
+        List<SimpleBarablahTeacherQueryResponse> sources = new ArrayList<>();
+
+        convertEntityToResponse(results,sources);
         return new ApiEntity<List<SimpleBarablahTeacherQueryResponse>>(sources);
     }
 
@@ -140,5 +153,20 @@ public class SimpleBarablahTeacherController extends AbstractBarablahTeacherCont
         request.setAccid(imUserCreateResponse.getInfo().getAccid());
         request.setToken(imUserCreateResponse.getInfo().getToken());
         return null;
+    }
+
+
+    /**
+     * 对象转换
+     * @param entitys
+     * @param results
+     */
+    private void convertEntityToResponse(List<BarablahTeacher> entitys,List<SimpleBarablahTeacherQueryResponse> results) {
+        //第一组
+        for(BarablahTeacher entity:entitys) {
+            SimpleBarablahTeacherQueryResponse response = new SimpleBarablahTeacherQueryResponse();
+            BeanUtils.copyProperties(entity,response);
+            results.add(response);
+        }
     }
 }
