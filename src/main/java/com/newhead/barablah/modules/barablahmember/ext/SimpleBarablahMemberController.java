@@ -34,4 +34,10 @@ public class SimpleBarablahMemberController extends AbstractBarablahMemberContro
         getService().updatebatch(request);
         return new ApiEntity<>();
     }
+
+
+
+
+
+
 }

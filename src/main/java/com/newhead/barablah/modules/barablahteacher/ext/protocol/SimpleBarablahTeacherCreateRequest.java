@@ -9,4 +9,8 @@ import lombok.Data;
  */
 @Data
 public class SimpleBarablahTeacherCreateRequest extends AbstractBarablahTeacherCreateRequest {
+
+    private String accid;
+
+    private String token;
 }

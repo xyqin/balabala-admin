@@ -1,18 +1,26 @@
 package com.newhead.barablah.modules.barablahteacher.base;
 
+import com.barablah.netease.NeteaseClient;
+import com.barablah.netease.request.ImUserCreateRequest;
+import com.barablah.netease.response.ImUserCreateResponse;
 import com.google.common.collect.Maps;
+import com.newhead.barablah.modules.barablahteacher.BarablahTeacherStatusEnum;
 import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
 import com.newhead.barablah.modules.barablahteacher.ext.SimpleBarablahTeacherService;
 import com.newhead.barablah.modules.barablahteacher.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 import com.newhead.rudderframework.core.web.controller.WebController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +31,9 @@ import java.util.Map;
  */
 @Api(tags = "教师", description = "相关的API")
 public abstract class AbstractBarablahTeacherController extends WebController  {
+
+    @Autowired
+    private NeteaseClient neteaseClient;
 
     protected abstract SimpleBarablahTeacherService getService();
 
@@ -35,6 +46,27 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahTeacherCreateRequest request) {
+        if (request.getPassword()==null||request.getPassword().trim().equals("")) {
+            request.setPassword(DigestUtils.md5Hex(request.getPassword()));
+        }
+        // 注册网易云IM账号
+        ImUserCreateRequest imUserCreateRequest = new ImUserCreateRequest();
+        imUserCreateRequest.setAccid("teacher_" + request.getPhoneNumber());
+        ImUserCreateResponse imUserCreateResponse = null;
+        try {
+            imUserCreateResponse = neteaseClient.execute(imUserCreateRequest);
+        } catch (IOException e) {
+            return new ApiEntity(ApiStatus.STATUS_500.getCode(),"调用网易云注册IM账号失败");
+        }
+
+        if (!imUserCreateResponse.isSuccess()) {
+            return new ApiEntity(ApiStatus.STATUS_400.getCode(), "注册网易云账号失败,手机号已注册过");
+        }
+
+
+        request.setStatus(BarablahTeacherStatusEnum.启用.getValue());
+        request.setAccid(imUserCreateResponse.getInfo().getAccid());
+        request.setToken(imUserCreateResponse.getInfo().getToken());
         BarablahTeacher barablahteacher = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -51,6 +83,9 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahTeacherUpdateRequest request) {
+        if (request.getPassword()==null||request.getPassword().trim().equals("")) {
+            request.setPassword(DigestUtils.md5Hex(request.getPassword()));
+        }
         getService().update(request);
         return new ApiEntity<>();
     }

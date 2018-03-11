@@ -57,6 +57,11 @@ dependencies {
     compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.2.0'
     //连接池
     compile 'com.zaxxer:HikariCP:2.6.1'
+
+    compile 'org.apache.commons:commons-collections4:4.1'
+    compile 'org.apache.commons:commons-text:1.1'
+    compile 'commons-codec:commons-codec:1.10'
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
     //mysql驱动
 //    runtime 'mysql:mysql-connector-java:6.0.6'
     runtime 'org.mariadb.jdbc:mariadb-java-client:1.5.9'

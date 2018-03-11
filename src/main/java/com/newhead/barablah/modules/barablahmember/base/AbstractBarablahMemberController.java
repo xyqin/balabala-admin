@@ -1,26 +1,19 @@
 package com.newhead.barablah.modules.barablahmember.base;
 
 import com.google.common.collect.Maps;
-import com.newhead.rudderframework.core.web.api.ApiEntity;
-import com.newhead.rudderframework.core.web.api.ApiStatus;
-import com.newhead.rudderframework.core.web.api.ApiValidateException;
-import com.newhead.rudderframework.core.web.component.pagination.Page;
-import com.newhead.rudderframework.core.web.component.tree.Tree;
-import com.newhead.rudderframework.modules.LabelValueItem;
-
-
-import com.newhead.rudderframework.core.web.controller.WebController;
 import com.newhead.barablah.modules.barablahmember.base.repository.entity.BarablahMember;
 import com.newhead.barablah.modules.barablahmember.ext.SimpleBarablahMemberService;
 import com.newhead.barablah.modules.barablahmember.ext.protocol.*;
-
+import com.newhead.rudderframework.core.web.api.ApiEntity;
+import com.newhead.rudderframework.core.web.component.pagination.Page;
+import com.newhead.rudderframework.core.web.controller.WebController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +36,9 @@ public abstract class AbstractBarablahMemberController extends WebController  {
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahMemberCreateRequest request) {
+        if (request.getPassword()==null||request.getPassword().trim().equals("")) {
+            request.setPassword(DigestUtils.md5Hex(request.getPassword()));
+        }
         BarablahMember barablahmember = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -59,6 +55,9 @@ public abstract class AbstractBarablahMemberController extends WebController  {
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahMemberUpdateRequest request) {
+        if (request.getPassword()==null||request.getPassword().trim().equals("")) {
+            request.setPassword(DigestUtils.md5Hex(request.getPassword()));
+        }
         getService().update(request);
         return new ApiEntity<>();
     }
