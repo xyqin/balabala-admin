@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 菜单权限关系
- * @generated 2018年03月11日 09:42:04
+ * @generated 2018年03月11日 11:35:41
  */
 @Data
 public abstract class AbstractRudderMenu2permissionQueryResponse {

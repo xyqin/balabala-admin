@@ -106,7 +106,7 @@ public abstract class AbstractRudderMenu2permissionService extends BaseService {
         if (ruddermenuIdEntity!=null) {
             LabelValueItem ruddermenuIdObject = response.getRuddermenuIdObject();
             ruddermenuIdObject.setName("ruddermenuId");
-            ruddermenuIdObject.setLabel(ruddermenuIdEntity.getRudderMenuName());
+            ruddermenuIdObject.setLabel(ruddermenuIdEntity.getRuddermenuName());
             ruddermenuIdObject.setValue(String.valueOf(entity.getRuddermenuId()));
             ruddermenuIdObject.setChecked(false);
         }
@@ -212,7 +212,7 @@ public abstract class AbstractRudderMenu2permissionService extends BaseService {
            LabelValueItem ruddermenuIdItem = new LabelValueItem();
            ruddermenuIdItem.setName("ruddermenuId");
            ruddermenuIdItem.setValue(String.valueOf(item.getId()));
-           ruddermenuIdItem.setLabel(item.getRudderMenuName());
+           ruddermenuIdItem.setLabel(item.getRuddermenuName());
            ruddermenuIdResultMap.put(item.getId(),ruddermenuIdItem);
         }
         RudderPermissionExample rudderpermissionIdExample = new RudderPermissionExample();

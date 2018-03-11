@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 菜单权限关系控制器
- * 2018年03月11日 09:42:04
+ * 2018年03月11日 11:35:42
  */
 @Api(tags = "菜单权限关系", description = "相关的API")
 public abstract class AbstractRudderMenu2permissionController extends WebController  {

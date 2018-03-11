@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 菜单权限关系
- * 2018年03月11日 09:42:04
+ * 2018年03月11日 11:35:41
  */
 @Data
 public abstract class AbstractRudderMenu2permissionUpdateRequest {
