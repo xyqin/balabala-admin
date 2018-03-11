@@ -11,77 +11,77 @@ public interface RudderMenuMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_menu
-     * @generated 2018年3月11日 09:18:43
+     * @generated 2018年3月12日 05:37:03
      */
     long countByExample(RudderMenuExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_menu
-     * @generated 2018年3月11日 09:18:43
+     * @generated 2018年3月12日 05:37:03
      */
     int deleteByExample(RudderMenuExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_menu
-     * @generated 2018年3月11日 09:18:43
+     * @generated 2018年3月12日 05:37:03
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_menu
-     * @generated 2018年3月11日 09:18:43
+     * @generated 2018年3月12日 05:37:03
      */
     int insert(RudderMenu record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_menu
-     * @generated 2018年3月11日 09:18:43
+     * @generated 2018年3月12日 05:37:03
      */
     int insertSelective(RudderMenu record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_menu
-     * @generated 2018年3月11日 09:18:43
+     * @generated 2018年3月12日 05:37:03
      */
     List<RudderMenu> selectByExample(RudderMenuExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_menu
-     * @generated 2018年3月11日 09:18:43
+     * @generated 2018年3月12日 05:37:03
      */
     RudderMenu selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_menu
-     * @generated 2018年3月11日 09:18:43
+     * @generated 2018年3月12日 05:37:03
      */
     int updateByExampleSelective(@Param("record") RudderMenu record, @Param("example") RudderMenuExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_menu
-     * @generated 2018年3月11日 09:18:43
+     * @generated 2018年3月12日 05:37:03
      */
     int updateByExample(@Param("record") RudderMenu record, @Param("example") RudderMenuExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_menu
-     * @generated 2018年3月11日 09:18:43
+     * @generated 2018年3月12日 05:37:03
      */
     int updateByPrimaryKeySelective(RudderMenu record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_menu
-     * @generated 2018年3月11日 09:18:43
+     * @generated 2018年3月12日 05:37:03
      */
     int updateByPrimaryKey(RudderMenu record);
 }

@@ -27,13 +27,19 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 地区控制器
- * 2018年03月06日 04:53:32
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "地区", description = "相关的API")
 public abstract class AbstractBarablahRegionController extends WebController  {
 
     protected abstract SimpleBarablahRegionService getService();
+    protected ApiEntity fillCreateRequest(SimpleBarablahRegionCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleBarablahRegionUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建地区
      *
@@ -43,10 +49,32 @@ public abstract class AbstractBarablahRegionController extends WebController  {
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahRegionCreateRequest request) {
+        if (StringUtils.isEmpty(request.getParentId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"上级ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getRegionName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区名称不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getPath())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区路径，以分隔不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getUrl())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源地址不能为空！");
+        }
+
         BarablahRegion regionName = getService().existByRegionName(request.getRegionName());
         if (regionName != null) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区名称'"+request.getRegionName()+"'已经存在！");
         }
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         BarablahRegion barablahregion = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -63,9 +91,32 @@ public abstract class AbstractBarablahRegionController extends WebController  {
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahRegionUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getParentId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"上级ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getRegionName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区名称不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getPath())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区路径，以分隔不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getUrl())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源地址不能为空！");
+                }
+
+
         BarablahRegion RegionName = getService().existByRegionName(request.getRegionName());
         if (RegionName != null && RegionName.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区名称"+request.getRegionName()+"'已经存在！");
+        }
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
         }
         getService().update(request);
         return new ApiEntity<>();

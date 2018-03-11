@@ -1,31 +1,43 @@
 package com.newhead.barablah.modules.barablahclass.base;
 
+import com.newhead.rudderframework.core.web.component.pagination.Page;
+
 import com.google.common.collect.Maps;
-import com.newhead.barablah.modules.barablahcampus.base.repository.dao.BarablahCampusMapper;
-import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus;
-import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampusExample;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.api.ApiValidateException;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+import com.newhead.rudderframework.core.web.component.tree.ExtNode;
+import com.newhead.rudderframework.core.web.component.tree.Node;
+import com.newhead.rudderframework.core.web.component.tree.TransitionTree;
+import com.newhead.rudderframework.core.services.BaseService;
+
+import com.newhead.rudderframework.modules.LabelValueItem;
 import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClassExample;
 import com.newhead.barablah.modules.barablahclass.ext.protocol.*;
-import com.newhead.barablah.modules.barablahclasscategory.base.repository.dao.BarablahClassCategoryMapper;
-import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategory;
-import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategoryExample;
-import com.newhead.barablah.modules.barablahcourse.base.repository.dao.BarablahCourseMapper;
-import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourse;
-import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourseExample;
-import com.newhead.barablah.modules.barablahteacher.base.repository.dao.BarablahTeacherMapper;
-import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
-import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
-import com.newhead.rudderframework.core.services.BaseService;
-import com.newhead.rudderframework.core.web.api.ApiStatus;
-import com.newhead.rudderframework.core.web.api.ApiValidateException;
-import com.newhead.rudderframework.core.web.component.pagination.Page;
-import com.newhead.rudderframework.core.web.component.tree.Node;
-import com.newhead.rudderframework.modules.LabelValueItem;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+
+import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategory;
+import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategoryExample;
+
+import com.newhead.barablah.modules.barablahclasscategory.base.repository.dao.BarablahClassCategoryMapper;
+import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus;
+import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampusExample;
+
+import com.newhead.barablah.modules.barablahcampus.base.repository.dao.BarablahCampusMapper;
+import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
+import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
+
+import com.newhead.barablah.modules.barablahteacher.base.repository.dao.BarablahTeacherMapper;
+import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourse;
+import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourseExample;
+
+import com.newhead.barablah.modules.barablahcourse.base.repository.dao.BarablahCourseMapper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -110,13 +122,13 @@ public abstract class AbstractBarablahClassService extends BaseService {
             categoryIdObject.setValue(String.valueOf(entity.getCategoryId()));
             categoryIdObject.setChecked(false);
         }
-        BarablahCourse  courseIdEntity = barablahcourseMapper.selectByPrimaryKey(Long.valueOf(entity.getCourseId()));
-        if (courseIdEntity!=null) {
-            LabelValueItem courseIdObject = response.getCourseIdObject();
-            courseIdObject.setName("courseId");
-            courseIdObject.setLabel(courseIdEntity.getCourseName());
-            courseIdObject.setValue(String.valueOf(entity.getCourseId()));
-            courseIdObject.setChecked(false);
+        BarablahCampus  campusIdEntity = barablahcampusMapper.selectByPrimaryKey(Long.valueOf(entity.getCampusId()));
+        if (campusIdEntity!=null) {
+            LabelValueItem campusIdObject = response.getCampusIdObject();
+            campusIdObject.setName("campusId");
+            campusIdObject.setLabel(campusIdEntity.getCampusName());
+            campusIdObject.setValue(String.valueOf(entity.getCampusId()));
+            campusIdObject.setChecked(false);
         }
         BarablahTeacher  teacherIdEntity = barablahteacherMapper.selectByPrimaryKey(Long.valueOf(entity.getTeacherId()));
         if (teacherIdEntity!=null) {
@@ -126,13 +138,13 @@ public abstract class AbstractBarablahClassService extends BaseService {
             teacherIdObject.setValue(String.valueOf(entity.getTeacherId()));
             teacherIdObject.setChecked(false);
         }
-        BarablahCampus  campusIdEntity = barablahcampusMapper.selectByPrimaryKey(Long.valueOf(entity.getCampusId()));
-        if (campusIdEntity!=null) {
-            LabelValueItem campusIdObject = response.getCampusIdObject();
-            campusIdObject.setName("campusId");
-            campusIdObject.setLabel(campusIdEntity.getCampusName());
-            campusIdObject.setValue(String.valueOf(entity.getCampusId()));
-            campusIdObject.setChecked(false);
+        BarablahCourse  courseIdEntity = barablahcourseMapper.selectByPrimaryKey(Long.valueOf(entity.getCourseId()));
+        if (courseIdEntity!=null) {
+            LabelValueItem courseIdObject = response.getCourseIdObject();
+            courseIdObject.setName("courseId");
+            courseIdObject.setLabel(courseIdEntity.getCourseName());
+            courseIdObject.setValue(String.valueOf(entity.getCourseId()));
+            courseIdObject.setChecked(false);
         }
         BarablahTeacher  englishTeacherIdEntity = barablahteacherMapper.selectByPrimaryKey(Long.valueOf(entity.getEnglishTeacherId()));
         if (englishTeacherIdEntity!=null) {
@@ -262,23 +274,23 @@ public abstract class AbstractBarablahClassService extends BaseService {
         Map<Long,Long> categoryIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> categoryIdResultMap = Maps.newHashMap();
 
-        Map<Long,Long> courseIdMap = Maps.newHashMap();
-        Map<Long,LabelValueItem> courseIdResultMap = Maps.newHashMap();
+        Map<Long,Long> campusIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> campusIdResultMap = Maps.newHashMap();
 
         Map<Long,Long> teacherIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> teacherIdResultMap = Maps.newHashMap();
 
-        Map<Long,Long> campusIdMap = Maps.newHashMap();
-        Map<Long,LabelValueItem> campusIdResultMap = Maps.newHashMap();
+        Map<Long,Long> courseIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> courseIdResultMap = Maps.newHashMap();
 
         Map<Long,Long> englishTeacherIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> englishTeacherIdResultMap = Maps.newHashMap();
 
        for(BarablahClass entity:entitys) {
             categoryIdMap.put(entity.getId(),entity.getCategoryId());
-            courseIdMap.put(entity.getId(),entity.getCourseId());
-            teacherIdMap.put(entity.getId(),entity.getTeacherId());
             campusIdMap.put(entity.getId(),entity.getCampusId());
+            teacherIdMap.put(entity.getId(),entity.getTeacherId());
+            courseIdMap.put(entity.getId(),entity.getCourseId());
             englishTeacherIdMap.put(entity.getId(),entity.getEnglishTeacherId());
         }
         BarablahClassCategoryExample categoryIdExample = new BarablahClassCategoryExample();
@@ -296,20 +308,20 @@ public abstract class AbstractBarablahClassService extends BaseService {
            categoryIdItem.setLabel(item.getCategoryName());
            categoryIdResultMap.put(item.getId(),categoryIdItem);
         }
-        BarablahCourseExample courseIdExample = new BarablahCourseExample();
+        BarablahCampusExample campusIdExample = new BarablahCampusExample();
 
-        List<Long> courseIds = new ArrayList<>();
-        courseIds.addAll(courseIdMap.values());
-        if (courseIds.size()>0) {
-            courseIdExample.createCriteria().andIdIn(courseIds);
+        List<Long> campusIds = new ArrayList<>();
+        campusIds.addAll(campusIdMap.values());
+        if (campusIds.size()>0) {
+            campusIdExample.createCriteria().andIdIn(campusIds);
         }
-        List<BarablahCourse>  courseIdList = barablahcourseMapper.selectByExample(courseIdExample);
-        for(BarablahCourse item:courseIdList) {
-           LabelValueItem courseIdItem = new LabelValueItem();
-           courseIdItem.setName("courseId");
-           courseIdItem.setValue(String.valueOf(item.getId()));
-           courseIdItem.setLabel(item.getCourseName());
-           courseIdResultMap.put(item.getId(),courseIdItem);
+        List<BarablahCampus>  campusIdList = barablahcampusMapper.selectByExample(campusIdExample);
+        for(BarablahCampus item:campusIdList) {
+           LabelValueItem campusIdItem = new LabelValueItem();
+           campusIdItem.setName("campusId");
+           campusIdItem.setValue(String.valueOf(item.getId()));
+           campusIdItem.setLabel(item.getCampusName());
+           campusIdResultMap.put(item.getId(),campusIdItem);
         }
         BarablahTeacherExample teacherIdExample = new BarablahTeacherExample();
 
@@ -326,20 +338,20 @@ public abstract class AbstractBarablahClassService extends BaseService {
            teacherIdItem.setLabel(item.getFullName());
            teacherIdResultMap.put(item.getId(),teacherIdItem);
         }
-        BarablahCampusExample campusIdExample = new BarablahCampusExample();
+        BarablahCourseExample courseIdExample = new BarablahCourseExample();
 
-        List<Long> campusIds = new ArrayList<>();
-        campusIds.addAll(campusIdMap.values());
-        if (campusIds.size()>0) {
-            campusIdExample.createCriteria().andIdIn(campusIds);
+        List<Long> courseIds = new ArrayList<>();
+        courseIds.addAll(courseIdMap.values());
+        if (courseIds.size()>0) {
+            courseIdExample.createCriteria().andIdIn(courseIds);
         }
-        List<BarablahCampus>  campusIdList = barablahcampusMapper.selectByExample(campusIdExample);
-        for(BarablahCampus item:campusIdList) {
-           LabelValueItem campusIdItem = new LabelValueItem();
-           campusIdItem.setName("campusId");
-           campusIdItem.setValue(String.valueOf(item.getId()));
-           campusIdItem.setLabel(item.getCampusName());
-           campusIdResultMap.put(item.getId(),campusIdItem);
+        List<BarablahCourse>  courseIdList = barablahcourseMapper.selectByExample(courseIdExample);
+        for(BarablahCourse item:courseIdList) {
+           LabelValueItem courseIdItem = new LabelValueItem();
+           courseIdItem.setName("courseId");
+           courseIdItem.setValue(String.valueOf(item.getId()));
+           courseIdItem.setLabel(item.getCourseName());
+           courseIdResultMap.put(item.getId(),courseIdItem);
         }
         BarablahTeacherExample englishTeacherIdExample = new BarablahTeacherExample();
 
@@ -368,22 +380,6 @@ public abstract class AbstractBarablahClassService extends BaseService {
                 BeanUtils.copyProperties(categoryIdResultMap.get(categoryId),categoryIdlvi);
             }
             response.setCategoryIdObject(categoryIdlvi);
-            Long courseId = courseIdMap.get(entity.getId());
-
-            LabelValueItem courseIdlvi = null;
-            if (courseId!=null && courseIdResultMap.get(courseId)!=null) {
-                courseIdlvi = new LabelValueItem();
-                BeanUtils.copyProperties(courseIdResultMap.get(courseId),courseIdlvi);
-            }
-            response.setCourseIdObject(courseIdlvi);
-            Long teacherId = teacherIdMap.get(entity.getId());
-
-            LabelValueItem teacherIdlvi = null;
-            if (teacherId!=null && teacherIdResultMap.get(teacherId)!=null) {
-                teacherIdlvi = new LabelValueItem();
-                BeanUtils.copyProperties(teacherIdResultMap.get(teacherId),teacherIdlvi);
-            }
-            response.setTeacherIdObject(teacherIdlvi);
             Long campusId = campusIdMap.get(entity.getId());
 
             LabelValueItem campusIdlvi = null;
@@ -392,6 +388,22 @@ public abstract class AbstractBarablahClassService extends BaseService {
                 BeanUtils.copyProperties(campusIdResultMap.get(campusId),campusIdlvi);
             }
             response.setCampusIdObject(campusIdlvi);
+            Long teacherId = teacherIdMap.get(entity.getId());
+
+            LabelValueItem teacherIdlvi = null;
+            if (teacherId!=null && teacherIdResultMap.get(teacherId)!=null) {
+                teacherIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(teacherIdResultMap.get(teacherId),teacherIdlvi);
+            }
+            response.setTeacherIdObject(teacherIdlvi);
+            Long courseId = courseIdMap.get(entity.getId());
+
+            LabelValueItem courseIdlvi = null;
+            if (courseId!=null && courseIdResultMap.get(courseId)!=null) {
+                courseIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(courseIdResultMap.get(courseId),courseIdlvi);
+            }
+            response.setCourseIdObject(courseIdlvi);
             Long englishTeacherId = englishTeacherIdMap.get(entity.getId());
 
             LabelValueItem englishTeacherIdlvi = null;

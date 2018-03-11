@@ -13,4 +13,7 @@ public class SimpleBarablahMemberCreateRequest extends AbstractBarablahMemberCre
 
     private String password;
 
+    private String accid;
+
+    private String token;
 }

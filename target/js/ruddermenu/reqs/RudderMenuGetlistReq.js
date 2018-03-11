@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月11日 09:18:51
+ * 生成时间：2018年03月12日 05:37:12
  * 该文件系自动生成，手动修改可能会被替换
  * RudderMenuGetlistReq
  * 接口地址：ruddermenu/getlist
@@ -17,18 +17,14 @@ class RudderMenuGetlistReq extends BaseRobotReq {
             url: '/ruddermenu/getlist',
             type: 'Get',        };
         // 请求参数的描述信息，只定义先不用
-        this._paramsDescriptor = [{key: 'ruddermenuName',
-            desc: '菜单名称',
-            isRequired: true
-        }];        this.curd = 'd';
+        this._paramsDescriptor = [];        this.curd = 'd';
     }
 
     /**
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(ruddermenuName) {
-        this.addParams('ruddermenuName', ruddermenuName);
+    setSimpleParams() {
     }
 
     /**

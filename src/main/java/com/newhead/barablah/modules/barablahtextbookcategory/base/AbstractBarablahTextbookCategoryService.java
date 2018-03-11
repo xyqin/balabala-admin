@@ -244,22 +244,6 @@ public abstract class AbstractBarablahTextbookCategoryService extends SimpleTree
         }
         return null;
     }
-    /**
-     * 是否存在同名数据
-     * @param path
-     * @return
-     */
-    public BarablahTextbookCategory existByPath(String path) {
-        //构造查询对象
-        BarablahTextbookCategoryExample example = new BarablahTextbookCategoryExample();
-        BarablahTextbookCategoryExample.Criteria c = example.createCriteria();
-        c.andPathEqualTo(path);
-        List<BarablahTextbookCategory> list = getMapper().selectByExample(example);
-        if (list!=null && list.size()==1) {
-            return list.get(0);
-        }
-        return null;
-    }
 
     @Override
     protected TransitionTree getTransitionTree() {
@@ -272,7 +256,7 @@ public abstract class AbstractBarablahTextbookCategoryService extends SimpleTree
         for(SimpleBarablahTextbookCategoryQueryResponse response:sources) {
             ExtNode node = new ExtNode();
             node.setId(response.getId());
-            node.getNode().setUrl(response.getUrl());
+            node.getNode().setUrl("");
             node.getNode().setLeaf(true);
             node.getNode().setLabel(response.getCategoryName());
             node.getNode().setValue(String.valueOf(response.getId()));

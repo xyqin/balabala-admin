@@ -11,57 +11,9 @@ import java.math.BigDecimal;
 
 /**
  * 系统权限
- * 2018年03月11日 09:18:46
+ * 2018年03月12日 05:37:07
  */
 @Data
 public abstract class AbstractRudderPermissionGetDetailResponse {
-    /**
-     *
-     * 资源ID
-     */
-     private Long id;
-
-    /**
-     *
-     * 资源名称
-     */
-     private String rudderpermissionName;
-
-    /**
-     *
-     * 资源描述
-     */
-     private String rudderpermissionDesc;
-
-    /**
-     *
-     * 资源地址
-     */
-     private String url;
-
-    /**
-     *
-     * 上级资源
-     */
-    private LabelValueItem ParentIdObject = new LabelValueItem();
-
-    /**
-     *
-     * 是否显示
-     */
-     private Boolean visible;
-
-    /**
-     *
-     * 排序号
-     */
-     private Integer orderNumber;
-
-    /**
-     *
-     * leaf
-     */
-     private Byte leaf;
-
 
 }

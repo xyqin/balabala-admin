@@ -1,11 +1,8 @@
 package com.newhead.barablah.modules.barablahcampus.ext;
 
 import com.newhead.barablah.modules.barablahcampus.base.AbstractBarablahCampusController;
-
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import com.newhead.barablah.modules.barablahteacher.ext.SimpleBarablahTeacherService;
 import io.swagger.annotations.Api;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,8 +20,13 @@ public class SimpleBarablahCampusController extends AbstractBarablahCampusContro
     @Autowired
     private SimpleBarablahCampusService service;
 
+    @Autowired
+    protected SimpleBarablahTeacherService teacherService;
+
+
     @Override
     public SimpleBarablahCampusService getService() {
         return service;
     }
+
 }

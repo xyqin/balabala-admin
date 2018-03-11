@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月11日 09:18:49
+ * 生成时间：2018年03月12日 05:37:10
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -15,7 +15,7 @@ const BARABLAHCLASS_FORM_FIELDS = [{
     key: 'id',
     type: 'Id',
     label: '开班ID',
-    need: 'true',
+    need: 'false',
         placeholder: '请输入开班ID'
 },{
     key: 'categoryId',
@@ -28,14 +28,14 @@ const BARABLAHCLASS_FORM_FIELDS = [{
     dataLableKey: 'categoryName',
     dataValueKey: 'id'
 },{
-    key: 'courseId',
+    key: 'campusId',
     type: 'Object',
-    label: '课程ID',
+    label: '校区ID',
     need: 'true',
-    placeholder: '请选择课程ID',
+    placeholder: '请选择校区ID',
     displayType: 'SingleList',
-    url: '/barablahcourse/getlist',
-    dataLableKey: 'courseName',
+    url: '/barablahcampus/getlist',
+    dataLableKey: 'campusName',
     dataValueKey: 'id'
 },{
     key: 'teacherId',
@@ -48,14 +48,14 @@ const BARABLAHCLASS_FORM_FIELDS = [{
     dataLableKey: 'fullName',
     dataValueKey: 'id'
 },{
-    key: 'campusId',
+    key: 'courseId',
     type: 'Object',
-    label: '校区ID',
+    label: '课程ID',
     need: 'true',
-    placeholder: '请选择校区ID',
+    placeholder: '请选择课程ID',
     displayType: 'SingleList',
-    url: '/barablahcampus/getlist',
-    dataLableKey: 'campusName',
+    url: '/barablahcourse/getlist',
+    dataLableKey: 'courseName',
     dataValueKey: 'id'
 },{
     key: 'englishTeacherId',
@@ -95,8 +95,10 @@ const BARABLAHCLASS_FORM_FIELDS = [{
         label: '审核中'
         },{        value: 'REJECTED',
         label: '审核被拒'
+        },{        value: 'WAITTING',
+        label: '待开课'
         },{        value: 'ONGOING',
-        label: '已通过'
+        label: '已开课'
         },{        value: 'FINISHED',
         label: '已结束'
         }]}];

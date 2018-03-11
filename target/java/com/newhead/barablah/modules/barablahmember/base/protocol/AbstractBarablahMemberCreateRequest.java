@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月11日 09:18:45
+ * 2018年03月12日 05:37:05
  */
 @Data
 public abstract class AbstractBarablahMemberCreateRequest {
@@ -54,18 +54,6 @@ public abstract class AbstractBarablahMemberCreateRequest {
      * 状态
      */
     private String status;
-
-    /**
-     *
-     * 网易云ID
-     */
-    private String accid;
-
-    /**
-     *
-     * 网易云登录token
-     */
-    private String token;
 
     /**
      *

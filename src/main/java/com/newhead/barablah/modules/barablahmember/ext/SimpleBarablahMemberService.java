@@ -41,7 +41,7 @@ public class SimpleBarablahMemberService extends AbstractBarablahMemberService {
     private BarablahMemberPassportMapper passportMapper;
 
     @Override
-    protected BarablahMemberMapper getMapper() {
+    public BarablahMemberMapper getMapper() {
         return this.mapper;
     }
 

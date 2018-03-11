@@ -6,10 +6,16 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年03月10日 07:58:14
+ * @generated 2018年03月12日 05:37:06
  */
 @Data
 public abstract class AbstractBarablahTeacherQueryListRequest  {
+    /**
+     *
+     * 校区
+     */
+     private Long campusId;
+
     /**
      *
      * 账号

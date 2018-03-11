@@ -198,6 +198,22 @@ public abstract class AbstractBarablahClassCategoryService extends BaseService {
         }
     }
 
+    /**
+     * 是否存在同名数据
+     * @param categoryName
+     * @return
+     */
+    public BarablahClassCategory existByCategoryName(String categoryName) {
+        //构造查询对象
+        BarablahClassCategoryExample example = new BarablahClassCategoryExample();
+        BarablahClassCategoryExample.Criteria c = example.createCriteria();
+        c.andCategoryNameEqualTo(categoryName);
+        List<BarablahClassCategory> list = getMapper().selectByExample(example);
+        if (list!=null && list.size()==1) {
+            return list.get(0);
+        }
+        return null;
+    }
 
 
 

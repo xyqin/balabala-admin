@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年03月06日 04:53:29
+ * @generated 2018年03月12日 05:37:07
  */
 @Data
 public abstract class AbstractBarablahMemberSignupQueryResponse {
@@ -30,7 +30,7 @@ public abstract class AbstractBarablahMemberSignupQueryResponse {
 
     /**
      *
-     * 开班ID
+     * 班级
      */
     private LabelValueItem ClassIdObject = new LabelValueItem();
 

@@ -27,13 +27,19 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 位置内容表控制器
- * 2018年03月06日 04:53:33
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "位置内容表", description = "相关的API")
 public abstract class AbstractBarablahPositionContentController extends WebController  {
 
     protected abstract SimpleBarablahPositionContentService getService();
+    protected ApiEntity fillCreateRequest(SimpleBarablahPositionContentCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleBarablahPositionContentUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建位置内容表
      *
@@ -43,6 +49,28 @@ public abstract class AbstractBarablahPositionContentController extends WebContr
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahPositionContentCreateRequest request) {
+        if (StringUtils.isEmpty(request.getPositionId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"位置ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getContentName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"内容名称不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getImage())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"内容图片不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getLink())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"内容链接地址不能为空！");
+        }
+
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         BarablahPositionContent barablahpositioncontent = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -59,6 +87,29 @@ public abstract class AbstractBarablahPositionContentController extends WebContr
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahPositionContentUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getPositionId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"位置ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getContentName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"内容名称不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getImage())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"内容图片不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getLink())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"内容链接地址不能为空！");
+                }
+
+
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
         getService().update(request);
         return new ApiEntity<>();
     }

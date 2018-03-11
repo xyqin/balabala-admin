@@ -1,16 +1,21 @@
 package com.newhead.barablah.modules.barablahteacher.base.protocol;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.NotEmpty;
+import java.util.Date;
+import java.math.BigDecimal;
+
+import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月10日 07:58:14
+ * 2018年03月12日 05:37:06
  */
 @Data
 public abstract class AbstractBarablahTeacherCreateRequest {
     /**
      *
-     * 校区ID
+     * 校区
      */
     private Long campusId;
 

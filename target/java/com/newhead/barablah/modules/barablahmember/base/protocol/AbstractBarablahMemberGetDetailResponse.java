@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2018年03月11日 09:18:45
+ * 2018年03月12日 05:37:05
  */
 @Data
 public abstract class AbstractBarablahMemberGetDetailResponse {
@@ -62,18 +62,6 @@ public abstract class AbstractBarablahMemberGetDetailResponse {
      * 状态
      */
     private LabelValueItem StatusEnum = new LabelValueItem();
-
-    /**
-     *
-     * 网易云ID
-     */
-     private String accid;
-
-    /**
-     *
-     * 网易云登录token
-     */
-     private String token;
 
     /**
      *

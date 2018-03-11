@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月11日 09:18:51
+ * 生成时间：2018年03月12日 05:37:12
  * 该文件系自动生成，手动修改可能会被替换
  * RudderRoleGetpageReq
  * 接口地址：rudderrole/getpage
@@ -17,10 +17,7 @@ class RudderRoleGetpageReq extends BaseRobotReq {
             url: '/rudderrole/getpage',
             type: 'Get',        };
         // 请求参数的描述信息，只定义先不用
-        this._paramsDescriptor = [{key: 'rudderroleName',
-            desc: '资源名称',
-            isRequired: true
-        },{key: 'page',
+        this._paramsDescriptor = [{key: 'page',
             desc: '页码',
             isRequired: false
         },{key: 'size',
@@ -33,8 +30,7 @@ class RudderRoleGetpageReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(rudderroleName,page,size) {
-        this.addParams('rudderroleName', rudderroleName);
+    setSimpleParams(page,size) {
         this.addParams('page', page);
         this.addParams('size', size);
     }

@@ -1,11 +1,9 @@
 package com.newhead.barablah.modules.barablahtextbookcategory.ext;
 
 import com.newhead.barablah.modules.barablahtextbookcategory.base.AbstractBarablahTextbookCategoryController;
-
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import com.newhead.barablah.modules.barablahtextbookcategory.ext.protocol.SimpleBarablahTextbookCategoryCreateRequest;
+import com.newhead.rudderframework.core.web.api.ApiEntity;
 import io.swagger.annotations.Api;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,5 +24,12 @@ public class SimpleBarablahTextbookCategoryController extends AbstractBarablahTe
     @Override
     public SimpleBarablahTextbookCategoryService getService() {
         return service;
+    }
+
+
+    @Override
+    protected ApiEntity fillCreateRequest(SimpleBarablahTextbookCategoryCreateRequest request) {
+
+        return null;
     }
 }

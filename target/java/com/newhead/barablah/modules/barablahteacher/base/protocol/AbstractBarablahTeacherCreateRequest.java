@@ -9,13 +9,13 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月11日 09:18:45
+ * 2018年03月12日 05:37:06
  */
 @Data
 public abstract class AbstractBarablahTeacherCreateRequest {
     /**
      *
-     * 校区ID
+     * 校区
      */
     private Long campusId;
 

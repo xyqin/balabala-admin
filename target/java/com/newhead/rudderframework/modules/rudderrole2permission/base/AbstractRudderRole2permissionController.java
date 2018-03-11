@@ -27,13 +27,19 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 角色权限关系控制器
- * 2018年03月11日 09:18:48
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "角色权限关系", description = "相关的API")
 public abstract class AbstractRudderRole2permissionController extends WebController  {
 
     protected abstract SimpleRudderRole2permissionService getService();
+    protected ApiEntity fillCreateRequest(SimpleRudderRole2permissionCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleRudderRole2permissionUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建角色权限关系
      *
@@ -43,6 +49,12 @@ public abstract class AbstractRudderRole2permissionController extends WebControl
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleRudderRole2permissionCreateRequest request) {
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         RudderRole2permission rudderrole2permission = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -59,6 +71,13 @@ public abstract class AbstractRudderRole2permissionController extends WebControl
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleRudderRole2permissionUpdateRequest request) {
+
+
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
         getService().update(request);
         return new ApiEntity<>();
     }

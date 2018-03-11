@@ -3,11 +3,9 @@ package com.newhead.barablah.modules.barablahclassmember.ext;
 import com.newhead.barablah.modules.barablahclassmember.base.AbstractBarablahClassMemberService;
 import com.newhead.barablah.modules.barablahclassmember.base.repository.dao.BarablahClassMemberMapper;
 import com.newhead.barablah.modules.barablahclassmember.base.repository.entity.BarablahClassMember;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 开班会员服务
@@ -21,7 +19,7 @@ public class SimpleBarablahClassMemberService extends AbstractBarablahClassMembe
     private BarablahClassMemberMapper mapper;
 
     @Override
-    protected BarablahClassMemberMapper getMapper() {
+    public BarablahClassMemberMapper getMapper() {
         return this.mapper;
     }
 

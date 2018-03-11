@@ -1,6 +1,8 @@
 package com.newhead.barablah.modules.barablahtextbook.ext;
 
 import com.newhead.barablah.modules.barablahtextbook.base.AbstractBarablahTextbookController;
+import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.dao.BarablahTextbookCategoryMapper;
+import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategoryExample;
 import com.newhead.barablah.modules.barablahtextbookcategory.ext.protocol.SimpleBarablahTextbookCategoryNumsResponse;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import io.swagger.annotations.Api;
@@ -24,6 +26,9 @@ public class SimpleBarablahTextbookController extends AbstractBarablahTextbookCo
     @Autowired
     private SimpleBarablahTextbookService service;
 
+    @Autowired
+    private BarablahTextbookCategoryMapper mapper;
+
     @Override
     public SimpleBarablahTextbookService getService() {
         return service;
@@ -39,10 +44,13 @@ public class SimpleBarablahTextbookController extends AbstractBarablahTextbookCo
     @ApiOperation(value = "获取二级分类的数量", httpMethod = "GET", response = String.class)
     @RequestMapping(value = "getnums/{id}", method = RequestMethod.GET)
     public ApiEntity<SimpleBarablahTextbookCategoryNumsResponse> getChildNums(@ApiParam(required = true, name = "id", value = "菜单ID") @PathVariable("id") Long id) {
-        long nums = service.getChildNums(id);
 
         SimpleBarablahTextbookCategoryNumsResponse response = new SimpleBarablahTextbookCategoryNumsResponse();
-        response.setNums((int)nums);
+
+        BarablahTextbookCategoryExample e = new BarablahTextbookCategoryExample();
+        e.createCriteria().andParentIdEqualTo(id);
+        response.setNums((int)mapper.countByExample(e));
+
         return new ApiEntity<SimpleBarablahTextbookCategoryNumsResponse>(response);
     }
 }

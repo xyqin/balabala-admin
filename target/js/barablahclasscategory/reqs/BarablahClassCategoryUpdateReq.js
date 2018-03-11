@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月11日 09:18:49
+ * 生成时间：2018年03月12日 05:37:10
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahClassCategoryUpdateReq
  * 接口地址：barablahclasscategory/update
@@ -20,7 +20,7 @@ class BarablahClassCategoryUpdateReq extends BaseRobotReq {
         };
         this._paramsDescriptor = [{key: 'id',
             desc: '班级分类ID',
-            isRequired: true
+            isRequired: false
         },{key: 'categoryName',
             desc: '分类名称',
             isRequired: true

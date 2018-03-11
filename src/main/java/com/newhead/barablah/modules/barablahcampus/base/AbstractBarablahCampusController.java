@@ -27,13 +27,19 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 校区控制器
- * 2018年03月06日 04:53:32
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "校区", description = "相关的API")
 public abstract class AbstractBarablahCampusController extends WebController  {
 
     protected abstract SimpleBarablahCampusService getService();
+    protected ApiEntity fillCreateRequest(SimpleBarablahCampusCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleBarablahCampusUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建校区
      *
@@ -43,6 +49,24 @@ public abstract class AbstractBarablahCampusController extends WebController  {
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahCampusCreateRequest request) {
+        if (StringUtils.isEmpty(request.getRegionId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getCampusName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区名称不能为空！");
+        }
+
+        BarablahCampus campusName = getService().existByCampusName(request.getCampusName());
+        if (campusName != null) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区名称'"+request.getCampusName()+"'已经存在！");
+        }
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         BarablahCampus barablahcampus = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -59,6 +83,25 @@ public abstract class AbstractBarablahCampusController extends WebController  {
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahCampusUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getRegionId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getCampusName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区名称不能为空！");
+                }
+
+
+        BarablahCampus CampusName = getService().existByCampusName(request.getCampusName());
+        if (CampusName != null && CampusName.getId()!=request.getId()) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区名称"+request.getCampusName()+"'已经存在！");
+        }
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
         getService().update(request);
         return new ApiEntity<>();
     }

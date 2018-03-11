@@ -1,43 +1,45 @@
 package com.newhead.barablah.modules.barablahteacher.base;
 
-import com.barablah.netease.NeteaseClient;
-import com.barablah.netease.request.ImUserCreateRequest;
-import com.barablah.netease.request.ImUserUpdateRequest;
-import com.barablah.netease.response.ImUserCreateResponse;
 import com.google.common.collect.Maps;
-import com.newhead.barablah.modules.barablahteacher.BarablahTeacherStatusEnum;
-import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
-import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
-import com.newhead.barablah.modules.barablahteacher.ext.SimpleBarablahTeacherService;
-import com.newhead.barablah.modules.barablahteacher.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+import com.newhead.rudderframework.modules.LabelValueItem;
+
+
 import com.newhead.rudderframework.core.web.controller.WebController;
+import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
+import com.newhead.barablah.modules.barablahteacher.ext.SimpleBarablahTeacherService;
+import com.newhead.barablah.modules.barablahteacher.ext.protocol.*;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.apache.commons.codec.digest.DigestUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 教师控制器
- * 2018年03月10日 07:58:17
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "教师", description = "相关的API")
 public abstract class AbstractBarablahTeacherController extends WebController  {
-    @Autowired
-    private NeteaseClient neteaseClient;
 
     protected abstract SimpleBarablahTeacherService getService();
+    protected ApiEntity fillCreateRequest(SimpleBarablahTeacherCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleBarablahTeacherUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建教师
      *
@@ -47,41 +49,48 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahTeacherCreateRequest request) {
-        if (request.getPassword()==null||request.getPassword().trim().equals("")) {
-            request.setPassword(DigestUtils.md5Hex(request.getPassword()));
-        }
-        BarablahTeacherExample example = new BarablahTeacherExample();
-        example.createCriteria().andAccidEqualTo("teacher_" + request.getPhoneNumber());
-
-        List resultList = getService().getMapper().selectByExample(example);
-        if (resultList!=null && resultList.size()>0)  {
-            return new ApiEntity(ApiStatus.STATUS_400.getCode(),"账号已经存在");
+        if (StringUtils.isEmpty(request.getCampusId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区不能为空！");
         }
 
-        // 注册网易云IM账号
-        ImUserCreateRequest imUserCreateRequest = new ImUserCreateRequest();
-        imUserCreateRequest.setAccid("teacher_" + request.getPhoneNumber());
-        ImUserCreateResponse imUserCreateResponse = null;
-        try {
-            imUserCreateResponse = neteaseClient.execute(imUserCreateRequest);
-        } catch (IOException e) {
-            return new ApiEntity(ApiStatus.STATUS_500.getCode(),"调用网易云注册IM账号失败");
+        if (StringUtils.isEmpty(request.getUsername())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"账号不能为空！");
         }
 
-        if (!imUserCreateResponse.isSuccess()) {
-            ImUserUpdateRequest updateRequest = new ImUserUpdateRequest();
-            imUserCreateRequest.setAccid("teacher_" + request.getPhoneNumber());
-            try {
-                //return new ApiEntity(ApiStatus.STATUS_400.getCode(), "注册网易云账号失败,手机号已注册过");
-                imUserCreateResponse = neteaseClient.execute(updateRequest);
-            } catch (IOException e) {
-                return new ApiEntity(ApiStatus.STATUS_500.getCode(),"调用网易云注册IM账号失败");
-            }
+        if (StringUtils.isEmpty(request.getPassword())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"密码不能为空！");
         }
 
-        request.setStatus(BarablahTeacherStatusEnum.启用.getValue());
-        request.setAccid(imUserCreateResponse.getInfo().getAccid());
-        request.setToken(imUserCreateResponse.getInfo().getToken());
+        if (StringUtils.isEmpty(request.getAvatar())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"头像不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getFullName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"姓名不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getPhoneNumber())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"手机号不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getMajor())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"专业不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getComeFrom())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"来自哪里不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getStatus())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
+        }
+
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         BarablahTeacher barablahteacher = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -98,8 +107,48 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahTeacherUpdateRequest request) {
-        if (request.getPassword()==null||request.getPassword().trim().equals("")) {
-            request.setPassword(DigestUtils.md5Hex(request.getPassword()));
+
+                if (StringUtils.isEmpty(request.getCampusId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getUsername())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"账号不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getPassword())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"密码不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getAvatar())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"头像不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getFullName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"姓名不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getPhoneNumber())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"手机号不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getMajor())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"专业不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getComeFrom())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"来自哪里不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getStatus())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
+                }
+
+
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
         }
         getService().update(request);
         return new ApiEntity<>();
@@ -137,8 +186,11 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "教师ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahTeacherQueryResponse>> getList(@RequestParam(required = false) String username,@RequestParam(required = false) String fullName,@RequestParam(required = false) String phoneNumber,@RequestParam(required = false) String major,@RequestParam(required = false) String comeFrom,@RequestParam(required = false) String status) {
+    public ApiEntity<List<SimpleBarablahTeacherQueryResponse>> getList(@RequestParam(required = false) Long campusId,@RequestParam(required = false) String username,@RequestParam(required = false) String fullName,@RequestParam(required = false) String phoneNumber,@RequestParam(required = false) String major,@RequestParam(required = false) String comeFrom,@RequestParam(required = false) String status) {
         SimpleBarablahTeacherQueryListRequest request = new SimpleBarablahTeacherQueryListRequest();
+        if (!StringUtils.isEmpty(campusId)) {
+            request.setCampusId(campusId);
+        }
         if (!StringUtils.isEmpty(username)) {
             request.setUsername(username);
         }
@@ -170,6 +222,7 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) Long campusId,
         @RequestParam(required = false) String username,
         @RequestParam(required = false) String fullName,
         @RequestParam(required = false) String phoneNumber,
@@ -179,6 +232,9 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahTeacherQueryPageRequest request = new SimpleBarablahTeacherQueryPageRequest();
+        if (!StringUtils.isEmpty(campusId)) {
+            request.setCampusId(campusId);
+        }
         if (!StringUtils.isEmpty(username)) {
             request.setUsername(username);
         }

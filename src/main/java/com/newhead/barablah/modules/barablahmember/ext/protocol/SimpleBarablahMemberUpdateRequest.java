@@ -13,4 +13,8 @@ public class SimpleBarablahMemberUpdateRequest extends AbstractBarablahMemberUpd
 
     private String password;
 
+    private String accid;
+
+    private String token;
+
 }

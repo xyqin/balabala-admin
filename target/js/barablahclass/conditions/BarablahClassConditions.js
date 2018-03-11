@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月11日 09:18:49
+ * 生成时间：2018年03月12日 05:37:10
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -44,8 +44,10 @@ const BARABLAHCLASS_CONDITIONS = [{
                 label: '审核中'
             },{                value: 'REJECTED',
                 label: '审核被拒'
+            },{                value: 'WAITTING',
+                label: '待开课'
             },{                value: 'ONGOING',
-                label: '已通过'
+                label: '已开课'
             },{                value: 'FINISHED',
                 label: '已结束'
             }]

@@ -9,5 +9,5 @@ import lombok.Data;
  */
 @Data
 public class SimpleBarablahClassQueryListRequest extends AbstractBarablahClassQueryListRequest {
-
+    private long id;
 }

@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月11日 09:18:49
+ * 生成时间：2018年03月12日 05:37:10
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -20,9 +20,9 @@ const BARABLAHTEACHER_FORM_FIELDS = [{
 },{
     key: 'campusId',
     type: 'Object',
-    label: '校区ID',
+    label: '校区',
     need: 'true',
-    placeholder: '请选择校区ID',
+    placeholder: '请选择校区',
     displayType: 'SingleList',
     url: '/barablahcampus/getlist',
     dataLableKey: 'campusName',

@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月11日 09:18:49
+ * 生成时间：2018年03月12日 05:37:10
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahClassUpdateReq
  * 接口地址：barablahclass/update
@@ -20,31 +20,31 @@ class BarablahClassUpdateReq extends BaseRobotReq {
         };
         this._paramsDescriptor = [{key: 'id',
             desc: '开班ID',
-            isRequired: true
+            isRequired: false
         },{key: 'categoryId',
             desc: '班级分类ID',
-            isRequired: true
-        },{key: 'courseId',
-            desc: '课程ID',
-            isRequired: true
-        },{key: 'teacherId',
-            desc: '教师ID',
             isRequired: true
         },{key: 'campusId',
             desc: '校区ID',
             isRequired: true
+        },{key: 'teacherId',
+            desc: '教师ID',
+            isRequired: true
+        },{key: 'courseId',
+            desc: '课程ID',
+            isRequired: true
         },{key: 'englishTeacherId',
             desc: '外教教师ID',
-            isRequired: true
+            isRequired: false
         },{key: 'className',
             desc: '班级名称',
             isRequired: true
         },{key: 'monitor',
             desc: '班长',
-            isRequired: true
+            isRequired: false
         },{key: 'monitorPhoneNumber',
             desc: '班长电话',
-            isRequired: true
+            isRequired: false
         },{key: 'status',
             desc: '状态',
             isRequired: true
@@ -55,12 +55,12 @@ class BarablahClassUpdateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,categoryId,courseId,teacherId,campusId,englishTeacherId,className,monitor,monitorPhoneNumber,status) {
+    setSimpleParams(id,categoryId,campusId,teacherId,courseId,englishTeacherId,className,monitor,monitorPhoneNumber,status) {
         this.addParams('id', id);
         this.addParams('categoryId', categoryId);
-        this.addParams('courseId', courseId);
-        this.addParams('teacherId', teacherId);
         this.addParams('campusId', campusId);
+        this.addParams('teacherId', teacherId);
+        this.addParams('courseId', courseId);
         this.addParams('englishTeacherId', englishTeacherId);
         this.addParams('className', className);
         this.addParams('monitor', monitor);

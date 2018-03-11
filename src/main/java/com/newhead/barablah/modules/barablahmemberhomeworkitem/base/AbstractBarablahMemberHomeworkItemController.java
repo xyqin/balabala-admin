@@ -27,13 +27,19 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员作业答案表控制器
- * 2018年03月06日 04:53:33
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "会员作业答案表", description = "相关的API")
 public abstract class AbstractBarablahMemberHomeworkItemController extends WebController  {
 
     protected abstract SimpleBarablahMemberHomeworkItemService getService();
+    protected ApiEntity fillCreateRequest(SimpleBarablahMemberHomeworkItemCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleBarablahMemberHomeworkItemUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建会员作业答案表
      *
@@ -43,10 +49,32 @@ public abstract class AbstractBarablahMemberHomeworkItemController extends WebCo
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahMemberHomeworkItemCreateRequest request) {
+        if (StringUtils.isEmpty(request.getMemberId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"会员ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getHomeworkId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"会员作业ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getTextbookId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getAnswer())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"答案不能为空！");
+        }
+
         BarablahMemberHomeworkItem answer = getService().existByAnswer(request.getAnswer());
         if (answer != null) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"答案'"+request.getAnswer()+"'已经存在！");
         }
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         BarablahMemberHomeworkItem barablahmemberhomeworkitem = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -63,9 +91,32 @@ public abstract class AbstractBarablahMemberHomeworkItemController extends WebCo
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahMemberHomeworkItemUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getMemberId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"会员ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getHomeworkId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"会员作业ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getTextbookId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getAnswer())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"答案不能为空！");
+                }
+
+
         BarablahMemberHomeworkItem Answer = getService().existByAnswer(request.getAnswer());
         if (Answer != null && Answer.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"答案"+request.getAnswer()+"'已经存在！");
+        }
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
         }
         getService().update(request);
         return new ApiEntity<>();

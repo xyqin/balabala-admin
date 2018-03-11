@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月11日 09:18:44
+ * 2018年03月12日 05:37:05
  */
 @Data
 public abstract class AbstractBarablahClassUpdateRequest {
@@ -25,9 +25,9 @@ public abstract class AbstractBarablahClassUpdateRequest {
     private Long categoryId;
     /**
      *
-     * 课程ID
+     * 校区ID
      */
-    private Long courseId;
+    private Long campusId;
     /**
      *
      * 教师ID
@@ -35,9 +35,9 @@ public abstract class AbstractBarablahClassUpdateRequest {
     private Long teacherId;
     /**
      *
-     * 校区ID
+     * 课程ID
      */
-    private Long campusId;
+    private Long courseId;
     /**
      *
      * 外教教师ID
@@ -52,11 +52,13 @@ public abstract class AbstractBarablahClassUpdateRequest {
      *
      * 班长
      */
+    @NotEmpty(message="barablahClass班长不能为空")
     private String monitor;
     /**
      *
      * 班长电话
      */
+    @NotEmpty(message="barablahClass班长电话不能为空")
     private String monitorPhoneNumber;
     /**
      *

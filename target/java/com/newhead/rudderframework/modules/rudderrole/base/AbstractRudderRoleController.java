@@ -27,13 +27,19 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 角色控制器
- * 2018年03月11日 09:18:48
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "角色", description = "相关的API")
 public abstract class AbstractRudderRoleController extends WebController  {
 
     protected abstract SimpleRudderRoleService getService();
+    protected ApiEntity fillCreateRequest(SimpleRudderRoleCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleRudderRoleUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建角色
      *
@@ -43,14 +49,12 @@ public abstract class AbstractRudderRoleController extends WebController  {
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleRudderRoleCreateRequest request) {
-        RudderRole rudderroleName = getService().existByRudderroleName(request.getRudderroleName());
-        if (rudderroleName != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源名称'"+request.getRudderroleName()+"'已经存在！");
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
         }
-        RudderRole code = getService().existByCode(request.getCode());
-        if (code != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"角色代码'"+request.getCode()+"'已经存在！");
-        }
+
         RudderRole rudderrole = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -67,13 +71,12 @@ public abstract class AbstractRudderRoleController extends WebController  {
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleRudderRoleUpdateRequest request) {
-        RudderRole RudderroleName = getService().existByRudderroleName(request.getRudderroleName());
-        if (RudderroleName != null && RudderroleName.getId()!=request.getId()) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源名称"+request.getRudderroleName()+"'已经存在！");
-        }
-        RudderRole Code = getService().existByCode(request.getCode());
-        if (Code != null && Code.getId()!=request.getId()) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"角色代码"+request.getCode()+"'已经存在！");
+
+
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
         }
         getService().update(request);
         return new ApiEntity<>();
@@ -89,8 +92,6 @@ public abstract class AbstractRudderRoleController extends WebController  {
     @RequestMapping(value = "getdetail/{id}", method = RequestMethod.GET)
     public ApiEntity getDetail(@ApiParam(required = true, name = "id", value = "菜单ID") @PathVariable("id") Long id) {
         SimpleRudderRoleGetDetailResponse response =  getService().getDetail(id);
-        Tree items = getService().getRudderPermissions(id);
-        response.setRudderPermissionItems(items);
         return new ApiEntity<SimpleRudderRoleGetDetailResponse>(response);
     }
 
@@ -113,11 +114,8 @@ public abstract class AbstractRudderRoleController extends WebController  {
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "角色ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleRudderRoleQueryResponse>> getList(@RequestParam(required = false) String rudderroleName) {
+    public ApiEntity<List<SimpleRudderRoleQueryResponse>> getList() {
         SimpleRudderRoleQueryListRequest request = new SimpleRudderRoleQueryListRequest();
-        if (!StringUtils.isEmpty(rudderroleName)) {
-            request.setRudderroleName(rudderroleName);
-        }
         List<SimpleRudderRoleQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleRudderRoleQueryResponse>>(sources);
     }
@@ -131,13 +129,9 @@ public abstract class AbstractRudderRoleController extends WebController  {
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
-        @RequestParam(required = false) String rudderroleName,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleRudderRoleQueryPageRequest request = new SimpleRudderRoleQueryPageRequest();
-        if (!StringUtils.isEmpty(rudderroleName)) {
-            request.setRudderroleName(rudderroleName);
-        }
         if (page==null) {
             request.setPage(1);
         } else {

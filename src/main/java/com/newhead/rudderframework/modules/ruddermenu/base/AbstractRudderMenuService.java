@@ -134,7 +134,7 @@ public abstract class AbstractRudderMenuService extends SimpleTreeService {
         if (request.getRuddermenuName()!=null) {
             c.andRuddermenuNameLike("%"+request.getRuddermenuName()+"%");
         }
-        example.setOrderByClause("order_number desc");
+        example.setOrderByClause("order_number asc");
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }

@@ -27,13 +27,19 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员通行证控制器
- * 2018年03月11日 09:18:48
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "会员通行证", description = "相关的API")
 public abstract class AbstractBarablahMemberPassportController extends WebController  {
 
     protected abstract SimpleBarablahMemberPassportService getService();
+    protected ApiEntity fillCreateRequest(SimpleBarablahMemberPassportCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleBarablahMemberPassportUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建会员通行证
      *
@@ -43,6 +49,28 @@ public abstract class AbstractBarablahMemberPassportController extends WebContro
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahMemberPassportCreateRequest request) {
+        if (StringUtils.isEmpty(request.getMemberId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"会员ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getProvider())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"帐号来源不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getProviderId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"帐号授权ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getPassword())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"密码不能为空！");
+        }
+
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         BarablahMemberPassport barablahmemberpassport = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -59,6 +87,29 @@ public abstract class AbstractBarablahMemberPassportController extends WebContro
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahMemberPassportUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getMemberId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"会员ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getProvider())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"帐号来源不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getProviderId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"帐号授权ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getPassword())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"密码不能为空！");
+                }
+
+
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
         getService().update(request);
         return new ApiEntity<>();
     }

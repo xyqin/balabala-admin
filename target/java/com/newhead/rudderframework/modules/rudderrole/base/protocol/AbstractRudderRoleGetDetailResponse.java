@@ -11,41 +11,9 @@ import java.math.BigDecimal;
 
 /**
  * 系统角色
- * 2018年03月11日 09:18:46
+ * 2018年03月12日 05:37:07
  */
 @Data
 public abstract class AbstractRudderRoleGetDetailResponse {
-    /**
-     *
-     * 角色ID
-     */
-     private Long id;
-
-    /**
-     *
-     * 资源名称
-     */
-     private String rudderroleName;
-
-    /**
-     *
-     * 资源描述
-     */
-     private String rudderroleDesc;
-
-    /**
-     *
-     * 角色代码
-     */
-     private String code;
-
-    /**
-     *
-     * 是否显示
-     */
-     private Boolean visible;
-
-    private Tree rudderPermissionItems = new Tree();
-
 
 }

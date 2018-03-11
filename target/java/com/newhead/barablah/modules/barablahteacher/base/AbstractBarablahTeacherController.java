@@ -27,13 +27,19 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教师控制器
- * 2018年03月11日 09:18:48
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "教师", description = "相关的API")
 public abstract class AbstractBarablahTeacherController extends WebController  {
 
     protected abstract SimpleBarablahTeacherService getService();
+    protected ApiEntity fillCreateRequest(SimpleBarablahTeacherCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleBarablahTeacherUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建教师
      *
@@ -43,6 +49,48 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahTeacherCreateRequest request) {
+        if (StringUtils.isEmpty(request.getCampusId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getUsername())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"账号不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getPassword())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"密码不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getAvatar())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"头像不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getFullName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"姓名不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getPhoneNumber())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"手机号不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getMajor())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"专业不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getComeFrom())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"来自哪里不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getStatus())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
+        }
+
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         BarablahTeacher barablahteacher = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -59,6 +107,49 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahTeacherUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getCampusId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getUsername())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"账号不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getPassword())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"密码不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getAvatar())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"头像不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getFullName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"姓名不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getPhoneNumber())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"手机号不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getMajor())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"专业不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getComeFrom())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"来自哪里不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getStatus())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
+                }
+
+
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
         getService().update(request);
         return new ApiEntity<>();
     }

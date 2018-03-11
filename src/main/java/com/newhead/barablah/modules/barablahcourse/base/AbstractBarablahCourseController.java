@@ -1,39 +1,39 @@
 package com.newhead.barablah.modules.barablahcourse.base;
 
 import com.google.common.collect.Maps;
+import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourse;
+import com.newhead.barablah.modules.barablahcourse.ext.SimpleBarablahCourseService;
+import com.newhead.barablah.modules.barablahcourse.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
-import com.newhead.rudderframework.core.web.component.tree.Tree;
-import com.newhead.rudderframework.modules.LabelValueItem;
-
-
 import com.newhead.rudderframework.core.web.controller.WebController;
-import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourse;
-import com.newhead.barablah.modules.barablahcourse.ext.SimpleBarablahCourseService;
-import com.newhead.barablah.modules.barablahcourse.ext.protocol.*;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 课程控制器
- * 2018年03月06日 04:53:32
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "课程", description = "相关的API")
 public abstract class AbstractBarablahCourseController extends WebController  {
 
     protected abstract SimpleBarablahCourseService getService();
+    protected ApiEntity fillCreateRequest(SimpleBarablahCourseCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleBarablahCourseUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建课程
      *
@@ -43,6 +43,28 @@ public abstract class AbstractBarablahCourseController extends WebController  {
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahCourseCreateRequest request) {
+        if (StringUtils.isEmpty(request.getCategoryId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课程分类ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getTextbookCategoryId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材二级分类ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getCourseName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课程名称不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getCommission())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"总部抽取佣金（元/每位学生）不能为空！");
+        }
+
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         BarablahCourse barablahcourse = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -59,6 +81,29 @@ public abstract class AbstractBarablahCourseController extends WebController  {
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahCourseUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getCategoryId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课程分类ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getTextbookCategoryId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材二级分类ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getCourseName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课程名称不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getCommission())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"总部抽取佣金（元/每位学生）不能为空！");
+                }
+
+
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
         getService().update(request);
         return new ApiEntity<>();
     }

@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月11日 09:18:50
+ * 生成时间：2018年03月12日 05:37:11
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahTeacherGetpageReq
  * 接口地址：barablahteacher/getpage
@@ -18,7 +18,7 @@ class BarablahTeacherGetpageReq extends BaseRobotReq {
             type: 'Get',        };
         // 请求参数的描述信息，只定义先不用
         this._paramsDescriptor = [{key: 'campusId',
-            desc: '校区ID',
+            desc: '校区',
             isRequired: true
         },{key: 'username',
             desc: '账号',

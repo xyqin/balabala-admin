@@ -146,6 +146,10 @@ public abstract class AbstractBarablahMemberService extends BaseService {
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
 
+        if (request.getCampusId()!=null) {
+            c.andCampusIdEqualTo(request.getCampusId());
+         }
+
         if (request.getNickname()!=null) {
             c.andNicknameLike("%"+request.getNickname()+"%");
         }
@@ -179,6 +183,10 @@ public abstract class AbstractBarablahMemberService extends BaseService {
             ordersrc = "points desc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
+        if (request.getCampusId()!=null) {
+            c.andCampusIdEqualTo(request.getCampusId());
+         }
+
         if (request.getNickname()!=null) {
             c.andNicknameLike("%"+request.getNickname()+"%");
         }

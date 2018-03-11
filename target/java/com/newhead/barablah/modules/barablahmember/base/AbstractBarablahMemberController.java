@@ -27,13 +27,19 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员控制器
- * 2018年03月11日 09:18:48
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "会员", description = "相关的API")
 public abstract class AbstractBarablahMemberController extends WebController  {
 
     protected abstract SimpleBarablahMemberService getService();
+    protected ApiEntity fillCreateRequest(SimpleBarablahMemberCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleBarablahMemberUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建会员
      *
@@ -43,6 +49,40 @@ public abstract class AbstractBarablahMemberController extends WebController  {
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahMemberCreateRequest request) {
+        if (StringUtils.isEmpty(request.getCampusId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getNickname())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"昵称不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getAvatar())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"头像不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getEnglishName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"英文名不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getGender())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"性别不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getBirthday())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"生日不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getStatus())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
+        }
+
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         BarablahMember barablahmember = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -59,6 +99,41 @@ public abstract class AbstractBarablahMemberController extends WebController  {
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahMemberUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getCampusId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getNickname())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"昵称不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getAvatar())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"头像不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getEnglishName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"英文名不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getGender())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"性别不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getBirthday())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"生日不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getStatus())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
+                }
+
+
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
         getService().update(request);
         return new ApiEntity<>();
     }

@@ -1,10 +1,15 @@
 package com.newhead.barablah.modules.barablahtextbookcategory.base.protocol;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.NotEmpty;
+import java.util.Date;
+import java.math.BigDecimal;
+
+import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月06日 04:53:29
+ * 2018年03月12日 05:37:06
  */
 @Data
 public abstract class AbstractBarablahTextbookCategoryCreateRequest {
@@ -25,11 +30,5 @@ public abstract class AbstractBarablahTextbookCategoryCreateRequest {
      * 排序号
      */
     private Integer position;
-
-    /**
-     *
-     * 资源地址
-     */
-    private String url;
 
 }

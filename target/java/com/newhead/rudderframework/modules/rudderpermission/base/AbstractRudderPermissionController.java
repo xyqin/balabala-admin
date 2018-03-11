@@ -27,13 +27,19 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 权限控制器
- * 2018年03月11日 09:18:48
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "权限", description = "相关的API")
 public abstract class AbstractRudderPermissionController extends WebController  {
 
     protected abstract SimpleRudderPermissionService getService();
+    protected ApiEntity fillCreateRequest(SimpleRudderPermissionCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleRudderPermissionUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建权限
      *
@@ -43,10 +49,12 @@ public abstract class AbstractRudderPermissionController extends WebController  
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleRudderPermissionCreateRequest request) {
-        RudderPermission rudderpermissionName = getService().existByRudderpermissionName(request.getRudderpermissionName());
-        if (rudderpermissionName != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源名称'"+request.getRudderpermissionName()+"'已经存在！");
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
         }
+
         RudderPermission rudderpermission = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -63,9 +71,12 @@ public abstract class AbstractRudderPermissionController extends WebController  
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleRudderPermissionUpdateRequest request) {
-        RudderPermission RudderpermissionName = getService().existByRudderpermissionName(request.getRudderpermissionName());
-        if (RudderpermissionName != null && RudderpermissionName.getId()!=request.getId()) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源名称"+request.getRudderpermissionName()+"'已经存在！");
+
+
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
         }
         getService().update(request);
         return new ApiEntity<>();
@@ -103,11 +114,8 @@ public abstract class AbstractRudderPermissionController extends WebController  
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "权限ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleRudderPermissionQueryResponse>> getList(@RequestParam(required = false) String rudderpermissionName) {
+    public ApiEntity<List<SimpleRudderPermissionQueryResponse>> getList() {
         SimpleRudderPermissionQueryListRequest request = new SimpleRudderPermissionQueryListRequest();
-        if (!StringUtils.isEmpty(rudderpermissionName)) {
-            request.setRudderpermissionName(rudderpermissionName);
-        }
         List<SimpleRudderPermissionQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleRudderPermissionQueryResponse>>(sources);
     }
@@ -121,13 +129,9 @@ public abstract class AbstractRudderPermissionController extends WebController  
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
-        @RequestParam(required = false) String rudderpermissionName,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleRudderPermissionQueryPageRequest request = new SimpleRudderPermissionQueryPageRequest();
-        if (!StringUtils.isEmpty(rudderpermissionName)) {
-            request.setRudderpermissionName(rudderpermissionName);
-        }
         if (page==null) {
             request.setPage(1);
         } else {

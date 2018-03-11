@@ -27,13 +27,19 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 开班控制器
- * 2018年03月11日 09:18:48
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "开班", description = "相关的API")
 public abstract class AbstractBarablahClassController extends WebController  {
 
     protected abstract SimpleBarablahClassService getService();
+    protected ApiEntity fillCreateRequest(SimpleBarablahClassCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleBarablahClassUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建开班
      *
@@ -43,6 +49,36 @@ public abstract class AbstractBarablahClassController extends WebController  {
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahClassCreateRequest request) {
+        if (StringUtils.isEmpty(request.getCategoryId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"班级分类ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getCampusId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getTeacherId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教师ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getCourseId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课程ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getClassName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"班级名称不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getStatus())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
+        }
+
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         BarablahClass barablahclass = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -59,6 +95,37 @@ public abstract class AbstractBarablahClassController extends WebController  {
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahClassUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getCategoryId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"班级分类ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getCampusId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getTeacherId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教师ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getCourseId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课程ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getClassName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"班级名称不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getStatus())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
+                }
+
+
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
         getService().update(request);
         return new ApiEntity<>();
     }

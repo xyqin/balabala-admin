@@ -11,57 +11,9 @@ import java.math.BigDecimal;
 
 /**
  * 菜单
- * 2018年03月11日 09:18:46
+ * 2018年03月12日 05:37:07
  */
 @Data
 public abstract class AbstractRudderMenuGetDetailResponse {
-    /**
-     *
-     * 菜单ID
-     */
-     private Long id;
-
-    /**
-     *
-     * 菜单名称
-     */
-     private String ruddermenuName;
-
-    /**
-     *
-     * 菜单描述
-     */
-     private String ruddermenuDesc;
-
-    /**
-     *
-     * 菜单链接
-     */
-     private String url;
-
-    /**
-     *
-     * 是否显示
-     */
-     private Boolean visible;
-
-    /**
-     *
-     * 排序号
-     */
-     private Integer orderNumber;
-
-    /**
-     *
-     * 上级菜单
-     */
-    private LabelValueItem ParentIdObject = new LabelValueItem();
-
-    /**
-     *
-     * 上级资源
-     */
-    private LabelValueItem ResourceIdObject = new LabelValueItem();
-
 
 }

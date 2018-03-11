@@ -27,13 +27,19 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教材分类表控制器
- * 2018年03月11日 09:18:48
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "教材分类表", description = "相关的API")
 public abstract class AbstractBarablahTextbookCategoryController extends WebController  {
 
     protected abstract SimpleBarablahTextbookCategoryService getService();
+    protected ApiEntity fillCreateRequest(SimpleBarablahTextbookCategoryCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleBarablahTextbookCategoryUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建教材分类表
      *
@@ -43,14 +49,24 @@ public abstract class AbstractBarablahTextbookCategoryController extends WebCont
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahTextbookCategoryCreateRequest request) {
+        if (StringUtils.isEmpty(request.getParentId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"父ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getCategoryName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称不能为空！");
+        }
+
         BarablahTextbookCategory categoryName = getService().existByCategoryName(request.getCategoryName());
         if (categoryName != null) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称'"+request.getCategoryName()+"'已经存在！");
         }
-        BarablahTextbookCategory path = getService().existByPath(request.getPath());
-        if (path != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类路径'"+request.getPath()+"'已经存在！");
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
         }
+
         BarablahTextbookCategory barablahtextbookcategory = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -67,13 +83,24 @@ public abstract class AbstractBarablahTextbookCategoryController extends WebCont
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahTextbookCategoryUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getParentId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"父ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getCategoryName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称不能为空！");
+                }
+
+
         BarablahTextbookCategory CategoryName = getService().existByCategoryName(request.getCategoryName());
         if (CategoryName != null && CategoryName.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称"+request.getCategoryName()+"'已经存在！");
         }
-        BarablahTextbookCategory Path = getService().existByPath(request.getPath());
-        if (Path != null && Path.getId()!=request.getId()) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类路径"+request.getPath()+"'已经存在！");
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
         }
         getService().update(request);
         return new ApiEntity<>();

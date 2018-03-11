@@ -27,13 +27,19 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教师发布作业表控制器
- * 2018年03月11日 09:18:48
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "教师发布作业表", description = "相关的API")
 public abstract class AbstractBarablahTeacherHomeworkController extends WebController  {
 
     protected abstract SimpleBarablahTeacherHomeworkService getService();
+    protected ApiEntity fillCreateRequest(SimpleBarablahTeacherHomeworkCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleBarablahTeacherHomeworkUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建教师发布作业表
      *
@@ -43,10 +49,24 @@ public abstract class AbstractBarablahTeacherHomeworkController extends WebContr
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahTeacherHomeworkCreateRequest request) {
+        if (StringUtils.isEmpty(request.getTeacherId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教师ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getHomeworkName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"作业名称不能为空！");
+        }
+
         BarablahTeacherHomework homeworkName = getService().existByHomeworkName(request.getHomeworkName());
         if (homeworkName != null) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"作业名称'"+request.getHomeworkName()+"'已经存在！");
         }
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         BarablahTeacherHomework barablahteacherhomework = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -63,9 +83,24 @@ public abstract class AbstractBarablahTeacherHomeworkController extends WebContr
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahTeacherHomeworkUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getTeacherId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教师ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getHomeworkName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"作业名称不能为空！");
+                }
+
+
         BarablahTeacherHomework HomeworkName = getService().existByHomeworkName(request.getHomeworkName());
         if (HomeworkName != null && HomeworkName.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"作业名称"+request.getHomeworkName()+"'已经存在！");
+        }
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
         }
         getService().update(request);
         return new ApiEntity<>();

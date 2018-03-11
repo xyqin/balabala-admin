@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年03月06日 04:53:29
+ * @generated 2018年03月12日 05:37:06
  */
 @Data
 public abstract class AbstractBarablahTextbookCategoryQueryResponse {
@@ -39,11 +39,5 @@ public abstract class AbstractBarablahTextbookCategoryQueryResponse {
      * 排序号
      */
      private Integer position;
-
-    /**
-     *
-     * 资源地址
-     */
-     private String url;
 
 }

@@ -27,13 +27,19 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 广告位置表控制器
- * 2018年03月06日 04:53:33
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "广告位置表", description = "相关的API")
 public abstract class AbstractBarablahPositionController extends WebController  {
 
     protected abstract SimpleBarablahPositionService getService();
+    protected ApiEntity fillCreateRequest(SimpleBarablahPositionCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleBarablahPositionUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建广告位置表
      *
@@ -43,6 +49,16 @@ public abstract class AbstractBarablahPositionController extends WebController  
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahPositionCreateRequest request) {
+        if (StringUtils.isEmpty(request.getPositionName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"位置名称不能为空！");
+        }
+
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         BarablahPosition barablahposition = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -59,6 +75,17 @@ public abstract class AbstractBarablahPositionController extends WebController  
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahPositionUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getPositionName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"位置名称不能为空！");
+                }
+
+
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
         getService().update(request);
         return new ApiEntity<>();
     }

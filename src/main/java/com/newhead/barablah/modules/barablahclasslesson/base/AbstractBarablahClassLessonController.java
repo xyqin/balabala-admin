@@ -1,39 +1,39 @@
 package com.newhead.barablah.modules.barablahclasslesson.base;
 
 import com.google.common.collect.Maps;
+import com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLesson;
+import com.newhead.barablah.modules.barablahclasslesson.ext.SimpleBarablahClassLessonService;
+import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
-import com.newhead.rudderframework.core.web.component.tree.Tree;
-import com.newhead.rudderframework.modules.LabelValueItem;
-
-
 import com.newhead.rudderframework.core.web.controller.WebController;
-import com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLesson;
-import com.newhead.barablah.modules.barablahclasslesson.ext.SimpleBarablahClassLessonService;
-import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.*;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 开班课时控制器
- * 2018年03月06日 04:53:32
+ * 2018年03月12日 05:37:09
  */
 @Api(tags = "开班课时", description = "相关的API")
 public abstract class AbstractBarablahClassLessonController extends WebController  {
 
     protected abstract SimpleBarablahClassLessonService getService();
+    protected ApiEntity fillCreateRequest(SimpleBarablahClassLessonCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleBarablahClassLessonUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建开班课时
      *
@@ -43,6 +43,39 @@ public abstract class AbstractBarablahClassLessonController extends WebControlle
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahClassLessonCreateRequest request) {
+        if (StringUtils.isEmpty(request.getClassId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"开班ID不能为空！");
+        }
+
+
+        if (StringUtils.isEmpty(request.getCategoryId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材三级分类ID不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getLessonName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课时名称不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getThumbnail())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课时视频缩略图不能为空！");
+        }
+
+
+
+        if (StringUtils.isEmpty(request.getPrepared())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否备课不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getType())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"类型不能为空！");
+        }
+
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         BarablahClassLesson barablahclasslesson = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -59,6 +92,39 @@ public abstract class AbstractBarablahClassLessonController extends WebControlle
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahClassLessonUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getClassId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"开班ID不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getCategoryId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材三级分类ID不能为空！");
+                }
+
+
+
+                if (StringUtils.isEmpty(request.getLessonName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课时名称不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getThumbnail())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课时视频缩略图不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getPrepared())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否备课不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getType())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"类型不能为空！");
+                }
+
+
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
         getService().update(request);
         return new ApiEntity<>();
     }

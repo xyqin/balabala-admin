@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月11日 09:18:49
+ * 生成时间：2018年03月12日 05:37:10
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -14,8 +14,8 @@
 const BARABLAHTEACHER_CONDITIONS = [{
     key: 'campusId',
     type: 'Object',
-    label: '校区ID',
-    placeholder: '请选择校区ID',
+    label: '校区',
+    placeholder: '请选择校区',
     displayType: 'SingleList',
     url: '/barablahcampus/getlist',
     dataLableKey: 'campusName',

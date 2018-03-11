@@ -33,7 +33,13 @@ import java.util.Map;
 public abstract class Abstract${vo.bmoduleName}Controller extends WebController  {
 
     protected abstract Simple${vo.bmoduleName}Service getService();
+    protected ApiEntity fillCreateRequest(Simple${vo.bmoduleName}CreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(Simple${vo.bmoduleName}UpdateRequest request) {
+        return null;
+    }
     /**
      * 创建${vo.moduleTitle}
      *
@@ -43,14 +49,30 @@ public abstract class Abstract${vo.bmoduleName}Controller extends WebController 
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody Simple${vo.bmoduleName}CreateRequest request) {
-<% for(field in vo.fields ){%>
-    <% if(field.checkName) {%>
+    <% for(field in vo.fields ){%>
+        <% if(field.fieldType!='Id') {%>
+            <% if(field.valid) {%>
+        if (StringUtils.isEmpty(request.get${field.bname}())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"${field.desc}不能为空！");
+        }
+
+            <% } %>
+       <% } %>
+    <% } %>
+    <% for(field in vo.fields ){%>
+        <% if(field.checkName) {%>
         ${vo.bmoduleName} ${field.name} = getService().existBy${field.bname}(request.get${field.bname}());
         if (${field.name} != null) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"${field.desc}'"+request.get${field.bname}()+"'已经存在！");
         }
+        <% } %>
     <% } %>
-<% } %>
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         ${vo.bmoduleName} ${vo.smoduleName} = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -67,6 +89,18 @@ public abstract class Abstract${vo.bmoduleName}Controller extends WebController 
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody Simple${vo.bmoduleName}UpdateRequest request) {
+
+        <% for(field in vo.fields ){%>
+            <% if(field.fieldType!='Id') {%>
+                <% if(field.valid) {%>
+                if (StringUtils.isEmpty(request.get${field.bname}())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"${field.desc}不能为空！");
+                }
+
+                <% } %>
+           <% } %>
+        <% } %>
+
 <% for(field in vo.fields ){%>
     <% if(field.checkName) {%>
         ${vo.bmoduleName} ${field.bname} = getService().existBy${field.bname}(request.get${field.bname}());
@@ -75,6 +109,11 @@ public abstract class Abstract${vo.bmoduleName}Controller extends WebController 
         }
     <% } %>
 <% } %>
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
         getService().update(request);
         return new ApiEntity<>();
     }

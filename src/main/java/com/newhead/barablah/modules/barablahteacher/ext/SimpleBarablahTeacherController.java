@@ -1,12 +1,15 @@
 package com.newhead.barablah.modules.barablahteacher.ext;
 
+import com.barablah.netease.NeteaseClient;
+import com.barablah.netease.request.ImUserCreateRequest;
+import com.barablah.netease.request.ImUserUpdateRequest;
+import com.barablah.netease.response.ImUserCreateResponse;
 import com.newhead.barablah.modules.barablahteacher.BarablahTeacherStatusEnum;
 import com.newhead.barablah.modules.barablahteacher.base.AbstractBarablahTeacherController;
-import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherQueryListRequest;
-import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherQueryPageRequest;
-import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherQueryResponse;
-import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherUpdateBatchRequest;
+import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
+import com.newhead.barablah.modules.barablahteacher.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -27,7 +31,8 @@ import java.util.List;
 public class SimpleBarablahTeacherController extends AbstractBarablahTeacherController {
     @Autowired
     private SimpleBarablahTeacherService service;
-
+    @Autowired
+    private NeteaseClient neteaseClient;
     @Override
     public SimpleBarablahTeacherService getService() {
         return service;
@@ -99,5 +104,41 @@ public class SimpleBarablahTeacherController extends AbstractBarablahTeacherCont
         }
         Page<SimpleBarablahTeacherQueryResponse> sources = getService().queryPage(request);
         return new ApiEntity<>(sources);
+    }
+
+    protected ApiEntity fillCreateRequest(SimpleBarablahTeacherCreateRequest request) {
+        BarablahTeacherExample example = new BarablahTeacherExample();
+        example.createCriteria().andAccidEqualTo("teacher_" + request.getPhoneNumber());
+
+        List resultList = getService().getMapper().selectByExample(example);
+        if (resultList!=null && resultList.size()>0)  {
+            return new ApiEntity(ApiStatus.STATUS_400.getCode(),"账号已经存在");
+        }
+
+        // 注册网易云IM账号
+        ImUserCreateRequest imUserCreateRequest = new ImUserCreateRequest();
+        imUserCreateRequest.setAccid("teacher_" + request.getPhoneNumber());
+        ImUserCreateResponse imUserCreateResponse = null;
+        try {
+            imUserCreateResponse = neteaseClient.execute(imUserCreateRequest);
+        } catch (IOException e) {
+            return new ApiEntity(ApiStatus.STATUS_500.getCode(),"调用网易云注册IM账号失败");
+        }
+
+        if (!imUserCreateResponse.isSuccess()) {
+            ImUserUpdateRequest updateRequest = new ImUserUpdateRequest();
+            updateRequest.setAccid("teacher_" + request.getPhoneNumber());
+            try {
+                //return new ApiEntity(ApiStatus.STATUS_400.getCode(), "注册网易云账号失败,手机号已注册过");
+                imUserCreateResponse = neteaseClient.execute(updateRequest);
+            } catch (IOException e) {
+                return new ApiEntity(ApiStatus.STATUS_500.getCode(),"调用网易云注册IM账号失败");
+            }
+        }
+
+        request.setStatus(BarablahTeacherStatusEnum.启用.getValue());
+        request.setAccid(imUserCreateResponse.getInfo().getAccid());
+        request.setToken(imUserCreateResponse.getInfo().getToken());
+        return null;
     }
 }

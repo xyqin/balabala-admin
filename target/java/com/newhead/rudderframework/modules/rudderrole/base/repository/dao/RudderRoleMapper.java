@@ -11,77 +11,77 @@ public interface RudderRoleMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role
-     * @generated 2018年3月11日 09:18:42
+     * @generated 2018年3月12日 05:37:03
      */
     long countByExample(RudderRoleExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role
-     * @generated 2018年3月11日 09:18:42
+     * @generated 2018年3月12日 05:37:03
      */
     int deleteByExample(RudderRoleExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role
-     * @generated 2018年3月11日 09:18:42
+     * @generated 2018年3月12日 05:37:03
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role
-     * @generated 2018年3月11日 09:18:42
+     * @generated 2018年3月12日 05:37:03
      */
     int insert(RudderRole record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role
-     * @generated 2018年3月11日 09:18:42
+     * @generated 2018年3月12日 05:37:03
      */
     int insertSelective(RudderRole record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role
-     * @generated 2018年3月11日 09:18:42
+     * @generated 2018年3月12日 05:37:03
      */
     List<RudderRole> selectByExample(RudderRoleExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role
-     * @generated 2018年3月11日 09:18:42
+     * @generated 2018年3月12日 05:37:03
      */
     RudderRole selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role
-     * @generated 2018年3月11日 09:18:42
+     * @generated 2018年3月12日 05:37:03
      */
     int updateByExampleSelective(@Param("record") RudderRole record, @Param("example") RudderRoleExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role
-     * @generated 2018年3月11日 09:18:42
+     * @generated 2018年3月12日 05:37:03
      */
     int updateByExample(@Param("record") RudderRole record, @Param("example") RudderRoleExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role
-     * @generated 2018年3月11日 09:18:42
+     * @generated 2018年3月12日 05:37:03
      */
     int updateByPrimaryKeySelective(RudderRole record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role
-     * @generated 2018年3月11日 09:18:42
+     * @generated 2018年3月12日 05:37:03
      */
     int updateByPrimaryKey(RudderRole record);
 }

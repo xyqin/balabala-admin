@@ -239,6 +239,22 @@ public abstract class AbstractBarablahCampusService extends BaseService {
         }
     }
 
+    /**
+     * 是否存在同名数据
+     * @param campusName
+     * @return
+     */
+    public BarablahCampus existByCampusName(String campusName) {
+        //构造查询对象
+        BarablahCampusExample example = new BarablahCampusExample();
+        BarablahCampusExample.Criteria c = example.createCriteria();
+        c.andCampusNameEqualTo(campusName);
+        List<BarablahCampus> list = getMapper().selectByExample(example);
+        if (list!=null && list.size()==1) {
+            return list.get(0);
+        }
+        return null;
+    }
 
 
 

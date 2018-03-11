@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月11日 09:18:48
+ * 生成时间：2018年03月12日 05:37:09
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -23,7 +23,7 @@ key: 'memberIdObject',
 type:'Object',
 checked: true
 },{
-title: '开班ID',
+title: '班级',
 dataIndex: 'classIdObject',
 key: 'classIdObject',
 type:'Object',
