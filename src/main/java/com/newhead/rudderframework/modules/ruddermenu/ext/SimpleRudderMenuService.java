@@ -11,6 +11,9 @@ import com.newhead.rudderframework.modules.ruddermenu.base.repository.entity.Rud
 import com.newhead.rudderframework.modules.ruddermenu.base.repository.entity.RudderMenuExample;
 import com.newhead.rudderframework.modules.ruddermenu.ext.protocol.SimpleRudderMenuQueryListRequest;
 import com.newhead.rudderframework.modules.ruddermenu.ext.protocol.SimpleRudderMenuQueryResponse;
+import com.newhead.rudderframework.modules.ruddermenu2permission.base.repository.dao.RudderMenu2permissionMapper;
+import com.newhead.rudderframework.modules.ruddermenu2permission.base.repository.entity.RudderMenu2permission;
+import com.newhead.rudderframework.modules.ruddermenu2permission.base.repository.entity.RudderMenu2permissionExample;
 import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermission;
 import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermissionExample;
 import com.newhead.rudderframework.modules.rudderrole.base.repository.dao.RudderRoleMapper;
@@ -51,6 +54,9 @@ public class SimpleRudderMenuService extends AbstractRudderMenuService {
 
     @Autowired
     private RudderRole2permissionMapper role2permissionMapper;
+
+    @Autowired
+    private RudderMenu2permissionMapper menu2permissionMapper;
 
     @Override
     protected RudderMenuMapper getMapper() {
@@ -124,6 +130,7 @@ public class SimpleRudderMenuService extends AbstractRudderMenuService {
     protected List<SimpleRudderMenuQueryResponse> queryListByRoles(List<RudderRole> roles) {
         List<SimpleRudderMenuQueryResponse> results = new ArrayList<>();
 
+        // 根据角色获取角色权限关系
         RudderRole2permissionExample role2permissionExample = new RudderRole2permissionExample();
         role2permissionExample.createCriteria()
                 .andRudderroleIdIn(Lists.transform(roles, RudderRole::getId))
@@ -131,12 +138,24 @@ public class SimpleRudderMenuService extends AbstractRudderMenuService {
                 .andDeletedEqualTo(Boolean.FALSE);
         List<RudderRole2permission> role2permissions = role2permissionMapper.selectByExample(role2permissionExample);
 
-        //构造查询对象
-        RudderMenuExample example = new RudderMenuExample();
-        example.createCriteria()
-                .andIdIn(Lists.transform(role2permissions, input -> input.getRudderpermissionId()))
+        // 根据角色权限关系获取菜单权限列表
+        RudderMenu2permissionExample menu2permissionExample = new RudderMenu2permissionExample();
+        menu2permissionExample.createCriteria()
+                .andRudderpermissionIdIn(Lists.transform(role2permissions, RudderRole2permission::getRudderpermissionId))
+                .andVisibleEqualTo(Boolean.TRUE)
                 .andDeletedEqualTo(Boolean.FALSE);
-        convertEntityToResponse(getMapper().selectByExample(example), results);
+        List<RudderMenu2permission> menu2permissions = menu2permissionMapper.selectByExample(menu2permissionExample);
+
+        // 根据菜单权限关系获取菜单列表
+        RudderMenuExample menuExample = new RudderMenuExample();
+        menuExample.createCriteria()
+                .andIdIn(Lists.transform(menu2permissions, RudderMenu2permission::getRuddermenuId))
+                .andVisibleEqualTo(Boolean.TRUE)
+                .andDeletedEqualTo(Boolean.FALSE);
+        List<RudderMenu> menus = getMapper().selectByExample(menuExample);
+
+        //构造查询对象
+        convertEntityToResponse(menus, results);
         return results;
     }
 
