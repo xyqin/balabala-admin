@@ -1,4 +1,5 @@
 {"moduleTitle":"菜单","dataType":"Tree","moduleName":"rudderMenu","displayField":"ruddermenuName","remark":"菜单","version":"1.0","key":"rudderframework"}
+{"moduleTitle":"菜单权限关系","dataType":"Table","moduleName":"rudderMenu2permission","displayField":"","remark":"菜单权限关系","version":"1.0","key":"rudderframework"}
 {"moduleTitle":"权限","dataType":"Tree","moduleName":"rudderPermission","displayField":"rudderpermissionName","remark":"系统权限","version":"1.0","key":"rudderframework"}
 {"moduleTitle":"角色","dataType":"Table","moduleName":"rudderRole","displayField":"rudderroleName","remark":"系统角色","version":"1.0","key":"rudderframework"}
 {"moduleTitle":"角色权限关系","dataType":"Table","moduleName":"rudderRole2permission","displayField":"","remark":"角色权限关系","version":"1.0","key":"rudderframework"}
