@@ -15,6 +15,7 @@ const ${vo.name}_FORM_FIELDS = [<% for(field in vo.fields ){%>{
     key: '${field.name}',
     type: '${field.fieldType}',
     label: '${field.desc}',
+    need: '${field.valid}',
     <% if (field.fieldType=='String') {%>
     placeholder: '请输入${field.desc}'
     <%} else if (field.fieldType=='Enum') {%>

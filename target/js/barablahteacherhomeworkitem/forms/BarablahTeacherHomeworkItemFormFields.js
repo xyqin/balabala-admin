@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月10日 07:58:18
+ * 生成时间：2018年03月11日 09:18:49
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -15,11 +15,13 @@ const BARABLAHTEACHERHOMEWORKITEM_FORM_FIELDS = [{
     key: 'id',
     type: 'Id',
     label: '主键',
+    need: 'false',
         placeholder: '请输入主键'
 },{
     key: 'teacherId',
     type: 'Object',
     label: '教师ID',
+    need: 'true',
     placeholder: '请选择教师ID',
     displayType: 'SingleList',
     url: '/barablahteacher/getlist',
@@ -29,6 +31,7 @@ const BARABLAHTEACHERHOMEWORKITEM_FORM_FIELDS = [{
     key: 'homeworkId',
     type: 'Object',
     label: '教师发布作业ID',
+    need: 'true',
     placeholder: '请选择教师发布作业ID',
     displayType: 'SingleList',
     url: '/barablahteacherhomework/getlist',
@@ -38,6 +41,7 @@ const BARABLAHTEACHERHOMEWORKITEM_FORM_FIELDS = [{
     key: 'textbookId',
     type: 'Object',
     label: '题目ID',
+    need: 'true',
     placeholder: '请选择题目ID',
     displayType: 'SingleList',
     url: '/barablahtextbook/getlist',

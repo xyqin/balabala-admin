@@ -45,7 +45,6 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
     public BarablahTeacher create(SimpleBarablahTeacherCreateRequest request) {
         BarablahTeacher entity = new BarablahTeacher();
         BeanUtils.copyProperties(request,entity);
-
         entity.setCreatedAt(new Date());
         entity.setUpdatedAt(new Date());
         entity.setDeleted(false);

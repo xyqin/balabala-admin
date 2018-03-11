@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月10日 07:58:18
+ * 生成时间：2018年03月11日 09:18:49
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -15,11 +15,13 @@ const BARABLAHCLASSLESSON_FORM_FIELDS = [{
     key: 'id',
     type: 'Id',
     label: '课时ID',
+    need: 'true',
         placeholder: '请输入课时ID'
 },{
     key: 'classId',
     type: 'Object',
     label: '开班ID',
+    need: 'true',
     placeholder: '请选择开班ID',
     displayType: 'SingleList',
     url: '/barablahclass/getlist',
@@ -29,6 +31,7 @@ const BARABLAHCLASSLESSON_FORM_FIELDS = [{
     key: 'categoryId',
     type: 'Object',
     label: '教材三级分类ID',
+    need: 'true',
     placeholder: '请选择教材三级分类ID',
     displayType: 'SingleTree',
     url: '/barablahtextbookcategory/gettree',
@@ -38,30 +41,36 @@ const BARABLAHCLASSLESSON_FORM_FIELDS = [{
     key: 'lessonName',
     type: 'String',
     label: '课时名称',
+    need: 'true',
     placeholder: '请输入课时名称'
 },{
     key: 'startAt',
     type: 'Date',
     label: '开始时间',
+    need: 'false',
 placeholder: '请输入开始时间'
 },{
     key: 'endAt',
     type: 'Date',
     label: '结束时间',
+    need: 'false',
 placeholder: '请输入结束时间'
 },{
     key: 'thumbnail',
     type: 'Image',
     label: '课时视频缩略图',
+    need: 'true',
 },{
     key: 'prepared',
     type: 'Bool',
     label: '是否备课',
+    need: 'true',
 placeholder: '请输入是否备课'
 },{
     key: 'type',
     type: 'Enum',
     label: '类型',
+    need: 'true',
         placeholder: '请选择类型',
         data: [{        value: 'ONLINE',
         label: '线上'

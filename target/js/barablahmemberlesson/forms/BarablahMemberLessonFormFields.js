@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月10日 07:58:18
+ * 生成时间：2018年03月11日 09:18:49
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -15,11 +15,13 @@ const BARABLAHMEMBERLESSON_FORM_FIELDS = [{
     key: 'id',
     type: 'Id',
     label: '会员ID',
+    need: 'true',
         placeholder: '请输入会员ID'
 },{
     key: 'memberId',
     type: 'Object',
     label: '会员ID',
+    need: 'true',
     placeholder: '请选择会员ID',
     displayType: 'SingleList',
     url: '/barablahmember/getlist',
@@ -29,6 +31,7 @@ const BARABLAHMEMBERLESSON_FORM_FIELDS = [{
     key: 'classId',
     type: 'Object',
     label: '开班ID',
+    need: 'true',
     placeholder: '请选择开班ID',
     displayType: 'SingleList',
     url: '/barablahclass/getlist',
@@ -38,6 +41,7 @@ const BARABLAHMEMBERLESSON_FORM_FIELDS = [{
     key: 'lessonId',
     type: 'Object',
     label: '课时ID',
+    need: 'true',
     placeholder: '请选择课时ID',
     displayType: 'SingleList',
     url: '/barablahclasslesson/getlist',
@@ -47,6 +51,7 @@ const BARABLAHMEMBERLESSON_FORM_FIELDS = [{
     key: 'type',
     type: 'Enum',
     label: '类型',
+    need: 'true',
         placeholder: '请选择类型',
         data: [{        value: 'ONLINE',
         label: '线上'
@@ -56,6 +61,7 @@ const BARABLAHMEMBERLESSON_FORM_FIELDS = [{
     key: 'probational',
     type: 'Bool',
     label: '是否试听',
+    need: 'true',
 placeholder: '请输入是否试听'
 }];
 export default BARABLAHMEMBERLESSON_FORM_FIELDS;

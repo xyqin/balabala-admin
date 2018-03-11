@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月10日 07:58:18
+ * 生成时间：2018年03月11日 09:18:49
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -15,11 +15,13 @@ const BARABLAHCLASSMEMBER_FORM_FIELDS = [{
     key: 'id',
     type: 'Id',
     label: '开班会员ID',
+    need: 'true',
         placeholder: '请输入开班会员ID'
 },{
     key: 'classId',
     type: 'Object',
     label: '开班ID',
+    need: 'true',
     placeholder: '请选择开班ID',
     displayType: 'SingleList',
     url: '/barablahclass/getlist',
@@ -29,6 +31,7 @@ const BARABLAHCLASSMEMBER_FORM_FIELDS = [{
     key: 'memberId',
     type: 'Object',
     label: '会员ID',
+    need: 'true',
     placeholder: '请选择会员ID',
     displayType: 'SingleList',
     url: '/barablahmember/getlist',
@@ -38,6 +41,7 @@ const BARABLAHCLASSMEMBER_FORM_FIELDS = [{
     key: 'status',
     type: 'Enum',
     label: '状态',
+    need: 'true',
         placeholder: '请选择状态',
         data: [{        value: 'IN_REVIEW',
         label: '审核中'

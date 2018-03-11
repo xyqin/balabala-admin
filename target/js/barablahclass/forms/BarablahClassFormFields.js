@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月10日 07:58:18
+ * 生成时间：2018年03月11日 09:18:49
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -15,11 +15,13 @@ const BARABLAHCLASS_FORM_FIELDS = [{
     key: 'id',
     type: 'Id',
     label: '开班ID',
+    need: 'true',
         placeholder: '请输入开班ID'
 },{
     key: 'categoryId',
     type: 'Object',
     label: '班级分类ID',
+    need: 'true',
     placeholder: '请选择班级分类ID',
     displayType: 'SingleList',
     url: '/barablahclasscategory/getlist',
@@ -29,6 +31,7 @@ const BARABLAHCLASS_FORM_FIELDS = [{
     key: 'courseId',
     type: 'Object',
     label: '课程ID',
+    need: 'true',
     placeholder: '请选择课程ID',
     displayType: 'SingleList',
     url: '/barablahcourse/getlist',
@@ -38,6 +41,7 @@ const BARABLAHCLASS_FORM_FIELDS = [{
     key: 'teacherId',
     type: 'Object',
     label: '教师ID',
+    need: 'true',
     placeholder: '请选择教师ID',
     displayType: 'SingleList',
     url: '/barablahteacher/getlist',
@@ -47,6 +51,7 @@ const BARABLAHCLASS_FORM_FIELDS = [{
     key: 'campusId',
     type: 'Object',
     label: '校区ID',
+    need: 'true',
     placeholder: '请选择校区ID',
     displayType: 'SingleList',
     url: '/barablahcampus/getlist',
@@ -56,6 +61,7 @@ const BARABLAHCLASS_FORM_FIELDS = [{
     key: 'englishTeacherId',
     type: 'Object',
     label: '外教教师ID',
+    need: 'false',
     placeholder: '请选择外教教师ID',
     displayType: 'SingleList',
     url: '/barablahteacher/getlist',
@@ -65,21 +71,25 @@ const BARABLAHCLASS_FORM_FIELDS = [{
     key: 'className',
     type: 'String',
     label: '班级名称',
+    need: 'true',
     placeholder: '请输入班级名称'
 },{
     key: 'monitor',
     type: 'String',
     label: '班长',
+    need: 'false',
     placeholder: '请输入班长'
 },{
     key: 'monitorPhoneNumber',
     type: 'String',
     label: '班长电话',
+    need: 'false',
     placeholder: '请输入班长电话'
 },{
     key: 'status',
     type: 'Enum',
     label: '状态',
+    need: 'true',
         placeholder: '请选择状态',
         data: [{        value: 'IN_REVIEW',
         label: '审核中'

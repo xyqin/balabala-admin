@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月10日 07:58:19
+ * 生成时间：2018年03月11日 09:18:51
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahPositionContentGetlistReq
  * 接口地址：barablahpositioncontent/getlist

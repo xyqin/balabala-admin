@@ -140,6 +140,10 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
 
+        if (request.getCampusId()!=null) {
+            c.andCampusIdEqualTo(request.getCampusId());
+         }
+
         if (request.getUsername()!=null) {
             c.andUsernameLike("%"+request.getUsername()+"%");
         }
@@ -184,6 +188,10 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
         String ordersrc ="";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
+        if (request.getCampusId()!=null) {
+            c.andCampusIdEqualTo(request.getCampusId());
+         }
+
         if (request.getUsername()!=null) {
             c.andUsernameLike("%"+request.getUsername()+"%");
         }

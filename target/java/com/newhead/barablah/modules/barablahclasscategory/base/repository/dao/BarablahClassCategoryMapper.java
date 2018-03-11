@@ -11,77 +11,77 @@ public interface BarablahClassCategoryMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_class_category
-     * @generated 2018年3月10日 07:58:13
+     * @generated 2018年3月11日 09:18:42
      */
     long countByExample(BarablahClassCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_class_category
-     * @generated 2018年3月10日 07:58:13
+     * @generated 2018年3月11日 09:18:42
      */
     int deleteByExample(BarablahClassCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_class_category
-     * @generated 2018年3月10日 07:58:13
+     * @generated 2018年3月11日 09:18:42
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_class_category
-     * @generated 2018年3月10日 07:58:13
+     * @generated 2018年3月11日 09:18:42
      */
     int insert(BarablahClassCategory record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_class_category
-     * @generated 2018年3月10日 07:58:13
+     * @generated 2018年3月11日 09:18:42
      */
     int insertSelective(BarablahClassCategory record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_class_category
-     * @generated 2018年3月10日 07:58:13
+     * @generated 2018年3月11日 09:18:42
      */
     List<BarablahClassCategory> selectByExample(BarablahClassCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_class_category
-     * @generated 2018年3月10日 07:58:13
+     * @generated 2018年3月11日 09:18:42
      */
     BarablahClassCategory selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_class_category
-     * @generated 2018年3月10日 07:58:13
+     * @generated 2018年3月11日 09:18:42
      */
     int updateByExampleSelective(@Param("record") BarablahClassCategory record, @Param("example") BarablahClassCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_class_category
-     * @generated 2018年3月10日 07:58:13
+     * @generated 2018年3月11日 09:18:42
      */
     int updateByExample(@Param("record") BarablahClassCategory record, @Param("example") BarablahClassCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_class_category
-     * @generated 2018年3月10日 07:58:13
+     * @generated 2018年3月11日 09:18:42
      */
     int updateByPrimaryKeySelective(BarablahClassCategory record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_class_category
-     * @generated 2018年3月10日 07:58:13
+     * @generated 2018年3月11日 09:18:42
      */
     int updateByPrimaryKey(BarablahClassCategory record);
 }

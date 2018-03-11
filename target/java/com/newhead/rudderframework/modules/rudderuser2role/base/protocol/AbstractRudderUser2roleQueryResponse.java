@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 用户角色关系
- * @generated 2018年03月10日 07:58:16
+ * @generated 2018年03月11日 09:18:47
  */
 @Data
 public abstract class AbstractRudderUser2roleQueryResponse {

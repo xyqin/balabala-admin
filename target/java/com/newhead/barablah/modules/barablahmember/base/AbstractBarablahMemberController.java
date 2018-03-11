@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员控制器
- * 2018年03月10日 07:58:17
+ * 2018年03月11日 09:18:48
  */
 @Api(tags = "会员", description = "相关的API")
 public abstract class AbstractBarablahMemberController extends WebController  {
@@ -95,8 +95,11 @@ public abstract class AbstractBarablahMemberController extends WebController  {
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "会员ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahMemberQueryResponse>> getList(@RequestParam(required = false) String nickname,@RequestParam(required = false) String gender,@RequestParam(required = false) String status) {
+    public ApiEntity<List<SimpleBarablahMemberQueryResponse>> getList(@RequestParam(required = false) Long campusId,@RequestParam(required = false) String nickname,@RequestParam(required = false) String gender,@RequestParam(required = false) String status) {
         SimpleBarablahMemberQueryListRequest request = new SimpleBarablahMemberQueryListRequest();
+        if (!StringUtils.isEmpty(campusId)) {
+            request.setCampusId(campusId);
+        }
         if (!StringUtils.isEmpty(nickname)) {
             request.setNickname(nickname);
         }
@@ -119,12 +122,16 @@ public abstract class AbstractBarablahMemberController extends WebController  {
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) Long campusId,
         @RequestParam(required = false) String nickname,
         @RequestParam(required = false) String gender,
         @RequestParam(required = false) String status,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahMemberQueryPageRequest request = new SimpleBarablahMemberQueryPageRequest();
+        if (!StringUtils.isEmpty(campusId)) {
+            request.setCampusId(campusId);
+        }
         if (!StringUtils.isEmpty(nickname)) {
             request.setNickname(nickname);
         }

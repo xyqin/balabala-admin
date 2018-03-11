@@ -2,10 +2,12 @@ package com.newhead.barablah.modules.barablahteacher.base;
 
 import com.barablah.netease.NeteaseClient;
 import com.barablah.netease.request.ImUserCreateRequest;
+import com.barablah.netease.request.ImUserUpdateRequest;
 import com.barablah.netease.response.ImUserCreateResponse;
 import com.google.common.collect.Maps;
 import com.newhead.barablah.modules.barablahteacher.BarablahTeacherStatusEnum;
 import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
+import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
 import com.newhead.barablah.modules.barablahteacher.ext.SimpleBarablahTeacherService;
 import com.newhead.barablah.modules.barablahteacher.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
@@ -31,7 +33,6 @@ import java.util.Map;
  */
 @Api(tags = "教师", description = "相关的API")
 public abstract class AbstractBarablahTeacherController extends WebController  {
-
     @Autowired
     private NeteaseClient neteaseClient;
 
@@ -49,6 +50,14 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
         if (request.getPassword()==null||request.getPassword().trim().equals("")) {
             request.setPassword(DigestUtils.md5Hex(request.getPassword()));
         }
+        BarablahTeacherExample example = new BarablahTeacherExample();
+        example.createCriteria().andAccidEqualTo("teacher_" + request.getPhoneNumber());
+
+        List resultList = getService().getMapper().selectByExample(example);
+        if (resultList!=null && resultList.size()>0)  {
+            return new ApiEntity(ApiStatus.STATUS_400.getCode(),"账号已经存在");
+        }
+
         // 注册网易云IM账号
         ImUserCreateRequest imUserCreateRequest = new ImUserCreateRequest();
         imUserCreateRequest.setAccid("teacher_" + request.getPhoneNumber());
@@ -60,9 +69,15 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
         }
 
         if (!imUserCreateResponse.isSuccess()) {
-            return new ApiEntity(ApiStatus.STATUS_400.getCode(), "注册网易云账号失败,手机号已注册过");
+            ImUserUpdateRequest updateRequest = new ImUserUpdateRequest();
+            imUserCreateRequest.setAccid("teacher_" + request.getPhoneNumber());
+            try {
+                //return new ApiEntity(ApiStatus.STATUS_400.getCode(), "注册网易云账号失败,手机号已注册过");
+                imUserCreateResponse = neteaseClient.execute(updateRequest);
+            } catch (IOException e) {
+                return new ApiEntity(ApiStatus.STATUS_500.getCode(),"调用网易云注册IM账号失败");
+            }
         }
-
 
         request.setStatus(BarablahTeacherStatusEnum.启用.getValue());
         request.setAccid(imUserCreateResponse.getInfo().getAccid());

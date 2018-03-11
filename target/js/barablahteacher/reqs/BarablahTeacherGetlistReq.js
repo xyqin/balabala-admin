@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月10日 07:58:18
+ * 生成时间：2018年03月11日 09:18:50
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahTeacherGetlistReq
  * 接口地址：barablahteacher/getlist
@@ -17,7 +17,10 @@ class BarablahTeacherGetlistReq extends BaseRobotReq {
             url: '/barablahteacher/getlist',
             type: 'Get',        };
         // 请求参数的描述信息，只定义先不用
-        this._paramsDescriptor = [{key: 'username',
+        this._paramsDescriptor = [{key: 'campusId',
+            desc: '校区ID',
+            isRequired: true
+        },{key: 'username',
             desc: '账号',
             isRequired: true
         },{key: 'fullName',
@@ -42,7 +45,8 @@ class BarablahTeacherGetlistReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(username,fullName,phoneNumber,major,comeFrom,status) {
+    setSimpleParams(campusId,username,fullName,phoneNumber,major,comeFrom,status) {
+        this.addParams('campusId', campusId);
         this.addParams('username', username);
         this.addParams('fullName', fullName);
         this.addParams('phoneNumber', phoneNumber);

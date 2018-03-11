@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月10日 07:58:18
+ * 生成时间：2018年03月11日 09:18:49
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -15,11 +15,13 @@ const BARABLAHTEXTBOOK_FORM_FIELDS = [{
     key: 'id',
     type: 'Id',
     label: '主键',
+    need: 'false',
         placeholder: '请输入主键'
 },{
     key: 'categoryId',
     type: 'Object',
     label: '教材三级分类ID',
+    need: 'true',
     placeholder: '请选择教材三级分类ID',
     displayType: 'SingleTree',
     url: '/barablahtextbookcategory/gettree',
@@ -29,6 +31,7 @@ const BARABLAHTEXTBOOK_FORM_FIELDS = [{
     key: 'type',
     type: 'Enum',
     label: '题目类型',
+    need: 'true',
         placeholder: '请选择题目类型',
         data: [{        value: 'CHOICE',
         label: '选择题'
@@ -50,29 +53,35 @@ const BARABLAHTEXTBOOK_FORM_FIELDS = [{
     key: 'textbookName',
     type: 'String',
     label: '题目名称',
+    need: 'true',
     placeholder: '请输入题目名称'
 },{
     key: 'question',
     type: 'String',
     label: '问题',
+    need: 'true',
     placeholder: '请输入问题'
 },{
     key: 'option',
     type: 'String',
     label: '选项',
+    need: 'true',
     placeholder: '请输入选项'
 },{
     key: 'correct',
     type: 'String',
     label: '正确答案',
+    need: 'true',
     placeholder: '请输入正确答案'
 },{
     key: 'image',
     type: 'Image',
     label: '图片',
+    need: 'true',
 },{
     key: 'video',
     type: 'File',
     label: '音频',
+    need: 'true',
 }];
 export default BARABLAHTEXTBOOK_FORM_FIELDS;

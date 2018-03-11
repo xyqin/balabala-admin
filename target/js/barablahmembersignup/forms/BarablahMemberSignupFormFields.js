@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月10日 07:58:18
+ * 生成时间：2018年03月11日 09:18:49
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -15,11 +15,13 @@ const BARABLAHMEMBERSIGNUP_FORM_FIELDS = [{
     key: 'id',
     type: 'Id',
     label: '会员报名ID',
+    need: 'true',
         placeholder: '请输入会员报名ID'
 },{
     key: 'memberId',
     type: 'Object',
     label: '会员ID',
+    need: 'true',
     placeholder: '请选择会员ID',
     displayType: 'SingleList',
     url: '/barablahmember/getlist',
@@ -29,6 +31,7 @@ const BARABLAHMEMBERSIGNUP_FORM_FIELDS = [{
     key: 'classId',
     type: 'Object',
     label: '开班ID',
+    need: 'true',
     placeholder: '请选择开班ID',
     displayType: 'SingleList',
     url: '/barablahclass/getlist',
@@ -38,16 +41,19 @@ const BARABLAHMEMBERSIGNUP_FORM_FIELDS = [{
     key: 'amount',
     type: 'Number',
     label: '报名费用',
+    need: 'true',
         placeholder: '请输入报名费用'
 },{
     key: 'payment',
     type: 'String',
     label: '支付方式',
+    need: 'true',
     placeholder: '请输入支付方式'
 },{
     key: 'createdAt',
     type: 'Date',
     label: '系统创建时间',
+    need: 'false',
 placeholder: '请输入系统创建时间'
 }];
 export default BARABLAHMEMBERSIGNUP_FORM_FIELDS;

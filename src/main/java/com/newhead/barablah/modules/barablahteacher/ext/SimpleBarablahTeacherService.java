@@ -23,7 +23,7 @@ public class SimpleBarablahTeacherService extends AbstractBarablahTeacherService
     private BarablahTeacherMapper mapper;
 
     @Override
-    protected BarablahTeacherMapper getMapper() {
+    public BarablahTeacherMapper getMapper() {
         return this.mapper;
     }
 
