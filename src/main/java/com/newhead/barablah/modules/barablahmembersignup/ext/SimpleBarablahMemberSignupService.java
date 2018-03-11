@@ -3,6 +3,9 @@ package com.newhead.barablah.modules.barablahmembersignup.ext;
 import com.newhead.barablah.modules.barablahclasslesson.base.repository.dao.BarablahClassLessonMapper;
 import com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLesson;
 import com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLessonExample;
+import com.newhead.barablah.modules.barablahclassmember.BarablahClassMemberStatusEnum;
+import com.newhead.barablah.modules.barablahclassmember.base.repository.dao.BarablahClassMemberMapper;
+import com.newhead.barablah.modules.barablahclassmember.base.repository.entity.BarablahClassMember;
 import com.newhead.barablah.modules.barablahmemberlesson.base.repository.dao.BarablahMemberLessonMapper;
 import com.newhead.barablah.modules.barablahmemberlesson.base.repository.entity.BarablahMemberLesson;
 import com.newhead.barablah.modules.barablahmembersignup.base.AbstractBarablahMemberSignupService;
@@ -34,6 +37,9 @@ public class SimpleBarablahMemberSignupService extends AbstractBarablahMemberSig
     private BarablahClassLessonMapper classLessonMapper;
 
     @Autowired
+    private BarablahClassMemberMapper classMemberMapper;
+
+    @Autowired
     private BarablahMemberLessonMapper memberLessonMapper;
 
     @Override
@@ -59,6 +65,12 @@ public class SimpleBarablahMemberSignupService extends AbstractBarablahMemberSig
         entity.setLastModifier(getCurrentUser().getId());
         saveOrUpdate(entity);
         getMapper().insert(entity);
+
+        BarablahClassMember classMember = new BarablahClassMember();
+        classMember.setClassId(request.getClassId());
+        classMember.setMemberId(request.getMemberId());
+        classMember.setStatus(BarablahClassMemberStatusEnum.进行中.getValue());
+        classMemberMapper.insertSelective(classMember);
 
         // 创建学生课时
         BarablahClassLessonExample classLessonExample = new BarablahClassLessonExample();

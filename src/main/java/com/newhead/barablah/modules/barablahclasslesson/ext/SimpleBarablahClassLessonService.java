@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * RudderFramework 自动生成
@@ -50,17 +51,28 @@ public class SimpleBarablahClassLessonService extends AbstractBarablahClassLesso
     @Transactional
     public void postponebatch(SimpleBarablahClassLessonPostponeBatchRequest request) {
         BarablahClassLesson lesson = mapper.selectByPrimaryKey(request.getId());
-        postpone(lesson);
 
         BarablahClassLessonExample example = new BarablahClassLessonExample();
         example.createCriteria()
                 .andClassIdEqualTo(lesson.getClassId())
                 .andStartAtGreaterThan(lesson.getStartAt())
+                .andTypeEqualTo(lesson.getType())
                 .andDeletedEqualTo(Boolean.FALSE);
-        List<BarablahClassLesson> lessonsAfter = mapper.selectByExample(example);
+        example.setOrderByClause("start_at ASC");
+        List<BarablahClassLesson> lessonsByOrder = mapper.selectByExample(example);
+        lessonsByOrder.add(0, lesson);
 
-        for (BarablahClassLesson lessonAfter : lessonsAfter) {
-            postpone(lessonAfter);
+        for (int i = 0; i < lessonsByOrder.size(); i++) {
+            BarablahClassLesson lessonCurrent = lessonsByOrder.get(i);
+            BarablahClassLesson lessonNext = null;
+
+            try {
+                lessonNext = lessonsByOrder.get(i + 1);
+            } catch (IndexOutOfBoundsException ex) {
+                lessonNext = null;
+            }
+
+            postpone(lessonCurrent, lessonNext);
         }
     }
 
@@ -101,11 +113,18 @@ public class SimpleBarablahClassLessonService extends AbstractBarablahClassLesso
         }
     }
 
-    private void postpone(BarablahClassLesson lesson) {
+    private void postpone(BarablahClassLesson lesson, BarablahClassLesson next) {
         BarablahClassLesson lessonToBeUpdated = new BarablahClassLesson();
         lessonToBeUpdated.setId(lesson.getId());
-        lessonToBeUpdated.setStartAt(DateUtils.addWeeks(lesson.getStartAt(), 1));
-        lessonToBeUpdated.setEndAt(DateUtils.addWeeks(lesson.getEndAt(), 1));
+
+        if (Objects.nonNull(next)) {
+            lessonToBeUpdated.setStartAt(next.getStartAt());
+            lessonToBeUpdated.setEndAt(next.getEndAt());
+        } else {
+            lessonToBeUpdated.setStartAt(DateUtils.addWeeks(lesson.getStartAt(), 1));
+            lessonToBeUpdated.setEndAt(DateUtils.addWeeks(lesson.getEndAt(), 1));
+        }
+
         mapper.updateByPrimaryKeySelective(lessonToBeUpdated);
 
         BarablahMemberLessonExample example = new BarablahMemberLessonExample();
@@ -113,8 +132,9 @@ public class SimpleBarablahClassLessonService extends AbstractBarablahClassLesso
                 .andLessonIdEqualTo(lesson.getId())
                 .andDeletedEqualTo(Boolean.FALSE);
         BarablahMemberLesson memberLessonToBeUpdated = new BarablahMemberLesson();
-        memberLessonToBeUpdated.setStartAt(DateUtils.addWeeks(lesson.getStartAt(), 1));
-        memberLessonToBeUpdated.setEndAt(DateUtils.addWeeks(lesson.getEndAt(), 1));
+        memberLessonToBeUpdated.setStartAt(lessonToBeUpdated.getStartAt());
+        memberLessonToBeUpdated.setEndAt(lessonToBeUpdated.getEndAt());
         memberLessonMapper.updateByExampleSelective(memberLessonToBeUpdated, example);
     }
+
 }
