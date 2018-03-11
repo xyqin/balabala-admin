@@ -3,8 +3,12 @@ package com.newhead.barablah.modules.barablahclass.ext;
 import com.newhead.barablah.modules.barablahclass.BarablahClassStatusEnum;
 import com.newhead.barablah.modules.barablahclass.base.AbstractBarablahClassController;
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
-import com.newhead.barablah.modules.barablahclass.ext.protocol.*;
+import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassOpenRequest;
+import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassQueryPageRequest;
+import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassQueryResponse;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
+import com.newhead.rudderframework.core.web.api.ApiException;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,7 +36,15 @@ public class SimpleBarablahClassController extends AbstractBarablahClassControll
     @ApiOperation(value = "开班", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "open", method = RequestMethod.POST)
     public ApiEntity open(@RequestBody SimpleBarablahClassOpenRequest request) {
-        getService().open(request);
+        if (request.getOnlineLessons() <= 0 && request.getOfflineLessons() <= 0) {
+            return new ApiEntity(ApiStatus.STATUS_400.getCode(), "线上或线下课时数必须填写一个合法值");
+        }
+        try {
+            getService().open(request);
+        } catch (ApiException ex) {
+            return new ApiEntity(ex.getStatusCode(), ex.getStatusMessage());
+        }
+
         return new ApiEntity<>();
     }
 
@@ -64,20 +76,19 @@ public class SimpleBarablahClassController extends AbstractBarablahClassControll
             request.setMonitorPhoneNumber(monitorPhoneNumber);
         }
         request.setStatus(BarablahClassStatusEnum.审核中.getValue());
-        if (page==null) {
+        if (page == null) {
             request.setPage(1);
         } else {
             request.setPage(page);
         }
-        if (size==null) {
+        if (size == null) {
             request.setPage(10);
-        } else  {
+        } else {
             request.setSize(size);
         }
         Page<SimpleBarablahClassQueryResponse> sources = getService().queryPage(request);
         return new ApiEntity<>(sources);
     }
-
 
 
     /**
