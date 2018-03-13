@@ -1,5 +1,6 @@
 package com.newhead.barablah.modules.barablahclass.ext;
 
+import com.google.common.collect.Maps;
 import com.newhead.barablah.modules.barablahclass.base.AbstractBarablahClassService;
 import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
@@ -29,6 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * RudderFramework 自动生成
@@ -223,5 +225,29 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
                 memberLessonMapper.insertSelective(memberLesson);
             }
         }
+    }
+
+    public Map<String, Integer> getLessons(Long id) {
+        Map<String, Integer> result = Maps.newHashMap();
+        BarablahClass aClass = mapper.selectByPrimaryKey(id);
+        BarablahCourse course = courseMapper.selectByPrimaryKey(aClass.getCourseId());
+
+        // 获取教材3级分类
+        BarablahTextbookCategoryExample textbookCategoryExample = new BarablahTextbookCategoryExample();
+        textbookCategoryExample.createCriteria()
+                .andParentIdEqualTo(course.getTextbookCategoryId())
+                .andDeletedEqualTo(Boolean.FALSE);
+        List<BarablahTextbookCategory> textbookCategories = textbookCategoryMapper.selectByExample(textbookCategoryExample);
+
+        result.put("totalOnline", textbookCategories.size());
+
+        BarablahClassLessonExample classLessonExample = new BarablahClassLessonExample();
+        classLessonExample.createCriteria()
+                .andClassIdEqualTo(aClass.getId())
+                .andTypeEqualTo(BarablahClassLessonTypeEnum.线上.getValue())
+                .andDeletedEqualTo(Boolean.FALSE);
+        List<BarablahClassLesson> currentLessons = classLessonMapper.selectByExample(classLessonExample);
+        result.put("scheduledOnline", currentLessons.size());
+        return result;
     }
 }
