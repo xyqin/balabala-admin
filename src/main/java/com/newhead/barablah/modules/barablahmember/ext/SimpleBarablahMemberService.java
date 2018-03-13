@@ -129,6 +129,14 @@ public class SimpleBarablahMemberService extends AbstractBarablahMemberService {
             c.andStatusEqualTo(request.getStatus());
         }
 
+        // 处理校区筛选
+        ShiroAuthorizingRealm.ShiroUser user = getCurrentUser();
+        RudderUser rudderUser = rudderUserMapper.selectByPrimaryKey(user.getId());
+
+        if (Objects.nonNull(rudderUser.getCampusId()) && rudderUser.getCampusId() > 0L) {
+            c.andCampusIdEqualTo(rudderUser.getCampusId());
+        }
+
         convertEntityToResponse(getMapper().selectByExample(example), results);
         return results;
     }

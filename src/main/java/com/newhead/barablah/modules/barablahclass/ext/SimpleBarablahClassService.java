@@ -8,6 +8,7 @@ import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahCl
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClassExample;
 import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassOpenRequest;
+import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassQueryListRequest;
 import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassQueryPageRequest;
 import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassQueryResponse;
 import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategory;
@@ -266,6 +267,50 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
         List<BarablahClassLesson> currentLessons = classLessonMapper.selectByExample(classLessonExample);
         result.put("scheduledOnline", currentLessons.size());
         return result;
+    }
+
+    @Override
+    public List<SimpleBarablahClassQueryResponse> queryList(SimpleBarablahClassQueryListRequest request) {
+        List<SimpleBarablahClassQueryResponse> results = new ArrayList<SimpleBarablahClassQueryResponse>();
+
+        //构造查询对象
+        BarablahClassExample example = new BarablahClassExample();
+        BarablahClassExample.Criteria c = example.createCriteria();
+        c.andDeletedEqualTo(false);
+        String ordersrc = "";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
+        if (request.getCategoryId() != null) {
+            c.andCategoryIdEqualTo(request.getCategoryId());
+        }
+
+        if (request.getClassName() != null) {
+            c.andClassNameLike("%" + request.getClassName() + "%");
+        }
+
+        if (request.getMonitor() != null) {
+            c.andMonitorLike("%" + request.getMonitor() + "%");
+        }
+
+        if (request.getMonitorPhoneNumber() != null) {
+            c.andMonitorPhoneNumberLike("%" + request.getMonitorPhoneNumber() + "%");
+        }
+
+        if (request.getStatus() != null) {
+            c.andStatusEqualTo(request.getStatus());
+        }
+
+        // 处理校区筛选
+        ShiroAuthorizingRealm.ShiroUser user = getCurrentUser();
+        RudderUser rudderUser = rudderUserMapper.selectByPrimaryKey(user.getId());
+
+        if (Objects.nonNull(rudderUser.getCampusId()) && rudderUser.getCampusId() > 0L) {
+            c.andCampusIdEqualTo(rudderUser.getCampusId());
+        }
+
+        convertEntityToResponse(getMapper().selectByExample(example), results);
+        return results;
     }
 
     @Override

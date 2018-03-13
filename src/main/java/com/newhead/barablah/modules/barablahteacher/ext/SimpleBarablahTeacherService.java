@@ -7,6 +7,7 @@ import com.newhead.barablah.modules.barablahteacher.base.AbstractBarablahTeacher
 import com.newhead.barablah.modules.barablahteacher.base.repository.dao.BarablahTeacherMapper;
 import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
 import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
+import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherQueryListRequest;
 import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherQueryPageRequest;
 import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherQueryResponse;
 import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherUpdateBatchRequest;
@@ -63,6 +64,58 @@ public class SimpleBarablahTeacherService extends AbstractBarablahTeacherService
                 mapper.updateByPrimaryKeySelective(teacherToBeUpdated);
             }
         }
+    }
+
+    @Override
+    public List<SimpleBarablahTeacherQueryResponse> queryList(SimpleBarablahTeacherQueryListRequest request) {
+        List<SimpleBarablahTeacherQueryResponse> results = new ArrayList<SimpleBarablahTeacherQueryResponse>();
+
+        //构造查询对象
+        BarablahTeacherExample example = new BarablahTeacherExample();
+        BarablahTeacherExample.Criteria c = example.createCriteria();
+        c.andDeletedEqualTo(false);
+        String ordersrc = "";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+
+        if (request.getCampusId() != null) {
+            c.andCampusIdEqualTo(request.getCampusId());
+        }
+
+        if (request.getUsername() != null) {
+            c.andUsernameLike("%" + request.getUsername() + "%");
+        }
+
+        if (request.getFullName() != null) {
+            c.andFullNameLike("%" + request.getFullName() + "%");
+        }
+
+        if (request.getPhoneNumber() != null) {
+            c.andPhoneNumberLike("%" + request.getPhoneNumber() + "%");
+        }
+
+        if (request.getMajor() != null) {
+            c.andMajorLike("%" + request.getMajor() + "%");
+        }
+
+        if (request.getComeFrom() != null) {
+            c.andComeFromLike("%" + request.getComeFrom() + "%");
+        }
+
+        if (request.getStatus() != null) {
+            c.andStatusEqualTo(request.getStatus());
+        }
+
+        // 处理校区筛选
+        ShiroAuthorizingRealm.ShiroUser user = getCurrentUser();
+        RudderUser rudderUser = rudderUserMapper.selectByPrimaryKey(user.getId());
+
+        if (Objects.nonNull(rudderUser.getCampusId()) && rudderUser.getCampusId() > 0L) {
+            c.andCampusIdEqualTo(rudderUser.getCampusId());
+        }
+
+        convertEntityToResponse(getMapper().selectByExample(example), results);
+        return results;
     }
 
     @Override
