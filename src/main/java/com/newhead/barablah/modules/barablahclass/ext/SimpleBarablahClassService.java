@@ -1,10 +1,17 @@
 package com.newhead.barablah.modules.barablahclass.ext;
 
 import com.google.common.collect.Maps;
+import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus;
+import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampusExample;
 import com.newhead.barablah.modules.barablahclass.base.AbstractBarablahClassService;
 import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
+import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClassExample;
 import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassOpenRequest;
+import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassQueryPageRequest;
+import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassQueryResponse;
+import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategory;
+import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategoryExample;
 import com.newhead.barablah.modules.barablahclasslesson.BarablahClassLessonTypeEnum;
 import com.newhead.barablah.modules.barablahclasslesson.base.repository.dao.BarablahClassLessonMapper;
 import com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLesson;
@@ -14,23 +21,30 @@ import com.newhead.barablah.modules.barablahclassmember.base.repository.entity.B
 import com.newhead.barablah.modules.barablahclassmember.base.repository.entity.BarablahClassMemberExample;
 import com.newhead.barablah.modules.barablahcourse.base.repository.dao.BarablahCourseMapper;
 import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourse;
+import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourseExample;
 import com.newhead.barablah.modules.barablahmemberlesson.base.repository.dao.BarablahMemberLessonMapper;
 import com.newhead.barablah.modules.barablahmemberlesson.base.repository.entity.BarablahMemberLesson;
+import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
+import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
 import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.dao.BarablahTextbookCategoryMapper;
 import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategory;
 import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategoryExample;
+import com.newhead.rudderframework.core.security.ShiroAuthorizingRealm;
 import com.newhead.rudderframework.core.web.api.ApiException;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.component.pagination.Page;
+import com.newhead.rudderframework.modules.LabelValueItem;
+import com.newhead.rudderframework.modules.rudderuser.base.repository.dao.RudderUserMapper;
+import com.newhead.rudderframework.modules.rudderuser.base.repository.entity.RudderUser;
 import io.swagger.annotations.Api;
 import org.apache.commons.lang3.time.DateUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * RudderFramework 自动生成
@@ -58,6 +72,9 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
 
     @Autowired
     private BarablahMemberLessonMapper memberLessonMapper;
+
+    @Autowired
+    private RudderUserMapper rudderUserMapper;
 
     @Override
     protected BarablahClassMapper getMapper() {
@@ -249,5 +266,217 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
         List<BarablahClassLesson> currentLessons = classLessonMapper.selectByExample(classLessonExample);
         result.put("scheduledOnline", currentLessons.size());
         return result;
+    }
+
+    @Override
+    public Page<SimpleBarablahClassQueryResponse> queryPage(SimpleBarablahClassQueryPageRequest request) {
+        //结果
+        List<SimpleBarablahClassQueryResponse> results = new ArrayList<SimpleBarablahClassQueryResponse>();
+
+        //构造查询对象
+        BarablahClassExample example = new BarablahClassExample();
+        BarablahClassExample.Criteria c = example.createCriteria();
+        c.andDeletedEqualTo(false);
+        String ordersrc = "";
+        ordersrc = ordersrc + "id desc";
+        example.setOrderByClause(ordersrc);
+        if (request.getCategoryId() != null) {
+            c.andCategoryIdEqualTo(request.getCategoryId());
+        }
+
+        if (request.getClassName() != null) {
+            c.andClassNameLike("%" + request.getClassName() + "%");
+        }
+
+        if (request.getMonitor() != null) {
+            c.andMonitorLike("%" + request.getMonitor() + "%");
+        }
+
+        if (request.getMonitorPhoneNumber() != null) {
+            c.andMonitorPhoneNumberLike("%" + request.getMonitorPhoneNumber() + "%");
+        }
+
+        if (request.getStatus() != null) {
+            c.andStatusEqualTo(request.getStatus());
+        }
+
+        // 处理校区筛选
+        ShiroAuthorizingRealm.ShiroUser user = getCurrentUser();
+        RudderUser rudderUser = rudderUserMapper.selectByPrimaryKey(user.getId());
+
+        if (Objects.nonNull(rudderUser.getCampusId()) && rudderUser.getCampusId() > 0L) {
+            c.andCampusIdEqualTo(rudderUser.getCampusId());
+        }
+
+        example.setPageSize(request.getSize());
+        example.setStartRow(request.getOffset());
+
+        long count = getMapper().countByExample(example);
+
+        convertEntityToResponse(getMapper().selectByExample(example), results);
+
+        Page page = new Page();
+        page.setNumber(request.getPage());
+        page.setSize(request.getSize());
+        page.setContent(results);
+        page.setTotalElements(count);
+        return page;
+    }
+
+    /**
+     * 对象转换
+     *
+     * @param entitys
+     * @param results
+     */
+    private void convertEntityToResponse(List<BarablahClass> entitys, List<SimpleBarablahClassQueryResponse> results) {
+        Map<Long, Long> categoryIdMap = Maps.newHashMap();
+        Map<Long, LabelValueItem> categoryIdResultMap = Maps.newHashMap();
+
+        Map<Long, Long> campusIdMap = Maps.newHashMap();
+        Map<Long, LabelValueItem> campusIdResultMap = Maps.newHashMap();
+
+        Map<Long, Long> teacherIdMap = Maps.newHashMap();
+        Map<Long, LabelValueItem> teacherIdResultMap = Maps.newHashMap();
+
+        Map<Long, Long> courseIdMap = Maps.newHashMap();
+        Map<Long, LabelValueItem> courseIdResultMap = Maps.newHashMap();
+
+        Map<Long, Long> englishTeacherIdMap = Maps.newHashMap();
+        Map<Long, LabelValueItem> englishTeacherIdResultMap = Maps.newHashMap();
+
+        for (BarablahClass entity : entitys) {
+            categoryIdMap.put(entity.getId(), entity.getCategoryId());
+            campusIdMap.put(entity.getId(), entity.getCampusId());
+            teacherIdMap.put(entity.getId(), entity.getTeacherId());
+            courseIdMap.put(entity.getId(), entity.getCourseId());
+            englishTeacherIdMap.put(entity.getId(), entity.getEnglishTeacherId());
+        }
+        BarablahClassCategoryExample categoryIdExample = new BarablahClassCategoryExample();
+
+        List<Long> categoryIds = new ArrayList<>();
+        categoryIds.addAll(categoryIdMap.values());
+        if (categoryIds.size() > 0) {
+            categoryIdExample.createCriteria().andIdIn(categoryIds);
+        }
+        List<BarablahClassCategory> categoryIdList = barablahclasscategoryMapper.selectByExample(categoryIdExample);
+        for (BarablahClassCategory item : categoryIdList) {
+            LabelValueItem categoryIdItem = new LabelValueItem();
+            categoryIdItem.setName("categoryId");
+            categoryIdItem.setValue(String.valueOf(item.getId()));
+            categoryIdItem.setLabel(item.getCategoryName());
+            categoryIdResultMap.put(item.getId(), categoryIdItem);
+        }
+        BarablahCampusExample campusIdExample = new BarablahCampusExample();
+
+        List<Long> campusIds = new ArrayList<>();
+        campusIds.addAll(campusIdMap.values());
+        if (campusIds.size() > 0) {
+            campusIdExample.createCriteria().andIdIn(campusIds);
+        }
+        List<BarablahCampus> campusIdList = barablahcampusMapper.selectByExample(campusIdExample);
+        for (BarablahCampus item : campusIdList) {
+            LabelValueItem campusIdItem = new LabelValueItem();
+            campusIdItem.setName("campusId");
+            campusIdItem.setValue(String.valueOf(item.getId()));
+            campusIdItem.setLabel(item.getCampusName());
+            campusIdResultMap.put(item.getId(), campusIdItem);
+        }
+        BarablahTeacherExample teacherIdExample = new BarablahTeacherExample();
+
+        List<Long> teacherIds = new ArrayList<>();
+        teacherIds.addAll(teacherIdMap.values());
+        if (teacherIds.size() > 0) {
+            teacherIdExample.createCriteria().andIdIn(teacherIds);
+        }
+        List<BarablahTeacher> teacherIdList = barablahteacherMapper.selectByExample(teacherIdExample);
+        for (BarablahTeacher item : teacherIdList) {
+            LabelValueItem teacherIdItem = new LabelValueItem();
+            teacherIdItem.setName("teacherId");
+            teacherIdItem.setValue(String.valueOf(item.getId()));
+            teacherIdItem.setLabel(item.getFullName());
+            teacherIdResultMap.put(item.getId(), teacherIdItem);
+        }
+        BarablahCourseExample courseIdExample = new BarablahCourseExample();
+
+        List<Long> courseIds = new ArrayList<>();
+        courseIds.addAll(courseIdMap.values());
+        if (courseIds.size() > 0) {
+            courseIdExample.createCriteria().andIdIn(courseIds);
+        }
+        List<BarablahCourse> courseIdList = barablahcourseMapper.selectByExample(courseIdExample);
+        for (BarablahCourse item : courseIdList) {
+            LabelValueItem courseIdItem = new LabelValueItem();
+            courseIdItem.setName("courseId");
+            courseIdItem.setValue(String.valueOf(item.getId()));
+            courseIdItem.setLabel(item.getCourseName());
+            courseIdResultMap.put(item.getId(), courseIdItem);
+        }
+        BarablahTeacherExample englishTeacherIdExample = new BarablahTeacherExample();
+
+        List<Long> englishTeacherIds = new ArrayList<>();
+        englishTeacherIds.addAll(englishTeacherIdMap.values());
+        if (englishTeacherIds.size() > 0) {
+            englishTeacherIdExample.createCriteria().andIdIn(englishTeacherIds);
+        }
+        List<BarablahTeacher> englishTeacherIdList = barablahteacherMapper.selectByExample(englishTeacherIdExample);
+        for (BarablahTeacher item : englishTeacherIdList) {
+            LabelValueItem englishTeacherIdItem = new LabelValueItem();
+            englishTeacherIdItem.setName("englishTeacherId");
+            englishTeacherIdItem.setValue(String.valueOf(item.getId()));
+            englishTeacherIdItem.setLabel(item.getFullName());
+            englishTeacherIdResultMap.put(item.getId(), englishTeacherIdItem);
+        }
+        //第一组
+        for (BarablahClass entity : entitys) {
+            SimpleBarablahClassQueryResponse response = new SimpleBarablahClassQueryResponse();
+            BeanUtils.copyProperties(entity, response);
+            Long categoryId = categoryIdMap.get(entity.getId());
+
+            LabelValueItem categoryIdlvi = null;
+            if (categoryId != null && categoryIdResultMap.get(categoryId) != null) {
+                categoryIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(categoryIdResultMap.get(categoryId), categoryIdlvi);
+            }
+            response.setCategoryIdObject(categoryIdlvi);
+            Long campusId = campusIdMap.get(entity.getId());
+
+            LabelValueItem campusIdlvi = null;
+            if (campusId != null && campusIdResultMap.get(campusId) != null) {
+                campusIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(campusIdResultMap.get(campusId), campusIdlvi);
+            }
+            response.setCampusIdObject(campusIdlvi);
+            Long teacherId = teacherIdMap.get(entity.getId());
+
+            LabelValueItem teacherIdlvi = null;
+            if (teacherId != null && teacherIdResultMap.get(teacherId) != null) {
+                teacherIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(teacherIdResultMap.get(teacherId), teacherIdlvi);
+            }
+            response.setTeacherIdObject(teacherIdlvi);
+            Long courseId = courseIdMap.get(entity.getId());
+
+            LabelValueItem courseIdlvi = null;
+            if (courseId != null && courseIdResultMap.get(courseId) != null) {
+                courseIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(courseIdResultMap.get(courseId), courseIdlvi);
+            }
+            response.setCourseIdObject(courseIdlvi);
+            Long englishTeacherId = englishTeacherIdMap.get(entity.getId());
+
+            LabelValueItem englishTeacherIdlvi = null;
+            if (englishTeacherId != null && englishTeacherIdResultMap.get(englishTeacherId) != null) {
+                englishTeacherIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(englishTeacherIdResultMap.get(englishTeacherId), englishTeacherIdlvi);
+            }
+            response.setEnglishTeacherIdObject(englishTeacherIdlvi);
+            LabelValueItem statusEnum = response.getStatusEnum();
+            statusEnum.setName("status");
+            statusEnum.setLabel(com.newhead.barablah.modules.barablahclass.BarablahClassStatusEnum.getLabel(entity.getStatus()));
+            statusEnum.setValue(entity.getStatus());
+            statusEnum.setChecked(true);
+            results.add(response);
+        }
     }
 }

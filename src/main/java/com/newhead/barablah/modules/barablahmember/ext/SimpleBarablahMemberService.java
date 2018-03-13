@@ -11,8 +11,11 @@ import com.newhead.barablah.modules.barablahmember.ext.protocol.*;
 import com.newhead.barablah.modules.barablahmemberpassport.base.repository.dao.BarablahMemberPassportMapper;
 import com.newhead.barablah.modules.barablahmemberpassport.base.repository.entity.BarablahMemberPassport;
 import com.newhead.barablah.modules.barablahmemberpassport.base.repository.entity.BarablahMemberPassportExample;
+import com.newhead.rudderframework.core.security.ShiroAuthorizingRealm;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 import com.newhead.rudderframework.modules.LabelValueItem;
+import com.newhead.rudderframework.modules.rudderuser.base.repository.dao.RudderUserMapper;
+import com.newhead.rudderframework.modules.rudderuser.base.repository.entity.RudderUser;
 import io.swagger.annotations.Api;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.collections.CollectionUtils;
@@ -24,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * RudderFramework 自动生成
@@ -39,6 +43,9 @@ public class SimpleBarablahMemberService extends AbstractBarablahMemberService {
 
     @Autowired
     private BarablahMemberPassportMapper passportMapper;
+
+    @Autowired
+    private RudderUserMapper rudderUserMapper;
 
     @Override
     public BarablahMemberMapper getMapper() {
@@ -147,6 +154,14 @@ public class SimpleBarablahMemberService extends AbstractBarablahMemberService {
 
         if (request.getStatus() != null) {
             c.andStatusEqualTo(request.getStatus());
+        }
+
+        // 处理校区筛选
+        ShiroAuthorizingRealm.ShiroUser user = getCurrentUser();
+        RudderUser rudderUser = rudderUserMapper.selectByPrimaryKey(user.getId());
+
+        if (Objects.nonNull(rudderUser.getCampusId()) && rudderUser.getCampusId() > 0L) {
+            c.andCampusIdEqualTo(rudderUser.getCampusId());
         }
 
         example.setPageSize(request.getSize());
