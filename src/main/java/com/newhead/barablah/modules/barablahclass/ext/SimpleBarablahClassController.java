@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 /**
  * RudderFramework 自动生成
  * 开班控制
@@ -104,5 +106,11 @@ public class SimpleBarablahClassController extends AbstractBarablahClassControll
         c.setStatus(status);
         getService().getMapper().updateByPrimaryKey(c);
         return new ApiEntity<>();
+    }
+
+    @ApiOperation(value = "获取开班课时数量", response = ApiEntity.class, notes = "开班课时ID")
+    @RequestMapping(value = "getlessons", method = RequestMethod.GET)
+    public ApiEntity<Map<String, Integer>> getLessons(@RequestParam Long id) {
+        return new ApiEntity<>(getService().getLessons(id));
     }
 }
