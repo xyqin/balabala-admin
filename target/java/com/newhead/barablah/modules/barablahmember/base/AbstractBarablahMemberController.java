@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员控制器
- * 2018年03月13日 12:41:35
+ * 2018年03月13日 07:57:09
  */
 @Api(tags = "会员", description = "相关的API")
 public abstract class AbstractBarablahMemberController extends WebController  {

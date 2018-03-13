@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教师发布作业题目表控制器
- * 2018年03月13日 12:41:35
+ * 2018年03月13日 07:57:10
  */
 @Api(tags = "教师发布作业题目表", description = "相关的API")
 public abstract class AbstractBarablahTeacherHomeworkItemController extends WebController  {

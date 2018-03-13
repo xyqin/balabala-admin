@@ -11,77 +11,77 @@ public interface RudderRole2permissionMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role2permission
-     * @generated 2018年3月13日 12:41:30
+     * @generated 2018年3月13日 07:57:05
      */
     long countByExample(RudderRole2permissionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role2permission
-     * @generated 2018年3月13日 12:41:30
+     * @generated 2018年3月13日 07:57:05
      */
     int deleteByExample(RudderRole2permissionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role2permission
-     * @generated 2018年3月13日 12:41:30
+     * @generated 2018年3月13日 07:57:05
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role2permission
-     * @generated 2018年3月13日 12:41:30
+     * @generated 2018年3月13日 07:57:05
      */
     int insert(RudderRole2permission record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role2permission
-     * @generated 2018年3月13日 12:41:30
+     * @generated 2018年3月13日 07:57:05
      */
     int insertSelective(RudderRole2permission record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role2permission
-     * @generated 2018年3月13日 12:41:30
+     * @generated 2018年3月13日 07:57:05
      */
     List<RudderRole2permission> selectByExample(RudderRole2permissionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role2permission
-     * @generated 2018年3月13日 12:41:30
+     * @generated 2018年3月13日 07:57:05
      */
     RudderRole2permission selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role2permission
-     * @generated 2018年3月13日 12:41:30
+     * @generated 2018年3月13日 07:57:05
      */
     int updateByExampleSelective(@Param("record") RudderRole2permission record, @Param("example") RudderRole2permissionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role2permission
-     * @generated 2018年3月13日 12:41:30
+     * @generated 2018年3月13日 07:57:05
      */
     int updateByExample(@Param("record") RudderRole2permission record, @Param("example") RudderRole2permissionExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role2permission
-     * @generated 2018年3月13日 12:41:30
+     * @generated 2018年3月13日 07:57:05
      */
     int updateByPrimaryKeySelective(RudderRole2permission record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_role2permission
-     * @generated 2018年3月13日 12:41:30
+     * @generated 2018年3月13日 07:57:05
      */
     int updateByPrimaryKey(RudderRole2permission record);
 }

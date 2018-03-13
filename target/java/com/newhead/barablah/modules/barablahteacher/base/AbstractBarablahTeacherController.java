@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教师控制器
- * 2018年03月13日 12:41:35
+ * 2018年03月13日 07:57:10
  */
 @Api(tags = "教师", description = "相关的API")
 public abstract class AbstractBarablahTeacherController extends WebController  {
@@ -59,10 +59,6 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
 
         if (StringUtils.isEmpty(request.getPassword())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"密码不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getAvatar())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"头像不能为空！");
         }
 
         if (StringUtils.isEmpty(request.getFullName())) {
@@ -118,10 +114,6 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
 
                 if (StringUtils.isEmpty(request.getPassword())) {
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"密码不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getAvatar())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"头像不能为空！");
                 }
 
                 if (StringUtils.isEmpty(request.getFullName())) {
