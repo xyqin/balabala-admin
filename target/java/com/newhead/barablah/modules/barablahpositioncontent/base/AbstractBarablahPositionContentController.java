@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 位置内容表控制器
- * 2018年03月13日 07:57:10
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "位置内容表", description = "相关的API")
 public abstract class AbstractBarablahPositionContentController extends WebController  {
@@ -64,6 +64,19 @@ public abstract class AbstractBarablahPositionContentController extends WebContr
         if (StringUtils.isEmpty(request.getLink())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"内容链接地址不能为空！");
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         ApiEntity entity = fillCreateRequest(request);

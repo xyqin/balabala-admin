@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员作业答案表控制器
- * 2018年03月13日 07:57:10
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "会员作业答案表", description = "相关的API")
 public abstract class AbstractBarablahMemberHomeworkItemController extends WebController  {
@@ -65,10 +65,22 @@ public abstract class AbstractBarablahMemberHomeworkItemController extends WebCo
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"答案不能为空！");
         }
 
-        BarablahMemberHomeworkItem answer = getService().existByAnswer(request.getAnswer());
-        if (answer != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"答案'"+request.getAnswer()+"'已经存在！");
+
+
+
+
+        if(request.getAnswer()!=null) {
+            BarablahMemberHomeworkItem answer = getService().existByAnswer(request.getAnswer());
+            if (answer != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"答案'"+request.getAnswer()+"'已经存在！");
+            }
         }
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -109,10 +121,14 @@ public abstract class AbstractBarablahMemberHomeworkItemController extends WebCo
                 }
 
 
+    if(request.getAnswer()!=null) {
+
         BarablahMemberHomeworkItem Answer = getService().existByAnswer(request.getAnswer());
         if (Answer != null && Answer.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"答案"+request.getAnswer()+"'已经存在！");
         }
+    }
+
 
        ApiEntity entity = fillUpdateRequest(request);
         if (entity!=null) {

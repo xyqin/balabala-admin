@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 学生作业表控制器
- * 2018年03月13日 07:57:10
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "学生作业表", description = "相关的API")
 public abstract class AbstractBarablahMemberHomeworkController extends WebController  {
@@ -64,6 +64,17 @@ public abstract class AbstractBarablahMemberHomeworkController extends WebContro
         if (StringUtils.isEmpty(request.getStatus())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
         }
+
+
+
+
+
+
+
+
+
+
+
 
 
         ApiEntity entity = fillCreateRequest(request);

@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教师发布作业题目表控制器
- * 2018年03月13日 07:57:10
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "教师发布作业题目表", description = "相关的API")
 public abstract class AbstractBarablahTeacherHomeworkItemController extends WebController  {
@@ -60,6 +60,15 @@ public abstract class AbstractBarablahTeacherHomeworkItemController extends WebC
         if (StringUtils.isEmpty(request.getTextbookId())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目ID不能为空！");
         }
+
+
+
+
+
+
+
+
+
 
 
         ApiEntity entity = fillCreateRequest(request);

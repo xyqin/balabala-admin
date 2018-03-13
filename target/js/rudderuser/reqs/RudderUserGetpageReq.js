@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月13日 07:57:14
+ * 生成时间：2018年03月13日 09:32:09
  * 该文件系自动生成，手动修改可能会被替换
  * RudderUserGetpageReq
  * 接口地址：rudderuser/getpage
@@ -17,7 +17,13 @@ class RudderUserGetpageReq extends BaseRobotReq {
             url: '/rudderuser/getpage',
             type: 'Get',        };
         // 请求参数的描述信息，只定义先不用
-        this._paramsDescriptor = [{key: 'page',
+        this._paramsDescriptor = [{key: 'rudderuserName',
+            desc: '账号名称',
+            isRequired: true
+        },{key: 'status',
+            desc: '用户状态',
+            isRequired: true
+        },{key: 'page',
             desc: '页码',
             isRequired: false
         },{key: 'size',
@@ -30,7 +36,9 @@ class RudderUserGetpageReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(page,size) {
+    setSimpleParams(rudderuserName,status,page,size) {
+        this.addParams('rudderuserName', rudderuserName);
+        this.addParams('status', status);
         this.addParams('page', page);
         this.addParams('size', size);
     }

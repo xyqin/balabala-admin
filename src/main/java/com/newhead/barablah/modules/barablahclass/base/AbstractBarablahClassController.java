@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 开班控制器
- * 2018年03月12日 05:37:09
+ * 2018年03月13日 07:57:09
  */
 @Api(tags = "开班", description = "相关的API")
 public abstract class AbstractBarablahClassController extends WebController  {
@@ -162,19 +162,22 @@ public abstract class AbstractBarablahClassController extends WebController  {
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "开班ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahClassQueryResponse>> getList(@RequestParam(required = false) Long categoryId,@RequestParam(required = false) String className,@RequestParam(required = false) String monitor,@RequestParam(required = false) String monitorPhoneNumber,@RequestParam(required = false) String status) {
+    public ApiEntity<List<SimpleBarablahClassQueryResponse>> getList(@RequestParam(required = false) Long categoryId,@RequestParam(required = false) Long campusId,@RequestParam(required = false) Long teacherId,@RequestParam(required = false) Long courseId,@RequestParam(required = false) String className,@RequestParam(required = false) String status) {
         SimpleBarablahClassQueryListRequest request = new SimpleBarablahClassQueryListRequest();
         if (!StringUtils.isEmpty(categoryId)) {
             request.setCategoryId(categoryId);
         }
+        if (!StringUtils.isEmpty(campusId)) {
+            request.setCampusId(campusId);
+        }
+        if (!StringUtils.isEmpty(teacherId)) {
+            request.setTeacherId(teacherId);
+        }
+        if (!StringUtils.isEmpty(courseId)) {
+            request.setCourseId(courseId);
+        }
         if (!StringUtils.isEmpty(className)) {
             request.setClassName(className);
-        }
-        if (!StringUtils.isEmpty(monitor)) {
-            request.setMonitor(monitor);
-        }
-        if (!StringUtils.isEmpty(monitorPhoneNumber)) {
-            request.setMonitorPhoneNumber(monitorPhoneNumber);
         }
         if (!StringUtils.isEmpty(status)) {
             request.setStatus(status);
@@ -193,9 +196,10 @@ public abstract class AbstractBarablahClassController extends WebController  {
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
         @RequestParam(required = false) Long categoryId,
+        @RequestParam(required = false) Long campusId,
+        @RequestParam(required = false) Long teacherId,
+        @RequestParam(required = false) Long courseId,
         @RequestParam(required = false) String className,
-        @RequestParam(required = false) String monitor,
-        @RequestParam(required = false) String monitorPhoneNumber,
         @RequestParam(required = false) String status,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
@@ -203,14 +207,17 @@ public abstract class AbstractBarablahClassController extends WebController  {
         if (!StringUtils.isEmpty(categoryId)) {
             request.setCategoryId(categoryId);
         }
+        if (!StringUtils.isEmpty(campusId)) {
+            request.setCampusId(campusId);
+        }
+        if (!StringUtils.isEmpty(teacherId)) {
+            request.setTeacherId(teacherId);
+        }
+        if (!StringUtils.isEmpty(courseId)) {
+            request.setCourseId(courseId);
+        }
         if (!StringUtils.isEmpty(className)) {
             request.setClassName(className);
-        }
-        if (!StringUtils.isEmpty(monitor)) {
-            request.setMonitor(monitor);
-        }
-        if (!StringUtils.isEmpty(monitorPhoneNumber)) {
-            request.setMonitorPhoneNumber(monitorPhoneNumber);
         }
         if (!StringUtils.isEmpty(status)) {
             request.setStatus(status);

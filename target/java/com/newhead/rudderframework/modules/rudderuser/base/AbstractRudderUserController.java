@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 用户控制器
- * 2018年03月13日 07:57:10
+ * 2018年03月13日 09:32:06
  */
 @Api(tags = "用户", description = "相关的API")
 public abstract class AbstractRudderUserController extends WebController  {
@@ -49,6 +49,59 @@ public abstract class AbstractRudderUserController extends WebController  {
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleRudderUserCreateRequest request) {
+        if (StringUtils.isEmpty(request.getRudderuserName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"账号名称不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getRudderuserDesc())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"备注不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getPassword())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"密码不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getStatus())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"用户状态不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getNickname())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"昵称不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getEmail())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"email不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getVisible())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否显示不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getCampusId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区ID不能为空！");
+        }
+
+
+        if(request.getRudderuserName()!=null) {
+            RudderUser rudderuserName = getService().existByRudderuserName(request.getRudderuserName());
+            if (rudderuserName != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"账号名称'"+request.getRudderuserName()+"'已经存在！");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -72,6 +125,46 @@ public abstract class AbstractRudderUserController extends WebController  {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleRudderUserUpdateRequest request) {
 
+                if (StringUtils.isEmpty(request.getRudderuserName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"账号名称不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getRudderuserDesc())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"备注不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getPassword())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"密码不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getStatus())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"用户状态不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getNickname())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"昵称不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getEmail())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"email不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getVisible())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否显示不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getCampusId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区ID不能为空！");
+                }
+
+
+    if(request.getRudderuserName()!=null) {
+
+        RudderUser RudderuserName = getService().existByRudderuserName(request.getRudderuserName());
+        if (RudderuserName != null && RudderuserName.getId()!=request.getId()) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"账号名称"+request.getRudderuserName()+"'已经存在！");
+        }
+    }
 
 
        ApiEntity entity = fillUpdateRequest(request);
@@ -92,6 +185,8 @@ public abstract class AbstractRudderUserController extends WebController  {
     @RequestMapping(value = "getdetail/{id}", method = RequestMethod.GET)
     public ApiEntity getDetail(@ApiParam(required = true, name = "id", value = "菜单ID") @PathVariable("id") Long id) {
         SimpleRudderUserGetDetailResponse response =  getService().getDetail(id);
+        List<LabelValueItem> items = getService().getRudderRoles(id);
+        response.setRudderRoleItems(items);
         return new ApiEntity<SimpleRudderUserGetDetailResponse>(response);
     }
 
@@ -114,8 +209,14 @@ public abstract class AbstractRudderUserController extends WebController  {
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "用户ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleRudderUserQueryResponse>> getList() {
+    public ApiEntity<List<SimpleRudderUserQueryResponse>> getList(@RequestParam(required = false) String rudderuserName,@RequestParam(required = false) String status) {
         SimpleRudderUserQueryListRequest request = new SimpleRudderUserQueryListRequest();
+        if (!StringUtils.isEmpty(rudderuserName)) {
+            request.setRudderuserName(rudderuserName);
+        }
+        if (!StringUtils.isEmpty(status)) {
+            request.setStatus(status);
+        }
         List<SimpleRudderUserQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleRudderUserQueryResponse>>(sources);
     }
@@ -129,9 +230,17 @@ public abstract class AbstractRudderUserController extends WebController  {
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) String rudderuserName,
+        @RequestParam(required = false) String status,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleRudderUserQueryPageRequest request = new SimpleRudderUserQueryPageRequest();
+        if (!StringUtils.isEmpty(rudderuserName)) {
+            request.setRudderuserName(rudderuserName);
+        }
+        if (!StringUtils.isEmpty(status)) {
+            request.setStatus(status);
+        }
         if (page==null) {
             request.setPage(1);
         } else {

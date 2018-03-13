@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员报名表控制器
- * 2018年03月12日 05:37:09
+ * 2018年03月13日 07:57:10
  */
 @Api(tags = "会员报名表", description = "相关的API")
 public abstract class AbstractBarablahMemberSignupController extends WebController  {

@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 校区控制器
- * 2018年03月13日 07:57:09
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "校区", description = "相关的API")
 public abstract class AbstractBarablahCampusController extends WebController  {
@@ -57,10 +57,20 @@ public abstract class AbstractBarablahCampusController extends WebController  {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区名称不能为空！");
         }
 
-        BarablahCampus campusName = getService().existByCampusName(request.getCampusName());
-        if (campusName != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区名称'"+request.getCampusName()+"'已经存在！");
+
+
+        if(request.getCampusName()!=null) {
+            BarablahCampus campusName = getService().existByCampusName(request.getCampusName());
+            if (campusName != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区名称'"+request.getCampusName()+"'已经存在！");
+            }
         }
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -93,10 +103,14 @@ public abstract class AbstractBarablahCampusController extends WebController  {
                 }
 
 
+    if(request.getCampusName()!=null) {
+
         BarablahCampus CampusName = getService().existByCampusName(request.getCampusName());
         if (CampusName != null && CampusName.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区名称"+request.getCampusName()+"'已经存在！");
         }
+    }
+
 
        ApiEntity entity = fillUpdateRequest(request);
         if (entity!=null) {

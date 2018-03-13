@@ -61,11 +61,14 @@ public abstract class Abstract${vo.bmoduleName}Controller extends WebController 
     <% } %>
     <% for(field in vo.fields ){%>
         <% if(field.checkName) {%>
-        ${vo.bmoduleName} ${field.name} = getService().existBy${field.bname}(request.get${field.bname}());
-        if (${field.name} != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"${field.desc}'"+request.get${field.bname}()+"'已经存在！");
+        if(request.get${field.bname}()!=null) {
+            ${vo.bmoduleName} ${field.name} = getService().existBy${field.bname}(request.get${field.bname}());
+            if (${field.name} != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"${field.desc}'"+request.get${field.bname}()+"'已经存在！");
+            }
         }
         <% } %>
+
     <% } %>
 
         ApiEntity entity = fillCreateRequest(request);
@@ -103,10 +106,14 @@ public abstract class Abstract${vo.bmoduleName}Controller extends WebController 
 
 <% for(field in vo.fields ){%>
     <% if(field.checkName) {%>
+    if(request.get${field.bname}()!=null) {
+
         ${vo.bmoduleName} ${field.bname} = getService().existBy${field.bname}(request.get${field.bname}());
         if (${field.bname} != null && ${field.bname}.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"${field.desc}"+request.get${field.bname}()+"'已经存在！");
         }
+    }
+
     <% } %>
 <% } %>
 

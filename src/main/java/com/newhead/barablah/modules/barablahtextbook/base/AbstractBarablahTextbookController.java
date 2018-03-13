@@ -1,33 +1,27 @@
 package com.newhead.barablah.modules.barablahtextbook.base;
 
 import com.google.common.collect.Maps;
+import com.newhead.barablah.modules.barablahtextbook.base.repository.entity.BarablahTextbook;
+import com.newhead.barablah.modules.barablahtextbook.ext.SimpleBarablahTextbookService;
+import com.newhead.barablah.modules.barablahtextbook.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
-import com.newhead.rudderframework.core.web.component.tree.Tree;
-import com.newhead.rudderframework.modules.LabelValueItem;
-
-
 import com.newhead.rudderframework.core.web.controller.WebController;
-import com.newhead.barablah.modules.barablahtextbook.base.repository.entity.BarablahTextbook;
-import com.newhead.barablah.modules.barablahtextbook.ext.SimpleBarablahTextbookService;
-import com.newhead.barablah.modules.barablahtextbook.ext.protocol.*;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 教材表控制器
- * 2018年03月12日 05:37:09
+ * 2018年03月13日 07:57:10
  */
 @Api(tags = "教材表", description = "相关的API")
 public abstract class AbstractBarablahTextbookController extends WebController  {
@@ -57,45 +51,18 @@ public abstract class AbstractBarablahTextbookController extends WebController  
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目类型不能为空！");
         }
 
-        if (StringUtils.isEmpty(request.getTextbookName())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称不能为空！");
+        if (request.getTextbookName()!=null) {
+            BarablahTextbook textbookName = getService().existByTextbookName(request.getTextbookName());
+            if (textbookName != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称'"+request.getTextbookName()+"'已经存在！");
+            }
         }
 
-        if (StringUtils.isEmpty(request.getQuestion())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getOption())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"选项不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getCorrect())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"正确答案不能为空！");
-        }
-
-        BarablahTextbook textbookName = getService().existByTextbookName(request.getTextbookName());
-        if (textbookName != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称'"+request.getTextbookName()+"'已经存在！");
-        }
-        BarablahTextbook question = getService().existByQuestion(request.getQuestion());
-        if (question != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题'"+request.getQuestion()+"'已经存在！");
-        }
-        BarablahTextbook option = getService().existByOption(request.getOption());
-        if (option != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"选项'"+request.getOption()+"'已经存在！");
-        }
-        BarablahTextbook correct = getService().existByCorrect(request.getCorrect());
-        if (correct != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"正确答案'"+request.getCorrect()+"'已经存在！");
-        }
-        BarablahTextbook image = getService().existByImage(request.getImage());
-        if (image != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"图片'"+request.getImage()+"'已经存在！");
-        }
-        BarablahTextbook video = getService().existByVideo(request.getVideo());
-        if (video != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"音频'"+request.getVideo()+"'已经存在！");
+        if (request.getQuestion()!=null) {
+            BarablahTextbook question = getService().existByQuestion(request.getQuestion());
+            if (question != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题'"+request.getQuestion()+"'已经存在！");
+            }
         }
 
         ApiEntity entity = fillCreateRequest(request);
@@ -128,46 +95,19 @@ public abstract class AbstractBarablahTextbookController extends WebController  
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目类型不能为空！");
                 }
 
-                if (StringUtils.isEmpty(request.getTextbookName())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称不能为空！");
-                }
 
-                if (StringUtils.isEmpty(request.getQuestion())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题不能为空！");
-                }
+        if (request.getTextbookName()!=null) {
+            BarablahTextbook textbookName = getService().existByTextbookName(request.getTextbookName());
+            if (textbookName != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称'"+request.getTextbookName()+"'已经存在！");
+            }
+        }
 
-                if (StringUtils.isEmpty(request.getOption())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"选项不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getCorrect())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"正确答案不能为空！");
-                }
-
-
-        BarablahTextbook TextbookName = getService().existByTextbookName(request.getTextbookName());
-        if (TextbookName != null && TextbookName.getId()!=request.getId()) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称"+request.getTextbookName()+"'已经存在！");
-        }
-        BarablahTextbook Question = getService().existByQuestion(request.getQuestion());
-        if (Question != null && Question.getId()!=request.getId()) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题"+request.getQuestion()+"'已经存在！");
-        }
-        BarablahTextbook Option = getService().existByOption(request.getOption());
-        if (Option != null && Option.getId()!=request.getId()) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"选项"+request.getOption()+"'已经存在！");
-        }
-        BarablahTextbook Correct = getService().existByCorrect(request.getCorrect());
-        if (Correct != null && Correct.getId()!=request.getId()) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"正确答案"+request.getCorrect()+"'已经存在！");
-        }
-        BarablahTextbook Image = getService().existByImage(request.getImage());
-        if (Image != null && Image.getId()!=request.getId()) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"图片"+request.getImage()+"'已经存在！");
-        }
-        BarablahTextbook Video = getService().existByVideo(request.getVideo());
-        if (Video != null && Video.getId()!=request.getId()) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"音频"+request.getVideo()+"'已经存在！");
+        if (request.getQuestion()!=null) {
+            BarablahTextbook question = getService().existByQuestion(request.getQuestion());
+            if (question != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题'"+request.getQuestion()+"'已经存在！");
+            }
         }
 
        ApiEntity entity = fillUpdateRequest(request);

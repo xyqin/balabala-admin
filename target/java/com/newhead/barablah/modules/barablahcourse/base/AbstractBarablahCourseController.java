@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 课程控制器
- * 2018年03月13日 07:57:09
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "课程", description = "相关的API")
 public abstract class AbstractBarablahCourseController extends WebController  {
@@ -64,6 +64,20 @@ public abstract class AbstractBarablahCourseController extends WebController  {
         if (StringUtils.isEmpty(request.getCommission())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"总部抽取佣金（元/每位学生）不能为空！");
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         ApiEntity entity = fillCreateRequest(request);

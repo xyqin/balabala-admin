@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月13日 07:57:14
+ * 生成时间：2018年03月13日 09:32:09
  * 该文件系自动生成，手动修改可能会被替换
  * RudderPermissionCreateReq
  * 接口地址：rudderpermission/create
@@ -18,14 +18,46 @@ class RudderPermissionCreateReq extends BaseRobotReq {
             type: 'Post',
             contentType: 'application/json'
         };
-        this._paramsDescriptor = [];        this.curd = 'd';
+        this._paramsDescriptor = [{key: 'id',
+            desc: '资源ID',
+            isRequired: true
+        },{key: 'rudderpermissionName',
+            desc: '资源名称',
+            isRequired: true
+        },{key: 'rudderpermissionDesc',
+            desc: '资源描述',
+            isRequired: true
+        },{key: 'url',
+            desc: '资源地址',
+            isRequired: true
+        },{key: 'parentId',
+            desc: '上级资源',
+            isRequired: true
+        },{key: 'visible',
+            desc: '是否显示',
+            isRequired: true
+        },{key: 'orderNumber',
+            desc: '排序号',
+            isRequired: false
+        },{key: 'leaf',
+            desc: 'leaf',
+            isRequired: false
+        }];        this.curd = 'd';
     }
 
     /**
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams() {
+    setSimpleParams(id,rudderpermissionName,rudderpermissionDesc,url,parentId,visible,orderNumber,leaf) {
+        this.addParams('id', id);
+        this.addParams('rudderpermissionName', rudderpermissionName);
+        this.addParams('rudderpermissionDesc', rudderpermissionDesc);
+        this.addParams('url', url);
+        this.addParams('parentId', parentId);
+        this.addParams('visible', visible);
+        this.addParams('orderNumber', orderNumber);
+        this.addParams('leaf', leaf);
     }
 
     /**

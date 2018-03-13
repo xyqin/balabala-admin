@@ -1,27 +1,33 @@
 package com.newhead.barablah.modules.barablahcourse.base;
 
 import com.google.common.collect.Maps;
-import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourse;
-import com.newhead.barablah.modules.barablahcourse.ext.SimpleBarablahCourseService;
-import com.newhead.barablah.modules.barablahcourse.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+import com.newhead.rudderframework.modules.LabelValueItem;
+
+
 import com.newhead.rudderframework.core.web.controller.WebController;
+import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourse;
+import com.newhead.barablah.modules.barablahcourse.ext.SimpleBarablahCourseService;
+import com.newhead.barablah.modules.barablahcourse.ext.protocol.*;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 课程控制器
- * 2018年03月12日 05:37:09
+ * 2018年03月13日 07:57:09
  */
 @Api(tags = "课程", description = "相关的API")
 public abstract class AbstractBarablahCourseController extends WebController  {

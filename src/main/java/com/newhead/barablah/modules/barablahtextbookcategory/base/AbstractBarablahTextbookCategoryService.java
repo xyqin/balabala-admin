@@ -256,7 +256,6 @@ public abstract class AbstractBarablahTextbookCategoryService extends SimpleTree
         for(SimpleBarablahTextbookCategoryQueryResponse response:sources) {
             ExtNode node = new ExtNode();
             node.setId(response.getId());
-            node.getNode().setUrl("");
             node.getNode().setLeaf(true);
             node.getNode().setLabel(response.getCategoryName());
             node.getNode().setValue(String.valueOf(response.getId()));

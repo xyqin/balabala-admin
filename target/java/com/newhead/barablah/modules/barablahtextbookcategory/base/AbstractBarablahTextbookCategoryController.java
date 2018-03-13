@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教材分类表控制器
- * 2018年03月13日 07:57:10
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "教材分类表", description = "相关的API")
 public abstract class AbstractBarablahTextbookCategoryController extends WebController  {
@@ -57,10 +57,23 @@ public abstract class AbstractBarablahTextbookCategoryController extends WebCont
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称不能为空！");
         }
 
-        BarablahTextbookCategory categoryName = getService().existByCategoryName(request.getCategoryName());
-        if (categoryName != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称'"+request.getCategoryName()+"'已经存在！");
+
+
+        if(request.getCategoryName()!=null) {
+            BarablahTextbookCategory categoryName = getService().existByCategoryName(request.getCategoryName());
+            if (categoryName != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称'"+request.getCategoryName()+"'已经存在！");
+            }
         }
+
+
+
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -93,10 +106,14 @@ public abstract class AbstractBarablahTextbookCategoryController extends WebCont
                 }
 
 
+    if(request.getCategoryName()!=null) {
+
         BarablahTextbookCategory CategoryName = getService().existByCategoryName(request.getCategoryName());
         if (CategoryName != null && CategoryName.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称"+request.getCategoryName()+"'已经存在！");
         }
+    }
+
 
        ApiEntity entity = fillUpdateRequest(request);
         if (entity!=null) {

@@ -9,6 +9,8 @@ import lombok.Data;
  */
 @Data
 public class SimpleBarablahClassQueryPageRequest extends AbstractBarablahClassQueryPageRequest {
+    private String monitor;
 
+    private String monitorPhoneNumber;
 }
 

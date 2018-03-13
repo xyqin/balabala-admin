@@ -23,6 +23,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermission;
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermissionExample;
+
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.dao.RudderPermissionMapper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,6 +43,8 @@ public abstract class AbstractRudderMenuService extends SimpleTreeService {
 
     protected abstract void saveOrUpdate(RudderMenu entity);
 
+    @Autowired
+    protected RudderPermissionMapper rudderpermissionMapper;
 
     /**
      * 创建
@@ -91,6 +97,22 @@ public abstract class AbstractRudderMenuService extends SimpleTreeService {
         }
         SimpleRudderMenuGetDetailResponse response = new SimpleRudderMenuGetDetailResponse();
         BeanUtils.copyProperties(entity, response);
+        RudderMenu  parentIdEntity = getMapper().selectByPrimaryKey(Long.valueOf(entity.getParentId()));
+        if (parentIdEntity!=null) {
+            LabelValueItem parentIdObject = response.getParentIdObject();
+            parentIdObject.setName("parentId");
+            parentIdObject.setLabel(parentIdEntity.getRuddermenuName());
+            parentIdObject.setValue(String.valueOf(entity.getParentId()));
+            parentIdObject.setChecked(false);
+        }
+        RudderPermission  resourceIdEntity = rudderpermissionMapper.selectByPrimaryKey(Long.valueOf(entity.getResourceId()));
+        if (resourceIdEntity!=null) {
+            LabelValueItem resourceIdObject = response.getResourceIdObject();
+            resourceIdObject.setName("resourceId");
+            resourceIdObject.setLabel(resourceIdEntity.getRudderpermissionName());
+            resourceIdObject.setValue(String.valueOf(entity.getResourceId()));
+            resourceIdObject.setChecked(false);
+        }
         return response;
     }
 
@@ -122,6 +144,10 @@ public abstract class AbstractRudderMenuService extends SimpleTreeService {
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
 
+        if (request.getRuddermenuName()!=null) {
+            c.andRuddermenuNameLike("%"+request.getRuddermenuName()+"%");
+        }
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -142,6 +168,10 @@ public abstract class AbstractRudderMenuService extends SimpleTreeService {
         String ordersrc ="";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
+        if (request.getRuddermenuName()!=null) {
+            c.andRuddermenuNameLike("%"+request.getRuddermenuName()+"%");
+        }
+
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -163,12 +193,66 @@ public abstract class AbstractRudderMenuService extends SimpleTreeService {
      * @param results
      */
     private void convertEntityToResponse(List<RudderMenu> entitys,List<SimpleRudderMenuQueryResponse> results) {
+        Map<Long,Long> parentIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> parentIdResultMap = Maps.newHashMap();
+
+        Map<Long,Long> resourceIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> resourceIdResultMap = Maps.newHashMap();
+
        for(RudderMenu entity:entitys) {
+            parentIdMap.put(entity.getId(),entity.getParentId());
+            resourceIdMap.put(entity.getId(),entity.getResourceId());
+        }
+        RudderMenuExample parentIdExample = new RudderMenuExample();
+
+        List<Long> parentIds = new ArrayList<>();
+        parentIds.addAll(parentIdMap.values());
+        if (parentIds.size()>0) {
+            parentIdExample.createCriteria().andIdIn(parentIds);
+        }
+        List<RudderMenu> parentIdList = getMapper().selectByExample(parentIdExample);
+        for(RudderMenu item:parentIdList) {
+           LabelValueItem parentIdItem = new LabelValueItem();
+           parentIdItem.setName("parentId");
+           parentIdItem.setValue(String.valueOf(item.getId()));
+           parentIdItem.setLabel(item.getRuddermenuName());
+           parentIdResultMap.put(item.getId(),parentIdItem);
+        }
+        RudderPermissionExample resourceIdExample = new RudderPermissionExample();
+
+        List<Long> resourceIds = new ArrayList<>();
+        resourceIds.addAll(resourceIdMap.values());
+        if (resourceIds.size()>0) {
+            resourceIdExample.createCriteria().andIdIn(resourceIds);
+        }
+        List<RudderPermission>  resourceIdList = rudderpermissionMapper.selectByExample(resourceIdExample);
+        for(RudderPermission item:resourceIdList) {
+           LabelValueItem resourceIdItem = new LabelValueItem();
+           resourceIdItem.setName("resourceId");
+           resourceIdItem.setValue(String.valueOf(item.getId()));
+           resourceIdItem.setLabel(item.getRudderpermissionName());
+           resourceIdResultMap.put(item.getId(),resourceIdItem);
         }
         //第一组
         for(RudderMenu entity:entitys) {
             SimpleRudderMenuQueryResponse response = new SimpleRudderMenuQueryResponse();
             BeanUtils.copyProperties(entity,response);
+            Long parentId = parentIdMap.get(entity.getId());
+
+            LabelValueItem parentIdlvi = null;
+            if (parentId!=null && parentIdResultMap.get(parentId)!=null) {
+                parentIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(parentIdResultMap.get(parentId),parentIdlvi);
+            }
+            response.setParentIdObject(parentIdlvi);
+            Long resourceId = resourceIdMap.get(entity.getId());
+
+            LabelValueItem resourceIdlvi = null;
+            if (resourceId!=null && resourceIdResultMap.get(resourceId)!=null) {
+                resourceIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(resourceIdResultMap.get(resourceId),resourceIdlvi);
+            }
+            response.setResourceIdObject(resourceIdlvi);
             results.add(response);
         }
     }
@@ -191,6 +275,22 @@ public abstract class AbstractRudderMenuService extends SimpleTreeService {
         }
     }
 
+    /**
+     * 是否存在同名数据
+     * @param ruddermenuName
+     * @return
+     */
+    public RudderMenu existByRuddermenuName(String ruddermenuName) {
+        //构造查询对象
+        RudderMenuExample example = new RudderMenuExample();
+        RudderMenuExample.Criteria c = example.createCriteria();
+        c.andRuddermenuNameEqualTo(ruddermenuName);
+        List<RudderMenu> list = getMapper().selectByExample(example);
+        if (list!=null && list.size()==1) {
+            return list.get(0);
+        }
+        return null;
+    }
 
     @Override
     protected TransitionTree getTransitionTree() {
