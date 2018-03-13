@@ -9,15 +9,13 @@ import com.newhead.barablah.modules.barablahteacher.base.AbstractBarablahTeacher
 import com.newhead.barablah.modules.barablahteacher.base.repository.dao.BarablahTeacherMapper;
 import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
 import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
-import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherCreateRequest;
-import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherQueryPageRequest;
-import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherQueryResponse;
-import com.newhead.barablah.modules.barablahteacher.ext.protocol.SimpleBarablahTeacherUpdateBatchRequest;
+import com.newhead.barablah.modules.barablahteacher.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -61,7 +59,7 @@ public class SimpleBarablahTeacherController extends AbstractBarablahTeacherCont
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "教师ID")
     @RequestMapping(value = "getlistbyarea", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahTeacherQueryResponse>> getList(@RequestParam(required = false) long area) {
+    public ApiEntity<List<SimpleBarablahTeacherQueryResponse>> getListbyarea(@RequestParam(required = false) long area) {
 
         BarablahTeacherExample example = new BarablahTeacherExample();
         example.createCriteria().andCampusIdEqualTo(area);
@@ -150,11 +148,24 @@ public class SimpleBarablahTeacherController extends AbstractBarablahTeacherCont
         }
 
         request.setStatus(BarablahTeacherStatusEnum.启用.getValue());
+
+        request.setPassword(DigestUtils.md5Hex(request.getPassword()));
+
         request.setAccid(imUserCreateResponse.getInfo().getAccid());
         request.setToken(imUserCreateResponse.getInfo().getToken());
         return null;
     }
 
+    @Override
+    protected ApiEntity fillUpdateRequest(SimpleBarablahTeacherUpdateRequest request) {
+        if (request.getPassword()!=null) {
+            SimpleBarablahTeacherGetDetailResponse response =  getService().getDetail(request.getId());
+            if (response.getPassword()!=null && !response.getPassword().equals(request.getPassword())) {
+                request.setPassword(DigestUtils.md5Hex(request.getPassword()));
+            }
+        }
+        return super.fillUpdateRequest(request);
+    }
 
     /**
      * 对象转换
