@@ -2,27 +2,44 @@ package com.newhead.rudderframework.modules.ruddermenu2permission.base;
 
 import com.google.common.collect.Maps;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+import com.newhead.rudderframework.modules.LabelValueItem;
+
+
 import com.newhead.rudderframework.core.web.controller.WebController;
 import com.newhead.rudderframework.modules.ruddermenu2permission.base.repository.entity.RudderMenu2permission;
 import com.newhead.rudderframework.modules.ruddermenu2permission.ext.SimpleRudderMenu2permissionService;
+import com.newhead.rudderframework.modules.ruddermenu2permission.ext.protocol.*;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 菜单权限关系控制器
- * 2018年03月11日 09:42:04
+ * 2018年03月13日 12:41:36
  */
 @Api(tags = "菜单权限关系", description = "相关的API")
 public abstract class AbstractRudderMenu2permissionController extends WebController  {
 
     protected abstract SimpleRudderMenu2permissionService getService();
+    protected ApiEntity fillCreateRequest(SimpleRudderMenu2permissionCreateRequest request) {
+        return null;
+    }
 
+    protected ApiEntity fillUpdateRequest(SimpleRudderMenu2permissionUpdateRequest request) {
+        return null;
+    }
     /**
      * 创建菜单权限关系
      *
@@ -32,6 +49,12 @@ public abstract class AbstractRudderMenu2permissionController extends WebControl
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleRudderMenu2permissionCreateRequest request) {
+
+        ApiEntity entity = fillCreateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
+
         RudderMenu2permission ruddermenu2permission = getService().create(request);
         //默认创建成功返回ID
         Map<String, Long> result = Maps.newHashMap();
@@ -48,6 +71,13 @@ public abstract class AbstractRudderMenu2permissionController extends WebControl
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleRudderMenu2permissionUpdateRequest request) {
+
+
+
+       ApiEntity entity = fillUpdateRequest(request);
+        if (entity!=null) {
+            return entity;
+        }
         getService().update(request);
         return new ApiEntity<>();
     }

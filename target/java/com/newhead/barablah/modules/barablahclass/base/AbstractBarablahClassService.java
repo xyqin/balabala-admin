@@ -194,16 +194,20 @@ public abstract class AbstractBarablahClassService extends BaseService {
             c.andCategoryIdEqualTo(request.getCategoryId());
          }
 
+        if (request.getCampusId()!=null) {
+            c.andCampusIdEqualTo(request.getCampusId());
+         }
+
+        if (request.getTeacherId()!=null) {
+            c.andTeacherIdEqualTo(request.getTeacherId());
+         }
+
+        if (request.getCourseId()!=null) {
+            c.andCourseIdEqualTo(request.getCourseId());
+         }
+
         if (request.getClassName()!=null) {
             c.andClassNameLike("%"+request.getClassName()+"%");
-        }
-
-        if (request.getMonitor()!=null) {
-            c.andMonitorLike("%"+request.getMonitor()+"%");
-        }
-
-        if (request.getMonitorPhoneNumber()!=null) {
-            c.andMonitorPhoneNumberLike("%"+request.getMonitorPhoneNumber()+"%");
         }
 
         if (request.getStatus()!=null) {
@@ -234,16 +238,20 @@ public abstract class AbstractBarablahClassService extends BaseService {
             c.andCategoryIdEqualTo(request.getCategoryId());
          }
 
+        if (request.getCampusId()!=null) {
+            c.andCampusIdEqualTo(request.getCampusId());
+         }
+
+        if (request.getTeacherId()!=null) {
+            c.andTeacherIdEqualTo(request.getTeacherId());
+         }
+
+        if (request.getCourseId()!=null) {
+            c.andCourseIdEqualTo(request.getCourseId());
+         }
+
         if (request.getClassName()!=null) {
             c.andClassNameLike("%"+request.getClassName()+"%");
-        }
-
-        if (request.getMonitor()!=null) {
-            c.andMonitorLike("%"+request.getMonitor()+"%");
-        }
-
-        if (request.getMonitorPhoneNumber()!=null) {
-            c.andMonitorPhoneNumberLike("%"+request.getMonitorPhoneNumber()+"%");
         }
 
         if (request.getStatus()!=null) {

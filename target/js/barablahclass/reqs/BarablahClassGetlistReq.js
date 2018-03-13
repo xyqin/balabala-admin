@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月12日 05:37:10
+ * 生成时间：2018年03月13日 12:41:37
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahClassGetlistReq
  * 接口地址：barablahclass/getlist
@@ -20,15 +20,18 @@ class BarablahClassGetlistReq extends BaseRobotReq {
         this._paramsDescriptor = [{key: 'categoryId',
             desc: '班级分类ID',
             isRequired: true
+        },{key: 'campusId',
+            desc: '校区ID',
+            isRequired: true
+        },{key: 'teacherId',
+            desc: '教师ID',
+            isRequired: true
+        },{key: 'courseId',
+            desc: '课程ID',
+            isRequired: true
         },{key: 'className',
             desc: '班级名称',
             isRequired: true
-        },{key: 'monitor',
-            desc: '班长',
-            isRequired: false
-        },{key: 'monitorPhoneNumber',
-            desc: '班长电话',
-            isRequired: false
         },{key: 'status',
             desc: '状态',
             isRequired: true
@@ -39,11 +42,12 @@ class BarablahClassGetlistReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(categoryId,className,monitor,monitorPhoneNumber,status) {
+    setSimpleParams(categoryId,campusId,teacherId,courseId,className,status) {
         this.addParams('categoryId', categoryId);
+        this.addParams('campusId', campusId);
+        this.addParams('teacherId', teacherId);
+        this.addParams('courseId', courseId);
         this.addParams('className', className);
-        this.addParams('monitor', monitor);
-        this.addParams('monitorPhoneNumber', monitorPhoneNumber);
         this.addParams('status', status);
     }
 

@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月12日 05:37:10
+ * 生成时间：2018年03月13日 12:41:37
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -53,25 +53,25 @@ const BARABLAHTEXTBOOK_FORM_FIELDS = [{
     key: 'textbookName',
     type: 'String',
     label: '题目名称',
-    need: 'true',
+    need: 'false',
     placeholder: '请输入题目名称'
 },{
     key: 'question',
     type: 'String',
     label: '问题',
-    need: 'true',
+    need: 'false',
     placeholder: '请输入问题'
 },{
     key: 'option',
     type: 'String',
     label: '选项',
-    need: 'true',
+    need: 'false',
     placeholder: '请输入选项'
 },{
     key: 'correct',
     type: 'String',
     label: '正确答案',
-    need: 'true',
+    need: 'false',
     placeholder: '请输入正确答案'
 },{
     key: 'image',

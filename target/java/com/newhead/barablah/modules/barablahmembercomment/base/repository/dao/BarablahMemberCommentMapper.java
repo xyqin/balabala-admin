@@ -11,77 +11,77 @@ public interface BarablahMemberCommentMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_comment
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     long countByExample(BarablahMemberCommentExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_comment
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     int deleteByExample(BarablahMemberCommentExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_comment
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_comment
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     int insert(BarablahMemberComment record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_comment
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     int insertSelective(BarablahMemberComment record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_comment
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     List<BarablahMemberComment> selectByExample(BarablahMemberCommentExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_comment
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     BarablahMemberComment selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_comment
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     int updateByExampleSelective(@Param("record") BarablahMemberComment record, @Param("example") BarablahMemberCommentExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_comment
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     int updateByExample(@Param("record") BarablahMemberComment record, @Param("example") BarablahMemberCommentExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_comment
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     int updateByPrimaryKeySelective(BarablahMemberComment record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_member_comment
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     int updateByPrimaryKey(BarablahMemberComment record);
 }

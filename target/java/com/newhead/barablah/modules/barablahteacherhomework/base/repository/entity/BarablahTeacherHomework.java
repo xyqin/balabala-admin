@@ -11,27 +11,27 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * RudderFramework框架自动生成，不允许修改！
  * 表 barablah_teacher_homework
- * @generated do_not_delete_during_merge 2018年3月12日 05:37:03
+ * @generated do_not_delete_during_merge 2018年3月13日 12:41:30
  */
 public class BarablahTeacherHomework implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"1","formid":"1"},"name":"主键","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     private Long id;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"教师ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BarablahTeacher","field":"fullName","type":"SingleList"},"valid":true}
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     private Long teacherId;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"作业名称","checkName":true,"fieldType":"String","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     @NotEmpty(message="作业名称不能为空")
     @Size(max=0,message = "作业名称长度无效")
@@ -41,7 +41,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
     /**
      *
      * {"name":"截止时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     @JSONField(serialize=false)
     private Date closingAt;
@@ -49,7 +49,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
     /**
      *
      * {"name":"创建时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     @JSONField(serialize=false)
     private Date createdAt;
@@ -57,7 +57,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
     /**
      *
      * {"name":"修改时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     @JSONField(serialize=false)
     private Date updatedAt;
@@ -65,7 +65,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
     /**
      *
      * {"name":"创建者","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     @JSONField(serialize=false)
     private Long creator;
@@ -73,7 +73,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
     /**
      *
      * {"name":"修改人","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     @JSONField(serialize=false)
     private Long lastModifier;
@@ -81,14 +81,14 @@ public class BarablahTeacherHomework implements AuditableEntity {
     /**
      *
      * {"name":"删除标志","fieldType":"Bool","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     @JSONField(serialize=false)
     private Boolean deleted;
 
     /**
      * 返回 id 主键
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public Long getId() {
         
@@ -99,7 +99,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
      * 设置主键
      *
      * @param id
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public void setId(Long id) {
         this.id = id;
@@ -107,7 +107,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
 
     /**
      * 返回 teacher_id 教师ID
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public Long getTeacherId() {
         
@@ -118,7 +118,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
      * 设置教师ID
      *
      * @param teacherId
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public void setTeacherId(Long teacherId) {
         this.teacherId = teacherId;
@@ -126,7 +126,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
 
     /**
      * 返回 homework_name 作业名称
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public String getHomeworkName() {
         
@@ -137,7 +137,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
      * 设置作业名称
      *
      * @param homeworkName
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public void setHomeworkName(String homeworkName) {
         this.homeworkName = homeworkName == null ? null : homeworkName.trim();
@@ -145,7 +145,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
 
     /**
      * 返回 closing_at 截止时间
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public Date getClosingAt() {
         
@@ -156,7 +156,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
      * 设置截止时间
      *
      * @param closingAt
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public void setClosingAt(Date closingAt) {
         this.closingAt = closingAt;
@@ -164,7 +164,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
 
     /**
      * 返回 created_at 创建时间
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public Date getCreatedAt() {
         
@@ -175,7 +175,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
      * 设置创建时间
      *
      * @param createdAt
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -183,7 +183,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
 
     /**
      * 返回 updated_at 修改时间
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public Date getUpdatedAt() {
         
@@ -194,7 +194,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
      * 设置修改时间
      *
      * @param updatedAt
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
@@ -202,7 +202,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
 
     /**
      * 返回 creator 创建者
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public Long getCreator() {
         
@@ -213,7 +213,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
      * 设置创建者
      *
      * @param creator
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public void setCreator(Long creator) {
         this.creator = creator;
@@ -221,7 +221,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
 
     /**
      * 返回 last_modifier 修改人
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public Long getLastModifier() {
         
@@ -232,7 +232,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
      * 设置修改人
      *
      * @param lastModifier
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public void setLastModifier(Long lastModifier) {
         this.lastModifier = lastModifier;
@@ -240,7 +240,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
 
     /**
      * 返回 deleted 删除标志
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public Boolean getDeleted() {
         
@@ -251,7 +251,7 @@ public class BarablahTeacherHomework implements AuditableEntity {
      * 设置删除标志
      *
      * @param deleted
-     * @generated 2018年3月12日 05:37:03
+     * @generated 2018年3月13日 12:41:30
      */
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;

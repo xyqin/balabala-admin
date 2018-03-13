@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教材表控制器
- * 2018年03月12日 05:37:09
+ * 2018年03月13日 12:41:35
  */
 @Api(tags = "教材表", description = "相关的API")
 public abstract class AbstractBarablahTextbookController extends WebController  {
@@ -55,22 +55,6 @@ public abstract class AbstractBarablahTextbookController extends WebController  
 
         if (StringUtils.isEmpty(request.getType())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目类型不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getTextbookName())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getQuestion())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getOption())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"选项不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getCorrect())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"正确答案不能为空！");
         }
 
         BarablahTextbook textbookName = getService().existByTextbookName(request.getTextbookName());
@@ -126,22 +110,6 @@ public abstract class AbstractBarablahTextbookController extends WebController  
 
                 if (StringUtils.isEmpty(request.getType())) {
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目类型不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getTextbookName())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getQuestion())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getOption())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"选项不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getCorrect())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"正确答案不能为空！");
                 }
 
 

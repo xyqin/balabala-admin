@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月12日 05:37:11
+ * 生成时间：2018年03月13日 12:41:38
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahTextbookGetpageReq
  * 接口地址：barablahtextbook/getpage
@@ -25,7 +25,7 @@ class BarablahTextbookGetpageReq extends BaseRobotReq {
             isRequired: true
         },{key: 'textbookName',
             desc: '题目名称',
-            isRequired: true
+            isRequired: false
         },{key: 'page',
             desc: '页码',
             isRequired: false

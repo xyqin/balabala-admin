@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 系统权限
- * 2018年03月12日 05:37:07
+ * 2018年03月13日 12:41:34
  */
 @Data
 public abstract class AbstractRudderPermissionGetDetailResponse {

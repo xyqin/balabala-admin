@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 开班课时控制器
- * 2018年03月12日 05:37:09
+ * 2018年03月13日 12:41:35
  */
 @Api(tags = "开班课时", description = "相关的API")
 public abstract class AbstractBarablahClassLessonController extends WebController  {
@@ -75,14 +75,6 @@ public abstract class AbstractBarablahClassLessonController extends WebControlle
 
         if (StringUtils.isEmpty(request.getThumbnail())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课时视频缩略图不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getVideo())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课时视频不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getRoom())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"网易云房间不能为空！");
         }
 
         if (StringUtils.isEmpty(request.getPrepared())) {
@@ -142,14 +134,6 @@ public abstract class AbstractBarablahClassLessonController extends WebControlle
 
                 if (StringUtils.isEmpty(request.getThumbnail())) {
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课时视频缩略图不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getVideo())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课时视频不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getRoom())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"网易云房间不能为空！");
                 }
 
                 if (StringUtils.isEmpty(request.getPrepared())) {

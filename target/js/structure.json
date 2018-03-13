@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月12日 05:37:13
+ * 生成时间：2018年03月13日 12:41:39
  * 该文件系自动生成，手动修改可能会被替换
  * 目录结构，从接口定义中解析出当前的目录结构
  * 规则：
@@ -100,6 +100,10 @@
     "module": "ruddermenu",
     "template": "ruddermenu",
     "desc": "菜单"
+ }, {
+    "module": "ruddermenu2permission",
+    "template": "ruddermenu2permission",
+    "desc": "菜单权限关系"
  }, {
     "module": "rudderpermission",
     "template": "rudderpermission",

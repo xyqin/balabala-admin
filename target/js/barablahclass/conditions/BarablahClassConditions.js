@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月12日 05:37:10
+ * 生成时间：2018年03月13日 12:41:36
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -21,20 +21,37 @@ const BARABLAHCLASS_CONDITIONS = [{
     dataLableKey: 'categoryName',
     dataValueKey: 'id'
 },{
+    key: 'campusId',
+    type: 'Object',
+    label: '校区ID',
+    placeholder: '请选择校区ID',
+    displayType: 'SingleList',
+    url: '/barablahcampus/getlist',
+    dataLableKey: 'campusName',
+    dataValueKey: 'id'
+},{
+    key: 'teacherId',
+    type: 'Object',
+    label: '教师ID',
+    placeholder: '请选择教师ID',
+    displayType: 'SingleList',
+    url: '/barablahteacher/getlist',
+    dataLableKey: 'fullName',
+    dataValueKey: 'id'
+},{
+    key: 'courseId',
+    type: 'Object',
+    label: '课程ID',
+    placeholder: '请选择课程ID',
+    displayType: 'SingleList',
+    url: '/barablahcourse/getlist',
+    dataLableKey: 'courseName',
+    dataValueKey: 'id'
+},{
     key: 'className',
     type: 'String',
     label: '班级名称',
     placeholder: '请输入班级名称'
-},{
-    key: 'monitor',
-    type: 'String',
-    label: '班长',
-    placeholder: '请输入班长'
-},{
-    key: 'monitorPhoneNumber',
-    type: 'String',
-    label: '班长电话',
-    placeholder: '请输入班长电话'
 },{
     key: 'status',
     type: 'Enum',
