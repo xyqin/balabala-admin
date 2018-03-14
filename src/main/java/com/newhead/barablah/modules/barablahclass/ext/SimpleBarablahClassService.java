@@ -91,6 +91,11 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
     @Transactional
     public void open(SimpleBarablahClassOpenRequest request) {
         BarablahClass aClass = mapper.selectByPrimaryKey(request.getId());
+
+        if ("ONGOING".equals(aClass.getStatus()) || "FINISHED".equals(aClass.getStatus())) {
+            throw new ApiException(ApiStatus.STATUS_400.getCode(), "当前班级已开始上课，不允许调整开班课时");
+        }
+
         BarablahCourse course = courseMapper.selectByPrimaryKey(aClass.getCourseId());
 
         // 获取教材3级分类，用于和课时关联
