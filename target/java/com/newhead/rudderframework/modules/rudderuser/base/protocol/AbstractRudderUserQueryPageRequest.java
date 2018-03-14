@@ -8,8 +8,20 @@ import java.math.BigDecimal;
 
 /**
  * 系统用户
- * @generated 2018年03月13日 12:41:34
+ * @generated 2018年03月13日 09:32:03
  */
 @Data
 public abstract class AbstractRudderUserQueryPageRequest extends PageRequest {
+    /**
+     *
+     * 账号名称
+     */
+     private String rudderuserName;
+
+    /**
+     *
+     * 用户状态
+     */
+     private String status;
+
 }

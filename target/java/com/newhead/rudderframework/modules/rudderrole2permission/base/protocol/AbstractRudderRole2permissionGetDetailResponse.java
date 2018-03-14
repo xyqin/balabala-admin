@@ -11,9 +11,33 @@ import java.math.BigDecimal;
 
 /**
  * 角色权限关系
- * 2018年03月13日 12:41:34
+ * 2018年03月13日 09:32:03
  */
 @Data
 public abstract class AbstractRudderRole2permissionGetDetailResponse {
+    /**
+     *
+     * 资源ID
+     */
+     private Long id;
+
+    /**
+     *
+     * 资源编码
+     */
+    private LabelValueItem RudderpermissionIdObject = new LabelValueItem();
+
+    /**
+     *
+     * 角色
+     */
+    private LabelValueItem RudderroleIdObject = new LabelValueItem();
+
+    /**
+     *
+     * 是否显示
+     */
+     private Boolean visible;
+
 
 }

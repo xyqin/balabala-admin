@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 地区控制器
- * 2018年03月13日 12:41:35
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "地区", description = "相关的API")
 public abstract class AbstractBarablahRegionController extends WebController  {
@@ -65,10 +65,23 @@ public abstract class AbstractBarablahRegionController extends WebController  {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源地址不能为空！");
         }
 
-        BarablahRegion regionName = getService().existByRegionName(request.getRegionName());
-        if (regionName != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区名称'"+request.getRegionName()+"'已经存在！");
+
+
+        if(request.getRegionName()!=null) {
+            BarablahRegion regionName = getService().existByRegionName(request.getRegionName());
+            if (regionName != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区名称'"+request.getRegionName()+"'已经存在！");
+            }
         }
+
+
+
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -109,10 +122,14 @@ public abstract class AbstractBarablahRegionController extends WebController  {
                 }
 
 
+    if(request.getRegionName()!=null) {
+
         BarablahRegion RegionName = getService().existByRegionName(request.getRegionName());
         if (RegionName != null && RegionName.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区名称"+request.getRegionName()+"'已经存在！");
         }
+    }
+
 
        ApiEntity entity = fillUpdateRequest(request);
         if (entity!=null) {

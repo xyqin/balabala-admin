@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员报名表控制器
- * 2018年03月13日 12:41:36
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "会员报名表", description = "相关的API")
 public abstract class AbstractBarablahMemberSignupController extends WebController  {
@@ -64,6 +64,16 @@ public abstract class AbstractBarablahMemberSignupController extends WebControll
         if (StringUtils.isEmpty(request.getPayment())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"支付方式不能为空！");
         }
+
+
+
+
+
+
+
+
+
+
 
 
         ApiEntity entity = fillCreateRequest(request);

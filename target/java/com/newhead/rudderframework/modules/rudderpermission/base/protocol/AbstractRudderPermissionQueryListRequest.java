@@ -6,8 +6,14 @@ import java.math.BigDecimal;
 
 /**
  * 系统权限
- * @generated 2018年03月13日 12:41:34
+ * @generated 2018年03月13日 09:32:03
  */
 @Data
 public abstract class AbstractRudderPermissionQueryListRequest  {
+    /**
+     *
+     * 资源名称
+     */
+     private String rudderpermissionName;
+
 }

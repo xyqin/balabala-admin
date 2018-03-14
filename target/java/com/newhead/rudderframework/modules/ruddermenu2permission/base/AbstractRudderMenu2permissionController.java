@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 菜单权限关系控制器
- * 2018年03月13日 12:41:36
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "菜单权限关系", description = "相关的API")
 public abstract class AbstractRudderMenu2permissionController extends WebController  {
@@ -49,6 +49,27 @@ public abstract class AbstractRudderMenu2permissionController extends WebControl
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleRudderMenu2permissionCreateRequest request) {
+        if (StringUtils.isEmpty(request.getRuddermenuId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"菜单不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getRudderpermissionId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源编码不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getVisible())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否显示不能为空！");
+        }
+
+
+
+
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -71,6 +92,18 @@ public abstract class AbstractRudderMenu2permissionController extends WebControl
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleRudderMenu2permissionUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getRuddermenuId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"菜单不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getRudderpermissionId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源编码不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getVisible())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否显示不能为空！");
+                }
 
 
 

@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 菜单控制器
- * 2018年03月13日 12:41:36
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "菜单", description = "相关的API")
 public abstract class AbstractRudderMenuController extends WebController  {
@@ -49,6 +49,49 @@ public abstract class AbstractRudderMenuController extends WebController  {
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleRudderMenuCreateRequest request) {
+        if (StringUtils.isEmpty(request.getRuddermenuName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"菜单名称不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getRuddermenuDesc())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"菜单描述不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getUrl())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"菜单链接不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getVisible())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否显示不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getParentId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"上级菜单不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getResourceId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"上级资源不能为空！");
+        }
+
+
+        if(request.getRuddermenuName()!=null) {
+            RudderMenu ruddermenuName = getService().existByRuddermenuName(request.getRuddermenuName());
+            if (ruddermenuName != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"菜单名称'"+request.getRuddermenuName()+"'已经存在！");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -72,6 +115,38 @@ public abstract class AbstractRudderMenuController extends WebController  {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleRudderMenuUpdateRequest request) {
 
+                if (StringUtils.isEmpty(request.getRuddermenuName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"菜单名称不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getRuddermenuDesc())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"菜单描述不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getUrl())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"菜单链接不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getVisible())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否显示不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getParentId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"上级菜单不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getResourceId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"上级资源不能为空！");
+                }
+
+
+    if(request.getRuddermenuName()!=null) {
+
+        RudderMenu RuddermenuName = getService().existByRuddermenuName(request.getRuddermenuName());
+        if (RuddermenuName != null && RuddermenuName.getId()!=request.getId()) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"菜单名称"+request.getRuddermenuName()+"'已经存在！");
+        }
+    }
 
 
        ApiEntity entity = fillUpdateRequest(request);
@@ -114,8 +189,11 @@ public abstract class AbstractRudderMenuController extends WebController  {
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "菜单ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleRudderMenuQueryResponse>> getList() {
+    public ApiEntity<List<SimpleRudderMenuQueryResponse>> getList(@RequestParam(required = false) String ruddermenuName) {
         SimpleRudderMenuQueryListRequest request = new SimpleRudderMenuQueryListRequest();
+        if (!StringUtils.isEmpty(ruddermenuName)) {
+            request.setRuddermenuName(ruddermenuName);
+        }
         List<SimpleRudderMenuQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleRudderMenuQueryResponse>>(sources);
     }
@@ -129,9 +207,13 @@ public abstract class AbstractRudderMenuController extends WebController  {
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) String ruddermenuName,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleRudderMenuQueryPageRequest request = new SimpleRudderMenuQueryPageRequest();
+        if (!StringUtils.isEmpty(ruddermenuName)) {
+            request.setRuddermenuName(ruddermenuName);
+        }
         if (page==null) {
             request.setPage(1);
         } else {

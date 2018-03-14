@@ -9,8 +9,26 @@ import javax.validation.constraints.Size;
 
 /**
  * 角色权限关系
- * 2018年03月13日 12:41:34
+ * 2018年03月13日 09:32:03
  */
 @Data
 public abstract class AbstractRudderRole2permissionCreateRequest {
+    /**
+     *
+     * 资源编码
+     */
+    private Long rudderpermissionId;
+
+    /**
+     *
+     * 角色
+     */
+    private Long rudderroleId;
+
+    /**
+     *
+     * 是否显示
+     */
+    private Boolean visible;
+
 }

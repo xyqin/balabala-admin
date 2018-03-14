@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 角色控制器
- * 2018年03月13日 12:41:36
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "角色", description = "相关的API")
 public abstract class AbstractRudderRoleController extends WebController  {
@@ -49,6 +49,44 @@ public abstract class AbstractRudderRoleController extends WebController  {
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleRudderRoleCreateRequest request) {
+        if (StringUtils.isEmpty(request.getRudderroleName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源名称不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getRudderroleDesc())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源描述不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getCode())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"角色代码不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getVisible())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否显示不能为空！");
+        }
+
+
+        if(request.getRudderroleName()!=null) {
+            RudderRole rudderroleName = getService().existByRudderroleName(request.getRudderroleName());
+            if (rudderroleName != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源名称'"+request.getRudderroleName()+"'已经存在！");
+            }
+        }
+
+
+        if(request.getCode()!=null) {
+            RudderRole code = getService().existByCode(request.getCode());
+            if (code != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"角色代码'"+request.getCode()+"'已经存在！");
+            }
+        }
+
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -72,6 +110,38 @@ public abstract class AbstractRudderRoleController extends WebController  {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleRudderRoleUpdateRequest request) {
 
+                if (StringUtils.isEmpty(request.getRudderroleName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源名称不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getRudderroleDesc())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源描述不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getCode())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"角色代码不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getVisible())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否显示不能为空！");
+                }
+
+
+    if(request.getRudderroleName()!=null) {
+
+        RudderRole RudderroleName = getService().existByRudderroleName(request.getRudderroleName());
+        if (RudderroleName != null && RudderroleName.getId()!=request.getId()) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源名称"+request.getRudderroleName()+"'已经存在！");
+        }
+    }
+
+    if(request.getCode()!=null) {
+
+        RudderRole Code = getService().existByCode(request.getCode());
+        if (Code != null && Code.getId()!=request.getId()) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"角色代码"+request.getCode()+"'已经存在！");
+        }
+    }
 
 
        ApiEntity entity = fillUpdateRequest(request);
@@ -92,6 +162,8 @@ public abstract class AbstractRudderRoleController extends WebController  {
     @RequestMapping(value = "getdetail/{id}", method = RequestMethod.GET)
     public ApiEntity getDetail(@ApiParam(required = true, name = "id", value = "菜单ID") @PathVariable("id") Long id) {
         SimpleRudderRoleGetDetailResponse response =  getService().getDetail(id);
+        Tree items = getService().getRudderPermissions(id);
+        response.setRudderPermissionItems(items);
         return new ApiEntity<SimpleRudderRoleGetDetailResponse>(response);
     }
 
@@ -114,8 +186,11 @@ public abstract class AbstractRudderRoleController extends WebController  {
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "角色ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleRudderRoleQueryResponse>> getList() {
+    public ApiEntity<List<SimpleRudderRoleQueryResponse>> getList(@RequestParam(required = false) String rudderroleName) {
         SimpleRudderRoleQueryListRequest request = new SimpleRudderRoleQueryListRequest();
+        if (!StringUtils.isEmpty(rudderroleName)) {
+            request.setRudderroleName(rudderroleName);
+        }
         List<SimpleRudderRoleQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleRudderRoleQueryResponse>>(sources);
     }
@@ -129,9 +204,13 @@ public abstract class AbstractRudderRoleController extends WebController  {
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) String rudderroleName,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleRudderRoleQueryPageRequest request = new SimpleRudderRoleQueryPageRequest();
+        if (!StringUtils.isEmpty(rudderroleName)) {
+            request.setRudderroleName(rudderroleName);
+        }
         if (page==null) {
             request.setPage(1);
         } else {

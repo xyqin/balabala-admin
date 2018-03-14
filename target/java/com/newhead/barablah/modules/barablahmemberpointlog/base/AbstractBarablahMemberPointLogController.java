@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员积分日志表控制器
- * 2018年03月13日 12:41:36
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "会员积分日志表", description = "相关的API")
 public abstract class AbstractBarablahMemberPointLogController extends WebController  {
@@ -56,6 +56,15 @@ public abstract class AbstractBarablahMemberPointLogController extends WebContro
         if (StringUtils.isEmpty(request.getType())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"类型不能为空！");
         }
+
+
+
+
+
+
+
+
+
 
 
         ApiEntity entity = fillCreateRequest(request);

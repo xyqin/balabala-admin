@@ -21,7 +21,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import com.newhead.rudderframework.modules.rudderpermission.ext.SimpleRudderPermissionService;
 
+import com.newhead.rudderframework.modules.rudderrole2permission.base.repository.entity.RudderRole2permission;
+import com.newhead.rudderframework.modules.rudderrole2permission.base.repository.entity.RudderRole2permissionExample;
+
+import com.newhead.rudderframework.modules.rudderrole2permission.base.repository.dao.RudderRole2permissionMapper;
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermission;
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermissionExample;
+
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.dao.RudderPermissionMapper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,10 +43,16 @@ import java.util.Map;
  * 2017年05月03日 06:31:12
  */
 public abstract class AbstractRudderRoleService extends BaseService {
+    @Autowired
+    private SimpleRudderPermissionService rudderPermissionService;
     protected abstract RudderRoleMapper getMapper();
 
     protected abstract void saveOrUpdate(RudderRole entity);
 
+    @Autowired
+    protected RudderRole2permissionMapper rudderrole2permissionMapper;
+    @Autowired
+    protected RudderPermissionMapper rudderpermissionMapper;
 
     /**
      * 创建
@@ -57,6 +72,7 @@ public abstract class AbstractRudderRoleService extends BaseService {
         getMapper().insert(entity);
 
         //添加关系
+            addRudderRole2permission(request.getRudderPermissions(),entity.getId());
         return entity;
     }
 
@@ -75,6 +91,12 @@ public abstract class AbstractRudderRoleService extends BaseService {
         saveOrUpdate(entity);
         getMapper().updateByPrimaryKeySelective(entity);
 
+        //删除关系
+        RudderRole2permissionExample example = new RudderRole2permissionExample();
+        example.createCriteria().andRudderroleIdEqualTo(entity.getId());
+        rudderrole2permissionMapper.deleteByExample(example);
+        //添加关系
+        addRudderRole2permission(request.getRudderPermissions(),entity.getId());
         return entity;
     }
 
@@ -121,6 +143,10 @@ public abstract class AbstractRudderRoleService extends BaseService {
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
 
+        if (request.getRudderroleName()!=null) {
+            c.andRudderroleNameLike("%"+request.getRudderroleName()+"%");
+        }
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -141,6 +167,10 @@ public abstract class AbstractRudderRoleService extends BaseService {
         String ordersrc ="";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
+        if (request.getRudderroleName()!=null) {
+            c.andRudderroleNameLike("%"+request.getRudderroleName()+"%");
+        }
+
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -190,9 +220,77 @@ public abstract class AbstractRudderRoleService extends BaseService {
         }
     }
 
+    /**
+     * 是否存在同名数据
+     * @param rudderroleName
+     * @return
+     */
+    public RudderRole existByRudderroleName(String rudderroleName) {
+        //构造查询对象
+        RudderRoleExample example = new RudderRoleExample();
+        RudderRoleExample.Criteria c = example.createCriteria();
+        c.andRudderroleNameEqualTo(rudderroleName);
+        List<RudderRole> list = getMapper().selectByExample(example);
+        if (list!=null && list.size()==1) {
+            return list.get(0);
+        }
+        return null;
+    }
+    /**
+     * 是否存在同名数据
+     * @param code
+     * @return
+     */
+    public RudderRole existByCode(String code) {
+        //构造查询对象
+        RudderRoleExample example = new RudderRoleExample();
+        RudderRoleExample.Criteria c = example.createCriteria();
+        c.andCodeEqualTo(code);
+        List<RudderRole> list = getMapper().selectByExample(example);
+        if (list!=null && list.size()==1) {
+            return list.get(0);
+        }
+        return null;
+    }
 
 
+    /**
+     *  添加引用对象
+     */
+    private void addRudderRole2permission(String[] str,Long rmid) {
+        if (str==null || str.length==0) return;
+        for(String id:str) {
+            RudderRole2permission m2n = new RudderRole2permission();
+            m2n.setVisible(true);
+            m2n.setCreatedAt(new Date());
+            m2n.setDeleted(false);
+            m2n.setRudderpermissionId(Long.valueOf(id));
+            m2n.setUpdatedAt(new Date());
+            m2n.setRudderroleId(rmid);
+            rudderrole2permissionMapper.insert(m2n);
+        }
+    }
 
+    /**
+     * 获得引用对象集
+     * @param rmid
+     * @return results
+     */
+    public Tree getRudderPermissions(Long rmid) {
+        Map<Long,Boolean> selectMap = Maps.newHashMap();
+        if (rmid!=null && rmid>0) {
+            RudderRole2permissionExample example = new RudderRole2permissionExample();
+            example.createCriteria().andRudderroleIdEqualTo(rmid);
+            List<RudderRole2permission> r2ps = rudderrole2permissionMapper.selectByExample(example);
+            for(RudderRole2permission r2p:r2ps) {
+                selectMap.put(r2p.getId(),true);
+            }
+        }
+        //遍历
+        Tree tree = rudderPermissionService.getTree();
+        traversalTree(tree.getRootNode(),selectMap);
+        return tree;
+    }
 
 
 }

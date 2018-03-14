@@ -22,6 +22,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermission;
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermissionExample;
+
+import com.newhead.rudderframework.modules.rudderpermission.base.repository.dao.RudderPermissionMapper;
+import com.newhead.rudderframework.modules.rudderrole.base.repository.entity.RudderRole;
+import com.newhead.rudderframework.modules.rudderrole.base.repository.entity.RudderRoleExample;
+
+import com.newhead.rudderframework.modules.rudderrole.base.repository.dao.RudderRoleMapper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,6 +46,10 @@ public abstract class AbstractRudderRole2permissionService extends BaseService {
 
     protected abstract void saveOrUpdate(RudderRole2permission entity);
 
+    @Autowired
+    protected RudderPermissionMapper rudderpermissionMapper;
+    @Autowired
+    protected RudderRoleMapper rudderroleMapper;
 
     /**
      * 创建
@@ -90,6 +102,22 @@ public abstract class AbstractRudderRole2permissionService extends BaseService {
         }
         SimpleRudderRole2permissionGetDetailResponse response = new SimpleRudderRole2permissionGetDetailResponse();
         BeanUtils.copyProperties(entity, response);
+        RudderPermission  rudderpermissionIdEntity = rudderpermissionMapper.selectByPrimaryKey(Long.valueOf(entity.getRudderpermissionId()));
+        if (rudderpermissionIdEntity!=null) {
+            LabelValueItem rudderpermissionIdObject = response.getRudderpermissionIdObject();
+            rudderpermissionIdObject.setName("rudderpermissionId");
+            rudderpermissionIdObject.setLabel(rudderpermissionIdEntity.getRudderpermissionName());
+            rudderpermissionIdObject.setValue(String.valueOf(entity.getRudderpermissionId()));
+            rudderpermissionIdObject.setChecked(false);
+        }
+        RudderRole  rudderroleIdEntity = rudderroleMapper.selectByPrimaryKey(Long.valueOf(entity.getRudderroleId()));
+        if (rudderroleIdEntity!=null) {
+            LabelValueItem rudderroleIdObject = response.getRudderroleIdObject();
+            rudderroleIdObject.setName("rudderroleId");
+            rudderroleIdObject.setLabel(rudderroleIdEntity.getRudderroleName());
+            rudderroleIdObject.setValue(String.valueOf(entity.getRudderroleId()));
+            rudderroleIdObject.setChecked(false);
+        }
         return response;
     }
 
@@ -162,12 +190,66 @@ public abstract class AbstractRudderRole2permissionService extends BaseService {
      * @param results
      */
     private void convertEntityToResponse(List<RudderRole2permission> entitys,List<SimpleRudderRole2permissionQueryResponse> results) {
+        Map<Long,Long> rudderpermissionIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> rudderpermissionIdResultMap = Maps.newHashMap();
+
+        Map<Long,Long> rudderroleIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> rudderroleIdResultMap = Maps.newHashMap();
+
        for(RudderRole2permission entity:entitys) {
+            rudderpermissionIdMap.put(entity.getId(),entity.getRudderpermissionId());
+            rudderroleIdMap.put(entity.getId(),entity.getRudderroleId());
+        }
+        RudderPermissionExample rudderpermissionIdExample = new RudderPermissionExample();
+
+        List<Long> rudderpermissionIds = new ArrayList<>();
+        rudderpermissionIds.addAll(rudderpermissionIdMap.values());
+        if (rudderpermissionIds.size()>0) {
+            rudderpermissionIdExample.createCriteria().andIdIn(rudderpermissionIds);
+        }
+        List<RudderPermission>  rudderpermissionIdList = rudderpermissionMapper.selectByExample(rudderpermissionIdExample);
+        for(RudderPermission item:rudderpermissionIdList) {
+           LabelValueItem rudderpermissionIdItem = new LabelValueItem();
+           rudderpermissionIdItem.setName("rudderpermissionId");
+           rudderpermissionIdItem.setValue(String.valueOf(item.getId()));
+           rudderpermissionIdItem.setLabel(item.getRudderpermissionName());
+           rudderpermissionIdResultMap.put(item.getId(),rudderpermissionIdItem);
+        }
+        RudderRoleExample rudderroleIdExample = new RudderRoleExample();
+
+        List<Long> rudderroleIds = new ArrayList<>();
+        rudderroleIds.addAll(rudderroleIdMap.values());
+        if (rudderroleIds.size()>0) {
+            rudderroleIdExample.createCriteria().andIdIn(rudderroleIds);
+        }
+        List<RudderRole>  rudderroleIdList = rudderroleMapper.selectByExample(rudderroleIdExample);
+        for(RudderRole item:rudderroleIdList) {
+           LabelValueItem rudderroleIdItem = new LabelValueItem();
+           rudderroleIdItem.setName("rudderroleId");
+           rudderroleIdItem.setValue(String.valueOf(item.getId()));
+           rudderroleIdItem.setLabel(item.getRudderroleName());
+           rudderroleIdResultMap.put(item.getId(),rudderroleIdItem);
         }
         //第一组
         for(RudderRole2permission entity:entitys) {
             SimpleRudderRole2permissionQueryResponse response = new SimpleRudderRole2permissionQueryResponse();
             BeanUtils.copyProperties(entity,response);
+            Long rudderpermissionId = rudderpermissionIdMap.get(entity.getId());
+
+            LabelValueItem rudderpermissionIdlvi = null;
+            if (rudderpermissionId!=null && rudderpermissionIdResultMap.get(rudderpermissionId)!=null) {
+                rudderpermissionIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(rudderpermissionIdResultMap.get(rudderpermissionId),rudderpermissionIdlvi);
+            }
+            response.setRudderpermissionIdObject(rudderpermissionIdlvi);
+            Long rudderroleId = rudderroleIdMap.get(entity.getId());
+
+            LabelValueItem rudderroleIdlvi = null;
+            if (rudderroleId!=null && rudderroleIdResultMap.get(rudderroleId)!=null) {
+                rudderroleIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(rudderroleIdResultMap.get(rudderroleId),rudderroleIdlvi);
+            }
+            response.setRudderroleIdObject(rudderroleIdlvi);
             results.add(response);
         }
     }

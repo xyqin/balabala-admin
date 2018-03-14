@@ -149,9 +149,7 @@ public class RudderGeneratorPlugin extends PluginAdapter {
         if (tableName.contains("barablah")) {
             project = Project.getProject("barablah");
         } else {
-
             project = Project.getProject("rudderframework");
-            return null;
         }
         Module m = project.getMoudle(introspectedTable.getFullyQualifiedTable().getDomainObjectName());
         List<IntrospectedColumn> columns = introspectedTable.getAllColumns();

@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教师发布作业表控制器
- * 2018年03月13日 12:41:35
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "教师发布作业表", description = "相关的API")
 public abstract class AbstractBarablahTeacherHomeworkController extends WebController  {
@@ -57,10 +57,21 @@ public abstract class AbstractBarablahTeacherHomeworkController extends WebContr
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"作业名称不能为空！");
         }
 
-        BarablahTeacherHomework homeworkName = getService().existByHomeworkName(request.getHomeworkName());
-        if (homeworkName != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"作业名称'"+request.getHomeworkName()+"'已经存在！");
+
+
+        if(request.getHomeworkName()!=null) {
+            BarablahTeacherHomework homeworkName = getService().existByHomeworkName(request.getHomeworkName());
+            if (homeworkName != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"作业名称'"+request.getHomeworkName()+"'已经存在！");
+            }
         }
+
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -93,10 +104,14 @@ public abstract class AbstractBarablahTeacherHomeworkController extends WebContr
                 }
 
 
+    if(request.getHomeworkName()!=null) {
+
         BarablahTeacherHomework HomeworkName = getService().existByHomeworkName(request.getHomeworkName());
         if (HomeworkName != null && HomeworkName.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"作业名称"+request.getHomeworkName()+"'已经存在！");
         }
+    }
+
 
        ApiEntity entity = fillUpdateRequest(request);
         if (entity!=null) {

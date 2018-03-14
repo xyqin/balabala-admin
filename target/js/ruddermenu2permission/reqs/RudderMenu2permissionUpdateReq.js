@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月13日 12:41:39
+ * 生成时间：2018年03月13日 09:32:09
  * 该文件系自动生成，手动修改可能会被替换
  * RudderMenu2permissionUpdateReq
  * 接口地址：ruddermenu2permission/update
@@ -18,14 +18,30 @@ class RudderMenu2permissionUpdateReq extends BaseRobotReq {
             type: 'Post',
             contentType: 'application/json'
         };
-        this._paramsDescriptor = [];        this.curd = 'd';
+        this._paramsDescriptor = [{key: 'id',
+            desc: '资源ID',
+            isRequired: true
+        },{key: 'ruddermenuId',
+            desc: '菜单',
+            isRequired: true
+        },{key: 'rudderpermissionId',
+            desc: '资源编码',
+            isRequired: true
+        },{key: 'visible',
+            desc: '是否显示',
+            isRequired: true
+        }];        this.curd = 'd';
     }
 
     /**
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams() {
+    setSimpleParams(id,ruddermenuId,rudderpermissionId,visible) {
+        this.addParams('id', id);
+        this.addParams('ruddermenuId', ruddermenuId);
+        this.addParams('rudderpermissionId', rudderpermissionId);
+        this.addParams('visible', visible);
     }
 
     /**

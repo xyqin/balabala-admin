@@ -8,8 +8,14 @@ import java.math.BigDecimal;
 
 /**
  * 菜单
- * @generated 2018年03月13日 12:41:34
+ * @generated 2018年03月13日 09:32:03
  */
 @Data
 public abstract class AbstractRudderMenuQueryPageRequest extends PageRequest {
+    /**
+     *
+     * 菜单名称
+     */
+     private String ruddermenuName;
+
 }

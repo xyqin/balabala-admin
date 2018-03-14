@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 用户角色关系控制器
- * 2018年03月13日 12:41:36
+ * 2018年03月13日 09:32:06
  */
 @Api(tags = "用户角色关系", description = "相关的API")
 public abstract class AbstractRudderUser2roleController extends WebController  {
@@ -49,6 +49,27 @@ public abstract class AbstractRudderUser2roleController extends WebController  {
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleRudderUser2roleCreateRequest request) {
+        if (StringUtils.isEmpty(request.getRudderroleId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"角色不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getRudderuserId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"用户不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getVisible())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否显示不能为空！");
+        }
+
+
+
+
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -71,6 +92,18 @@ public abstract class AbstractRudderUser2roleController extends WebController  {
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleRudderUser2roleUpdateRequest request) {
+
+                if (StringUtils.isEmpty(request.getRudderroleId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"角色不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getRudderuserId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"用户不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getVisible())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否显示不能为空！");
+                }
 
 
 

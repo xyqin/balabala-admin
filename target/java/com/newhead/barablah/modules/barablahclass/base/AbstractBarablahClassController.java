@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 开班控制器
- * 2018年03月13日 12:41:35
+ * 2018年03月13日 09:32:05
  */
 @Api(tags = "开班", description = "相关的API")
 public abstract class AbstractBarablahClassController extends WebController  {
@@ -72,6 +72,21 @@ public abstract class AbstractBarablahClassController extends WebController  {
         if (StringUtils.isEmpty(request.getStatus())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         ApiEntity entity = fillCreateRequest(request);

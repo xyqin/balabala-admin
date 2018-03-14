@@ -12,8 +12,70 @@ import lombok.Data;
 
 /**
  * 系统用户
- * @generated 2018年03月13日 12:41:34
+ * @generated 2018年03月13日 09:32:03
  */
 @Data
 public abstract class AbstractRudderUserQueryResponse {
+    /**
+     *
+     * 资源ID
+     */
+     private Long id;
+
+    /**
+     *
+     * 账号名称
+     */
+     private String rudderuserName;
+
+    /**
+     *
+     * 备注
+     */
+     private String rudderuserDesc;
+
+    /**
+     *
+     * 密码
+     */
+     private String password;
+
+    /**
+     *
+     * 用户状态
+     */
+    private LabelValueItem StatusEnum = new LabelValueItem();
+
+    /**
+     *
+     * 昵称
+     */
+     private String nickname;
+
+    /**
+     *
+     * salt
+     */
+     private String salt;
+
+    /**
+     *
+     * email
+     */
+     private String email;
+
+    /**
+     *
+     * 是否显示
+     */
+     private Boolean visible;
+
+    /**
+     *
+     * 校区ID
+     */
+    private LabelValueItem CampusIdObject = new LabelValueItem();
+
+     private List<LabelValueItem> rudderRoleItems = new ArrayList<>();
+
 }

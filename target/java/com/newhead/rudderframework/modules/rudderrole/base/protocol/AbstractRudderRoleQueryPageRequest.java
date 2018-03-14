@@ -8,8 +8,14 @@ import java.math.BigDecimal;
 
 /**
  * 系统角色
- * @generated 2018年03月13日 12:41:34
+ * @generated 2018年03月13日 09:32:03
  */
 @Data
 public abstract class AbstractRudderRoleQueryPageRequest extends PageRequest {
+    /**
+     *
+     * 资源名称
+     */
+     private String rudderroleName;
+
 }
