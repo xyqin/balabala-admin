@@ -27,7 +27,6 @@ public class SimpleBarablahCourseController extends AbstractBarablahCourseContro
     @Autowired
     private SimpleBarablahCourseService service;
 
-
     @Autowired
     private BarablahTextbookCategoryMapper catMapper;
     

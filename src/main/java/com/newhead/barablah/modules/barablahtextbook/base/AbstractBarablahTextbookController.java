@@ -50,20 +50,20 @@ public abstract class AbstractBarablahTextbookController extends WebController  
         if (StringUtils.isEmpty(request.getType())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目类型不能为空！");
         }
-
-        if (request.getTextbookName()!=null) {
-            BarablahTextbook textbookName = getService().existByTextbookName(request.getTextbookName());
-            if (textbookName != null) {
-                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称'"+request.getTextbookName()+"'已经存在！");
-            }
-        }
-
-        if (request.getQuestion()!=null) {
-            BarablahTextbook question = getService().existByQuestion(request.getQuestion());
-            if (question != null) {
-                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题'"+request.getQuestion()+"'已经存在！");
-            }
-        }
+//
+//        if (request.getTextbookName()!=null) {
+//            BarablahTextbook textbookName = getService().existByTextbookName(request.getTextbookName());
+//            if (textbookName != null) {
+//                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称'"+request.getTextbookName()+"'已经存在！");
+//            }
+//        }
+//
+//        if (request.getQuestion()!=null) {
+//            BarablahTextbook question = getService().existByQuestion(request.getQuestion());
+//            if (question != null) {
+//                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题'"+request.getQuestion()+"'已经存在！");
+//            }
+//        }
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -95,20 +95,31 @@ public abstract class AbstractBarablahTextbookController extends WebController  
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目类型不能为空！");
                 }
 
-
-        if (request.getTextbookName()!=null) {
-            BarablahTextbook textbookName = getService().existByTextbookName(request.getTextbookName());
-            if (textbookName != null) {
-                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称'"+request.getTextbookName()+"'已经存在！");
-            }
-        }
-
-        if (request.getQuestion()!=null) {
-            BarablahTextbook question = getService().existByQuestion(request.getQuestion());
-            if (question != null) {
-                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题'"+request.getQuestion()+"'已经存在！");
-            }
-        }
+//
+//        BarablahTextbook TextbookName = getService().existByTextbookName(request.getTextbookName());
+//        if (TextbookName != null && TextbookName.getId()!=request.getId()) {
+//            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"题目名称"+request.getTextbookName()+"'已经存在！");
+//        }
+//        BarablahTextbook Question = getService().existByQuestion(request.getQuestion());
+//        if (Question != null && Question.getId()!=request.getId()) {
+//            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"问题"+request.getQuestion()+"'已经存在！");
+//        }
+//        BarablahTextbook Option = getService().existByOption(request.getOption());
+//        if (Option != null && Option.getId()!=request.getId()) {
+//            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"选项"+request.getOption()+"'已经存在！");
+//        }
+//        BarablahTextbook Correct = getService().existByCorrect(request.getCorrect());
+//        if (Correct != null && Correct.getId()!=request.getId()) {
+//            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"正确答案"+request.getCorrect()+"'已经存在！");
+//        }
+//        BarablahTextbook Image = getService().existByImage(request.getImage());
+//        if (Image != null && Image.getId()!=request.getId()) {
+//            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"图片"+request.getImage()+"'已经存在！");
+//        }
+//        BarablahTextbook Video = getService().existByVideo(request.getVideo());
+//        if (Video != null && Video.getId()!=request.getId()) {
+//            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"音频"+request.getVideo()+"'已经存在！");
+//        }
 
        ApiEntity entity = fillUpdateRequest(request);
         if (entity!=null) {
