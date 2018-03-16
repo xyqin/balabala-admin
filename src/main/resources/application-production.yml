@@ -27,7 +27,7 @@ mybatis:
 
 storeconfig:
   storepath: /data/balabala/
-  storelink: http://47.100.57.236:8000
+  storelink: http://111.230.157.86:8000
 
 netease:
   app-key: 2dc284c2f3302d1bf2a364a51c957a99
