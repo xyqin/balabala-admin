@@ -3,11 +3,9 @@ package com.newhead.rudderframework.modules.rudderrole.ext;
 import com.newhead.rudderframework.modules.rudderrole.base.AbstractRudderRoleService;
 import com.newhead.rudderframework.modules.rudderrole.base.repository.dao.RudderRoleMapper;
 import com.newhead.rudderframework.modules.rudderrole.base.repository.entity.RudderRole;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 角色服务

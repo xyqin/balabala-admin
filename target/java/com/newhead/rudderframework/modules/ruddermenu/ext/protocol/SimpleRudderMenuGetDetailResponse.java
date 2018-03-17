@@ -1,7 +1,6 @@
 package com.newhead.rudderframework.modules.ruddermenu.ext.protocol;
 
 import com.newhead.rudderframework.modules.ruddermenu.base.protocol.AbstractRudderMenuGetDetailResponse;
-
 import lombok.Data;
 
 /**

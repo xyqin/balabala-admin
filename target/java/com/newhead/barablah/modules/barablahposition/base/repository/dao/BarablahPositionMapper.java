@@ -2,9 +2,10 @@ package com.newhead.barablah.modules.barablahposition.base.repository.dao;
 
 import com.newhead.barablah.modules.barablahposition.base.repository.entity.BarablahPosition;
 import com.newhead.barablah.modules.barablahposition.base.repository.entity.BarablahPositionExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface BarablahPositionMapper {

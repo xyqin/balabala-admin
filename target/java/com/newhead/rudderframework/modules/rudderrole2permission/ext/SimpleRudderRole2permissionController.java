@@ -1,11 +1,7 @@
 package com.newhead.rudderframework.modules.rudderrole2permission.ext;
 
 import com.newhead.rudderframework.modules.rudderrole2permission.base.AbstractRudderRole2permissionController;
-
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.Api;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

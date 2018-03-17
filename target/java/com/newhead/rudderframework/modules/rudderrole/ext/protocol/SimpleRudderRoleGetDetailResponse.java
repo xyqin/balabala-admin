@@ -1,7 +1,6 @@
 package com.newhead.rudderframework.modules.rudderrole.ext.protocol;
 
 import com.newhead.rudderframework.modules.rudderrole.base.protocol.AbstractRudderRoleGetDetailResponse;
-
 import lombok.Data;
 
 /**

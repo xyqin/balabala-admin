@@ -2,9 +2,10 @@ package com.newhead.barablah.modules.barablahtextbook.base.repository.dao;
 
 import com.newhead.barablah.modules.barablahtextbook.base.repository.entity.BarablahTextbook;
 import com.newhead.barablah.modules.barablahtextbook.base.repository.entity.BarablahTextbookExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface BarablahTextbookMapper {

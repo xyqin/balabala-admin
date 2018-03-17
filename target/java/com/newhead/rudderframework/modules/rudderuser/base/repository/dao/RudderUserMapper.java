@@ -2,9 +2,10 @@ package com.newhead.rudderframework.modules.rudderuser.base.repository.dao;
 
 import com.newhead.rudderframework.modules.rudderuser.base.repository.entity.RudderUser;
 import com.newhead.rudderframework.modules.rudderuser.base.repository.entity.RudderUserExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface RudderUserMapper {

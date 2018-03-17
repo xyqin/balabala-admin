@@ -1,7 +1,6 @@
 package com.newhead.rudderframework.modules.rudderuser.ext.protocol;
 
 import com.newhead.rudderframework.modules.rudderuser.base.protocol.AbstractRudderUserGetDetailResponse;
-
 import lombok.Data;
 
 /**

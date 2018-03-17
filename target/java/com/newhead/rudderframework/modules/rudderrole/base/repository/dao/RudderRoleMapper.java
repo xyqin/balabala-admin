@@ -2,9 +2,10 @@ package com.newhead.rudderframework.modules.rudderrole.base.repository.dao;
 
 import com.newhead.rudderframework.modules.rudderrole.base.repository.entity.RudderRole;
 import com.newhead.rudderframework.modules.rudderrole.base.repository.entity.RudderRoleExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface RudderRoleMapper {

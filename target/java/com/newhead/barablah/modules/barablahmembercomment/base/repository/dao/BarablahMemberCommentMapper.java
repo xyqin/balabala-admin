@@ -2,9 +2,10 @@ package com.newhead.barablah.modules.barablahmembercomment.base.repository.dao;
 
 import com.newhead.barablah.modules.barablahmembercomment.base.repository.entity.BarablahMemberComment;
 import com.newhead.barablah.modules.barablahmembercomment.base.repository.entity.BarablahMemberCommentExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface BarablahMemberCommentMapper {

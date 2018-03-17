@@ -2,9 +2,10 @@ package com.newhead.barablah.modules.barablahmemberpassport.base.repository.dao;
 
 import com.newhead.barablah.modules.barablahmemberpassport.base.repository.entity.BarablahMemberPassport;
 import com.newhead.barablah.modules.barablahmemberpassport.base.repository.entity.BarablahMemberPassportExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface BarablahMemberPassportMapper {

@@ -1,11 +1,8 @@
 package com.newhead.barablah.modules.barablahcourse.base.protocol;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
-import java.util.Date;
-import java.math.BigDecimal;
 
-import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 
 /**
  * 

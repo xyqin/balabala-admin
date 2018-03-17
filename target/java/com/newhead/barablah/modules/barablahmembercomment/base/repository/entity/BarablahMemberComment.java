@@ -2,10 +2,10 @@ package com.newhead.barablah.modules.barablahmembercomment.base.repository.entit
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.newhead.rudderframework.core.domain.AuditableEntity;
-import java.util.Date;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Size;
+import java.util.Date;
 
 /**
  *
