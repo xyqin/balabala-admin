@@ -82,8 +82,8 @@ public class SimpleBarablahTeacherController extends AbstractBarablahTeacherCont
             @RequestParam(required = false) String username,
             @RequestParam(required = false) String fullName,
             @RequestParam(required = false) String phoneNumber,
-            @RequestParam(required = false) String major,
-            @RequestParam(required = false) String comeFrom,
+            @RequestParam(required = false) Long major,
+            @RequestParam(required = false) Long comeFrom,
             @RequestParam(required = false) Integer page,
             @RequestParam(required = false) Integer size) {
         SimpleBarablahTeacherQueryPageRequest request = new SimpleBarablahTeacherQueryPageRequest();
@@ -96,10 +96,10 @@ public class SimpleBarablahTeacherController extends AbstractBarablahTeacherCont
         if (!StringUtils.isEmpty(phoneNumber)) {
             request.setPhoneNumber(phoneNumber);
         }
-        if (!StringUtils.isEmpty(major)) {
+        if (major!=null) {
             request.setMajor(major);
         }
-        if (!StringUtils.isEmpty(comeFrom)) {
+        if (comeFrom!=null) {
             request.setComeFrom(comeFrom);
         }
         request.setStatus(BarablahTeacherStatusEnum.待审核.getValue());

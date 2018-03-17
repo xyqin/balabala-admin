@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月13日 09:32:08
+ * 生成时间：2018年03月18日 02:48:28
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahTeacherCreateReq
  * 接口地址：barablahteacher/create
@@ -43,7 +43,7 @@ class BarablahTeacherCreateReq extends BaseRobotReq {
             desc: '专业',
             isRequired: true
         },{key: 'comeFrom',
-            desc: '来自哪里',
+            desc: '国籍',
             isRequired: true
         },{key: 'status',
             desc: '状态',

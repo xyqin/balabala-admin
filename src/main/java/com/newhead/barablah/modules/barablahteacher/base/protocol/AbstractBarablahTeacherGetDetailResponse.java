@@ -2,16 +2,10 @@ package com.newhead.barablah.modules.barablahteacher.base.protocol;
 
 import com.newhead.rudderframework.modules.LabelValueItem;
 import lombok.Data;
-import java.util.Date;
-import java.util.List;
-import java.util.ArrayList;
-import com.newhead.rudderframework.core.web.component.tree.Tree;
-
-import java.math.BigDecimal;
 
 /**
  * 
- * 2018年03月13日 07:57:07
+ * 2018年03月18日 02:48:23
  */
 @Data
 public abstract class AbstractBarablahTeacherGetDetailResponse {
@@ -61,13 +55,13 @@ public abstract class AbstractBarablahTeacherGetDetailResponse {
      *
      * 专业
      */
-     private String major;
+    private LabelValueItem MajorObject = new LabelValueItem();
 
     /**
      *
-     * 来自哪里
+     * 国籍
      */
-     private String comeFrom;
+    private LabelValueItem ComeFromObject = new LabelValueItem();
 
     /**
      *

@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月13日 09:32:06
+ * 生成时间：2018年03月18日 02:48:26
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -11,5 +11,10 @@
  * 'data': '附加的数据'
  * }
  */
-const BARABLAHREGION_CONDITIONS = [];
+const BARABLAHREGION_CONDITIONS = [{
+    key: 'regionName',
+    type: 'String',
+    label: '地区名称',
+    placeholder: '请输入地区名称'
+}];
 export default BARABLAHREGION_CONDITIONS;

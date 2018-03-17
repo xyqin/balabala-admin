@@ -22,10 +22,18 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 
+import com.newhead.barablah.modules.barablahcountry.base.repository.entity.BarablahCountry;
+import com.newhead.barablah.modules.barablahcountry.base.repository.entity.BarablahCountryExample;
+
+import com.newhead.barablah.modules.barablahcountry.base.repository.dao.BarablahCountryMapper;
 import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus;
 import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampusExample;
 
 import com.newhead.barablah.modules.barablahcampus.base.repository.dao.BarablahCampusMapper;
+import com.newhead.barablah.modules.barablahteachermajor.base.repository.entity.BarablahTeacherMajor;
+import com.newhead.barablah.modules.barablahteachermajor.base.repository.entity.BarablahTeacherMajorExample;
+
+import com.newhead.barablah.modules.barablahteachermajor.base.repository.dao.BarablahTeacherMajorMapper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,7 +51,11 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
     protected abstract void saveOrUpdate(BarablahTeacher entity);
 
     @Autowired
+    protected BarablahCountryMapper barablahcountryMapper;
+    @Autowired
     protected BarablahCampusMapper barablahcampusMapper;
+    @Autowired
+    protected BarablahTeacherMajorMapper barablahteachermajorMapper;
 
     /**
      * 创建
@@ -104,6 +116,22 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
             campusIdObject.setValue(String.valueOf(entity.getCampusId()));
             campusIdObject.setChecked(false);
         }
+        BarablahTeacherMajor  majorEntity = barablahteachermajorMapper.selectByPrimaryKey(Long.valueOf(entity.getMajor()));
+        if (majorEntity!=null) {
+            LabelValueItem majorObject = response.getMajorObject();
+            majorObject.setName("major");
+            majorObject.setLabel(majorEntity.getMajorName());
+            majorObject.setValue(String.valueOf(entity.getMajor()));
+            majorObject.setChecked(false);
+        }
+        BarablahCountry  comeFromEntity = barablahcountryMapper.selectByPrimaryKey(Long.valueOf(entity.getComeFrom()));
+        if (comeFromEntity!=null) {
+            LabelValueItem comeFromObject = response.getComeFromObject();
+            comeFromObject.setName("comeFrom");
+            comeFromObject.setLabel(comeFromEntity.getZhName());
+            comeFromObject.setValue(String.valueOf(entity.getComeFrom()));
+            comeFromObject.setChecked(false);
+        }
         LabelValueItem statusEnum = response.getStatusEnum();
         statusEnum.setName("status");
         statusEnum.setLabel(com.newhead.barablah.modules.barablahteacher.BarablahTeacherStatusEnum.getLabel(entity.getStatus()));
@@ -157,12 +185,12 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
         }
 
         if (request.getMajor()!=null) {
-            c.andMajorLike("%"+request.getMajor()+"%");
-        }
+            c.andMajorEqualTo(request.getMajor());
+         }
 
         if (request.getComeFrom()!=null) {
-            c.andComeFromLike("%"+request.getComeFrom()+"%");
-        }
+            c.andComeFromEqualTo(request.getComeFrom());
+         }
 
         if (request.getStatus()!=null) {
             c.andStatusEqualTo(request.getStatus());
@@ -205,12 +233,12 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
         }
 
         if (request.getMajor()!=null) {
-            c.andMajorLike("%"+request.getMajor()+"%");
-        }
+            c.andMajorEqualTo(request.getMajor());
+         }
 
         if (request.getComeFrom()!=null) {
-            c.andComeFromLike("%"+request.getComeFrom()+"%");
-        }
+            c.andComeFromEqualTo(request.getComeFrom());
+         }
 
         if (request.getStatus()!=null) {
             c.andStatusEqualTo(request.getStatus());
@@ -240,8 +268,16 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
         Map<Long,Long> campusIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> campusIdResultMap = Maps.newHashMap();
 
+        Map<Long,Long> majorMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> majorResultMap = Maps.newHashMap();
+
+        Map<Long,Long> comeFromMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> comeFromResultMap = Maps.newHashMap();
+
        for(BarablahTeacher entity:entitys) {
             campusIdMap.put(entity.getId(),entity.getCampusId());
+            majorMap.put(entity.getId(),entity.getMajor());
+            comeFromMap.put(entity.getId(),entity.getComeFrom());
         }
         BarablahCampusExample campusIdExample = new BarablahCampusExample();
 
@@ -258,6 +294,36 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
            campusIdItem.setLabel(item.getCampusName());
            campusIdResultMap.put(item.getId(),campusIdItem);
         }
+        BarablahTeacherMajorExample majorExample = new BarablahTeacherMajorExample();
+
+        List<Long> majors = new ArrayList<>();
+        majors.addAll(majorMap.values());
+        if (majors.size()>0) {
+            majorExample.createCriteria().andIdIn(majors);
+        }
+        List<BarablahTeacherMajor>  majorList = barablahteachermajorMapper.selectByExample(majorExample);
+        for(BarablahTeacherMajor item:majorList) {
+           LabelValueItem majorItem = new LabelValueItem();
+           majorItem.setName("major");
+           majorItem.setValue(String.valueOf(item.getId()));
+           majorItem.setLabel(item.getMajorName());
+           majorResultMap.put(item.getId(),majorItem);
+        }
+        BarablahCountryExample comeFromExample = new BarablahCountryExample();
+
+        List<Long> comeFroms = new ArrayList<>();
+        comeFroms.addAll(comeFromMap.values());
+        if (comeFroms.size()>0) {
+            comeFromExample.createCriteria().andIdIn(comeFroms);
+        }
+        List<BarablahCountry>  comeFromList = barablahcountryMapper.selectByExample(comeFromExample);
+        for(BarablahCountry item:comeFromList) {
+           LabelValueItem comeFromItem = new LabelValueItem();
+           comeFromItem.setName("comeFrom");
+           comeFromItem.setValue(String.valueOf(item.getId()));
+           comeFromItem.setLabel(item.getZhName());
+           comeFromResultMap.put(item.getId(),comeFromItem);
+        }
         //第一组
         for(BarablahTeacher entity:entitys) {
             SimpleBarablahTeacherQueryResponse response = new SimpleBarablahTeacherQueryResponse();
@@ -270,6 +336,22 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
                 BeanUtils.copyProperties(campusIdResultMap.get(campusId),campusIdlvi);
             }
             response.setCampusIdObject(campusIdlvi);
+            Long major = majorMap.get(entity.getId());
+
+            LabelValueItem majorlvi = null;
+            if (major!=null && majorResultMap.get(major)!=null) {
+                majorlvi = new LabelValueItem();
+                BeanUtils.copyProperties(majorResultMap.get(major),majorlvi);
+            }
+            response.setMajorObject(majorlvi);
+            Long comeFrom = comeFromMap.get(entity.getId());
+
+            LabelValueItem comeFromlvi = null;
+            if (comeFrom!=null && comeFromResultMap.get(comeFrom)!=null) {
+                comeFromlvi = new LabelValueItem();
+                BeanUtils.copyProperties(comeFromResultMap.get(comeFrom),comeFromlvi);
+            }
+            response.setComeFromObject(comeFromlvi);
             LabelValueItem statusEnum = response.getStatusEnum();
             statusEnum.setName("status");
             statusEnum.setLabel(com.newhead.barablah.modules.barablahteacher.BarablahTeacherStatusEnum.getLabel(entity.getStatus()));

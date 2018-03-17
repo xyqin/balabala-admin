@@ -130,6 +130,10 @@ public abstract class AbstractBarablahRegionService extends SimpleTreeService {
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
 
+        if (request.getRegionName()!=null) {
+            c.andRegionNameLike("%"+request.getRegionName()+"%");
+        }
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -150,6 +154,10 @@ public abstract class AbstractBarablahRegionService extends SimpleTreeService {
         String ordersrc ="";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
+        if (request.getRegionName()!=null) {
+            c.andRegionNameLike("%"+request.getRegionName()+"%");
+        }
+
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 

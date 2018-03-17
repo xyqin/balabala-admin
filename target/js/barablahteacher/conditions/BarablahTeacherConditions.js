@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月13日 09:32:06
+ * 生成时间：2018年03月18日 02:48:26
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -37,14 +37,22 @@ const BARABLAHTEACHER_CONDITIONS = [{
     placeholder: '请输入手机号'
 },{
     key: 'major',
-    type: 'String',
+    type: 'Object',
     label: '专业',
-    placeholder: '请输入专业'
+    placeholder: '请选择专业',
+    displayType: 'SingleList',
+    url: '/barablahteachermajor/getlist',
+    dataLableKey: 'majorName',
+    dataValueKey: 'id'
 },{
     key: 'comeFrom',
-    type: 'String',
-    label: '来自哪里',
-    placeholder: '请输入来自哪里'
+    type: 'Object',
+    label: '国籍',
+    placeholder: '请选择国籍',
+    displayType: 'SingleList',
+    url: '/barablahcountry/getlist',
+    dataLableKey: 'zhName',
+    dataValueKey: 'id'
 },{
     key: 'status',
     type: 'Enum',

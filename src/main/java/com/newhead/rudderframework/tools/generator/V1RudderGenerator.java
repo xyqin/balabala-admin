@@ -2,10 +2,8 @@ package com.newhead.rudderframework.tools.generator;
 
 import com.newhead.rudderframework.tools.generator.fields.Project;
 import com.newhead.rudderframework.tools.generator.v1.Builder;
-import com.newhead.rudderframework.tools.generator.v1.admin.EnumBuilder;
-import com.newhead.rudderframework.tools.generator.v1.admin.StubModuleControllerBuilder;
-import com.newhead.rudderframework.tools.generator.v1.admin.StubModuleServiceBuilder;
-import com.newhead.rudderframework.tools.generator.v1.admin.XmlConfigureBuilder;
+import com.newhead.rudderframework.tools.generator.v1.admin.*;
+import com.newhead.rudderframework.tools.generator.v1.admin.protocol.ExtProtocolBuilder;
 import com.newhead.rudderframework.tools.generator.v1.admin.protocol.StubProtocolBuilder;
 import com.newhead.rudderframework.tools.generator.v1.web.StructureBuilder;
 import com.newhead.rudderframework.tools.generator.v1.web.columns.JsColumnBuilder;
@@ -42,9 +40,9 @@ public class V1RudderGenerator implements RudderGenerator {
     }
 
     private static void loadBuilder() {
-//        builderList.add(new ExtModuleControllerBuilder());
-//        builderList.add(new ExtModuleServiceBuilder());
-//        builderList.add(new ExtProtocolBuilder());
+        builderList.add(new ExtModuleControllerBuilder());
+        builderList.add(new ExtModuleServiceBuilder());
+        builderList.add(new ExtProtocolBuilder());
         builderList.add(new StubProtocolBuilder());
         builderList.add(new StubModuleServiceBuilder());
         builderList.add(new StubModuleControllerBuilder());

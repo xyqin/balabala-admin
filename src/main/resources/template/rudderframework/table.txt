@@ -28,3 +28,6 @@
 {"moduleTitle":"广告位置表","dataType":"Table","moduleName":"barablahPosition","displayField":"positionName","remark":"","version":"1.0","key":"barablah"}
 {"moduleTitle":"位置内容表","dataType":"Table","moduleName":"barablahPositionContent","displayField":"contentName","remark":"","version":"1.0","key":"barablah"}
 {"moduleTitle":"会员报名表","dataType":"Table","moduleName":"barablahMemberSignup","displayField":"","remark":"","version":"1.0","key":"barablah"}
+{"moduleTitle":"教师专业","dataType":"Table","moduleName":"barablahTeacherMajor","displayField":"","remark":"","version":"1.0","key":"barablah"}
+{"moduleTitle":"国籍设置","dataType":"Table","moduleName":"barablahCountry","displayField":"","remark":"","version":"1.0","key":"barablah"}
+

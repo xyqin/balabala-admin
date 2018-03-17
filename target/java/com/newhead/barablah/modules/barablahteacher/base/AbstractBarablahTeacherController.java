@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教师控制器
- * 2018年03月13日 09:32:05
+ * 2018年03月18日 02:48:25
  */
 @Api(tags = "教师", description = "相关的API")
 public abstract class AbstractBarablahTeacherController extends WebController  {
@@ -74,7 +74,7 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
         }
 
         if (StringUtils.isEmpty(request.getComeFrom())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"来自哪里不能为空！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"国籍不能为空！");
         }
 
         if (StringUtils.isEmpty(request.getStatus())) {
@@ -146,7 +146,7 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
                 }
 
                 if (StringUtils.isEmpty(request.getComeFrom())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"来自哪里不能为空！");
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"国籍不能为空！");
                 }
 
                 if (StringUtils.isEmpty(request.getStatus())) {
@@ -195,7 +195,7 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "教师ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahTeacherQueryResponse>> getList(@RequestParam(required = false) Long campusId,@RequestParam(required = false) String username,@RequestParam(required = false) String fullName,@RequestParam(required = false) String phoneNumber,@RequestParam(required = false) String major,@RequestParam(required = false) String comeFrom,@RequestParam(required = false) String status) {
+    public ApiEntity<List<SimpleBarablahTeacherQueryResponse>> getList(@RequestParam(required = false) Long campusId,@RequestParam(required = false) String username,@RequestParam(required = false) String fullName,@RequestParam(required = false) String phoneNumber,@RequestParam(required = false) Long major,@RequestParam(required = false) Long comeFrom,@RequestParam(required = false) String status) {
         SimpleBarablahTeacherQueryListRequest request = new SimpleBarablahTeacherQueryListRequest();
         if (!StringUtils.isEmpty(campusId)) {
             request.setCampusId(campusId);
@@ -235,8 +235,8 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
         @RequestParam(required = false) String username,
         @RequestParam(required = false) String fullName,
         @RequestParam(required = false) String phoneNumber,
-        @RequestParam(required = false) String major,
-        @RequestParam(required = false) String comeFrom,
+        @RequestParam(required = false) Long major,
+        @RequestParam(required = false) Long comeFrom,
         @RequestParam(required = false) String status,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {

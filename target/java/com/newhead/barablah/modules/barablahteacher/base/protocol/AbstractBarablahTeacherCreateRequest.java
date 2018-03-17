@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月13日 09:32:02
+ * 2018年03月18日 02:48:23
  */
 @Data
 public abstract class AbstractBarablahTeacherCreateRequest {
@@ -53,13 +53,13 @@ public abstract class AbstractBarablahTeacherCreateRequest {
      *
      * 专业
      */
-    private String major;
+    private Long major;
 
     /**
      *
-     * 来自哪里
+     * 国籍
      */
-    private String comeFrom;
+    private Long comeFrom;
 
     /**
      *

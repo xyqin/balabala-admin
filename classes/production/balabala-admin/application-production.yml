@@ -1,17 +1,17 @@
 server:
-  port: 8080
+  port: 8081
 spring:
   application:
     name: admin-service
   datasource:
-    url: jdbc:mysql://114.55.250.37:3306/anywave?autoReconnect=true&rewriteBatchedStatements=true
-    username: anywave
-    password: 7xiVxR67Oh#Wjh5l
+    url: jdbc:mysql://127.0.0.1:3306/barablah?autoReconnect=true&rewriteBatchedStatements=true
+    username: bara
+    password: WZCr(P-%2F@R@ZjS
     driver-class-name: org.mariadb.jdbc.Driver
   redis:
-    host: 114.55.250.37
+    host: 127.0.0.1
     port: 6379
-    password: B7pa)Aa[K2MX5RJy
+    password: 9wCLi7XVozMWttC6
   session:
     store-type: none
   http:
@@ -26,7 +26,8 @@ mybatis:
     config-location: classpath:mybatis-config.xml
 
 storeconfig:
-  storepath: /data/aw
+  storepath: /data/balabala/
+  storelink: http://111.230.157.86:8000
 
 netease:
   app-key: 2dc284c2f3302d1bf2a364a51c957a99

@@ -94,13 +94,6 @@ public class SimpleBarablahTeacherService extends AbstractBarablahTeacherService
             c.andPhoneNumberLike("%" + request.getPhoneNumber() + "%");
         }
 
-        if (request.getMajor() != null) {
-            c.andMajorLike("%" + request.getMajor() + "%");
-        }
-
-        if (request.getComeFrom() != null) {
-            c.andComeFromLike("%" + request.getComeFrom() + "%");
-        }
 
         if (request.getStatus() != null) {
             c.andStatusEqualTo(request.getStatus());
@@ -144,14 +137,6 @@ public class SimpleBarablahTeacherService extends AbstractBarablahTeacherService
 
         if (request.getPhoneNumber() != null) {
             c.andPhoneNumberLike("%" + request.getPhoneNumber() + "%");
-        }
-
-        if (request.getMajor() != null) {
-            c.andMajorLike("%" + request.getMajor() + "%");
-        }
-
-        if (request.getComeFrom() != null) {
-            c.andComeFromLike("%" + request.getComeFrom() + "%");
         }
 
         if (request.getStatus() != null) {

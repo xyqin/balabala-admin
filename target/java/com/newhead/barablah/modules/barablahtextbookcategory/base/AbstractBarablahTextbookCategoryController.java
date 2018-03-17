@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教材分类表控制器
- * 2018年03月13日 09:32:05
+ * 2018年03月18日 02:48:25
  */
 @Api(tags = "教材分类表", description = "相关的API")
 public abstract class AbstractBarablahTextbookCategoryController extends WebController  {
@@ -49,10 +49,6 @@ public abstract class AbstractBarablahTextbookCategoryController extends WebCont
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahTextbookCategoryCreateRequest request) {
-        if (StringUtils.isEmpty(request.getParentId())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"父ID不能为空！");
-        }
-
         if (StringUtils.isEmpty(request.getCategoryName())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称不能为空！");
         }
@@ -96,10 +92,6 @@ public abstract class AbstractBarablahTextbookCategoryController extends WebCont
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahTextbookCategoryUpdateRequest request) {
-
-                if (StringUtils.isEmpty(request.getParentId())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"父ID不能为空！");
-                }
 
                 if (StringUtils.isEmpty(request.getCategoryName())) {
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称不能为空！");

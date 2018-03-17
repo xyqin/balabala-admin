@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月13日 09:32:06
+ * 生成时间：2018年03月18日 02:48:26
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -54,15 +54,15 @@ type:'String',
 checked: true
 },{
 title: '专业',
-dataIndex: 'major',
-key: 'major',
-type:'String',
+dataIndex: 'majorObject',
+key: 'majorObject',
+type:'Object',
 checked: true
 },{
-title: '来自哪里',
-dataIndex: 'comeFrom',
-key: 'comeFrom',
-type:'String',
+title: '国籍',
+dataIndex: 'comeFromObject',
+key: 'comeFromObject',
+type:'Object',
 checked: true
 },{
 title: '状态',

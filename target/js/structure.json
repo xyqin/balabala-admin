@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月13日 09:32:09
+ * 生成时间：2018年03月18日 02:48:30
  * 该文件系自动生成，手动修改可能会被替换
  * 目录结构，从接口定义中解析出当前的目录结构
  * 规则：
@@ -95,6 +95,14 @@
  }, {
     "module": "barablahmembersignup",
     "template": "barablahmembersignup",
+    "desc": ""
+ }, {
+    "module": "barablahteachermajor",
+    "template": "barablahteachermajor",
+    "desc": ""
+ }, {
+    "module": "barablahcountry",
+    "template": "barablahcountry",
     "desc": ""
  }, {
     "module": "ruddermenu",
