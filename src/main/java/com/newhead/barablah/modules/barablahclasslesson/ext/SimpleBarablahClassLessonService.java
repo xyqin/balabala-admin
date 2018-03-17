@@ -1,18 +1,24 @@
 package com.newhead.barablah.modules.barablahclasslesson.ext;
 
+import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
+import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
 import com.newhead.barablah.modules.barablahclasslesson.base.AbstractBarablahClassLessonService;
 import com.newhead.barablah.modules.barablahclasslesson.base.repository.dao.BarablahClassLessonMapper;
 import com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLesson;
 import com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLessonExample;
+import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonCreateRequest;
 import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonPostponeBatchRequest;
 import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonUpdateBatchRequest;
 import com.newhead.barablah.modules.barablahmemberlesson.base.repository.dao.BarablahMemberLessonMapper;
 import com.newhead.barablah.modules.barablahmemberlesson.base.repository.entity.BarablahMemberLesson;
 import com.newhead.barablah.modules.barablahmemberlesson.base.repository.entity.BarablahMemberLessonExample;
+import com.newhead.rudderframework.core.web.api.ApiException;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
 import io.swagger.annotations.Api;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +43,9 @@ public class SimpleBarablahClassLessonService extends AbstractBarablahClassLesso
     @Autowired
     private BarablahMemberLessonMapper memberLessonMapper;
 
+    @Autowired
+    private BarablahClassMapper classMapper;
+
     @Override
     protected BarablahClassLessonMapper getMapper() {
         return this.mapper;
@@ -48,9 +57,35 @@ public class SimpleBarablahClassLessonService extends AbstractBarablahClassLesso
 
     }
 
+    @Override
+    public BarablahClassLesson create(SimpleBarablahClassLessonCreateRequest request) {
+        BarablahClass aClass = classMapper.selectByPrimaryKey(request.getClassId());
+
+        if ("ONGOING".equals(aClass.getStatus()) || "FINISHED".equals(aClass.getStatus())) {
+            throw new ApiException(ApiStatus.STATUS_400.getCode(), "当前班级已开始上课，不允许新增开班课时");
+        }
+
+        BarablahClassLesson entity = new BarablahClassLesson();
+        BeanUtils.copyProperties(request, entity);
+        entity.setCreatedAt(new Date());
+        entity.setUpdatedAt(new Date());
+        entity.setDeleted(false);
+        entity.setCreator(getCurrentUser().getId());
+        entity.setLastModifier(getCurrentUser().getId());
+        saveOrUpdate(entity);
+        getMapper().insert(entity);
+
+        //添加关系
+        return entity;
+    }
+
     @Transactional
     public void postponebatch(SimpleBarablahClassLessonPostponeBatchRequest request) {
         BarablahClassLesson lesson = mapper.selectByPrimaryKey(request.getId());
+
+        if (DateUtils.addHours(new Date(), 4).after(lesson.getStartAt())) {
+            throw new ApiException(ApiStatus.STATUS_400.getCode(), "离开课只有不到4小时，不允许延迟");
+        }
 
         BarablahClassLessonExample example = new BarablahClassLessonExample();
         example.createCriteria()
