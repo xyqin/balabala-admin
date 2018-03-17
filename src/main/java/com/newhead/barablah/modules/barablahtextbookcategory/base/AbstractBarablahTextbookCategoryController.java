@@ -1,26 +1,21 @@
 package com.newhead.barablah.modules.barablahtextbookcategory.base;
 
 import com.google.common.collect.Maps;
+import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategory;
+import com.newhead.barablah.modules.barablahtextbookcategory.ext.SimpleBarablahTextbookCategoryService;
+import com.newhead.barablah.modules.barablahtextbookcategory.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 import com.newhead.rudderframework.core.web.component.tree.Tree;
-import com.newhead.rudderframework.modules.LabelValueItem;
-
-
 import com.newhead.rudderframework.core.web.controller.WebController;
-import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategory;
-import com.newhead.barablah.modules.barablahtextbookcategory.ext.SimpleBarablahTextbookCategoryService;
-import com.newhead.barablah.modules.barablahtextbookcategory.ext.protocol.*;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -49,9 +44,6 @@ public abstract class AbstractBarablahTextbookCategoryController extends WebCont
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahTextbookCategoryCreateRequest request) {
-        if (StringUtils.isEmpty(request.getParentId())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"父ID不能为空！");
-        }
 
         if (StringUtils.isEmpty(request.getCategoryName())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称不能为空！");
@@ -83,10 +75,6 @@ public abstract class AbstractBarablahTextbookCategoryController extends WebCont
     @ApiOperation(value = "更新", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahTextbookCategoryUpdateRequest request) {
-
-                if (StringUtils.isEmpty(request.getParentId())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"父ID不能为空！");
-                }
 
                 if (StringUtils.isEmpty(request.getCategoryName())) {
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称不能为空！");
