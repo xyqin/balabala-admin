@@ -1,7 +1,6 @@
 package com.newhead.rudderframework.modules.rudderpermission.ext.protocol;
 
 import com.newhead.rudderframework.modules.rudderpermission.base.protocol.AbstractRudderPermissionGetDetailResponse;
-
 import lombok.Data;
 
 /**

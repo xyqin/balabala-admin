@@ -1,8 +1,6 @@
 package com.newhead.barablah.modules.barablahcampus.base.protocol;
 
 import lombok.Data;
-import java.util.Date;
-import java.math.BigDecimal;
 
 /**
  * 

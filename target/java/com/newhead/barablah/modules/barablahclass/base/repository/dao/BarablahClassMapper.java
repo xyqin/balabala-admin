@@ -2,9 +2,10 @@ package com.newhead.barablah.modules.barablahclass.base.repository.dao;
 
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClassExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface BarablahClassMapper {
