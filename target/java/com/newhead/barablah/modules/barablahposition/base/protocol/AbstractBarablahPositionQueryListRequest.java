@@ -1,10 +1,12 @@
 package com.newhead.barablah.modules.barablahposition.base.protocol;
 
 import lombok.Data;
+import java.util.Date;
+import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年03月18日 02:48:23
+ * @generated 2018年03月18日 05:08:29
  */
 @Data
 public abstract class AbstractBarablahPositionQueryListRequest  {

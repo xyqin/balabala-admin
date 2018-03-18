@@ -2,43 +2,43 @@ package com.newhead.barablah.modules.barablahmemberpointlog.base.repository.enti
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.newhead.rudderframework.core.domain.AuditableEntity;
-import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.validation.constraints.Size;
 import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
  * RudderFramework框架自动生成，不允许修改！
  * 表 barablah_member_point_log
- * @generated do_not_delete_during_merge 2018年3月18日 02:48:14
+ * @generated do_not_delete_during_merge 2018年3月18日 05:08:22
  */
 public class BarablahMemberPointLog implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"1","formid":"1"},"name":"会员ID","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     private Long id;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"会员ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BarablahMember","field":"nickname","type":"SingleList"},"valid":true}
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     private Long memberId;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"积分","fieldType":"Number","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false,"orderkey":true,"remark":""}
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     private Integer points;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"类型","fieldType":"Enum","visible":true,"queryType":2,"displayOrder":0,"length":0,"types":[{"label":"奖杯","value":"TROPHY"},{"label":"鼓掌","value":"CLAPPING"},{"label":"开心","value":"SMILING"}],"valid":true}
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     @NotEmpty(message="类型不能为空")
     @Size(max=0,message = "类型长度无效")
@@ -48,7 +48,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
     /**
      *
      * {"name":"创建时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     @JSONField(serialize=false)
     private Date createdAt;
@@ -56,7 +56,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
     /**
      *
      * {"name":"修改时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     @JSONField(serialize=false)
     private Date updatedAt;
@@ -64,7 +64,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
     /**
      *
      * {"name":"创建者","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     @JSONField(serialize=false)
     private Long creator;
@@ -72,7 +72,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
     /**
      *
      * {"name":"修改人","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     @JSONField(serialize=false)
     private Long lastModifier;
@@ -80,14 +80,14 @@ public class BarablahMemberPointLog implements AuditableEntity {
     /**
      *
      * {"name":"删除标志","fieldType":"Bool","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     @JSONField(serialize=false)
     private Boolean deleted;
 
     /**
      * 返回 id 会员ID
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public Long getId() {
         
@@ -98,7 +98,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
      * 设置会员ID
      *
      * @param id
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public void setId(Long id) {
         this.id = id;
@@ -106,7 +106,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
 
     /**
      * 返回 member_id 会员ID
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public Long getMemberId() {
         
@@ -117,7 +117,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
      * 设置会员ID
      *
      * @param memberId
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
@@ -125,7 +125,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
 
     /**
      * 返回 points 积分
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public Integer getPoints() {
         
@@ -136,7 +136,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
      * 设置积分
      *
      * @param points
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public void setPoints(Integer points) {
         this.points = points;
@@ -144,7 +144,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
 
     /**
      * 返回 type 类型
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public String getType() {
         
@@ -155,7 +155,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
      * 设置类型
      *
      * @param type
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
@@ -163,7 +163,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
 
     /**
      * 返回 created_at 创建时间
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public Date getCreatedAt() {
         
@@ -174,7 +174,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
      * 设置创建时间
      *
      * @param createdAt
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -182,7 +182,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
 
     /**
      * 返回 updated_at 修改时间
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public Date getUpdatedAt() {
         
@@ -193,7 +193,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
      * 设置修改时间
      *
      * @param updatedAt
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
@@ -201,7 +201,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
 
     /**
      * 返回 creator 创建者
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public Long getCreator() {
         
@@ -212,7 +212,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
      * 设置创建者
      *
      * @param creator
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public void setCreator(Long creator) {
         this.creator = creator;
@@ -220,7 +220,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
 
     /**
      * 返回 last_modifier 修改人
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public Long getLastModifier() {
         
@@ -231,7 +231,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
      * 设置修改人
      *
      * @param lastModifier
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public void setLastModifier(Long lastModifier) {
         this.lastModifier = lastModifier;
@@ -239,7 +239,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
 
     /**
      * 返回 deleted 删除标志
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public Boolean getDeleted() {
         
@@ -250,7 +250,7 @@ public class BarablahMemberPointLog implements AuditableEntity {
      * 设置删除标志
      *
      * @param deleted
-     * @generated 2018年3月18日 02:48:14
+     * @generated 2018年3月18日 05:08:22
      */
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;

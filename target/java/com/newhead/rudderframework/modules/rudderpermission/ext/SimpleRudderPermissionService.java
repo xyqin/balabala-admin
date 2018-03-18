@@ -3,13 +3,15 @@ package com.newhead.rudderframework.modules.rudderpermission.ext;
 import com.newhead.rudderframework.modules.rudderpermission.base.AbstractRudderPermissionService;
 import com.newhead.rudderframework.modules.rudderpermission.base.repository.dao.RudderPermissionMapper;
 import com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermission;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 权限服务
- * 2018年03月18日 02:48:17
+ * 2018年03月18日 05:08:24
  */
 @Api(tags = "权限", description = "相关的API")
 @Service

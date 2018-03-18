@@ -5,21 +5,29 @@ import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+import com.newhead.rudderframework.modules.LabelValueItem;
+
+
 import com.newhead.rudderframework.core.web.controller.WebController;
 import com.newhead.rudderframework.modules.rudderuser2role.base.repository.entity.RudderUser2role;
 import com.newhead.rudderframework.modules.rudderuser2role.ext.SimpleRudderUser2roleService;
+import com.newhead.rudderframework.modules.rudderuser2role.ext.protocol.*;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 用户角色关系控制器
- * 2018年03月18日 02:48:26
+ * 2018年03月18日 05:08:33
  */
 @Api(tags = "用户角色关系", description = "相关的API")
 public abstract class AbstractRudderUser2roleController extends WebController  {

@@ -1,25 +1,33 @@
 package com.newhead.barablah.modules.barablahposition.base;
 
 import com.google.common.collect.Maps;
-import com.newhead.barablah.modules.barablahposition.base.repository.entity.BarablahPosition;
-import com.newhead.barablah.modules.barablahposition.ext.SimpleBarablahPositionService;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+import com.newhead.rudderframework.modules.LabelValueItem;
+
+
 import com.newhead.rudderframework.core.web.controller.WebController;
+import com.newhead.barablah.modules.barablahposition.base.repository.entity.BarablahPosition;
+import com.newhead.barablah.modules.barablahposition.ext.SimpleBarablahPositionService;
+import com.newhead.barablah.modules.barablahposition.ext.protocol.*;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 广告位置表控制器
- * 2018年03月18日 02:48:25
+ * 2018年03月18日 05:08:33
  */
 @Api(tags = "广告位置表", description = "相关的API")
 public abstract class AbstractBarablahPositionController extends WebController  {

@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月18日 02:48:29
+ * 生成时间：2018年03月18日 05:08:41
  * 该文件系自动生成，手动修改可能会被替换
  * RudderPermissionQuerypageReq
  * 接口地址：rudderpermission/querypage

@@ -1,10 +1,15 @@
 package com.newhead.rudderframework.modules.rudderpermission.base.protocol;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.NotEmpty;
+import java.util.Date;
+import java.math.BigDecimal;
+
+import javax.validation.constraints.Size;
 
 /**
  * 系统权限
- * 2018年03月18日 02:48:24
+ * 2018年03月18日 05:08:29
  */
 @Data
 public abstract class AbstractRudderPermissionUpdateRequest {

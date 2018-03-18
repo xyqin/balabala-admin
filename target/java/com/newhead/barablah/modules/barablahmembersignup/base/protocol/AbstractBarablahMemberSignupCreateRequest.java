@@ -1,13 +1,15 @@
 package com.newhead.barablah.modules.barablahmembersignup.base.protocol;
 
 import lombok.Data;
-
-import java.math.BigDecimal;
+import org.hibernate.validator.constraints.NotEmpty;
 import java.util.Date;
+import java.math.BigDecimal;
+
+import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月18日 02:48:23
+ * 2018年03月18日 05:08:29
  */
 @Data
 public abstract class AbstractBarablahMemberSignupCreateRequest {

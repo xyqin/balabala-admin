@@ -1,7 +1,11 @@
 package com.newhead.rudderframework.modules.rudderrole2permission.ext;
 
 import com.newhead.rudderframework.modules.rudderrole2permission.base.AbstractRudderRole2permissionController;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.Api;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * RudderFramework 自动生成
  * 角色权限关系控制
- * 2018年03月18日 02:48:17
+ * 2018年03月18日 05:08:24
  */
 @Api(tags = "角色权限关系", description = "相关的API")
 @RestController

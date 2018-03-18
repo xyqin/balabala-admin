@@ -3,13 +3,15 @@ package com.newhead.rudderframework.modules.rudderrole2permission.ext;
 import com.newhead.rudderframework.modules.rudderrole2permission.base.AbstractRudderRole2permissionService;
 import com.newhead.rudderframework.modules.rudderrole2permission.base.repository.dao.RudderRole2permissionMapper;
 import com.newhead.rudderframework.modules.rudderrole2permission.base.repository.entity.RudderRole2permission;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 角色权限关系服务
- * 2018年03月18日 02:48:17
+ * 2018年03月18日 05:08:24
  */
 @Api(tags = "角色权限关系", description = "相关的API")
 @Service
