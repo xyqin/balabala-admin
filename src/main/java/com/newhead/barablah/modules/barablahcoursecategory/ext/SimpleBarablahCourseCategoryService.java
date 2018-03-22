@@ -1,13 +1,15 @@
 package com.newhead.barablah.modules.barablahcoursecategory.ext;
 
+import com.newhead.barablah.modules.barablahcourse.base.repository.dao.BarablahCourseMapper;
+import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourseExample;
 import com.newhead.barablah.modules.barablahcoursecategory.base.AbstractBarablahCourseCategoryService;
 import com.newhead.barablah.modules.barablahcoursecategory.base.repository.dao.BarablahCourseCategoryMapper;
 import com.newhead.barablah.modules.barablahcoursecategory.base.repository.entity.BarablahCourseCategory;
+import com.newhead.rudderframework.core.web.api.ApiException;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 课程分类服务
@@ -20,6 +22,9 @@ public class SimpleBarablahCourseCategoryService extends AbstractBarablahCourseC
     @Autowired
     private BarablahCourseCategoryMapper mapper;
 
+
+    @Autowired
+    private BarablahCourseMapper courseMapper;
     @Override
     protected BarablahCourseCategoryMapper getMapper() {
         return this.mapper;
@@ -29,5 +34,17 @@ public class SimpleBarablahCourseCategoryService extends AbstractBarablahCourseC
     @Override
     protected void saveOrUpdate(BarablahCourseCategory entity) {
 
+    }
+
+
+    @Override
+    public void delete(Long id) {
+        BarablahCourseExample bce = new BarablahCourseExample();
+        bce.createCriteria().andCategoryIdEqualTo(id);
+        long num = courseMapper.countByExample(bce);
+        if (num>0) {
+            throw new ApiException(ApiStatus.STATUS_400.getCode(), "类别已经使用,不允许删除!");
+        }
+        getMapper().deleteByPrimaryKey(id);
     }
 }

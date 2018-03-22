@@ -120,7 +120,7 @@ public abstract class AbstractBarablahTextbookCategoryService extends SimpleTree
         c.andDeletedEqualTo(false);
         String ordersrc ="";
             ordersrc = "position desc,";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getCategoryName()!=null) {

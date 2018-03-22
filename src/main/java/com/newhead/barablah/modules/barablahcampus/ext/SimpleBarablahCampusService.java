@@ -8,9 +8,17 @@ import com.newhead.barablah.modules.barablahcampus.base.repository.entity.Barabl
 import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampusExample;
 import com.newhead.barablah.modules.barablahcampus.ext.protocol.SimpleBarablahCampusQueryListRequest;
 import com.newhead.barablah.modules.barablahcampus.ext.protocol.SimpleBarablahCampusQueryResponse;
+import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
+import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClassExample;
+import com.newhead.barablah.modules.barablahmember.base.repository.dao.BarablahMemberMapper;
+import com.newhead.barablah.modules.barablahmember.base.repository.entity.BarablahMemberExample;
 import com.newhead.barablah.modules.barablahregion.base.repository.entity.BarablahRegion;
 import com.newhead.barablah.modules.barablahregion.base.repository.entity.BarablahRegionExample;
+import com.newhead.barablah.modules.barablahteacher.base.repository.dao.BarablahTeacherMapper;
+import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
 import com.newhead.rudderframework.core.security.ShiroAuthorizingRealm;
+import com.newhead.rudderframework.core.web.api.ApiException;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.modules.LabelValueItem;
 import com.newhead.rudderframework.modules.rudderuser.base.repository.dao.RudderUserMapper;
 import com.newhead.rudderframework.modules.rudderuser.base.repository.entity.RudderUser;
@@ -35,6 +43,16 @@ public class SimpleBarablahCampusService extends AbstractBarablahCampusService {
 
     @Autowired
     private BarablahCampusMapper mapper;
+
+
+    @Autowired
+    private BarablahTeacherMapper teacherMapper;
+
+    @Autowired
+    private BarablahMemberMapper memberMapper;
+
+    @Autowired
+    private BarablahClassMapper classMapper;
 
     @Autowired
     private RudderUserMapper rudderUserMapper;
@@ -121,5 +139,31 @@ public class SimpleBarablahCampusService extends AbstractBarablahCampusService {
             response.setRegionIdObject(regionIdlvi);
             results.add(response);
         }
+    }
+
+
+    @Override
+    public void delete(Long id) {
+        BarablahTeacherExample teacher = new BarablahTeacherExample();
+        teacher.createCriteria().andCampusIdEqualTo(id);
+        long nums1 = teacherMapper.countByExample(teacher);
+        if (nums1>0) {
+            throw new ApiException(ApiStatus.STATUS_400.getCode(), "该校区已经有教师,不允许删除!");
+        }
+
+        BarablahMemberExample member = new BarablahMemberExample();
+        teacher.createCriteria().andCampusIdEqualTo(id);
+        long nums2 = memberMapper.countByExample(member);
+        if (nums2>0) {
+            throw new ApiException(ApiStatus.STATUS_400.getCode(), "该校区已经有学员,不允许删除!");
+        }
+
+        BarablahClassExample classes = new BarablahClassExample();
+        teacher.createCriteria().andCampusIdEqualTo(id);
+        long nums3 = classMapper.countByExample(classes);
+        if (nums3>0) {
+            throw new ApiException(ApiStatus.STATUS_400.getCode(), "该校区已经有班级在开班,不允许删除!");
+        }
+
     }
 }

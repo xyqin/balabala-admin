@@ -1,13 +1,19 @@
 package com.newhead.barablah.modules.barablahclasscategory.ext;
 
+import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
+import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
+import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClassExample;
 import com.newhead.barablah.modules.barablahclasscategory.base.AbstractBarablahClassCategoryService;
 import com.newhead.barablah.modules.barablahclasscategory.base.repository.dao.BarablahClassCategoryMapper;
 import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategory;
+import com.newhead.rudderframework.core.web.api.ApiException;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.Api;
+
+import java.util.List;
+
 /**
  * RudderFramework 自动生成
  * 班级分类服务
@@ -20,6 +26,10 @@ public class SimpleBarablahClassCategoryService extends AbstractBarablahClassCat
     @Autowired
     private BarablahClassCategoryMapper mapper;
 
+
+    @Autowired
+    private BarablahClassMapper classMapper;
+
     @Override
     protected BarablahClassCategoryMapper getMapper() {
         return this.mapper;
@@ -29,5 +39,20 @@ public class SimpleBarablahClassCategoryService extends AbstractBarablahClassCat
     @Override
     protected void saveOrUpdate(BarablahClassCategory entity) {
 
+    }
+
+    @Override
+    public void delete(Long id) {
+        BarablahClass entity = new BarablahClass();
+
+        BarablahClassExample bcls = new BarablahClassExample();
+        bcls.createCriteria().andCategoryIdEqualTo(id);
+
+        List<BarablahClass> classes = classMapper.selectByExample(bcls);
+        if (classes!=null && classes.size()>0) {
+            throw new ApiException(ApiStatus.STATUS_400.getCode(), "类别已经使用,不允许删除!");
+        }
+
+        getMapper().deleteByPrimaryKey(id);
     }
 }

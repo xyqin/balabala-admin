@@ -65,6 +65,8 @@ public class SimpleBarablahClassLessonService extends AbstractBarablahClassLesso
             throw new ApiException(ApiStatus.STATUS_400.getCode(), "当前班级已开始上课，不允许新增开班课时");
         }
 
+        //TODO 当天已经安排课时,不允许添加。
+
         BarablahClassLesson entity = new BarablahClassLesson();
         BeanUtils.copyProperties(request, entity);
         entity.setCreatedAt(new Date());
@@ -172,4 +174,16 @@ public class SimpleBarablahClassLessonService extends AbstractBarablahClassLesso
         memberLessonMapper.updateByExampleSelective(memberLessonToBeUpdated, example);
     }
 
+    @Override
+    public void delete(Long id) {
+
+        BarablahClassLesson classlesson = getMapper().selectByPrimaryKey(id);
+        boolean b =  classlesson.getStartAt().before(DateUtils.addHours(new Date(),4));
+        if (b) {
+            throw new ApiException(ApiStatus.STATUS_400.getCode(), "离开课只有不到4小时，不允许删除");
+        }
+
+        //是否要删除生成的成员ID
+        this.getMapper().deleteByPrimaryKey(id);
+    }
 }

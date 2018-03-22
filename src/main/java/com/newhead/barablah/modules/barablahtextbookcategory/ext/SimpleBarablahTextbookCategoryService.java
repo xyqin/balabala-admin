@@ -3,14 +3,22 @@ package com.newhead.barablah.modules.barablahtextbookcategory.ext;
 import com.google.common.collect.Maps;
 import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
+import com.newhead.barablah.modules.barablahclasslesson.base.repository.dao.BarablahClassLessonMapper;
+import com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLessonExample;
 import com.newhead.barablah.modules.barablahcourse.base.repository.dao.BarablahCourseMapper;
 import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourse;
+import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourseExample;
+import com.newhead.barablah.modules.barablahtextbook.base.repository.dao.BarablahTextbookMapper;
+import com.newhead.barablah.modules.barablahtextbook.base.repository.entity.BarablahTextbookExample;
 import com.newhead.barablah.modules.barablahtextbookcategory.base.AbstractBarablahTextbookCategoryService;
 import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.dao.BarablahTextbookCategoryMapper;
 import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategory;
 import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategoryExample;
 import com.newhead.barablah.modules.barablahtextbookcategory.ext.protocol.SimpleBarablahTextbookCategoryQueryListRequest;
 import com.newhead.barablah.modules.barablahtextbookcategory.ext.protocol.SimpleBarablahTextbookCategoryQueryResponse;
+import com.newhead.barablah.modules.barablahtextbookcategory.ext.protocol.SimpleBarablahTextbookCategoryUpdateRequest;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.tree.*;
 import com.newhead.rudderframework.modules.LabelValueItem;
 import io.swagger.annotations.Api;
@@ -18,11 +26,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * RudderFramework 自动生成
@@ -40,16 +46,99 @@ public class SimpleBarablahTextbookCategoryService extends AbstractBarablahTextb
     protected BarablahTextbookCategoryMapper getMapper() {
         return this.mapper;
     }
-
     @Autowired
+    protected BarablahTextbookMapper bookMapper;
+
+
+        @Autowired
     private BarablahClassMapper classMapper;
 
+    @Autowired
+    private BarablahClassLessonMapper classLessonMapper;
     @Autowired
     private BarablahCourseMapper courseMapper;
 
     @Override
     protected void saveOrUpdate(BarablahTextbookCategory entity) {
 
+    }
+
+
+
+    /**
+     * 修改
+     * @param request
+     * @return
+     */
+    @Transactional
+    public BarablahTextbookCategory update(SimpleBarablahTextbookCategoryUpdateRequest request) {
+        BarablahTextbookCategory entity = new BarablahTextbookCategory();
+        BeanUtils.copyProperties(request,entity);
+        entity.setUpdatedAt(new Date());
+        entity.setDeleted(false);
+        entity.setLastModifier(getCurrentUser().getId());
+        saveOrUpdate(entity);
+        getMapper().updateByPrimaryKeySelective(entity);
+
+        BarablahTextbookCategoryExample example = new BarablahTextbookCategoryExample();
+        example.createCriteria().andDeletedEqualTo(false).andParentIdEqualTo(request.getId());
+        List<BarablahTextbookCategory> entitys = getMapper().selectByExample(example);
+        if (entitys!=null && entitys.size()>0) {
+            for(BarablahTextbookCategory e:entitys) {
+                e.setPath(String.valueOf(Integer.valueOf(e.getPath())+1));
+                getMapper().updateByPrimaryKey(e);
+                u(e.getId());
+            }
+        }
+        return entity;
+    }
+
+    private void u(long id) {
+        BarablahTextbookCategoryExample example = new BarablahTextbookCategoryExample();
+        example.createCriteria().andDeletedEqualTo(false).andParentIdEqualTo(id);
+        List<BarablahTextbookCategory> entitys = getMapper().selectByExample(example);
+        if (entitys!=null && entitys.size()>0) {
+            for(BarablahTextbookCategory e:entitys) {
+                e.setPath(String.valueOf(Integer.valueOf(e.getPath())+1));
+                getMapper().updateByPrimaryKey(e);
+                u(e.getId());
+            }
+        }
+    }
+
+    /**
+     *
+     * @param id
+     */
+    public void delete(Long id) {
+        BarablahTextbookCategoryExample example = new BarablahTextbookCategoryExample();
+        example.createCriteria().andParentIdEqualTo(id).andDeletedEqualTo(false);
+        List<BarablahTextbookCategory> entitys = getMapper().selectByExample(example);
+        if (entitys!=null && entitys.size()>0) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"不允许删除有子目录的教材目录!!!");
+        }
+        //T教材章节已经在使用不允许删除
+        BarablahTextbookExample e = new BarablahTextbookExample();
+        e.createCriteria().andDeletedEqualTo(false).andCategoryIdEqualTo(id);
+        List cs = bookMapper.selectByExample(e);
+        if (cs!=null && cs.size()>0) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"不允许删除已经设置题目的教材!!!");
+        }
+
+        BarablahCourseExample bce = new BarablahCourseExample();
+        bce.createCriteria().andTextbookCategoryIdEqualTo(id).andDeletedEqualTo(false);
+        long cm = courseMapper.countByExample(bce);
+        if (cm>0) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材三级类目已经在课程中使用不允许删除!!!");
+        }
+
+        BarablahClassLessonExample bcle = new BarablahClassLessonExample();
+        bcle.createCriteria().andCategoryIdEqualTo(id).andDeletedEqualTo(false);
+        long lessons = classLessonMapper.countByExample(bcle);
+        if (lessons>0) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材四级类目已经在开班课程中使用不允许删除!!!");
+        }
+        getMapper().deleteByPrimaryKey(id);
     }
 
     /**
@@ -105,6 +194,11 @@ public class SimpleBarablahTextbookCategoryService extends AbstractBarablahTextb
         return tree;
     }
 
+    /**
+     *
+     * @param calssid
+     * @return
+     */
     protected TransitionTree getTransitionTree1(long calssid) {
         TransitionTree tree = new TransitionTree();
         tree.setUrl("/barablahtextbookcategory/gettree");
@@ -151,7 +245,7 @@ public class SimpleBarablahTextbookCategoryService extends AbstractBarablahTextb
 
         String ordersrc ="";
         ordersrc = "position desc,";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         convertEntityToResponse1(getMapper().selectByExample(example),results);
@@ -200,5 +294,6 @@ public class SimpleBarablahTextbookCategoryService extends AbstractBarablahTextb
             results.add(response);
         }
     }
+
 
 }

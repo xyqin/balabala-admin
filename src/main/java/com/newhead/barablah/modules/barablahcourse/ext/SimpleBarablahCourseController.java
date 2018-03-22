@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * RudderFramework 自动生成
  * 课程控制
@@ -39,33 +41,34 @@ public class SimpleBarablahCourseController extends AbstractBarablahCourseContro
     protected ApiEntity fillCreateRequest(SimpleBarablahCourseCreateRequest request) {
         Long cid = request.getTextbookCategoryId();
         BarablahTextbookCategory cat = catMapper.selectByPrimaryKey(cid);
-        if (cat.getParentId()!=null && cat.getParentId()>0 ) {
-            BarablahTextbookCategory p = catMapper.selectByPrimaryKey(cat.getParentId());
-            if (p.getParentId()==null || p.getParentId()==0) {
-                BarablahTextbookCategoryExample example = new BarablahTextbookCategoryExample();
-                example.createCriteria().andParentIdEqualTo(cid);
-                long size = catMapper.countByExample(example);
-                request.setOnlineLessons(Short.valueOf(String.valueOf(size)));
-                return null;
-            }
+        int level = Integer.valueOf(cat.getPath());
+        if(level!=3) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"必须选择三级教材分类！");
         }
 
-        throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"必须选择二级教材分类！");
+        BarablahTextbookCategoryExample example = new BarablahTextbookCategoryExample();
+        example.createCriteria().andParentIdEqualTo(cat.getId()).andDeletedEqualTo(false);
+        List<BarablahTextbookCategory> entitys = catMapper.selectByExample(example);
+        if (entitys==null || entitys.size()==0) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"请先去设置题目!!!");
+        }
+        return null;
     }
 
     @Override
     protected ApiEntity fillUpdateRequest(SimpleBarablahCourseUpdateRequest request) {
         Long cid = request.getCategoryId();
         BarablahTextbookCategory cat = catMapper.selectByPrimaryKey(cid);
-        if (cat.getParentId()!=null && cat.getParentId()>0 ) {
-            BarablahTextbookCategory p = catMapper.selectByPrimaryKey(cat.getParentId());
-            if (p.getParentId()==null || p.getParentId()==0) {
-                BarablahTextbookCategoryExample example = new BarablahTextbookCategoryExample();
-                example.createCriteria().andParentIdEqualTo(cid);
-                long size = catMapper.countByExample(example);
-                request.setOnlineLessons(Short.valueOf(String.valueOf(size)));
-                return null;
-            }
+        int level = Integer.valueOf(cat.getPath());
+        if(level!=3) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"必须选择三级教材分类！");
         }
-        throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"必须选择二级教材分类！");    }
+        BarablahTextbookCategoryExample example = new BarablahTextbookCategoryExample();
+        example.createCriteria().andParentIdEqualTo(cat.getId()).andDeletedEqualTo(false);
+        List<BarablahTextbookCategory> entitys = catMapper.selectByExample(example);
+        if (entitys==null || entitys.size()==0) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"请先去设置题目!!!");
+        }
+        return null;
+    }
 }

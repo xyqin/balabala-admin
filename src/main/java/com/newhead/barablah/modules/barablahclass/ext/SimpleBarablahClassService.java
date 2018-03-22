@@ -91,14 +91,53 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
     @Transactional
     public void open(SimpleBarablahClassOpenRequest request) {
         BarablahClass aClass = mapper.selectByPrimaryKey(request.getId());
+        if ( "FINISHED".equals(aClass.getStatus())) {
+            throw new ApiException(ApiStatus.STATUS_400.getCode(), "当前班级已经结束，不允许调整开班课时");
+        }
+        //线上课时时间安排是否合理
+        if(request.getOnlineLessons()>0) {
+            Date startAtOnline = null;
+            try {
+                startAtOnline = DateUtils.parseDate(request.getStartAtOnline(), "yyyyMMddHHmmss");
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
-        if ("ONGOING".equals(aClass.getStatus()) || "FINISHED".equals(aClass.getStatus())) {
-            throw new ApiException(ApiStatus.STATUS_400.getCode(), "当前班级已开始上课，不允许调整开班课时");
+            int minuteInOnline = request.getOnlineDuration();
+            int hourOnline = minuteInOnline / 60 ;
+            int minuteOnline = minuteInOnline % 60;
+            Date nextDate = DateUtils.addHours(startAtOnline,hourOnline);
+            nextDate = DateUtils.addMinutes(nextDate,minuteOnline);
+            if (!DateUtils.isSameDay(startAtOnline,nextDate)) {
+                throw new ApiException(ApiStatus.STATUS_400.getCode(), "在线课时安排不允许跨天!");
+            }
+        }
+        //线下课时时间安排是否合理
+        if(request.getOfflineLessons()>0) {
+            Date startAtOnline = null;
+            try {
+                startAtOnline = DateUtils.parseDate(request.getStartAtOffline(), "yyyyMMddHHmmss");
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            int minuteInOnline = request.getOfflineDuration();
+            int hourOnline = minuteInOnline / 60 ;
+            int minuteOnline = minuteInOnline % 60;
+            Date nextDate = DateUtils.addHours(startAtOnline,hourOnline);
+            nextDate = DateUtils.addMinutes(nextDate,minuteOnline);
+            if (!DateUtils.isSameDay(startAtOnline,nextDate)) {
+                throw new ApiException(ApiStatus.STATUS_400.getCode(), "线下课时安排不允许跨天!");
+            }
         }
 
-        BarablahCourse course = courseMapper.selectByPrimaryKey(aClass.getCourseId());
+        BarablahClassMemberExample example = new BarablahClassMemberExample();
+        example.createCriteria()
+                .andClassIdEqualTo(aClass.getId())
+                .andDeletedEqualTo(Boolean.FALSE);
+        List<BarablahClassMember> classMembers = classMemberMapper.selectByExample(example);
 
         // 获取教材3级分类，用于和课时关联
+        BarablahCourse course = courseMapper.selectByPrimaryKey(aClass.getCourseId());
         BarablahTextbookCategoryExample textbookCategoryExample = new BarablahTextbookCategoryExample();
         textbookCategoryExample.createCriteria()
                 .andParentIdEqualTo(course.getTextbookCategoryId())
@@ -106,148 +145,148 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
         textbookCategoryExample.setOrderByClause("position DESC");
         List<BarablahTextbookCategory> textbookCategories = textbookCategoryMapper.selectByExample(textbookCategoryExample);
 
-        // 当前需要生成的课时数，取教材3级分类数量和输入值的小值
-        int onlineLessons = (textbookCategories.size() < request.getOnlineLessons()) ? textbookCategories.size() : request.getOnlineLessons();
+        Date curDate = new Date();
+        //判断是否可以调整授课时间
+        if(request.getOnlineLessons()>0) {
+            //如果是线上
+            BarablahClassLessonExample lessonExample = new BarablahClassLessonExample();
+            lessonExample.createCriteria().
+                    andClassIdEqualTo(aClass.getId())
+                    .andTypeEqualTo(BarablahClassLessonTypeEnum.线上.getValue())
+                    .andDeletedEqualTo(false);
+            lessonExample.setOrderByClause("start_at asc");
+            List<BarablahClassLesson> lessons = classLessonMapper.selectByExample(lessonExample);
+            if (lessons != null && lessons.size() > 0 && lessons.get(0).getStartAt().before(DateUtils.addHours(curDate, 4))) {
+                throw new ApiException(ApiStatus.STATUS_400.getCode(), "开班前4小时不允许批量调整课时!");
+            }
 
-        // 获取当前班级已开课时
-        BarablahClassLessonExample classLessonExample = new BarablahClassLessonExample();
-        classLessonExample.createCriteria()
-                .andClassIdEqualTo(aClass.getId())
-                .andTypeEqualTo(BarablahClassLessonTypeEnum.线上.getValue())
-                .andDeletedEqualTo(Boolean.FALSE);
-        classLessonExample.setOrderByClause("start_at ASC");
-        List<BarablahClassLesson> currentLessons = classLessonMapper.selectByExample(classLessonExample);
+            // 当前需要生成的课时数，取教材4级分类数量和输入值的小值
+            int onlineLessons = (textbookCategories.size() < request.getOnlineLessons()) ? textbookCategories.size() : request.getOnlineLessons();
+            // 获取当前班级已开课时
+            int leftLessons = textbookCategories.size() - lessons.size();
+            if (leftLessons <= 0) {
+                throw new ApiException(ApiStatus.STATUS_400.getCode(), "当前班级课时已满");
+            }
 
-        if (currentLessons.size() > 0 && currentLessons.get(0).getStartAt().before(new Date())) {
-            throw new ApiException(ApiStatus.STATUS_400.getCode(), "当前班级已开始上课，不允许调整开班课时");
-        }
+            // 取课时数和剩余课时数的小值
+            onlineLessons = (onlineLessons > leftLessons) ? leftLessons : onlineLessons;
 
-        int leftLessons = textbookCategories.size() - currentLessons.size();
+            // 节数只参与计算上课时间，不参与课时次数计算
+            int onlineLessonsPerTime = request.getOnlineLessonsPerTime() > 0 ? request.getOnlineLessonsPerTime() : course.getOnlineLessons(); // 每次几节
+            int onlineDuration = request.getOnlineDuration() > 0 ? request.getOnlineDuration() : course.getOnlineDuration();
 
-        if (leftLessons <= 0) {
-            throw new ApiException(ApiStatus.STATUS_400.getCode(), "当前班级课时已满");
-        }
+            // 技术开始时间和结束时间
+            Date startAtOnline = null;
+            Date endAtOnline = null;
 
-        // 取课时数和剩余课时数的小值
-        onlineLessons = (onlineLessons > leftLessons) ? leftLessons : onlineLessons;
+            try {
+                startAtOnline = DateUtils.parseDate(request.getStartAtOnline(), "yyyyMMddHHmmss");
+                endAtOnline = DateUtils.addMinutes(startAtOnline, onlineDuration * onlineLessonsPerTime);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
-        // 获取班级所有成员
-        BarablahClassMemberExample example = new BarablahClassMemberExample();
-        example.createCriteria()
-                .andClassIdEqualTo(aClass.getId())
-                .andDeletedEqualTo(Boolean.FALSE);
-        List<BarablahClassMember> classMembers = classMemberMapper.selectByExample(example);
+            // 自动生成在线课时
+            for (int i = 0; i < onlineLessons; i++) {
+                BarablahClassLesson onlineLesson = new BarablahClassLesson();
+                onlineLesson.setClassId(aClass.getId());
+                onlineLesson.setCourseId(aClass.getCourseId());
+                onlineLesson.setTeacherId(aClass.getTeacherId());
+                onlineLesson.setEnglishTeacherId(aClass.getEnglishTeacherId());
+                onlineLesson.setCategoryId(0L);
+                onlineLesson.setLessonName("");
+                onlineLesson.setStartAt(startAtOnline);
+                onlineLesson.setEndAt(endAtOnline);
+                onlineLesson.setType(BarablahClassLessonTypeEnum.线上.getValue());
+                classLessonMapper.insertSelective(onlineLesson);
 
-        // 节数只参与计算上课时间，不参与课时次数计算
-        int onlineLessonsPerTime = request.getOnlineLessonsPerTime() > 0 ? request.getOnlineLessonsPerTime() : course.getOnlineLessons(); // 每次几节
-        int onlineDuration = request.getOnlineDuration() > 0 ? request.getOnlineDuration() : course.getOnlineDuration();
+                startAtOnline = DateUtils.addWeeks(startAtOnline, 1);
+                endAtOnline = DateUtils.addWeeks(endAtOnline, 1);
 
-        // 技术开始时间和结束时间
-        Date startAtOnline = null;
-        Date endAtOnline = null;
+                // 创建学员课时
+                for (BarablahClassMember classMember : classMembers) {
+                    BarablahMemberLesson memberLesson = new BarablahMemberLesson();
+                    memberLesson.setClassId(onlineLesson.getClassId());
+                    memberLesson.setLessonId(onlineLesson.getId());
+                    memberLesson.setMemberId(classMember.getMemberId());
+                    memberLesson.setType(onlineLesson.getType());
+                    memberLesson.setStartAt(onlineLesson.getStartAt());
+                    memberLesson.setEndAt(onlineLesson.getEndAt());
+                    memberLesson.setProbational(Boolean.FALSE);
+                    memberLessonMapper.insertSelective(memberLesson);
+                }
 
-        try {
-            startAtOnline = DateUtils.parseDate(request.getStartAtOnline(), "yyyyMMddHHmmss");
-            endAtOnline = DateUtils.addMinutes(startAtOnline, onlineDuration * onlineLessonsPerTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+            }
 
-        // 自动生成在线课时
-        for (int i = 0; i < onlineLessons; i++) {
-            BarablahClassLesson onlineLesson = new BarablahClassLesson();
-            onlineLesson.setClassId(aClass.getId());
-            onlineLesson.setCourseId(aClass.getCourseId());
-            onlineLesson.setTeacherId(aClass.getTeacherId());
-            onlineLesson.setEnglishTeacherId(aClass.getEnglishTeacherId());
-            onlineLesson.setCategoryId(0L);
-            onlineLesson.setLessonName("");
-            onlineLesson.setStartAt(startAtOnline);
-            onlineLesson.setEndAt(endAtOnline);
-            onlineLesson.setType(BarablahClassLessonTypeEnum.线上.getValue());
-            classLessonMapper.insertSelective(onlineLesson);
+            // 重新排列当前课时的教材3级分类关联
+            lessonExample.clear();
+            lessonExample.createCriteria()
+                    .andClassIdEqualTo(aClass.getId())
+                    .andTypeEqualTo(BarablahClassLessonTypeEnum.线上.getValue())
+                    .andDeletedEqualTo(Boolean.FALSE);
+            lessonExample.setOrderByClause("start_at ASC");
+            lessons = classLessonMapper.selectByExample(lessonExample);
 
-            startAtOnline = DateUtils.addWeeks(startAtOnline, 1);
-            endAtOnline = DateUtils.addWeeks(endAtOnline, 1);
-
-            // 创建学员课时
-            for (BarablahClassMember classMember : classMembers) {
-                BarablahMemberLesson memberLesson = new BarablahMemberLesson();
-                memberLesson.setClassId(onlineLesson.getClassId());
-                memberLesson.setLessonId(onlineLesson.getId());
-                memberLesson.setMemberId(classMember.getMemberId());
-                memberLesson.setType(onlineLesson.getType());
-                memberLesson.setStartAt(onlineLesson.getStartAt());
-                memberLesson.setEndAt(onlineLesson.getEndAt());
-                memberLesson.setProbational(Boolean.FALSE);
-                memberLessonMapper.insertSelective(memberLesson);
+            //重新生成在线课时
+            for (int i = 0; i < lessons.size(); i++) {
+                BarablahClassLesson onlineLesson = lessons.get(i);
+                BarablahTextbookCategory textbookCategory = textbookCategories.get(i);
+                BarablahClassLesson lessonToBeUpdated = new BarablahClassLesson();
+                lessonToBeUpdated.setId(onlineLesson.getId());
+                lessonToBeUpdated.setCategoryId(textbookCategory.getId());
+                lessonToBeUpdated.setLessonName(textbookCategory.getCategoryName());
+                classLessonMapper.updateByPrimaryKeySelective(lessonToBeUpdated);
             }
         }
 
-        // 重新排列当前课时的教材3级分类关联
-        classLessonExample.clear();
-        classLessonExample.createCriteria()
-                .andClassIdEqualTo(aClass.getId())
-                .andTypeEqualTo(BarablahClassLessonTypeEnum.线上.getValue())
-                .andDeletedEqualTo(Boolean.FALSE);
-        classLessonExample.setOrderByClause("start_at ASC");
-        currentLessons = classLessonMapper.selectByExample(classLessonExample);
 
-        for (int i = 0; i < currentLessons.size(); i++) {
-            BarablahClassLesson onlineLesson = currentLessons.get(i);
-            BarablahTextbookCategory textbookCategory = textbookCategories.get(i);
+        if(request.getOfflineLessons()>0) {
+            // 自动生成离线课时
+            int offlineLessons = request.getOfflineLessons(); // 当前生成课时次数
+            // 每次几节，节数只参与计算上课时间，不参与课时次数计算
+            int offlineLessonsPerTime = request.getOfflineLessonsPerTime() > 0 ? request.getOfflineLessonsPerTime() : course.getOfflineLessons();
+            int offlineDuration = request.getOfflineDuration() > 0 ? request.getOfflineDuration() : course.getOfflineDuration();
 
-            BarablahClassLesson lessonToBeUpdated = new BarablahClassLesson();
-            lessonToBeUpdated.setId(onlineLesson.getId());
-            lessonToBeUpdated.setCategoryId(textbookCategory.getId());
-            lessonToBeUpdated.setLessonName(textbookCategory.getCategoryName());
-            classLessonMapper.updateByPrimaryKeySelective(lessonToBeUpdated);
-        }
+            Date startAtOffline = null;
+            Date endAtOffline = null;
 
-        // 自动生成离线课时
-        int offlineLessons = request.getOfflineLessons(); // 当前生成课时次数
-        // 每次几节，节数只参与计算上课时间，不参与课时次数计算
-        int offlineLessonsPerTime = request.getOfflineLessonsPerTime() > 0 ? request.getOfflineLessonsPerTime() : course.getOfflineLessons();
-        int offlineDuration = request.getOfflineDuration() > 0 ? request.getOfflineDuration() : course.getOfflineDuration();
+            try {
+                startAtOffline = DateUtils.parseDate(request.getStartAtOffline(), "yyyyMMddHHmmss");
+                endAtOffline = DateUtils.addMinutes(startAtOffline, offlineDuration * offlineLessonsPerTime);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
-        Date startAtOffline = null;
-        Date endAtOffline = null;
+            for (int i = 0; i < offlineLessons; i++) {
+                BarablahClassLesson offlineLesson = new BarablahClassLesson();
+                offlineLesson.setClassId(aClass.getId());
+                offlineLesson.setCourseId(aClass.getCourseId());
+                offlineLesson.setTeacherId(aClass.getTeacherId());
+                offlineLesson.setEnglishTeacherId(aClass.getEnglishTeacherId());
+                offlineLesson.setLessonName("线下课时" + (i + 1));
+                offlineLesson.setStartAt(startAtOffline);
+                offlineLesson.setEndAt(endAtOffline);
+                offlineLesson.setType(BarablahClassLessonTypeEnum.线下.getValue());
+                classLessonMapper.insertSelective(offlineLesson);
 
-        try {
-            startAtOffline = DateUtils.parseDate(request.getStartAtOffline(), "yyyyMMddHHmmss");
-            endAtOffline = DateUtils.addMinutes(startAtOffline, offlineDuration * offlineLessonsPerTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+                startAtOffline = DateUtils.addWeeks(startAtOffline, 1);
+                endAtOffline = DateUtils.addWeeks(endAtOffline, 1);
 
-        for (int i = 0; i < offlineLessons; i++) {
-            BarablahClassLesson offlineLesson = new BarablahClassLesson();
-            offlineLesson.setClassId(aClass.getId());
-            offlineLesson.setCourseId(aClass.getCourseId());
-            offlineLesson.setTeacherId(aClass.getTeacherId());
-            offlineLesson.setEnglishTeacherId(aClass.getEnglishTeacherId());
-            offlineLesson.setLessonName("线下课时" + (i + 1));
-            offlineLesson.setStartAt(startAtOffline);
-            offlineLesson.setEndAt(endAtOffline);
-            offlineLesson.setType(BarablahClassLessonTypeEnum.线下.getValue());
-            classLessonMapper.insertSelective(offlineLesson);
-
-            startAtOffline = DateUtils.addWeeks(startAtOffline, 1);
-            endAtOffline = DateUtils.addWeeks(endAtOffline, 1);
-
-            // 创建学员课时
-            for (BarablahClassMember classMember : classMembers) {
-                BarablahMemberLesson memberLesson = new BarablahMemberLesson();
-                memberLesson.setClassId(offlineLesson.getClassId());
-                memberLesson.setLessonId(offlineLesson.getId());
-                memberLesson.setMemberId(classMember.getMemberId());
-                memberLesson.setType(offlineLesson.getType());
-                memberLesson.setStartAt(offlineLesson.getStartAt());
-                memberLesson.setEndAt(offlineLesson.getEndAt());
-                memberLesson.setProbational(Boolean.FALSE);
-                memberLessonMapper.insertSelective(memberLesson);
+                // 创建学员课时
+                for (BarablahClassMember classMember : classMembers) {
+                    BarablahMemberLesson memberLesson = new BarablahMemberLesson();
+                    memberLesson.setClassId(offlineLesson.getClassId());
+                    memberLesson.setLessonId(offlineLesson.getId());
+                    memberLesson.setMemberId(classMember.getMemberId());
+                    memberLesson.setType(offlineLesson.getType());
+                    memberLesson.setStartAt(offlineLesson.getStartAt());
+                    memberLesson.setEndAt(offlineLesson.getEndAt());
+                    memberLesson.setProbational(Boolean.FALSE);
+                    memberLessonMapper.insertSelective(memberLesson);
+                }
             }
         }
+
     }
 
     public Map<String, Integer> getLessons(Long id) {
@@ -514,5 +553,26 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
             statusEnum.setChecked(true);
             results.add(response);
         }
+    }
+
+    @Override
+    public void delete(Long id) {
+        BarablahClass entity = new BarablahClass();
+
+        BarablahClassLessonExample bcls = new BarablahClassLessonExample();
+        bcls.createCriteria().andClassIdEqualTo(id);
+
+        List<BarablahClassLesson> lessons = classLessonMapper.selectByExample(bcls);
+        if (lessons!=null && lessons.size()>0) {
+            throw new ApiException(ApiStatus.STATUS_400.getCode(), "该班已经开课,不允许删除!");
+        }
+
+        BarablahClassMemberExample bcm = new BarablahClassMemberExample();
+        List<BarablahClassMember> members = classMemberMapper.selectByExample(bcm);
+        if (members!=null && members.size()>0) {
+            throw new ApiException(ApiStatus.STATUS_400.getCode(), "该班已经有学员报名,不允许删除!");
+        }
+
+        getMapper().deleteByPrimaryKey(id);
     }
 }
