@@ -69,6 +69,16 @@ public class SimpleBarablahTextbookCategoryController extends AbstractBarablahTe
 
             request.setPath(String.valueOf(level));
         }
+
+        if (request.getParentId()==null) {
+            request.setParentId(0l);
+        }
+
+        BarablahTextbookCategoryExample s = new BarablahTextbookCategoryExample();
+        s.createCriteria().andParentIdEqualTo(request.getParentId());
+        long count = service.getMapper().countByExample(s);
+        request.setPosition((int)count+1);
+
         return null;
     }
 

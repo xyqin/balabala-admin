@@ -12,13 +12,13 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年03月18日 05:08:28
+ * @generated 2018年03月22日 08:05:45
  */
 @Data
 public abstract class AbstractBarablahTeacherQueryResponse {
     /**
      *
-     * 主键
+     * Id
      */
      private Long id;
 

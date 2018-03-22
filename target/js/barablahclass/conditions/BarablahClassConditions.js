@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月18日 05:08:35
+ * 生成时间：2018年03月22日 08:05:48
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -32,8 +32,8 @@ const BARABLAHCLASS_CONDITIONS = [{
 },{
     key: 'teacherId',
     type: 'Object',
-    label: '教师ID',
-    placeholder: '请选择教师ID',
+    label: '线上教师',
+    placeholder: '请选择线上教师',
     displayType: 'SingleList',
     url: '/barablahteacher/getlist',
     dataLableKey: 'fullName',

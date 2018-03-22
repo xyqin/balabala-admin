@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * 菜单权限关系
- * 2018年03月18日 05:08:26
+ * 2018年03月22日 08:05:44
  */
 @Data
 public class SimpleRudderMenu2permissionUpdateRequest extends AbstractRudderMenu2permissionUpdateRequest {

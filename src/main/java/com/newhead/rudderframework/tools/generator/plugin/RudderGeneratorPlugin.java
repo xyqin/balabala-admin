@@ -21,6 +21,7 @@ public class RudderGeneratorPlugin extends PluginAdapter {
     public boolean modelFieldGenerated(Field field, TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
 
         String remarks = introspectedColumn.getRemarks();
+        System.out.println(remarks);
         BaseField bf = BaseField.newBuild(introspectedColumn.getJavaProperty(),remarks,introspectedColumn.getFullyQualifiedJavaType().getShortName());
         if (bf==null) return false;
         if (!bf.isVisible()) {

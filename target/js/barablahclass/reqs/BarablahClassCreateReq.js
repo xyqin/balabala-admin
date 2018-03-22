@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月18日 05:08:37
+ * 生成时间：2018年03月22日 08:05:49
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahClassCreateReq
  * 接口地址：barablahclass/create
@@ -28,13 +28,16 @@ class BarablahClassCreateReq extends BaseRobotReq {
             desc: '校区ID',
             isRequired: true
         },{key: 'teacherId',
-            desc: '教师ID',
+            desc: '线上教师',
+            isRequired: true
+        },{key: 'courseCatId',
+            desc: '课程分类',
             isRequired: true
         },{key: 'courseId',
             desc: '课程ID',
             isRequired: true
         },{key: 'englishTeacherId',
-            desc: '外教教师ID',
+            desc: '线下教师',
             isRequired: false
         },{key: 'className',
             desc: '班级名称',
@@ -48,6 +51,9 @@ class BarablahClassCreateReq extends BaseRobotReq {
         },{key: 'status',
             desc: '状态',
             isRequired: true
+        },{key: 'deleted',
+            desc: '课程分类',
+            isRequired: false
         }];        this.curd = 'd';
     }
 
@@ -55,17 +61,19 @@ class BarablahClassCreateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,categoryId,campusId,teacherId,courseId,englishTeacherId,className,monitor,monitorPhoneNumber,status) {
+    setSimpleParams(id,categoryId,campusId,teacherId,courseCatId,courseId,englishTeacherId,className,monitor,monitorPhoneNumber,status,deleted) {
         this.addParams('id', id);
         this.addParams('categoryId', categoryId);
         this.addParams('campusId', campusId);
         this.addParams('teacherId', teacherId);
+        this.addParams('courseCatId', courseCatId);
         this.addParams('courseId', courseId);
         this.addParams('englishTeacherId', englishTeacherId);
         this.addParams('className', className);
         this.addParams('monitor', monitor);
         this.addParams('monitorPhoneNumber', monitorPhoneNumber);
         this.addParams('status', status);
+        this.addParams('deleted', deleted);
     }
 
     /**

@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月18日 05:08:38
+ * 生成时间：2018年03月22日 08:05:50
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahMemberCommentGettreeReq
  * 接口地址：barablahmembercomment/gettree

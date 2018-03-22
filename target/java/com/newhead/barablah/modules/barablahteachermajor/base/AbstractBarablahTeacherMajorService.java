@@ -118,7 +118,7 @@ public abstract class AbstractBarablahTeacherMajorService extends BaseService {
         BarablahTeacherMajorExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-            ordersrc = "position desc,";
+            ordersrc = "position asc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
 
@@ -144,7 +144,7 @@ public abstract class AbstractBarablahTeacherMajorService extends BaseService {
         BarablahTeacherMajorExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-            ordersrc = "position desc,";
+            ordersrc = "position asc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
         if (request.getMajorName()!=null) {

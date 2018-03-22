@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月18日 05:08:33
+ * 生成时间：2018年03月22日 08:05:48
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -29,9 +29,15 @@ key: 'campusIdObject',
 type:'Object',
 checked: true
 },{
-title: '教师ID',
+title: '线上教师',
 dataIndex: 'teacherIdObject',
 key: 'teacherIdObject',
+type:'Object',
+checked: true
+},{
+title: '课程分类',
+dataIndex: 'courseCatIdObject',
+key: 'courseCatIdObject',
 type:'Object',
 checked: true
 },{
@@ -41,7 +47,7 @@ key: 'courseIdObject',
 type:'Object',
 checked: true
 },{
-title: '外教教师ID',
+title: '线下教师',
 dataIndex: 'englishTeacherIdObject',
 key: 'englishTeacherIdObject',
 type:'Object',
@@ -69,6 +75,12 @@ title: '状态',
 dataIndex: 'statusEnum',
 key: 'statusEnum',
 type:'Enum',
+checked: true
+},{
+title: '课程分类',
+dataIndex: 'deletedObject',
+key: 'deletedObject',
+type:'Object',
 checked: true
 }];
 export default BARABLAHCLASS_COLUMNS;

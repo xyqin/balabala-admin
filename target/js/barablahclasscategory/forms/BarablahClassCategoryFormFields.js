@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月18日 05:08:36
+ * 生成时间：2018年03月22日 08:05:49
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -23,5 +23,11 @@ const BARABLAHCLASSCATEGORY_FORM_FIELDS = [{
     label: '分类名称',
     need: 'true',
     placeholder: '请输入分类名称'
+},{
+    key: 'position',
+    type: 'Number',
+    label: '排序号',
+    need: 'false',
+        placeholder: '请输入排序号'
 }];
 export default BARABLAHCLASSCATEGORY_FORM_FIELDS;

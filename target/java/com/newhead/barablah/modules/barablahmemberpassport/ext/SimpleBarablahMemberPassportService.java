@@ -11,7 +11,7 @@ import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 会员通行证服务
- * 2018年03月18日 05:08:24
+ * 2018年03月22日 08:05:41
  */
 @Api(tags = "会员通行证", description = "相关的API")
 @Service

@@ -1,10 +1,12 @@
 package com.newhead.barablah.modules.barablahclass.base.protocol;
 
 import lombok.Data;
+import java.util.Date;
+import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年03月18日 05:08:27
+ * @generated 2018年03月22日 08:05:44
  */
 @Data
 public abstract class AbstractBarablahClassQueryListRequest  {
@@ -22,7 +24,7 @@ public abstract class AbstractBarablahClassQueryListRequest  {
 
     /**
      *
-     * 教师ID
+     * 线上教师
      */
      private Long teacherId;
 

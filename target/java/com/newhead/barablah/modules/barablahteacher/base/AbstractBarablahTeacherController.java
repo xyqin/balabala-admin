@@ -1,25 +1,33 @@
 package com.newhead.barablah.modules.barablahteacher.base;
 
 import com.google.common.collect.Maps;
-import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
-import com.newhead.barablah.modules.barablahteacher.ext.SimpleBarablahTeacherService;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+import com.newhead.rudderframework.modules.LabelValueItem;
+
+
 import com.newhead.rudderframework.core.web.controller.WebController;
+import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
+import com.newhead.barablah.modules.barablahteacher.ext.SimpleBarablahTeacherService;
+import com.newhead.barablah.modules.barablahteacher.ext.protocol.*;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 教师控制器
- * 2018年03月18日 05:08:32
+ * 2018年03月22日 08:05:47
  */
 @Api(tags = "教师", description = "相关的API")
 public abstract class AbstractBarablahTeacherController extends WebController  {
@@ -75,6 +83,12 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
 
 
 
+        if(request.getUsername()!=null) {
+            BarablahTeacher username = getService().existByUsername(request.getUsername());
+            if (username != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"账号'"+request.getUsername()+"'已经存在！");
+            }
+        }
 
 
 
@@ -145,6 +159,14 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
                 }
 
+
+    if(request.getUsername()!=null) {
+
+        BarablahTeacher Username = getService().existByUsername(request.getUsername());
+        if (Username != null && Username.getId()!=request.getId()) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"账号"+request.getUsername()+"'已经存在！");
+        }
+    }
 
 
        ApiEntity entity = fillUpdateRequest(request);

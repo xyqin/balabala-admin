@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教师评语表控制器
- * 2018年03月18日 05:08:32
+ * 2018年03月22日 08:05:48
  */
 @Api(tags = "教师评语表", description = "相关的API")
 public abstract class AbstractBarablahMemberCommentController extends WebController  {

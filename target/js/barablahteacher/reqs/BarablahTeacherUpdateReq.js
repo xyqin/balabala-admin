@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月18日 05:08:38
+ * 生成时间：2018年03月22日 08:05:49
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahTeacherUpdateReq
  * 接口地址：barablahteacher/update
@@ -19,7 +19,7 @@ class BarablahTeacherUpdateReq extends BaseRobotReq {
             contentType: 'application/json'
         };
         this._paramsDescriptor = [{key: 'id',
-            desc: '主键',
+            desc: 'Id',
             isRequired: false
         },{key: 'campusId',
             desc: '校区',

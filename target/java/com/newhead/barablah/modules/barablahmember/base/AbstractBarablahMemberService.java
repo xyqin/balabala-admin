@@ -142,7 +142,7 @@ public abstract class AbstractBarablahMemberService extends BaseService {
         BarablahMemberExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-            ordersrc = "points desc,";
+            ordersrc = "points asc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
 
@@ -180,7 +180,7 @@ public abstract class AbstractBarablahMemberService extends BaseService {
         BarablahMemberExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-            ordersrc = "points desc,";
+            ordersrc = "points asc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
         if (request.getCampusId()!=null) {

@@ -3,13 +3,15 @@ package com.newhead.rudderframework.modules.rudderuser.ext;
 import com.newhead.rudderframework.modules.rudderuser.base.AbstractRudderUserService;
 import com.newhead.rudderframework.modules.rudderuser.base.repository.dao.RudderUserMapper;
 import com.newhead.rudderframework.modules.rudderuser.base.repository.entity.RudderUser;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 用户服务
- * 2018年03月18日 05:08:24
+ * 2018年03月22日 08:05:42
  */
 @Api(tags = "用户", description = "相关的API")
 @Service

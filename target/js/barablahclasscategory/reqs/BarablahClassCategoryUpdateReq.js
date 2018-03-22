@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月18日 05:08:37
+ * 生成时间：2018年03月22日 08:05:49
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahClassCategoryUpdateReq
  * 接口地址：barablahclasscategory/update
@@ -24,6 +24,9 @@ class BarablahClassCategoryUpdateReq extends BaseRobotReq {
         },{key: 'categoryName',
             desc: '分类名称',
             isRequired: true
+        },{key: 'position',
+            desc: '排序号',
+            isRequired: false
         }];        this.curd = 'd';
     }
 
@@ -31,9 +34,10 @@ class BarablahClassCategoryUpdateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,categoryName) {
+    setSimpleParams(id,categoryName,position) {
         this.addParams('id', id);
         this.addParams('categoryName', categoryName);
+        this.addParams('position', position);
     }
 
     /**

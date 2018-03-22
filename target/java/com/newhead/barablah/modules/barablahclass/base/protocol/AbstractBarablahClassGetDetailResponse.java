@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2018年03月18日 05:08:27
+ * 2018年03月22日 08:05:44
  */
 @Data
 public abstract class AbstractBarablahClassGetDetailResponse {
@@ -35,9 +35,15 @@ public abstract class AbstractBarablahClassGetDetailResponse {
 
     /**
      *
-     * 教师ID
+     * 线上教师
      */
     private LabelValueItem TeacherIdObject = new LabelValueItem();
+
+    /**
+     *
+     * 课程分类
+     */
+    private LabelValueItem CourseCatIdObject = new LabelValueItem();
 
     /**
      *
@@ -47,7 +53,7 @@ public abstract class AbstractBarablahClassGetDetailResponse {
 
     /**
      *
-     * 外教教师ID
+     * 线下教师
      */
     private LabelValueItem EnglishTeacherIdObject = new LabelValueItem();
 
@@ -74,6 +80,12 @@ public abstract class AbstractBarablahClassGetDetailResponse {
      * 状态
      */
     private LabelValueItem StatusEnum = new LabelValueItem();
+
+    /**
+     *
+     * 课程分类
+     */
+    private LabelValueItem DeletedObject = new LabelValueItem();
 
 
 }

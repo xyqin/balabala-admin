@@ -1,10 +1,18 @@
 package com.newhead.barablah.modules.barablahposition.base.protocol;
 
+import com.newhead.rudderframework.modules.LabelValueItem;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+import java.util.Date;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.ArrayList;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+
 import lombok.Data;
 
 /**
  * 
- * @generated 2018年03月18日 05:08:29
+ * @generated 2018年03月22日 08:05:46
  */
 @Data
 public abstract class AbstractBarablahPositionQueryResponse {

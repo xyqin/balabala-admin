@@ -182,7 +182,7 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
 
             try {
                 startAtOnline = DateUtils.parseDate(request.getStartAtOnline(), "yyyyMMddHHmmss");
-                endAtOnline = DateUtils.addMinutes(startAtOnline, onlineDuration * onlineLessonsPerTime);
+                endAtOnline = DateUtils.addMinutes(startAtOnline, onlineDuration * 1);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -253,7 +253,7 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
 
             try {
                 startAtOffline = DateUtils.parseDate(request.getStartAtOffline(), "yyyyMMddHHmmss");
-                endAtOffline = DateUtils.addMinutes(startAtOffline, offlineDuration * offlineLessonsPerTime);
+                endAtOffline = DateUtils.addMinutes(startAtOffline, offlineDuration * 1);
             } catch (ParseException e) {
                 e.printStackTrace();
             }

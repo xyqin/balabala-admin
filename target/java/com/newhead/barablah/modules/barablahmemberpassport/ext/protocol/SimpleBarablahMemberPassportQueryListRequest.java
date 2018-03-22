@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * 
- * 2018年03月18日 05:08:25
+ * 2018年03月22日 08:05:43
  */
 @Data
 public class SimpleBarablahMemberPassportQueryListRequest extends AbstractBarablahMemberPassportQueryListRequest {

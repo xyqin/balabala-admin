@@ -2,36 +2,36 @@ package com.newhead.barablah.modules.barablahteacher.base.repository.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.newhead.rudderframework.core.domain.AuditableEntity;
-import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.validation.constraints.Size;
 import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
  * RudderFramework框架自动生成，不允许修改！
  * 表 barablah_teacher
- * @generated do_not_delete_during_merge 2018年3月18日 05:08:22
+ * @generated do_not_delete_during_merge 2018年3月22日 08:05:40
  */
 public class BarablahTeacher implements AuditableEntity {
     /**
      *
-     * {"viewconfig":{"optype":"1","formid":"1"},"name":"主键","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月18日 05:08:22
+     * {"viewconfig":{"optype":"1","formid":"1"},"name":"Id","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
+     * @generated 2018年3月22日 08:05:40
      */
     private Long id;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"校区","fieldType":"Object","visible":true,"queryType":3,"displayOrder":0,"length":0,"ref":{"module":"BarablahCampus","field":"campusName","type":"SingleList"},"valid":true}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     private Long campusId;
 
     /**
      *
-     * {"viewconfig":{"optype":"3","formid":"1"},"name":"账号","fieldType":"String","visible":true,"checkName":false,"queryType":2,"displayOrder”:0,”length":16,"types":[],"valid":true}
-     * @generated 2018年3月18日 05:08:22
+     * {"viewconfig":{"optype":"3","formid":"1"},"name":"账号","fieldType":"String","visible":true,"checkName":true,"queryType":2,"displayOrder”:0,”length":16,"types":[],"valid":true}
+     * @generated 2018年3月22日 08:05:40
      */
     @NotEmpty(message="账号不能为空")
     @Size(max=0,message = "账号长度无效")
@@ -41,9 +41,8 @@ public class BarablahTeacher implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"密码","fieldType":"String","visible":true,"checkName":false,"queryType":0,"displayOrder”:0,”length":16,"types":[],"valid":true}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
-    @NotEmpty(message="密码不能为空")
     @Size(max=0,message = "密码长度无效")
 
     private String password;
@@ -51,14 +50,14 @@ public class BarablahTeacher implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"头像","fieldType":"Image","visible":true,"checkName":false,"queryType":0,"displayOrder”:0,”length":16,"types":[],"valid":false}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     private String avatar;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"姓名","fieldType":"String","visible":true,"checkName":false,"queryType":2,"displayOrder”:0,”length":16,"types":[],"valid":true}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     @NotEmpty(message="姓名不能为空")
     @Size(max=0,message = "姓名长度无效")
@@ -68,7 +67,7 @@ public class BarablahTeacher implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"手机号","fieldType":"String","visible":true,"checkName":false,"queryType":2,"displayOrder”:0,”length":16,"types":[],"valid":true}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     @NotEmpty(message="手机号不能为空")
     @Size(max=0,message = "手机号长度无效")
@@ -78,21 +77,21 @@ public class BarablahTeacher implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"专业","fieldType":"Object","visible":true,"ref":{"module":"BarablahTeacherMajor","field":"majorName","type":"SingleList"},"checkName":false,"queryType":2,"displayOrder”:0,”length":16,"types":[],"valid":true}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     private Long major;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"国籍","fieldType":"Object","ref":{"module":"BarablahCountry","field":"zhName","type":"SingleList"},"visible":true,"checkName":false,"queryType":2,"displayOrder”:0,”length":16,"types":[],"valid":true}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     private Long comeFrom;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"状态","fieldType":"Enum","visible":true,"queryType":2,"displayOrder":0,"length":0,"types":[{"label":"待审核","value":"IN_REVIEW"},{"label":"启用","value":"ENABLED"},{"label":"禁用","value":"DISABLED"}],"valid":true}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     @NotEmpty(message="状态不能为空")
     @Size(max=0,message = "状态长度无效")
@@ -102,7 +101,7 @@ public class BarablahTeacher implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"网易云ID","fieldType":"String","visible":false,"checkName":false,"queryType":0,"displayOrder”:0,”length":16,"types":[],"valid":false}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     @JSONField(serialize=false)
     private String accid;
@@ -110,7 +109,7 @@ public class BarablahTeacher implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"网易云登录token","fieldType":"String","visible":false,"checkName":false,"queryType":0,"displayOrder”:0,”length":16,"types":[],"valid":false}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     @JSONField(serialize=false)
     private String token;
@@ -118,7 +117,7 @@ public class BarablahTeacher implements AuditableEntity {
     /**
      *
      * {"name":"创建时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     @JSONField(serialize=false)
     private Date createdAt;
@@ -126,7 +125,7 @@ public class BarablahTeacher implements AuditableEntity {
     /**
      *
      * {"name":"修改时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     @JSONField(serialize=false)
     private Date updatedAt;
@@ -134,7 +133,7 @@ public class BarablahTeacher implements AuditableEntity {
     /**
      *
      * {"name":"创建者","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     @JSONField(serialize=false)
     private Long creator;
@@ -142,7 +141,7 @@ public class BarablahTeacher implements AuditableEntity {
     /**
      *
      * {"name":"修改人","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     @JSONField(serialize=false)
     private Long lastModifier;
@@ -150,14 +149,14 @@ public class BarablahTeacher implements AuditableEntity {
     /**
      *
      * {"name":"删除标志","fieldType":"Bool","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     @JSONField(serialize=false)
     private Boolean deleted;
 
     /**
-     * 返回 id 主键
-     * @generated 2018年3月18日 05:08:22
+     * 返回 id Id
+     * @generated 2018年3月22日 08:05:40
      */
     public Long getId() {
         
@@ -165,10 +164,10 @@ public class BarablahTeacher implements AuditableEntity {
     }
 
     /**
-     * 设置主键
+     * 设置Id
      *
      * @param id
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setId(Long id) {
         this.id = id;
@@ -176,7 +175,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 campus_id 校区
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public Long getCampusId() {
         
@@ -187,7 +186,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置校区
      *
      * @param campusId
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setCampusId(Long campusId) {
         this.campusId = campusId;
@@ -195,7 +194,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 username 账号
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public String getUsername() {
         
@@ -206,7 +205,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置账号
      *
      * @param username
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setUsername(String username) {
         this.username = username == null ? null : username.trim();
@@ -214,7 +213,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 password 密码
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public String getPassword() {
         
@@ -225,7 +224,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置密码
      *
      * @param password
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
@@ -233,7 +232,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 avatar 头像
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public String getAvatar() {
         
@@ -244,7 +243,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置头像
      *
      * @param avatar
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setAvatar(String avatar) {
         this.avatar = avatar == null ? null : avatar.trim();
@@ -252,7 +251,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 full_name 姓名
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public String getFullName() {
         
@@ -263,7 +262,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置姓名
      *
      * @param fullName
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setFullName(String fullName) {
         this.fullName = fullName == null ? null : fullName.trim();
@@ -271,7 +270,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 phone_number 手机号
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public String getPhoneNumber() {
         
@@ -282,7 +281,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置手机号
      *
      * @param phoneNumber
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber == null ? null : phoneNumber.trim();
@@ -290,7 +289,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 major 专业
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public Long getMajor() {
         
@@ -301,7 +300,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置专业
      *
      * @param major
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setMajor(Long major) {
         this.major = major;
@@ -309,7 +308,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 come_from 国籍
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public Long getComeFrom() {
         
@@ -320,7 +319,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置国籍
      *
      * @param comeFrom
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setComeFrom(Long comeFrom) {
         this.comeFrom = comeFrom;
@@ -328,7 +327,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 status 状态
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public String getStatus() {
         
@@ -339,7 +338,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置状态
      *
      * @param status
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
@@ -347,7 +346,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 accid 网易云ID
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public String getAccid() {
         
@@ -358,7 +357,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置网易云ID
      *
      * @param accid
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setAccid(String accid) {
         this.accid = accid == null ? null : accid.trim();
@@ -366,7 +365,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 token 网易云登录token
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public String getToken() {
         
@@ -377,7 +376,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置网易云登录token
      *
      * @param token
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setToken(String token) {
         this.token = token == null ? null : token.trim();
@@ -385,7 +384,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 created_at 创建时间
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public Date getCreatedAt() {
         
@@ -396,7 +395,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置创建时间
      *
      * @param createdAt
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -404,7 +403,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 updated_at 修改时间
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public Date getUpdatedAt() {
         
@@ -415,7 +414,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置修改时间
      *
      * @param updatedAt
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
@@ -423,7 +422,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 creator 创建者
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public Long getCreator() {
         
@@ -434,7 +433,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置创建者
      *
      * @param creator
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setCreator(Long creator) {
         this.creator = creator;
@@ -442,7 +441,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 last_modifier 修改人
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public Long getLastModifier() {
         
@@ -453,7 +452,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置修改人
      *
      * @param lastModifier
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setLastModifier(Long lastModifier) {
         this.lastModifier = lastModifier;
@@ -461,7 +460,7 @@ public class BarablahTeacher implements AuditableEntity {
 
     /**
      * 返回 deleted 删除标志
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public Boolean getDeleted() {
         
@@ -472,7 +471,7 @@ public class BarablahTeacher implements AuditableEntity {
      * 设置删除标志
      *
      * @param deleted
-     * @generated 2018年3月18日 05:08:22
+     * @generated 2018年3月22日 08:05:40
      */
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;

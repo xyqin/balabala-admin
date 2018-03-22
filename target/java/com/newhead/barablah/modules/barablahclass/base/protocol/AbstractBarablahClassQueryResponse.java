@@ -1,11 +1,18 @@
 package com.newhead.barablah.modules.barablahclass.base.protocol;
 
 import com.newhead.rudderframework.modules.LabelValueItem;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+import java.util.Date;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.ArrayList;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+
 import lombok.Data;
 
 /**
  * 
- * @generated 2018年03月18日 05:08:27
+ * @generated 2018年03月22日 08:05:44
  */
 @Data
 public abstract class AbstractBarablahClassQueryResponse {
@@ -29,9 +36,15 @@ public abstract class AbstractBarablahClassQueryResponse {
 
     /**
      *
-     * 教师ID
+     * 线上教师
      */
     private LabelValueItem TeacherIdObject = new LabelValueItem();
+
+    /**
+     *
+     * 课程分类
+     */
+    private LabelValueItem CourseCatIdObject = new LabelValueItem();
 
     /**
      *
@@ -41,7 +54,7 @@ public abstract class AbstractBarablahClassQueryResponse {
 
     /**
      *
-     * 外教教师ID
+     * 线下教师
      */
     private LabelValueItem EnglishTeacherIdObject = new LabelValueItem();
 
@@ -68,5 +81,11 @@ public abstract class AbstractBarablahClassQueryResponse {
      * 状态
      */
     private LabelValueItem StatusEnum = new LabelValueItem();
+
+    /**
+     *
+     * 课程分类
+     */
+    private LabelValueItem DeletedObject = new LabelValueItem();
 
 }

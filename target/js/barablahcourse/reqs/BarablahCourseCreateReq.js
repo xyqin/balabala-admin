@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月18日 05:08:37
+ * 生成时间：2018年03月22日 08:05:49
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahCourseCreateReq
  * 接口地址：barablahcourse/create
@@ -25,7 +25,7 @@ class BarablahCourseCreateReq extends BaseRobotReq {
             desc: '课程分类ID',
             isRequired: true
         },{key: 'textbookCategoryId',
-            desc: '教材二级分类ID',
+            desc: '教材三级分类',
             isRequired: true
         },{key: 'courseName',
             desc: '课程名称',

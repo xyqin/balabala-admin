@@ -2,10 +2,14 @@ package com.newhead.barablah.modules.barablahclass.base.protocol;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
+import java.util.Date;
+import java.math.BigDecimal;
+
+import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月18日 05:08:27
+ * 2018年03月22日 08:05:44
  */
 @Data
 public abstract class AbstractBarablahClassUpdateRequest {
@@ -26,9 +30,14 @@ public abstract class AbstractBarablahClassUpdateRequest {
     private Long campusId;
     /**
      *
-     * 教师ID
+     * 线上教师
      */
     private Long teacherId;
+    /**
+     *
+     * 课程分类
+     */
+    private Long courseCatId;
     /**
      *
      * 课程ID
@@ -36,7 +45,7 @@ public abstract class AbstractBarablahClassUpdateRequest {
     private Long courseId;
     /**
      *
-     * 外教教师ID
+     * 线下教师
      */
     private Long englishTeacherId;
     /**
@@ -61,5 +70,10 @@ public abstract class AbstractBarablahClassUpdateRequest {
      * 状态
      */
     private String status;
+    /**
+     *
+     * 课程分类
+     */
+    private Boolean deleted;
 
 }

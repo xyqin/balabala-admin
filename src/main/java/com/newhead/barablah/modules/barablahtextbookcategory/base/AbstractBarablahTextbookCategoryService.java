@@ -119,7 +119,7 @@ public abstract class AbstractBarablahTextbookCategoryService extends SimpleTree
         BarablahTextbookCategoryExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-            ordersrc = "position desc,";
+            ordersrc = "position asc,";
         ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
@@ -145,7 +145,7 @@ public abstract class AbstractBarablahTextbookCategoryService extends SimpleTree
         BarablahTextbookCategoryExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-            ordersrc = "position desc,";
+            ordersrc = "position asc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
         if (request.getCategoryName()!=null) {

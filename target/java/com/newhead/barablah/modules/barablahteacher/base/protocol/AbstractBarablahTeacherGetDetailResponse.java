@@ -11,13 +11,13 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2018年03月18日 05:08:28
+ * 2018年03月22日 08:05:45
  */
 @Data
 public abstract class AbstractBarablahTeacherGetDetailResponse {
     /**
      *
-     * 主键
+     * Id
      */
      private Long id;
 

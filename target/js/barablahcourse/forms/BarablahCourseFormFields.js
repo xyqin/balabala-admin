@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月18日 05:08:36
+ * 生成时间：2018年03月22日 08:05:49
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -30,9 +30,9 @@ const BARABLAHCOURSE_FORM_FIELDS = [{
 },{
     key: 'textbookCategoryId',
     type: 'Object',
-    label: '教材二级分类ID',
+    label: '教材三级分类',
     need: 'true',
-    placeholder: '请选择教材二级分类ID',
+    placeholder: '请选择教材三级分类',
     displayType: 'SingleTree',
     url: '/barablahtextbookcategory/gettree',
     dataLableKey: 'categoryName',

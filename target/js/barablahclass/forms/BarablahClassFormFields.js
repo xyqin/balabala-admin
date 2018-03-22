@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月18日 05:08:36
+ * 生成时间：2018年03月22日 08:05:49
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -40,12 +40,22 @@ const BARABLAHCLASS_FORM_FIELDS = [{
 },{
     key: 'teacherId',
     type: 'Object',
-    label: '教师ID',
+    label: '线上教师',
     need: 'true',
-    placeholder: '请选择教师ID',
+    placeholder: '请选择线上教师',
     displayType: 'SingleList',
     url: '/barablahteacher/getlist',
     dataLableKey: 'fullName',
+    dataValueKey: 'id'
+},{
+    key: 'courseCatId',
+    type: 'Object',
+    label: '课程分类',
+    need: 'true',
+    placeholder: '请选择课程分类',
+    displayType: 'SingleList',
+    url: '/barablahcoursecategory/getlist',
+    dataLableKey: 'categoryName',
     dataValueKey: 'id'
 },{
     key: 'courseId',
@@ -60,9 +70,9 @@ const BARABLAHCLASS_FORM_FIELDS = [{
 },{
     key: 'englishTeacherId',
     type: 'Object',
-    label: '外教教师ID',
+    label: '线下教师',
     need: 'false',
-    placeholder: '请选择外教教师ID',
+    placeholder: '请选择线下教师',
     displayType: 'SingleList',
     url: '/barablahteacher/getlist',
     dataLableKey: 'fullName',
@@ -101,5 +111,15 @@ const BARABLAHCLASS_FORM_FIELDS = [{
         label: '已开课'
         },{        value: 'FINISHED',
         label: '已结束'
-        }]}];
+        }]},{
+    key: 'deleted',
+    type: 'Object',
+    label: '课程分类',
+    need: 'false',
+    placeholder: '请选择课程分类',
+    displayType: 'SingleList',
+    url: '/barablahcoursecategory/getlist',
+    dataLableKey: 'categoryName',
+    dataValueKey: 'id'
+}];
 export default BARABLAHCLASS_FORM_FIELDS;

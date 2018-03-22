@@ -177,7 +177,7 @@ public abstract class Abstract${vo.bmoduleName}Service <%if(vo.dataType=='Tree')
         String ordersrc ="";
         <% for(field in vo.fields ){%>
             <% if (field.orderkey) { %>
-            ordersrc = "${field.name} desc,";
+            ordersrc = "${field.name} asc,";
             <% } %>
         <%}%>
         ordersrc = ordersrc + "id desc";
@@ -225,7 +225,7 @@ public abstract class Abstract${vo.bmoduleName}Service <%if(vo.dataType=='Tree')
         String ordersrc ="";
         <% for(field in vo.fields ){%>
             <% if (field.orderkey) { %>
-            ordersrc = "${field.name} desc,";
+            ordersrc = "${field.name} asc,";
             <% } %>
         <%}%>
         ordersrc = ordersrc + "id desc";

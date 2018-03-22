@@ -6,12 +6,17 @@ import com.newhead.barablah.modules.barablahclass.base.repository.entity.Barabla
 import com.newhead.barablah.modules.barablahclasscategory.base.AbstractBarablahClassCategoryService;
 import com.newhead.barablah.modules.barablahclasscategory.base.repository.dao.BarablahClassCategoryMapper;
 import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategory;
+import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategoryExample;
+import com.newhead.barablah.modules.barablahclasscategory.ext.protocol.SimpleBarablahClassCategoryCreateRequest;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import io.swagger.annotations.Api;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -39,6 +44,30 @@ public class SimpleBarablahClassCategoryService extends AbstractBarablahClassCat
     @Override
     protected void saveOrUpdate(BarablahClassCategory entity) {
 
+    }
+
+    /**
+     * 创建
+     * @param request
+     * @return entity
+     */
+    @Transactional
+    public BarablahClassCategory create(SimpleBarablahClassCategoryCreateRequest request) {
+        long count = getMapper().countByExample(new BarablahClassCategoryExample());
+
+        BarablahClassCategory entity = new BarablahClassCategory();
+        BeanUtils.copyProperties(request,entity);
+        entity.setCreatedAt(new Date());
+        entity.setUpdatedAt(new Date());
+
+        entity.setDeleted(false);
+        entity.setCreator(getCurrentUser().getId());
+        entity.setLastModifier(getCurrentUser().getId());
+        saveOrUpdate(entity);
+        getMapper().insert(entity);
+
+        //添加关系
+        return entity;
     }
 
     @Override

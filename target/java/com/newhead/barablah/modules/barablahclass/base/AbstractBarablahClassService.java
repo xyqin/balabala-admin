@@ -22,6 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 
+import com.newhead.barablah.modules.barablahcoursecategory.base.repository.entity.BarablahCourseCategory;
+import com.newhead.barablah.modules.barablahcoursecategory.base.repository.entity.BarablahCourseCategoryExample;
+
+import com.newhead.barablah.modules.barablahcoursecategory.base.repository.dao.BarablahCourseCategoryMapper;
 import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategory;
 import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategoryExample;
 
@@ -54,6 +58,8 @@ public abstract class AbstractBarablahClassService extends BaseService {
 
     protected abstract void saveOrUpdate(BarablahClass entity);
 
+    @Autowired
+    protected BarablahCourseCategoryMapper barablahcoursecategoryMapper;
     @Autowired
     protected BarablahClassCategoryMapper barablahclasscategoryMapper;
     @Autowired
@@ -138,6 +144,14 @@ public abstract class AbstractBarablahClassService extends BaseService {
             teacherIdObject.setValue(String.valueOf(entity.getTeacherId()));
             teacherIdObject.setChecked(false);
         }
+        BarablahCourseCategory  courseCatIdEntity = barablahcoursecategoryMapper.selectByPrimaryKey(Long.valueOf(entity.getCourseCatId()));
+        if (courseCatIdEntity!=null) {
+            LabelValueItem courseCatIdObject = response.getCourseCatIdObject();
+            courseCatIdObject.setName("courseCatId");
+            courseCatIdObject.setLabel(courseCatIdEntity.getCategoryName());
+            courseCatIdObject.setValue(String.valueOf(entity.getCourseCatId()));
+            courseCatIdObject.setChecked(false);
+        }
         BarablahCourse  courseIdEntity = barablahcourseMapper.selectByPrimaryKey(Long.valueOf(entity.getCourseId()));
         if (courseIdEntity!=null) {
             LabelValueItem courseIdObject = response.getCourseIdObject();
@@ -159,6 +173,14 @@ public abstract class AbstractBarablahClassService extends BaseService {
         statusEnum.setLabel(com.newhead.barablah.modules.barablahclass.BarablahClassStatusEnum.getLabel(entity.getStatus()));
         statusEnum.setValue(entity.getStatus());
         statusEnum.setChecked(true);
+        BarablahCourseCategory  deletedEntity = barablahcoursecategoryMapper.selectByPrimaryKey(Long.valueOf(entity.getDeleted()));
+        if (deletedEntity!=null) {
+            LabelValueItem deletedObject = response.getDeletedObject();
+            deletedObject.setName("deleted");
+            deletedObject.setLabel(deletedEntity.getCategoryName());
+            deletedObject.setValue(String.valueOf(entity.getDeleted()));
+            deletedObject.setChecked(false);
+        }
         return response;
     }
 
@@ -288,18 +310,26 @@ public abstract class AbstractBarablahClassService extends BaseService {
         Map<Long,Long> teacherIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> teacherIdResultMap = Maps.newHashMap();
 
+        Map<Long,Long> courseCatIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> courseCatIdResultMap = Maps.newHashMap();
+
         Map<Long,Long> courseIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> courseIdResultMap = Maps.newHashMap();
 
         Map<Long,Long> englishTeacherIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> englishTeacherIdResultMap = Maps.newHashMap();
 
+        Map<Long,Long> deletedMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> deletedResultMap = Maps.newHashMap();
+
        for(BarablahClass entity:entitys) {
             categoryIdMap.put(entity.getId(),entity.getCategoryId());
             campusIdMap.put(entity.getId(),entity.getCampusId());
             teacherIdMap.put(entity.getId(),entity.getTeacherId());
+            courseCatIdMap.put(entity.getId(),entity.getCourseCatId());
             courseIdMap.put(entity.getId(),entity.getCourseId());
             englishTeacherIdMap.put(entity.getId(),entity.getEnglishTeacherId());
+            deletedMap.put(entity.getId(),entity.getDeleted());
         }
         BarablahClassCategoryExample categoryIdExample = new BarablahClassCategoryExample();
 
@@ -346,6 +376,21 @@ public abstract class AbstractBarablahClassService extends BaseService {
            teacherIdItem.setLabel(item.getFullName());
            teacherIdResultMap.put(item.getId(),teacherIdItem);
         }
+        BarablahCourseCategoryExample courseCatIdExample = new BarablahCourseCategoryExample();
+
+        List<Long> courseCatIds = new ArrayList<>();
+        courseCatIds.addAll(courseCatIdMap.values());
+        if (courseCatIds.size()>0) {
+            courseCatIdExample.createCriteria().andIdIn(courseCatIds);
+        }
+        List<BarablahCourseCategory>  courseCatIdList = barablahcoursecategoryMapper.selectByExample(courseCatIdExample);
+        for(BarablahCourseCategory item:courseCatIdList) {
+           LabelValueItem courseCatIdItem = new LabelValueItem();
+           courseCatIdItem.setName("courseCatId");
+           courseCatIdItem.setValue(String.valueOf(item.getId()));
+           courseCatIdItem.setLabel(item.getCategoryName());
+           courseCatIdResultMap.put(item.getId(),courseCatIdItem);
+        }
         BarablahCourseExample courseIdExample = new BarablahCourseExample();
 
         List<Long> courseIds = new ArrayList<>();
@@ -376,6 +421,21 @@ public abstract class AbstractBarablahClassService extends BaseService {
            englishTeacherIdItem.setLabel(item.getFullName());
            englishTeacherIdResultMap.put(item.getId(),englishTeacherIdItem);
         }
+        BarablahCourseCategoryExample deletedExample = new BarablahCourseCategoryExample();
+
+        List<Long> deleteds = new ArrayList<>();
+        deleteds.addAll(deletedMap.values());
+        if (deleteds.size()>0) {
+            deletedExample.createCriteria().andIdIn(deleteds);
+        }
+        List<BarablahCourseCategory>  deletedList = barablahcoursecategoryMapper.selectByExample(deletedExample);
+        for(BarablahCourseCategory item:deletedList) {
+           LabelValueItem deletedItem = new LabelValueItem();
+           deletedItem.setName("deleted");
+           deletedItem.setValue(String.valueOf(item.getId()));
+           deletedItem.setLabel(item.getCategoryName());
+           deletedResultMap.put(item.getId(),deletedItem);
+        }
         //第一组
         for(BarablahClass entity:entitys) {
             SimpleBarablahClassQueryResponse response = new SimpleBarablahClassQueryResponse();
@@ -404,6 +464,14 @@ public abstract class AbstractBarablahClassService extends BaseService {
                 BeanUtils.copyProperties(teacherIdResultMap.get(teacherId),teacherIdlvi);
             }
             response.setTeacherIdObject(teacherIdlvi);
+            Long courseCatId = courseCatIdMap.get(entity.getId());
+
+            LabelValueItem courseCatIdlvi = null;
+            if (courseCatId!=null && courseCatIdResultMap.get(courseCatId)!=null) {
+                courseCatIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(courseCatIdResultMap.get(courseCatId),courseCatIdlvi);
+            }
+            response.setCourseCatIdObject(courseCatIdlvi);
             Long courseId = courseIdMap.get(entity.getId());
 
             LabelValueItem courseIdlvi = null;
@@ -425,6 +493,14 @@ public abstract class AbstractBarablahClassService extends BaseService {
             statusEnum.setLabel(com.newhead.barablah.modules.barablahclass.BarablahClassStatusEnum.getLabel(entity.getStatus()));
             statusEnum.setValue(entity.getStatus());
             statusEnum.setChecked(true);
+            Long deleted = deletedMap.get(entity.getId());
+
+            LabelValueItem deletedlvi = null;
+            if (deleted!=null && deletedResultMap.get(deleted)!=null) {
+                deletedlvi = new LabelValueItem();
+                BeanUtils.copyProperties(deletedResultMap.get(deleted),deletedlvi);
+            }
+            response.setDeletedObject(deletedlvi);
             results.add(response);
         }
     }

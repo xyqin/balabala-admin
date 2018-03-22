@@ -2,10 +2,16 @@ package com.newhead.barablah.modules.barablahclassmember.base.protocol;
 
 import com.newhead.rudderframework.modules.LabelValueItem;
 import lombok.Data;
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+
+import java.math.BigDecimal;
 
 /**
  * 
- * 2018年03月18日 05:08:27
+ * 2018年03月22日 08:05:44
  */
 @Data
 public abstract class AbstractBarablahClassMemberGetDetailResponse {
