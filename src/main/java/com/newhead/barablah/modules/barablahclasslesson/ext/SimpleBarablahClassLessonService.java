@@ -14,6 +14,7 @@ import com.newhead.barablah.modules.barablahmemberlesson.base.repository.entity.
 import com.newhead.barablah.modules.barablahmemberlesson.base.repository.entity.BarablahMemberLessonExample;
 import com.newhead.rudderframework.core.web.api.ApiException;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import io.swagger.annotations.Api;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -180,7 +181,7 @@ public class SimpleBarablahClassLessonService extends AbstractBarablahClassLesso
         BarablahClassLesson classlesson = getMapper().selectByPrimaryKey(id);
         boolean b =  classlesson.getStartAt().before(DateUtils.addHours(new Date(),4));
         if (b) {
-            throw new ApiException(ApiStatus.STATUS_400.getCode(), "离开课只有不到4小时，不允许删除");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(), "离开课只有不到4小时，不允许删除");
         }
 
         //是否要删除生成的成员ID

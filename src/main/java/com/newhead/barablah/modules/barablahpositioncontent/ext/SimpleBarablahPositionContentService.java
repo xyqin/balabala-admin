@@ -3,11 +3,9 @@ package com.newhead.barablah.modules.barablahpositioncontent.ext;
 import com.newhead.barablah.modules.barablahpositioncontent.base.AbstractBarablahPositionContentService;
 import com.newhead.barablah.modules.barablahpositioncontent.base.repository.dao.BarablahPositionContentMapper;
 import com.newhead.barablah.modules.barablahpositioncontent.base.repository.entity.BarablahPositionContent;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.Api;
 /**
  * RudderFramework 自动生成
  * 位置内容表服务
@@ -29,5 +27,10 @@ public class SimpleBarablahPositionContentService extends AbstractBarablahPositi
     @Override
     protected void saveOrUpdate(BarablahPositionContent entity) {
 
+    }
+
+    @Override
+    public void delete(Long id) {
+        this.getMapper().deleteByPrimaryKey(id);
     }
 }

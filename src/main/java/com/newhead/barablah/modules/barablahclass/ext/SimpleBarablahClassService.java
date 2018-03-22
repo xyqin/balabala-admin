@@ -33,6 +33,7 @@ import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.ent
 import com.newhead.rudderframework.core.security.ShiroAuthorizingRealm;
 import com.newhead.rudderframework.core.web.api.ApiException;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 import com.newhead.rudderframework.modules.LabelValueItem;
 import com.newhead.rudderframework.modules.rudderuser.base.repository.dao.RudderUserMapper;
@@ -564,13 +565,13 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
 
         List<BarablahClassLesson> lessons = classLessonMapper.selectByExample(bcls);
         if (lessons!=null && lessons.size()>0) {
-            throw new ApiException(ApiStatus.STATUS_400.getCode(), "该班已经开课,不允许删除!");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(), "该班已经开课,不允许删除!");
         }
 
         BarablahClassMemberExample bcm = new BarablahClassMemberExample();
         List<BarablahClassMember> members = classMemberMapper.selectByExample(bcm);
         if (members!=null && members.size()>0) {
-            throw new ApiException(ApiStatus.STATUS_400.getCode(), "该班已经有学员报名,不允许删除!");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(), "该班已经有学员报名,不允许删除!");
         }
 
         getMapper().deleteByPrimaryKey(id);

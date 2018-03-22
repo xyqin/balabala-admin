@@ -5,8 +5,8 @@ import com.newhead.barablah.modules.barablahclass.base.repository.entity.Barabla
 import com.newhead.barablah.modules.barablahcourse.base.AbstractBarablahCourseService;
 import com.newhead.barablah.modules.barablahcourse.base.repository.dao.BarablahCourseMapper;
 import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourse;
-import com.newhead.rudderframework.core.web.api.ApiException;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +43,7 @@ public class SimpleBarablahCourseService extends AbstractBarablahCourseService {
 
         long num = classMapper.countByExample(bce);
         if (num>0) {
-            throw new ApiException(ApiStatus.STATUS_400.getCode(), "课程已经在开班里使用,不允许删除!");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(), "课程已经在开班里使用,不允许删除!");
         }
 
         getMapper().deleteByPrimaryKey(id);

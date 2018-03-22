@@ -93,6 +93,10 @@ public class SimpleBarablahTextbookCategoryService extends AbstractBarablahTextb
         return entity;
     }
 
+    /**
+     *
+     * @param id
+     */
     private void u(long id) {
         BarablahTextbookCategoryExample example = new BarablahTextbookCategoryExample();
         example.createCriteria().andDeletedEqualTo(false).andParentIdEqualTo(id);

@@ -3,6 +3,8 @@ package com.newhead.barablah.modules.barablahposition.ext;
 import com.newhead.barablah.modules.barablahposition.base.AbstractBarablahPositionService;
 import com.newhead.barablah.modules.barablahposition.base.repository.dao.BarablahPositionMapper;
 import com.newhead.barablah.modules.barablahposition.base.repository.entity.BarablahPosition;
+import com.newhead.barablah.modules.barablahpositioncontent.base.repository.dao.BarablahPositionContentMapper;
+import com.newhead.barablah.modules.barablahpositioncontent.base.repository.entity.BarablahPositionContentExample;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ public class SimpleBarablahPositionService extends AbstractBarablahPositionServi
     @Autowired
     private BarablahPositionMapper mapper;
 
+    private BarablahPositionContentMapper contentMapper;
+
     @Override
     protected BarablahPositionMapper getMapper() {
         return this.mapper;
@@ -31,6 +35,9 @@ public class SimpleBarablahPositionService extends AbstractBarablahPositionServi
 
     @Override
     public void delete(Long id) {
+        BarablahPositionContentExample content = new BarablahPositionContentExample();
+
+        contentMapper.countByExample(content);
         getMapper().deleteByPrimaryKey(id);
     }
 }

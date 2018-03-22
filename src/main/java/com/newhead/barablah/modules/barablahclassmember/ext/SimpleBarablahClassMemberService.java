@@ -28,4 +28,9 @@ public class SimpleBarablahClassMemberService extends AbstractBarablahClassMembe
     protected void saveOrUpdate(BarablahClassMember entity) {
 
     }
+
+    @Override
+    public void delete(Long id) {
+        this.getMapper().deleteByPrimaryKey(id);
+    }
 }

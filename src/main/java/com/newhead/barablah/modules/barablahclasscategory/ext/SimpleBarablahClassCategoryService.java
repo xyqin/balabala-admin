@@ -6,8 +6,8 @@ import com.newhead.barablah.modules.barablahclass.base.repository.entity.Barabla
 import com.newhead.barablah.modules.barablahclasscategory.base.AbstractBarablahClassCategoryService;
 import com.newhead.barablah.modules.barablahclasscategory.base.repository.dao.BarablahClassCategoryMapper;
 import com.newhead.barablah.modules.barablahclasscategory.base.repository.entity.BarablahClassCategory;
-import com.newhead.rudderframework.core.web.api.ApiException;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +50,7 @@ public class SimpleBarablahClassCategoryService extends AbstractBarablahClassCat
 
         List<BarablahClass> classes = classMapper.selectByExample(bcls);
         if (classes!=null && classes.size()>0) {
-            throw new ApiException(ApiStatus.STATUS_400.getCode(), "类别已经使用,不允许删除!");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(), "类别已经使用,不允许删除!");
         }
 
         getMapper().deleteByPrimaryKey(id);
