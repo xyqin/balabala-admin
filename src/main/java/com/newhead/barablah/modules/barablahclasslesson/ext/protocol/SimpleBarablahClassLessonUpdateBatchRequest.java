@@ -13,4 +13,6 @@ public class SimpleBarablahClassLessonUpdateBatchRequest {
 
     private String endAt;
 
+    private long courseId;
+
 }

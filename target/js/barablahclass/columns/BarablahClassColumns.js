@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月22日 08:05:48
+ * 生成时间：2018年03月24日 04:29:02
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -75,12 +75,6 @@ title: '状态',
 dataIndex: 'statusEnum',
 key: 'statusEnum',
 type:'Enum',
-checked: true
-},{
-title: '课程分类',
-dataIndex: 'deletedObject',
-key: 'deletedObject',
-type:'Object',
 checked: true
 }];
 export default BARABLAHCLASS_COLUMNS;

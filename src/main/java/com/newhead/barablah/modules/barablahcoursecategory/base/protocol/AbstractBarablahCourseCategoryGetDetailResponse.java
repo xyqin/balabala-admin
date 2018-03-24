@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2018年03月13日 07:57:07
+ * 2018年03月22日 08:32:11
  */
 @Data
 public abstract class AbstractBarablahCourseCategoryGetDetailResponse {
@@ -26,6 +26,12 @@ public abstract class AbstractBarablahCourseCategoryGetDetailResponse {
      * 分类名称
      */
      private String categoryName;
+
+    /**
+     *
+     * 排序号
+     */
+     private Integer position;
 
 
 }

@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月22日 08:05:49
+ * 生成时间：2018年03月24日 04:29:03
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -20,9 +20,9 @@ const BARABLAHTEXTBOOK_FORM_FIELDS = [{
 },{
     key: 'categoryId',
     type: 'Object',
-    label: '教材三级分类ID',
+    label: '教材四级分类',
     need: 'true',
-    placeholder: '请选择教材三级分类ID',
+    placeholder: '请选择教材四级分类',
     displayType: 'SingleTree',
     url: '/barablahtextbookcategory/gettree',
     dataLableKey: 'categoryName',
@@ -53,13 +53,13 @@ const BARABLAHTEXTBOOK_FORM_FIELDS = [{
     key: 'textbookName',
     type: 'String',
     label: '题目名称',
-    need: 'false',
+    need: 'true',
     placeholder: '请输入题目名称'
 },{
     key: 'question',
     type: 'String',
     label: '问题',
-    need: 'false',
+    need: 'true',
     placeholder: '请输入问题'
 },{
     key: 'option',

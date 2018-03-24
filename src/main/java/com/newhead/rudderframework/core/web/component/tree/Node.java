@@ -40,6 +40,7 @@ public class Node {
 
     private int level;
 
+    private int position;
     /**
      * 子节点
      */
@@ -112,5 +113,13 @@ public class Node {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }

@@ -3,10 +3,7 @@ package com.newhead.rudderframework.core.services;
 import com.newhead.rudderframework.core.web.component.tree.*;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class SimpleTreeService extends BaseService {
     protected abstract TransitionTree getTransitionTree();
@@ -60,9 +57,48 @@ public abstract class SimpleTreeService extends BaseService {
             nodeAddLevel(parent);
             parent.addChild(node);
         }
+        sortTree(tree);
         return tree;
     }
 
+
+
+    protected void sortTree(Tree tree) {
+        Node node =  tree.getRootNode();
+        if (node.getChildren()!=null&&node.getChildren().size()>0) {
+            sortNode(node.getChildren());
+        }
+
+    }
+
+    private void sortNode(List<Node> nodes) {
+        Collections.sort(nodes, new Comparator<Node>() {
+            public int compare(Node arg1,Node arg0) {
+                int hits0 = arg0.getPosition();
+                int hits1 = arg1.getPosition();
+                if (hits1 > hits0) {
+                    return 1;
+                } else if (hits1 == hits0) {
+                    int h3 =Integer.valueOf( arg0.getValue());
+                    int h4 =Integer.valueOf( arg1.getValue());
+                    if (h4>h3) {
+                        return 1;
+                    } else if (h4==h3) {
+                        return 0;
+                    } else {
+                        return -1;
+                    }
+                } else {
+                    return -1;
+                }
+            }
+        });
+        for(Node n: nodes) {
+            if (n.getChildren()!=null&&n.getChildren().size()>0) {
+                sortNode(n.getChildren());
+            }
+        }
+    }
     /**
      * node添加层级
      * @param node

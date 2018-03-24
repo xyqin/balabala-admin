@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * 
- * 2018年01月18日 06:52:59
+ * 2018年03月24日 01:24:53
  */
 @Data
 public class SimpleBarablahTeacherHomeworkCreateRequest extends AbstractBarablahTeacherHomeworkCreateRequest {

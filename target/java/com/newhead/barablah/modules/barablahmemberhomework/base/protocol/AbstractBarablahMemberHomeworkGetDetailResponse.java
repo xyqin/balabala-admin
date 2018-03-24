@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2018年03月22日 08:05:45
+ * 2018年03月24日 04:29:00
  */
 @Data
 public abstract class AbstractBarablahMemberHomeworkGetDetailResponse {
@@ -44,6 +44,12 @@ public abstract class AbstractBarablahMemberHomeworkGetDetailResponse {
      * 状态
      */
     private LabelValueItem StatusEnum = new LabelValueItem();
+
+    /**
+     *
+     * 开班ID
+     */
+    private LabelValueItem ClassIdObject = new LabelValueItem();
 
 
 }

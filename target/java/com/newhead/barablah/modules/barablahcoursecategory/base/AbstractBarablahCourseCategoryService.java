@@ -118,6 +118,7 @@ public abstract class AbstractBarablahCourseCategoryService extends BaseService 
         BarablahCourseCategoryExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
+            ordersrc = "position asc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
 
@@ -143,6 +144,7 @@ public abstract class AbstractBarablahCourseCategoryService extends BaseService 
         BarablahCourseCategoryExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
+            ordersrc = "position asc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
         if (request.getCategoryName()!=null) {

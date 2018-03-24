@@ -30,4 +30,4 @@
 {"moduleTitle":"会员报名表","dataType":"Table","moduleName":"barablahMemberSignup","displayField":"","remark":"","version":"1.0","key":"barablah"}
 {"moduleTitle":"教师专业","dataType":"Table","moduleName":"barablahTeacherMajor","displayField":"","remark":"","version":"1.0","key":"barablah"}
 {"moduleTitle":"国籍设置","dataType":"Table","moduleName":"barablahCountry","displayField":"","remark":"","version":"1.0","key":"barablah"}
-
+{"moduleTitle":"学员课时活动记录","dataType":"Table","moduleName":"barablahMemberLessonlog","displayField":"","remark":"","version":"1.0","key":"barablah"}

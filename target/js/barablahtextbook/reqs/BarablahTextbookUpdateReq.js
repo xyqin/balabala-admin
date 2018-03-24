@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月22日 08:05:50
+ * 生成时间：2018年03月24日 04:29:04
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahTextbookUpdateReq
  * 接口地址：barablahtextbook/update
@@ -22,17 +22,17 @@ class BarablahTextbookUpdateReq extends BaseRobotReq {
             desc: '主键',
             isRequired: false
         },{key: 'categoryId',
-            desc: '教材三级分类ID',
+            desc: '教材四级分类',
             isRequired: true
         },{key: 'type',
             desc: '题目类型',
             isRequired: true
         },{key: 'textbookName',
             desc: '题目名称',
-            isRequired: false
+            isRequired: true
         },{key: 'question',
             desc: '问题',
-            isRequired: false
+            isRequired: true
         },{key: 'option',
             desc: '选项',
             isRequired: false

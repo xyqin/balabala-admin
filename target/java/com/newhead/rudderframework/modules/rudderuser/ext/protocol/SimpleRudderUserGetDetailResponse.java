@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * 系统用户
- * 2018年03月22日 08:05:44
+ * 2018年03月24日 04:28:59
  */
 @Data
 public class SimpleRudderUserGetDetailResponse extends AbstractRudderUserGetDetailResponse {

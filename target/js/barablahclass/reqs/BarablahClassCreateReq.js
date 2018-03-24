@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月22日 08:05:49
+ * 生成时间：2018年03月24日 04:29:03
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahClassCreateReq
  * 接口地址：barablahclass/create
@@ -51,9 +51,6 @@ class BarablahClassCreateReq extends BaseRobotReq {
         },{key: 'status',
             desc: '状态',
             isRequired: true
-        },{key: 'deleted',
-            desc: '课程分类',
-            isRequired: false
         }];        this.curd = 'd';
     }
 
@@ -61,7 +58,7 @@ class BarablahClassCreateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,categoryId,campusId,teacherId,courseCatId,courseId,englishTeacherId,className,monitor,monitorPhoneNumber,status,deleted) {
+    setSimpleParams(id,categoryId,campusId,teacherId,courseCatId,courseId,englishTeacherId,className,monitor,monitorPhoneNumber,status) {
         this.addParams('id', id);
         this.addParams('categoryId', categoryId);
         this.addParams('campusId', campusId);
@@ -73,7 +70,6 @@ class BarablahClassCreateReq extends BaseRobotReq {
         this.addParams('monitor', monitor);
         this.addParams('monitorPhoneNumber', monitorPhoneNumber);
         this.addParams('status', status);
-        this.addParams('deleted', deleted);
     }
 
     /**

@@ -72,6 +72,22 @@ public class SimpleBarablahTextbookCategoryService extends AbstractBarablahTextb
      */
     @Transactional
     public BarablahTextbookCategory update(SimpleBarablahTextbookCategoryUpdateRequest request) {
+
+        BarablahTextbookCategory p = mapper.selectByPrimaryKey(request.getParentId());
+
+
+        BarablahTextbookExample e1 = new BarablahTextbookExample();
+                e1.createCriteria().andCategoryIdEqualTo(request.getId()).andDeletedEqualTo(false);
+        long count = bookMapper.countByExample(e1);
+
+        if (request.getParentId()==null||request.getParentId()==0 || p==null) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材分类已经设置了作业题目,必须是4级类目!!!");
+        }
+        int level = Integer.valueOf(p.getPath()) ;
+        if (count>0 && level<3) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材分类已经设置了作业题目,必须是4级类目!!!");
+        }
+
         BarablahTextbookCategory entity = new BarablahTextbookCategory();
         BeanUtils.copyProperties(request,entity);
         entity.setUpdatedAt(new Date());
@@ -195,7 +211,45 @@ public class SimpleBarablahTextbookCategoryService extends AbstractBarablahTextb
             nodeAddLevel(parent);
             parent.addChild(node);
         }
+        sortTree(tree);
         return tree;
+    }
+
+    protected void sortTree(Tree tree) {
+       Node node =  tree.getRootNode();
+        if (node.getChildren()!=null&&node.getChildren().size()>0) {
+            sortNode(node.getChildren());
+        }
+
+    }
+
+    private void sortNode(List<Node> nodes) {
+        Collections.sort(nodes, new Comparator<Node>() {
+            public int compare(Node arg1,Node arg0) {
+                int hits0 = arg0.getPosition();
+                int hits1 = arg1.getPosition();
+                if (hits1 > hits0) {
+                    return 1;
+                } else if (hits1 == hits0) {
+                    int h3 =Integer.valueOf( arg0.getValue());
+                    int h4 =Integer.valueOf( arg1.getValue());
+                    if (h4>h3) {
+                        return 1;
+                    } else if (h4==h3) {
+                        return 0;
+                    } else {
+                        return -1;
+                    }
+                } else {
+                    return -1;
+                }
+            }
+        });
+        for(Node n: nodes) {
+            if (n.getChildren()!=null&&n.getChildren().size()>0) {
+                sortNode(n.getChildren());
+            }
+        }
     }
 
     /**
@@ -214,10 +268,12 @@ public class SimpleBarablahTextbookCategoryService extends AbstractBarablahTextb
         for(SimpleBarablahTextbookCategoryQueryResponse response:sources) {
             ExtNode node = new ExtNode();
             node.setId(response.getId());
+            node.setPosition(response.getPosition());
             node.getNode().setLeaf(true);
             node.getNode().setLabel(response.getCategoryName());
             node.getNode().setValue(String.valueOf(response.getId()));
             node.getNode().setSelected(false);
+            node.getNode().setPosition(response.getPosition());
             if (response.getParentIdObject()!=null) {
                 node.getNode().setParentId(response.getParentIdObject().getValue());
             } else {
@@ -297,6 +353,33 @@ public class SimpleBarablahTextbookCategoryService extends AbstractBarablahTextb
             response.setParentIdObject(parentIdlvi);
             results.add(response);
         }
+    }
+
+    @Override
+    protected TransitionTree getTransitionTree() {
+        TransitionTree tree = new TransitionTree();
+        tree.setUrl("/barablahtextbookcategory/gettree");
+
+        SimpleBarablahTextbookCategoryQueryListRequest request = new SimpleBarablahTextbookCategoryQueryListRequest();
+        List<SimpleBarablahTextbookCategoryQueryResponse> sources = queryList(request);
+
+        for(SimpleBarablahTextbookCategoryQueryResponse response:sources) {
+            ExtNode node = new ExtNode();
+            node.setId(response.getId());
+            node.setPosition(response.getPosition());
+            node.getNode().setLeaf(true);
+            node.getNode().setLabel(response.getCategoryName());
+            node.getNode().setValue(String.valueOf(response.getId()));
+            node.getNode().setSelected(false);
+            node.getNode().setPosition(response.getPosition());
+            if (response.getParentIdObject()!=null) {
+                node.getNode().setParentId(response.getParentIdObject().getValue());
+            } else {
+                node.getNode().setParentId("0");
+            }
+            tree.getNdoes().add(node);
+        }
+        return tree;
     }
 
 

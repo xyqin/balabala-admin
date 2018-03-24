@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教师评语表控制器
- * 2018年03月22日 08:05:48
+ * 2018年03月24日 04:29:02
  */
 @Api(tags = "教师评语表", description = "相关的API")
 public abstract class AbstractBarablahMemberCommentController extends WebController  {
@@ -49,6 +49,10 @@ public abstract class AbstractBarablahMemberCommentController extends WebControl
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahMemberCommentCreateRequest request) {
+        if (StringUtils.isEmpty(request.getClassId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"班级不能为空！");
+        }
+
         if (StringUtils.isEmpty(request.getMemberId())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"会员ID不能为空！");
         }
@@ -60,6 +64,18 @@ public abstract class AbstractBarablahMemberCommentController extends WebControl
         if (StringUtils.isEmpty(request.getContent())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"评语内容不能为空！");
         }
+
+        if (StringUtils.isEmpty(request.getMemberHomeworkId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"学生作业不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getCommentType())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"性别不能为空！");
+        }
+
+
+
+
 
 
 
@@ -93,6 +109,10 @@ public abstract class AbstractBarablahMemberCommentController extends WebControl
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahMemberCommentUpdateRequest request) {
 
+                if (StringUtils.isEmpty(request.getClassId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"班级不能为空！");
+                }
+
                 if (StringUtils.isEmpty(request.getMemberId())) {
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"会员ID不能为空！");
                 }
@@ -103,6 +123,14 @@ public abstract class AbstractBarablahMemberCommentController extends WebControl
 
                 if (StringUtils.isEmpty(request.getContent())) {
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"评语内容不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getMemberHomeworkId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"学生作业不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getCommentType())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"性别不能为空！");
                 }
 
 
@@ -147,10 +175,16 @@ public abstract class AbstractBarablahMemberCommentController extends WebControl
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "教师评语表ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahMemberCommentQueryResponse>> getList(@RequestParam(required = false) String content) {
+    public ApiEntity<List<SimpleBarablahMemberCommentQueryResponse>> getList(@RequestParam(required = false) Long classId,@RequestParam(required = false) String content,@RequestParam(required = false) String commentType) {
         SimpleBarablahMemberCommentQueryListRequest request = new SimpleBarablahMemberCommentQueryListRequest();
+        if (!StringUtils.isEmpty(classId)) {
+            request.setClassId(classId);
+        }
         if (!StringUtils.isEmpty(content)) {
             request.setContent(content);
+        }
+        if (!StringUtils.isEmpty(commentType)) {
+            request.setCommentType(commentType);
         }
         List<SimpleBarablahMemberCommentQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBarablahMemberCommentQueryResponse>>(sources);
@@ -165,12 +199,20 @@ public abstract class AbstractBarablahMemberCommentController extends WebControl
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) Long classId,
         @RequestParam(required = false) String content,
+        @RequestParam(required = false) String commentType,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahMemberCommentQueryPageRequest request = new SimpleBarablahMemberCommentQueryPageRequest();
+        if (!StringUtils.isEmpty(classId)) {
+            request.setClassId(classId);
+        }
         if (!StringUtils.isEmpty(content)) {
             request.setContent(content);
+        }
+        if (!StringUtils.isEmpty(commentType)) {
+            request.setCommentType(commentType);
         }
         if (page==null) {
             request.setPage(1);

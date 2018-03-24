@@ -6,27 +6,27 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年03月13日 07:57:06
+ * @generated 2018年03月24日 02:09:41
  */
 @Data
 public abstract class AbstractBarablahClassLessonQueryListRequest  {
     /**
      *
-     * 开班ID
+     * 课时名称
+     */
+     private String lessonName;
+
+    /**
+     *
+     * 班级
      */
      private Long classId;
 
     /**
      *
-     * 教师ID
+     * 类型
      */
-     private Long teacherId;
-
-    /**
-     *
-     * 课时名称
-     */
-     private String lessonName;
+     private String status;
 
     /**
      *

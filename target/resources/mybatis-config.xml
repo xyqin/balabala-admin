@@ -32,6 +32,7 @@
         <package name="com.newhead.barablah.modules.barablahmembersignup.base.repository.entity.BarablahMemberSignup"/>
         <package name="com.newhead.barablah.modules.barablahteachermajor.base.repository.entity.BarablahTeacherMajor"/>
         <package name="com.newhead.barablah.modules.barablahcountry.base.repository.entity.BarablahCountry"/>
+        <package name="com.newhead.barablah.modules.barablahmemberlessonlog.base.repository.entity.BarablahMemberLessonlog"/>
         <package name="com.newhead.rudderframework.modules.ruddermenu.base.repository.entity.RudderMenu"/>
         <package name="com.newhead.rudderframework.modules.ruddermenu2permission.base.repository.entity.RudderMenu2permission"/>
         <package name="com.newhead.rudderframework.modules.rudderpermission.base.repository.entity.RudderPermission"/>
@@ -66,6 +67,7 @@
          <mapper resource="com/newhead/barablah/modules/barablahmembersignup/base/repository/entity/BarablahMemberSignupMapper.xml"/>
          <mapper resource="com/newhead/barablah/modules/barablahteachermajor/base/repository/entity/BarablahTeacherMajorMapper.xml"/>
          <mapper resource="com/newhead/barablah/modules/barablahcountry/base/repository/entity/BarablahCountryMapper.xml"/>
+         <mapper resource="com/newhead/barablah/modules/barablahmemberlessonlog/base/repository/entity/BarablahMemberLessonlogMapper.xml"/>
          <mapper resource="com/newhead/rudderframework/modules/ruddermenu/base/repository/entity/RudderMenuMapper.xml"/>
          <mapper resource="com/newhead/rudderframework/modules/ruddermenu2permission/base/repository/entity/RudderMenu2permissionMapper.xml"/>
          <mapper resource="com/newhead/rudderframework/modules/rudderpermission/base/repository/entity/RudderPermissionMapper.xml"/>

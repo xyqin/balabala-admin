@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月13日 07:57:07
+ * 2018年03月24日 03:44:07
  */
 @Data
 public abstract class AbstractBarablahTextbookUpdateRequest {
@@ -20,7 +20,7 @@ public abstract class AbstractBarablahTextbookUpdateRequest {
     private Long id;
     /**
      *
-     * 教材三级分类ID
+     * 教材四级分类
      */
     private Long categoryId;
     /**
@@ -32,13 +32,11 @@ public abstract class AbstractBarablahTextbookUpdateRequest {
      *
      * 题目名称
      */
-    @NotEmpty(message="barablahTextbook题目名称不能为空")
     private String textbookName;
     /**
      *
      * 问题
      */
-    @NotEmpty(message="barablahTextbook问题不能为空")
     private String question;
     /**
      *

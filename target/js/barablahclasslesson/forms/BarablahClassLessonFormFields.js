@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月22日 08:05:49
+ * 生成时间：2018年03月24日 04:29:03
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -18,11 +18,17 @@ const BARABLAHCLASSLESSON_FORM_FIELDS = [{
     need: 'false',
         placeholder: '请输入课时ID'
 },{
+    key: 'lessonName',
+    type: 'String',
+    label: '课时名称',
+    need: 'true',
+    placeholder: '请输入课时名称'
+},{
     key: 'classId',
     type: 'Object',
-    label: '开班ID',
+    label: '班级',
     need: 'true',
-    placeholder: '请选择开班ID',
+    placeholder: '请选择班级',
     displayType: 'SingleList',
     url: '/barablahclass/getlist',
     dataLableKey: 'className',
@@ -30,19 +36,13 @@ const BARABLAHCLASSLESSON_FORM_FIELDS = [{
 },{
     key: 'categoryId',
     type: 'Object',
-    label: '教材三级分类ID',
+    label: '教材四级分类',
     need: 'true',
-    placeholder: '请选择教材三级分类ID',
+    placeholder: '请选择教材四级分类',
     displayType: 'SingleTree',
     url: '/barablahtextbookcategory/gettree',
     dataLableKey: 'categoryName',
     dataValueKey: 'id'
-},{
-    key: 'lessonName',
-    type: 'String',
-    label: '课时名称',
-    need: 'true',
-    placeholder: '请输入课时名称'
 },{
     key: 'startAt',
     type: 'Date',
@@ -67,6 +67,20 @@ placeholder: '请输入结束时间'
     need: 'true',
 placeholder: '请输入是否备课'
 },{
+    key: 'status',
+    type: 'Enum',
+    label: '类型',
+    need: 'true',
+        placeholder: '请选择类型',
+        data: [{        value: 'WAITING',
+        label: '待开课'
+        },{        value: 'GOING',
+        label: '开课中'
+        },{        value: 'GONE',
+        label: '已过期'
+        },{        value: 'FINISH',
+        label: '已结束'
+        }]},{
     key: 'type',
     type: 'Enum',
     label: '类型',

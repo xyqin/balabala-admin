@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月22日 08:05:49
+ * 生成时间：2018年03月24日 04:29:03
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -50,11 +50,23 @@ const BARABLAHCOURSE_FORM_FIELDS = [{
     need: 'false',
         placeholder: '请输入线上授课次数'
 },{
+    key: 'onlineMaxLessons',
+    type: 'Number',
+    label: '最大允许线上授课节数',
+    need: 'false',
+        placeholder: '请输入最大允许线上授课节数'
+},{
     key: 'onlineDuration',
     type: 'Number',
     label: '线上授课时长',
     need: 'false',
         placeholder: '请输入线上授课时长'
+},{
+    key: 'onlineMaxDuration',
+    type: 'Number',
+    label: '最大允许线上授课时长',
+    need: 'false',
+        placeholder: '请输入最大允许线上授课时长'
 },{
     key: 'offlineLessons',
     type: 'Number',

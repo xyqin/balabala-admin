@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * 用户角色关系
- * 2018年03月22日 08:05:44
+ * 2018年03月24日 04:28:59
  */
 @Data
 public class SimpleRudderUser2roleGetDetailResponse extends AbstractRudderUser2roleGetDetailResponse {

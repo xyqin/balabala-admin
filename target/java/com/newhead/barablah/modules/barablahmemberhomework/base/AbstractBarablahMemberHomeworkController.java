@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 学生作业表控制器
- * 2018年03月22日 08:05:48
+ * 2018年03月24日 04:29:02
  */
 @Api(tags = "学生作业表", description = "相关的API")
 public abstract class AbstractBarablahMemberHomeworkController extends WebController  {
@@ -64,6 +64,11 @@ public abstract class AbstractBarablahMemberHomeworkController extends WebContro
         if (StringUtils.isEmpty(request.getStatus())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
         }
+
+        if (StringUtils.isEmpty(request.getClassId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"开班ID不能为空！");
+        }
+
 
 
 
@@ -115,6 +120,10 @@ public abstract class AbstractBarablahMemberHomeworkController extends WebContro
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
                 }
 
+                if (StringUtils.isEmpty(request.getClassId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"开班ID不能为空！");
+                }
+
 
 
        ApiEntity entity = fillUpdateRequest(request);
@@ -157,13 +166,16 @@ public abstract class AbstractBarablahMemberHomeworkController extends WebContro
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "学生作业表ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahMemberHomeworkQueryResponse>> getList(@RequestParam(required = false) String homeworkName,@RequestParam(required = false) String status) {
+    public ApiEntity<List<SimpleBarablahMemberHomeworkQueryResponse>> getList(@RequestParam(required = false) String homeworkName,@RequestParam(required = false) String status,@RequestParam(required = false) Long classId) {
         SimpleBarablahMemberHomeworkQueryListRequest request = new SimpleBarablahMemberHomeworkQueryListRequest();
         if (!StringUtils.isEmpty(homeworkName)) {
             request.setHomeworkName(homeworkName);
         }
         if (!StringUtils.isEmpty(status)) {
             request.setStatus(status);
+        }
+        if (!StringUtils.isEmpty(classId)) {
+            request.setClassId(classId);
         }
         List<SimpleBarablahMemberHomeworkQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBarablahMemberHomeworkQueryResponse>>(sources);
@@ -180,6 +192,7 @@ public abstract class AbstractBarablahMemberHomeworkController extends WebContro
     public ApiEntity getPage(
         @RequestParam(required = false) String homeworkName,
         @RequestParam(required = false) String status,
+        @RequestParam(required = false) Long classId,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahMemberHomeworkQueryPageRequest request = new SimpleBarablahMemberHomeworkQueryPageRequest();
@@ -188,6 +201,9 @@ public abstract class AbstractBarablahMemberHomeworkController extends WebContro
         }
         if (!StringUtils.isEmpty(status)) {
             request.setStatus(status);
+        }
+        if (!StringUtils.isEmpty(classId)) {
+            request.setClassId(classId);
         }
         if (page==null) {
             request.setPage(1);

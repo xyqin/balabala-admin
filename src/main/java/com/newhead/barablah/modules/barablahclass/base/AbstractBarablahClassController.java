@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 开班控制器
- * 2018年03月13日 07:57:09
+ * 2018年03月23日 02:02:00
  */
 @Api(tags = "开班", description = "相关的API")
 public abstract class AbstractBarablahClassController extends WebController  {
@@ -58,7 +58,11 @@ public abstract class AbstractBarablahClassController extends WebController  {
         }
 
         if (StringUtils.isEmpty(request.getTeacherId())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教师ID不能为空！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"线上教师不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getCourseCatId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课程分类不能为空！");
         }
 
         if (StringUtils.isEmpty(request.getCourseId())) {
@@ -72,6 +76,22 @@ public abstract class AbstractBarablahClassController extends WebController  {
         if (StringUtils.isEmpty(request.getStatus())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         ApiEntity entity = fillCreateRequest(request);
@@ -105,7 +125,11 @@ public abstract class AbstractBarablahClassController extends WebController  {
                 }
 
                 if (StringUtils.isEmpty(request.getTeacherId())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教师ID不能为空！");
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"线上教师不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getCourseCatId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课程分类不能为空！");
                 }
 
                 if (StringUtils.isEmpty(request.getCourseId())) {

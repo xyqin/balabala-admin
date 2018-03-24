@@ -11,77 +11,77 @@ public interface RudderUser2roleMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_user2role
-     * @generated 2018年3月22日 08:05:40
+     * @generated 2018年3月24日 04:28:55
      */
     long countByExample(RudderUser2roleExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_user2role
-     * @generated 2018年3月22日 08:05:40
+     * @generated 2018年3月24日 04:28:55
      */
     int deleteByExample(RudderUser2roleExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_user2role
-     * @generated 2018年3月22日 08:05:40
+     * @generated 2018年3月24日 04:28:55
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_user2role
-     * @generated 2018年3月22日 08:05:40
+     * @generated 2018年3月24日 04:28:55
      */
     int insert(RudderUser2role record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_user2role
-     * @generated 2018年3月22日 08:05:40
+     * @generated 2018年3月24日 04:28:55
      */
     int insertSelective(RudderUser2role record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_user2role
-     * @generated 2018年3月22日 08:05:40
+     * @generated 2018年3月24日 04:28:55
      */
     List<RudderUser2role> selectByExample(RudderUser2roleExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_user2role
-     * @generated 2018年3月22日 08:05:40
+     * @generated 2018年3月24日 04:28:55
      */
     RudderUser2role selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_user2role
-     * @generated 2018年3月22日 08:05:40
+     * @generated 2018年3月24日 04:28:55
      */
     int updateByExampleSelective(@Param("record") RudderUser2role record, @Param("example") RudderUser2roleExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_user2role
-     * @generated 2018年3月22日 08:05:40
+     * @generated 2018年3月24日 04:28:55
      */
     int updateByExample(@Param("record") RudderUser2role record, @Param("example") RudderUser2roleExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_user2role
-     * @generated 2018年3月22日 08:05:40
+     * @generated 2018年3月24日 04:28:55
      */
     int updateByPrimaryKeySelective(RudderUser2role record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  rudder_user2role
-     * @generated 2018年3月22日 08:05:40
+     * @generated 2018年3月24日 04:28:55
      */
     int updateByPrimaryKey(RudderUser2role record);
 }

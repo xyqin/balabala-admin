@@ -1,27 +1,16 @@
 package com.newhead.barablah.modules.barablahcoursecategory.base;
 
-import com.newhead.rudderframework.core.web.component.pagination.Page;
-
-import com.google.common.collect.Maps;
-import com.newhead.rudderframework.core.web.api.ApiStatus;
-import com.newhead.rudderframework.core.web.api.ApiValidateException;
-import com.newhead.rudderframework.core.web.component.tree.Tree;
-import com.newhead.rudderframework.core.web.component.tree.ExtNode;
-import com.newhead.rudderframework.core.web.component.tree.Node;
-import com.newhead.rudderframework.core.web.component.tree.TransitionTree;
-import com.newhead.rudderframework.core.services.BaseService;
-
-import com.newhead.rudderframework.modules.LabelValueItem;
 import com.newhead.barablah.modules.barablahcoursecategory.base.repository.dao.BarablahCourseCategoryMapper;
 import com.newhead.barablah.modules.barablahcoursecategory.base.repository.entity.BarablahCourseCategory;
 import com.newhead.barablah.modules.barablahcoursecategory.base.repository.entity.BarablahCourseCategoryExample;
 import com.newhead.barablah.modules.barablahcoursecategory.ext.protocol.*;
+import com.newhead.rudderframework.core.services.BaseService;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.api.ApiValidateException;
+import com.newhead.rudderframework.core.web.component.pagination.Page;
+import com.newhead.rudderframework.core.web.component.tree.Node;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
-
-
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -118,6 +107,7 @@ public abstract class AbstractBarablahCourseCategoryService extends BaseService 
         BarablahCourseCategoryExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
+            ordersrc = "position asc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
 
@@ -143,6 +133,7 @@ public abstract class AbstractBarablahCourseCategoryService extends BaseService 
         BarablahCourseCategoryExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
+            ordersrc = "position asc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
         if (request.getCategoryName()!=null) {

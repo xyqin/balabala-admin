@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2018年03月13日 07:57:06
+ * 2018年03月24日 02:09:41
  */
 @Data
 public abstract class AbstractBarablahClassLessonGetDetailResponse {
@@ -23,21 +23,21 @@ public abstract class AbstractBarablahClassLessonGetDetailResponse {
 
     /**
      *
-     * 开班ID
+     * 课时名称
+     */
+     private String lessonName;
+
+    /**
+     *
+     * 班级
      */
     private LabelValueItem ClassIdObject = new LabelValueItem();
 
     /**
      *
-     * 教材三级分类ID
+     * 教材四级分类
      */
     private LabelValueItem CategoryIdObject = new LabelValueItem();
-
-    /**
-     *
-     * 课时名称
-     */
-     private String lessonName;
 
     /**
      *
@@ -62,6 +62,12 @@ public abstract class AbstractBarablahClassLessonGetDetailResponse {
      * 是否备课
      */
      private Boolean prepared;
+
+    /**
+     *
+     * 类型
+     */
+    private LabelValueItem StatusEnum = new LabelValueItem();
 
     /**
      *

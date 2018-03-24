@@ -9,4 +9,9 @@ import lombok.Data;
  */
 @Data
 public class SimpleBarablahClassLessonCreateRequest extends AbstractBarablahClassLessonCreateRequest {
+    private Long courseId;
+
+    private Long teacherId;
+
 }
+

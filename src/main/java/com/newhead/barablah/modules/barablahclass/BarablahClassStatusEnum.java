@@ -4,7 +4,7 @@ package com.newhead.barablah.modules.barablahclass;
  *
  */
 public enum BarablahClassStatusEnum {
-审核中("IN_REVIEW"),审核被拒("REJECTED"),待开课("WAITTING"),已开课("ONGOING"),已结束("FINISHED");
+审核中("IN_REVIEW"),审核被拒("REJECTED"),待开课("WAITING"),已开课("ONGOING"),已结束("FINISHED");
     private String value;
 
     private BarablahClassStatusEnum(String value) {

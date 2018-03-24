@@ -9,27 +9,27 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月22日 08:05:44
+ * 2018年03月24日 04:28:59
  */
 @Data
 public abstract class AbstractBarablahClassLessonCreateRequest {
     /**
      *
-     * 开班ID
+     * 课时名称
+     */
+    private String lessonName;
+
+    /**
+     *
+     * 班级
      */
     private Long classId;
 
     /**
      *
-     * 教材三级分类ID
+     * 教材四级分类
      */
     private Long categoryId;
-
-    /**
-     *
-     * 课时名称
-     */
-    private String lessonName;
 
     /**
      *
@@ -54,6 +54,12 @@ public abstract class AbstractBarablahClassLessonCreateRequest {
      * 是否备课
      */
     private Boolean prepared;
+
+    /**
+     *
+     * 类型
+     */
+    private String status;
 
     /**
      *

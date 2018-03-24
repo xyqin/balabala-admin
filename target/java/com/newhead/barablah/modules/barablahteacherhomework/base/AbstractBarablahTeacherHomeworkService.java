@@ -22,6 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 
+import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
+import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClassExample;
+
+import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
 import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
 import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
 
@@ -42,6 +46,8 @@ public abstract class AbstractBarablahTeacherHomeworkService extends BaseService
 
     protected abstract void saveOrUpdate(BarablahTeacherHomework entity);
 
+    @Autowired
+    protected BarablahClassMapper barablahclassMapper;
     @Autowired
     protected BarablahTeacherMapper barablahteacherMapper;
 
@@ -104,6 +110,14 @@ public abstract class AbstractBarablahTeacherHomeworkService extends BaseService
             teacherIdObject.setValue(String.valueOf(entity.getTeacherId()));
             teacherIdObject.setChecked(false);
         }
+        BarablahClass  classIdEntity = barablahclassMapper.selectByPrimaryKey(Long.valueOf(entity.getClassId()));
+        if (classIdEntity!=null) {
+            LabelValueItem classIdObject = response.getClassIdObject();
+            classIdObject.setName("classId");
+            classIdObject.setLabel(classIdEntity.getClassName());
+            classIdObject.setValue(String.valueOf(entity.getClassId()));
+            classIdObject.setChecked(false);
+        }
         return response;
     }
 
@@ -135,6 +149,10 @@ public abstract class AbstractBarablahTeacherHomeworkService extends BaseService
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
 
+        if (request.getClassId()!=null) {
+            c.andClassIdEqualTo(request.getClassId());
+         }
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -155,6 +173,10 @@ public abstract class AbstractBarablahTeacherHomeworkService extends BaseService
         String ordersrc ="";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
+        if (request.getClassId()!=null) {
+            c.andClassIdEqualTo(request.getClassId());
+         }
+
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -179,8 +201,12 @@ public abstract class AbstractBarablahTeacherHomeworkService extends BaseService
         Map<Long,Long> teacherIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> teacherIdResultMap = Maps.newHashMap();
 
+        Map<Long,Long> classIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> classIdResultMap = Maps.newHashMap();
+
        for(BarablahTeacherHomework entity:entitys) {
             teacherIdMap.put(entity.getId(),entity.getTeacherId());
+            classIdMap.put(entity.getId(),entity.getClassId());
         }
         BarablahTeacherExample teacherIdExample = new BarablahTeacherExample();
 
@@ -197,6 +223,21 @@ public abstract class AbstractBarablahTeacherHomeworkService extends BaseService
            teacherIdItem.setLabel(item.getFullName());
            teacherIdResultMap.put(item.getId(),teacherIdItem);
         }
+        BarablahClassExample classIdExample = new BarablahClassExample();
+
+        List<Long> classIds = new ArrayList<>();
+        classIds.addAll(classIdMap.values());
+        if (classIds.size()>0) {
+            classIdExample.createCriteria().andIdIn(classIds);
+        }
+        List<BarablahClass>  classIdList = barablahclassMapper.selectByExample(classIdExample);
+        for(BarablahClass item:classIdList) {
+           LabelValueItem classIdItem = new LabelValueItem();
+           classIdItem.setName("classId");
+           classIdItem.setValue(String.valueOf(item.getId()));
+           classIdItem.setLabel(item.getClassName());
+           classIdResultMap.put(item.getId(),classIdItem);
+        }
         //第一组
         for(BarablahTeacherHomework entity:entitys) {
             SimpleBarablahTeacherHomeworkQueryResponse response = new SimpleBarablahTeacherHomeworkQueryResponse();
@@ -209,6 +250,14 @@ public abstract class AbstractBarablahTeacherHomeworkService extends BaseService
                 BeanUtils.copyProperties(teacherIdResultMap.get(teacherId),teacherIdlvi);
             }
             response.setTeacherIdObject(teacherIdlvi);
+            Long classId = classIdMap.get(entity.getId());
+
+            LabelValueItem classIdlvi = null;
+            if (classId!=null && classIdResultMap.get(classId)!=null) {
+                classIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(classIdResultMap.get(classId),classIdlvi);
+            }
+            response.setClassIdObject(classIdlvi);
             results.add(response);
         }
     }

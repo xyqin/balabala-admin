@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月22日 08:05:49
+ * 生成时间：2018年03月24日 04:29:03
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahClassLessonUpdateReq
  * 接口地址：barablahclasslesson/update
@@ -21,14 +21,14 @@ class BarablahClassLessonUpdateReq extends BaseRobotReq {
         this._paramsDescriptor = [{key: 'id',
             desc: '课时ID',
             isRequired: false
-        },{key: 'classId',
-            desc: '开班ID',
-            isRequired: true
-        },{key: 'categoryId',
-            desc: '教材三级分类ID',
-            isRequired: true
         },{key: 'lessonName',
             desc: '课时名称',
+            isRequired: true
+        },{key: 'classId',
+            desc: '班级',
+            isRequired: true
+        },{key: 'categoryId',
+            desc: '教材四级分类',
             isRequired: true
         },{key: 'startAt',
             desc: '开始时间',
@@ -42,6 +42,9 @@ class BarablahClassLessonUpdateReq extends BaseRobotReq {
         },{key: 'prepared',
             desc: '是否备课',
             isRequired: true
+        },{key: 'status',
+            desc: '类型',
+            isRequired: true
         },{key: 'type',
             desc: '类型',
             isRequired: true
@@ -52,15 +55,16 @@ class BarablahClassLessonUpdateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,classId,categoryId,lessonName,startAt,endAt,thumbnail,prepared,type) {
+    setSimpleParams(id,lessonName,classId,categoryId,startAt,endAt,thumbnail,prepared,status,type) {
         this.addParams('id', id);
+        this.addParams('lessonName', lessonName);
         this.addParams('classId', classId);
         this.addParams('categoryId', categoryId);
-        this.addParams('lessonName', lessonName);
         this.addParams('startAt', startAt);
         this.addParams('endAt', endAt);
         this.addParams('thumbnail', thumbnail);
         this.addParams('prepared', prepared);
+        this.addParams('status', status);
         this.addParams('type', type);
     }
 

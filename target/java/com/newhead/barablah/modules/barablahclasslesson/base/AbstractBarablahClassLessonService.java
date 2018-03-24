@@ -30,14 +30,6 @@ import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.ent
 import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategoryExample;
 
 import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.dao.BarablahTextbookCategoryMapper;
-import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
-import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
-
-import com.newhead.barablah.modules.barablahteacher.base.repository.dao.BarablahTeacherMapper;
-import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourse;
-import com.newhead.barablah.modules.barablahcourse.base.repository.entity.BarablahCourseExample;
-
-import com.newhead.barablah.modules.barablahcourse.base.repository.dao.BarablahCourseMapper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,10 +50,6 @@ public abstract class AbstractBarablahClassLessonService extends BaseService {
     protected BarablahClassMapper barablahclassMapper;
     @Autowired
     protected BarablahTextbookCategoryMapper barablahtextbookcategoryMapper;
-    @Autowired
-    protected BarablahTeacherMapper barablahteacherMapper;
-    @Autowired
-    protected BarablahCourseMapper barablahcourseMapper;
 
     /**
      * 创建
@@ -130,6 +118,11 @@ public abstract class AbstractBarablahClassLessonService extends BaseService {
             categoryIdObject.setValue(String.valueOf(entity.getCategoryId()));
             categoryIdObject.setChecked(false);
         }
+        LabelValueItem statusEnum = response.getStatusEnum();
+        statusEnum.setName("status");
+        statusEnum.setLabel(com.newhead.barablah.modules.barablahclasslesson.BarablahClassLessonStatusEnum.getLabel(entity.getStatus()));
+        statusEnum.setValue(entity.getStatus());
+        statusEnum.setChecked(true);
         LabelValueItem typeEnum = response.getTypeEnum();
         typeEnum.setName("type");
         typeEnum.setLabel(com.newhead.barablah.modules.barablahclasslesson.BarablahClassLessonTypeEnum.getLabel(entity.getType()));
@@ -166,17 +159,17 @@ public abstract class AbstractBarablahClassLessonService extends BaseService {
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
 
+        if (request.getLessonName()!=null) {
+            c.andLessonNameLike("%"+request.getLessonName()+"%");
+        }
+
         if (request.getClassId()!=null) {
             c.andClassIdEqualTo(request.getClassId());
          }
 
-        if (request.getTeacherId()!=null) {
-            c.andTeacherIdEqualTo(request.getTeacherId());
+        if (request.getStatus()!=null) {
+            c.andStatusEqualTo(request.getStatus());
          }
-
-        if (request.getLessonName()!=null) {
-            c.andLessonNameLike("%"+request.getLessonName()+"%");
-        }
 
         if (request.getType()!=null) {
             c.andTypeEqualTo(request.getType());
@@ -202,17 +195,17 @@ public abstract class AbstractBarablahClassLessonService extends BaseService {
         String ordersrc ="";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
+        if (request.getLessonName()!=null) {
+            c.andLessonNameLike("%"+request.getLessonName()+"%");
+        }
+
         if (request.getClassId()!=null) {
             c.andClassIdEqualTo(request.getClassId());
          }
 
-        if (request.getTeacherId()!=null) {
-            c.andTeacherIdEqualTo(request.getTeacherId());
+        if (request.getStatus()!=null) {
+            c.andStatusEqualTo(request.getStatus());
          }
-
-        if (request.getLessonName()!=null) {
-            c.andLessonNameLike("%"+request.getLessonName()+"%");
-        }
 
         if (request.getType()!=null) {
             c.andTypeEqualTo(request.getType());
@@ -299,6 +292,11 @@ public abstract class AbstractBarablahClassLessonService extends BaseService {
                 BeanUtils.copyProperties(categoryIdResultMap.get(categoryId),categoryIdlvi);
             }
             response.setCategoryIdObject(categoryIdlvi);
+            LabelValueItem statusEnum = response.getStatusEnum();
+            statusEnum.setName("status");
+            statusEnum.setLabel(com.newhead.barablah.modules.barablahclasslesson.BarablahClassLessonStatusEnum.getLabel(entity.getStatus()));
+            statusEnum.setValue(entity.getStatus());
+            statusEnum.setChecked(true);
             LabelValueItem typeEnum = response.getTypeEnum();
             typeEnum.setName("type");
             typeEnum.setLabel(com.newhead.barablah.modules.barablahclasslesson.BarablahClassLessonTypeEnum.getLabel(entity.getType()));

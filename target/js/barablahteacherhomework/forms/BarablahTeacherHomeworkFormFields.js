@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月22日 08:05:49
+ * 生成时间：2018年03月24日 04:29:03
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -33,5 +33,15 @@ const BARABLAHTEACHERHOMEWORK_FORM_FIELDS = [{
     label: '作业名称',
     need: 'true',
     placeholder: '请输入作业名称'
+},{
+    key: 'classId',
+    type: 'Object',
+    label: '开班ID',
+    need: 'true',
+    placeholder: '请选择开班ID',
+    displayType: 'SingleList',
+    url: '/barablahclass/getlist',
+    dataLableKey: 'className',
+    dataValueKey: 'id'
 }];
 export default BARABLAHTEACHERHOMEWORK_FORM_FIELDS;

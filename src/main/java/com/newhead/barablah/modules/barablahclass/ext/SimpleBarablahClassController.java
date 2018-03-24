@@ -3,19 +3,24 @@ package com.newhead.barablah.modules.barablahclass.ext;
 import com.newhead.barablah.modules.barablahclass.BarablahClassStatusEnum;
 import com.newhead.barablah.modules.barablahclass.base.AbstractBarablahClassController;
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
-import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassOpenRequest;
-import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassQueryPageRequest;
-import com.newhead.barablah.modules.barablahclass.ext.protocol.SimpleBarablahClassQueryResponse;
+import com.newhead.barablah.modules.barablahclass.ext.protocol.*;
+import com.newhead.barablah.modules.barablahclasslesson.BarablahClassLessonTypeEnum;
+import com.newhead.barablah.modules.barablahclasslesson.base.repository.dao.BarablahClassLessonMapper;
+import com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLesson;
+import com.newhead.barablah.modules.barablahclasslesson.base.repository.entity.BarablahClassLessonExample;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiException;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,9 +35,37 @@ public class SimpleBarablahClassController extends AbstractBarablahClassControll
     @Autowired
     private SimpleBarablahClassService service;
 
+    @Autowired
+    private BarablahClassLessonMapper lessonMapper;
+
     @Override
     public SimpleBarablahClassService getService() {
         return service;
+    }
+
+    @Override
+    protected ApiEntity fillUpdateRequest(SimpleBarablahClassUpdateRequest request) {
+        //如果距离开班在1个小时之内,不允许再编辑和修改,线上老师和课程。
+        //如果是线上
+        BarablahClassLessonExample lessonExample = new BarablahClassLessonExample();
+        lessonExample.createCriteria().
+                andClassIdEqualTo(request.getId())
+                .andTypeEqualTo(BarablahClassLessonTypeEnum.线上.getValue())
+                .andDeletedEqualTo(false);
+        lessonExample.setOrderByClause("start_at asc");
+        List<BarablahClassLesson> lessons = lessonMapper.selectByExample(lessonExample);
+        if (lessons != null && lessons.size() > 0) {
+            Date startTime = lessons.get(0).getStartAt();
+            Date curDate = new Date();
+            if (DateUtils.addHours(curDate,1).after(startTime)) {
+                BarablahClass c = this.getService().getMapper().selectByPrimaryKey(request.getId());
+                if (c.getCourseCatId()!=request.getCourseCatId() || c.getTeacherId()!=request.getTeacherId()) {
+                    throw new ApiException(ApiStatus.STATUS_400.getCode(), "开班前1小时不允许修改课程和在线任课老师!!!");
+                }
+            }
+        }
+
+        return null;
     }
 
     @ApiOperation(value = "开班", httpMethod = "POST", response = String.class)
@@ -100,10 +133,9 @@ public class SimpleBarablahClassController extends AbstractBarablahClassControll
      */
     @ApiOperation(value = "审核通过或拒绝", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "check", method = RequestMethod.POST)
-    public ApiEntity check(
-            @RequestParam(required = true) Long classid, @RequestParam(required = true) String status) {
-        BarablahClass c = getService().getMapper().selectByPrimaryKey(classid);
-        c.setStatus(status);
+    public ApiEntity check(@RequestBody SimpleCheckRequest request) {
+        BarablahClass c = getService().getMapper().selectByPrimaryKey(request.getClassid());
+        c.setStatus(request.getStatus());
         getService().getMapper().updateByPrimaryKey(c);
         return new ApiEntity<>();
     }

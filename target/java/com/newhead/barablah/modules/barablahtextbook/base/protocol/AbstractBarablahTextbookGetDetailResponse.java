@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2018年03月22日 08:05:45
+ * 2018年03月24日 04:29:00
  */
 @Data
 public abstract class AbstractBarablahTextbookGetDetailResponse {
@@ -23,7 +23,7 @@ public abstract class AbstractBarablahTextbookGetDetailResponse {
 
     /**
      *
-     * 教材三级分类ID
+     * 教材四级分类
      */
     private LabelValueItem CategoryIdObject = new LabelValueItem();
 

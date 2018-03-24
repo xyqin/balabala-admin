@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月22日 08:05:45
+ * 2018年03月24日 04:28:59
  */
 @Data
 public abstract class AbstractBarablahCourseUpdateRequest {
@@ -40,9 +40,19 @@ public abstract class AbstractBarablahCourseUpdateRequest {
     private Short onlineLessons;
     /**
      *
+     * 最大允许线上授课节数
+     */
+    private Short onlineMaxLessons;
+    /**
+     *
      * 线上授课时长
      */
     private Short onlineDuration;
+    /**
+     *
+     * 最大允许线上授课时长
+     */
+    private Short onlineMaxDuration;
     /**
      *
      * 线下授课次数

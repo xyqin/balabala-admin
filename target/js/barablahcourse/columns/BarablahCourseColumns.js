@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月22日 08:05:48
+ * 生成时间：2018年03月24日 04:29:02
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -41,9 +41,21 @@ key: 'onlineLessons',
 type:'Number',
 checked: true
 },{
+title: '最大允许线上授课节数',
+dataIndex: 'onlineMaxLessons',
+key: 'onlineMaxLessons',
+type:'Number',
+checked: true
+},{
 title: '线上授课时长',
 dataIndex: 'onlineDuration',
 key: 'onlineDuration',
+type:'Number',
+checked: true
+},{
+title: '最大允许线上授课时长',
+dataIndex: 'onlineMaxDuration',
+key: 'onlineMaxDuration',
 type:'Number',
 checked: true
 },{

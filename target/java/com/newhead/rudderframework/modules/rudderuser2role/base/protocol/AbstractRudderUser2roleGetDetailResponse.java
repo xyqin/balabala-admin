@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 用户角色关系
- * 2018年03月22日 08:05:46
+ * 2018年03月24日 04:29:01
  */
 @Data
 public abstract class AbstractRudderUser2roleGetDetailResponse {

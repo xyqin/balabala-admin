@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月22日 08:05:49
+ * 生成时间：2018年03月24日 04:29:03
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahCourseUpdateReq
  * 接口地址：barablahcourse/update
@@ -33,8 +33,14 @@ class BarablahCourseUpdateReq extends BaseRobotReq {
         },{key: 'onlineLessons',
             desc: '线上授课次数',
             isRequired: false
+        },{key: 'onlineMaxLessons',
+            desc: '最大允许线上授课节数',
+            isRequired: false
         },{key: 'onlineDuration',
             desc: '线上授课时长',
+            isRequired: false
+        },{key: 'onlineMaxDuration',
+            desc: '最大允许线上授课时长',
             isRequired: false
         },{key: 'offlineLessons',
             desc: '线下授课次数',
@@ -52,13 +58,15 @@ class BarablahCourseUpdateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,categoryId,textbookCategoryId,courseName,onlineLessons,onlineDuration,offlineLessons,offlineDuration,commission) {
+    setSimpleParams(id,categoryId,textbookCategoryId,courseName,onlineLessons,onlineMaxLessons,onlineDuration,onlineMaxDuration,offlineLessons,offlineDuration,commission) {
         this.addParams('id', id);
         this.addParams('categoryId', categoryId);
         this.addParams('textbookCategoryId', textbookCategoryId);
         this.addParams('courseName', courseName);
         this.addParams('onlineLessons', onlineLessons);
+        this.addParams('onlineMaxLessons', onlineMaxLessons);
         this.addParams('onlineDuration', onlineDuration);
+        this.addParams('onlineMaxDuration', onlineMaxDuration);
         this.addParams('offlineLessons', offlineLessons);
         this.addParams('offlineDuration', offlineDuration);
         this.addParams('commission', commission);

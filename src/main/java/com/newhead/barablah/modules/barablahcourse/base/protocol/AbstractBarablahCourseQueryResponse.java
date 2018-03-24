@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年03月13日 07:57:07
+ * @generated 2018年03月24日 03:44:06
  */
 @Data
 public abstract class AbstractBarablahCourseQueryResponse {
@@ -30,7 +30,7 @@ public abstract class AbstractBarablahCourseQueryResponse {
 
     /**
      *
-     * 教材二级分类ID
+     * 教材三级分类
      */
     private LabelValueItem TextbookCategoryIdObject = new LabelValueItem();
 
@@ -48,9 +48,21 @@ public abstract class AbstractBarablahCourseQueryResponse {
 
     /**
      *
+     * 最大允许线上授课节数
+     */
+     private Short onlineMaxLessons;
+
+    /**
+     *
      * 线上授课时长
      */
      private Short onlineDuration;
+
+    /**
+     *
+     * 最大允许线上授课时长
+     */
+     private Short onlineMaxDuration;
 
     /**
      *

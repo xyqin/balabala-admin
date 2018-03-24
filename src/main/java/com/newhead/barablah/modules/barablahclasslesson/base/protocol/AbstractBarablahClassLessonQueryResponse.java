@@ -1,18 +1,13 @@
 package com.newhead.barablah.modules.barablahclasslesson.base.protocol;
 
 import com.newhead.rudderframework.modules.LabelValueItem;
-import com.newhead.rudderframework.core.web.component.tree.Tree;
-import java.util.Date;
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.ArrayList;
-import com.newhead.rudderframework.core.web.component.tree.Tree;
-
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * 
- * @generated 2018年03月13日 07:57:06
+ * @generated 2018年03月24日 02:09:41
  */
 @Data
 public abstract class AbstractBarablahClassLessonQueryResponse {
@@ -24,21 +19,21 @@ public abstract class AbstractBarablahClassLessonQueryResponse {
 
     /**
      *
-     * 开班ID
+     * 课时名称
+     */
+     private String lessonName;
+
+    /**
+     *
+     * 班级
      */
     private LabelValueItem ClassIdObject = new LabelValueItem();
 
     /**
      *
-     * 教材三级分类ID
+     * 教材四级分类
      */
     private LabelValueItem CategoryIdObject = new LabelValueItem();
-
-    /**
-     *
-     * 课时名称
-     */
-     private String lessonName;
 
     /**
      *
@@ -63,6 +58,12 @@ public abstract class AbstractBarablahClassLessonQueryResponse {
      * 是否备课
      */
      private Boolean prepared;
+
+    /**
+     *
+     * 类型
+     */
+    private LabelValueItem StatusEnum = new LabelValueItem();
 
     /**
      *

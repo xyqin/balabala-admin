@@ -26,4 +26,5 @@ public class TransitionTree {
     public void setNdoes(List<ExtNode> ndoes) {
         this.ndoes = ndoes;
     }
+    
 }

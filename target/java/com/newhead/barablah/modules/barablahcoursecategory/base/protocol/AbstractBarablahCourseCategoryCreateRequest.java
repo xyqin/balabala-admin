@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月22日 08:05:45
+ * 2018年03月24日 04:28:59
  */
 @Data
 public abstract class AbstractBarablahCourseCategoryCreateRequest {
@@ -18,5 +18,11 @@ public abstract class AbstractBarablahCourseCategoryCreateRequest {
      * 分类名称
      */
     private String categoryName;
+
+    /**
+     *
+     * 排序号
+     */
+    private Integer position;
 
 }

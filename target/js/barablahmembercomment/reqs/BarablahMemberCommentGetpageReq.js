@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月22日 08:05:50
+ * 生成时间：2018年03月24日 04:29:04
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahMemberCommentGetpageReq
  * 接口地址：barablahmembercomment/getpage
@@ -17,8 +17,14 @@ class BarablahMemberCommentGetpageReq extends BaseRobotReq {
             url: '/barablahmembercomment/getpage',
             type: 'Get',        };
         // 请求参数的描述信息，只定义先不用
-        this._paramsDescriptor = [{key: 'content',
+        this._paramsDescriptor = [{key: 'classId',
+            desc: '班级',
+            isRequired: true
+        },{key: 'content',
             desc: '评语内容',
+            isRequired: true
+        },{key: 'commentType',
+            desc: '性别',
             isRequired: true
         },{key: 'page',
             desc: '页码',
@@ -33,8 +39,10 @@ class BarablahMemberCommentGetpageReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(content,page,size) {
+    setSimpleParams(classId,content,commentType,page,size) {
+        this.addParams('classId', classId);
         this.addParams('content', content);
+        this.addParams('commentType', commentType);
         this.addParams('page', page);
         this.addParams('size', size);
     }

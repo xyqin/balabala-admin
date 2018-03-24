@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年03月22日 08:05:44
+ * @generated 2018年03月24日 04:28:59
  */
 @Data
 public abstract class AbstractBarablahClassQueryResponse {
@@ -81,11 +81,5 @@ public abstract class AbstractBarablahClassQueryResponse {
      * 状态
      */
     private LabelValueItem StatusEnum = new LabelValueItem();
-
-    /**
-     *
-     * 课程分类
-     */
-    private LabelValueItem DeletedObject = new LabelValueItem();
 
 }

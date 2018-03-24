@@ -1,10 +1,15 @@
 package com.newhead.barablah.modules.barablahtextbook.ext;
 
 import com.newhead.barablah.modules.barablahtextbook.base.AbstractBarablahTextbookController;
+import com.newhead.barablah.modules.barablahtextbook.ext.protocol.SimpleBarablahTextbookCreateRequest;
+import com.newhead.barablah.modules.barablahtextbook.ext.protocol.SimpleBarablahTextbookUpdateRequest;
 import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.dao.BarablahTextbookCategoryMapper;
+import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategory;
 import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategoryExample;
 import com.newhead.barablah.modules.barablahtextbookcategory.ext.protocol.SimpleBarablahTextbookCategoryNumsResponse;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -53,4 +58,26 @@ public class SimpleBarablahTextbookController extends AbstractBarablahTextbookCo
 
         return new ApiEntity<SimpleBarablahTextbookCategoryNumsResponse>(response);
     }
+
+    @Override
+    protected ApiEntity fillCreateRequest(SimpleBarablahTextbookCreateRequest request) {
+        Long catid = request.getCategoryId();
+        BarablahTextbookCategory cat = mapper.selectByPrimaryKey(catid);
+        if (!cat.getPath().equals("4")) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"请选择四级教材分类!!");
+        }
+        return null;
+    }
+
+    @Override
+    protected ApiEntity fillUpdateRequest(SimpleBarablahTextbookUpdateRequest request) {
+        Long catid = request.getCategoryId();
+        BarablahTextbookCategory cat = mapper.selectByPrimaryKey(catid);
+        if (!cat.getPath().equals("4")) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"请选择四级教材分类!!");
+        }
+        return null;
+    }
+
+
 }

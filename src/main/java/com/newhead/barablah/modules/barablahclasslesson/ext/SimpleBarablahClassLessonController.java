@@ -1,19 +1,19 @@
 package com.newhead.barablah.modules.barablahclasslesson.ext;
 
+import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
+import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
 import com.newhead.barablah.modules.barablahclasslesson.base.AbstractBarablahClassLessonController;
+import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonCreateRequest;
 import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonPostponeBatchRequest;
-import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonQueryListRequest;
-import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonQueryResponse;
 import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonUpdateBatchRequest;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * RudderFramework 自动生成
@@ -26,6 +26,8 @@ import java.util.List;
 public class SimpleBarablahClassLessonController extends AbstractBarablahClassLessonController {
     @Autowired
     private SimpleBarablahClassLessonService service;
+    @Autowired
+    private BarablahClassMapper classMapper;
 
     @Override
     public SimpleBarablahClassLessonService getService() {
@@ -39,6 +41,15 @@ public class SimpleBarablahClassLessonController extends AbstractBarablahClassLe
         return new ApiEntity<>();
     }
 
+    @Override
+    protected ApiEntity fillCreateRequest(SimpleBarablahClassLessonCreateRequest request) {
+
+        BarablahClass classes = classMapper.selectByPrimaryKey(request.getClassId());
+        request.setCourseId(classes.getCourseId());
+        request.setTeacherId(classes.getTeacherId());
+        return null;
+    }
+
     @ApiOperation(value = "批量延迟课时", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "postponebatch", method = RequestMethod.POST)
     public ApiEntity postponebatch(@RequestBody SimpleBarablahClassLessonPostponeBatchRequest request) {
@@ -46,34 +57,32 @@ public class SimpleBarablahClassLessonController extends AbstractBarablahClassLe
         return new ApiEntity<>();
     }
 
-    /**
-     * 得到开班课时列表
-     *
-     * @return
-     */
-    @ApiOperation(value = "获取", response = ApiEntity.class, notes = "开班课时ID")
-    @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahClassLessonQueryResponse>> getList(@RequestParam(required = false) Long classId, @RequestParam(required = false) Long teacherId, @RequestParam(required = false) String lessonName, @RequestParam(required = false) String type) {
-        SimpleBarablahClassLessonQueryListRequest request = new SimpleBarablahClassLessonQueryListRequest();
-        if (!StringUtils.isEmpty(classId)) {
-            request.setClassId(classId);
-        }
-        if (!StringUtils.isEmpty(teacherId)) {
-            request.setTeacherId(teacherId);
-        }
-        if (!StringUtils.isEmpty(lessonName)) {
-            request.setLessonName(lessonName);
-        }
-        if (!StringUtils.isEmpty(type)) {
-            request.setType(type);
-        }
-        List<SimpleBarablahClassLessonQueryResponse> sources = getService().queryList(request);
-        for(SimpleBarablahClassLessonQueryResponse item:sources) {
-            Date curd = new Date();
-            if (item.getStartAt().getTime()>curd.getTime()) {
-                item.setStatus("未开始");
-            }
-        }
-        return new ApiEntity<List<SimpleBarablahClassLessonQueryResponse>>(sources);
-    }
+//
+//    /**
+//     * 得到开班课时列表
+//     *
+//     * @return
+//     */
+//    @ApiOperation(value = "获取", response = ApiEntity.class, notes = "开班课时ID")
+//    @RequestMapping(value = "getlist", method = RequestMethod.GET)
+//    public ApiEntity<List<SimpleBarablahClassLessonQueryResponse>> getList(@RequestParam(required = false) Long classId, @RequestParam(required = false) Long teacherId, @RequestParam(required = false) String lessonName, @RequestParam(required = false) String type) {
+//        SimpleBarablahClassLessonQueryListRequest request = new SimpleBarablahClassLessonQueryListRequest();
+//        if (!StringUtils.isEmpty(classId)) {
+//            request.setClassId(classId);
+//        }
+//        if (!StringUtils.isEmpty(lessonName)) {
+//            request.setLessonName(lessonName);
+//        }
+//        if (!StringUtils.isEmpty(type)) {
+//            request.setType(type);
+//        }
+//        List<SimpleBarablahClassLessonQueryResponse> sources = getService().queryList(request);
+//        for(SimpleBarablahClassLessonQueryResponse item:sources) {
+//            Date curd = new Date();
+//            if (item.getStartAt().getTime()>curd.getTime()) {
+//                item.setStatus("未开始");
+//            }
+//        }
+//        return new ApiEntity<List<SimpleBarablahClassLessonQueryResponse>>(sources);
+//    }
 }

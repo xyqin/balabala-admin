@@ -9,6 +9,8 @@ import lombok.Data;
  */
 @Data
 public class SimpleBarablahClassLessonQueryResponse extends AbstractBarablahClassLessonQueryResponse {
-    private String status;
+    private String week;
+
+    private String during;
 
 }

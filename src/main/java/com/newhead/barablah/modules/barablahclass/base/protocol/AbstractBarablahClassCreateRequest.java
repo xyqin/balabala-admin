@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * 
- * 2018年03月13日 07:57:06
+ * 2018年03月23日 02:01:56
  */
 @Data
 public abstract class AbstractBarablahClassCreateRequest {
@@ -23,9 +23,15 @@ public abstract class AbstractBarablahClassCreateRequest {
 
     /**
      *
-     * 教师ID
+     * 线上教师
      */
     private Long teacherId;
+
+    /**
+     *
+     * 课程分类
+     */
+    private Long courseCatId;
 
     /**
      *
@@ -35,7 +41,7 @@ public abstract class AbstractBarablahClassCreateRequest {
 
     /**
      *
-     * 外教教师ID
+     * 线下教师
      */
     private Long englishTeacherId;
 

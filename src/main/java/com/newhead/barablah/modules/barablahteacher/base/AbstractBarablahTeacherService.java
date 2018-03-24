@@ -105,6 +105,7 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
             campusIdObject.setValue(String.valueOf(entity.getCampusId()));
             campusIdObject.setChecked(false);
         }
+
         BarablahTeacherMajor  majorEntity = barablahteachermajorMapper.selectByPrimaryKey(Long.valueOf(entity.getMajor()));
         if (majorEntity!=null) {
             LabelValueItem majorObject = response.getMajorObject();

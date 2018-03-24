@@ -1,15 +1,10 @@
 package com.newhead.barablah.modules.barablahmemberhomework.base.protocol;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
-import java.util.Date;
-import java.math.BigDecimal;
-
-import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月13日 07:57:08
+ * 2018年03月24日 01:24:55
  */
 @Data
 public abstract class AbstractBarablahMemberHomeworkCreateRequest {
@@ -36,5 +31,11 @@ public abstract class AbstractBarablahMemberHomeworkCreateRequest {
      * 状态
      */
     private String status;
+
+    /**
+     *
+     * 开班ID
+     */
+    private Long classId;
 
 }

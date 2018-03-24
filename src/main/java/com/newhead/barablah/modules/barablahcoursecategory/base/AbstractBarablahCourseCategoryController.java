@@ -1,33 +1,27 @@
 package com.newhead.barablah.modules.barablahcoursecategory.base;
 
 import com.google.common.collect.Maps;
+import com.newhead.barablah.modules.barablahcoursecategory.base.repository.entity.BarablahCourseCategory;
+import com.newhead.barablah.modules.barablahcoursecategory.ext.SimpleBarablahCourseCategoryService;
+import com.newhead.barablah.modules.barablahcoursecategory.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
-import com.newhead.rudderframework.core.web.component.tree.Tree;
-import com.newhead.rudderframework.modules.LabelValueItem;
-
-
 import com.newhead.rudderframework.core.web.controller.WebController;
-import com.newhead.barablah.modules.barablahcoursecategory.base.repository.entity.BarablahCourseCategory;
-import com.newhead.barablah.modules.barablahcoursecategory.ext.SimpleBarablahCourseCategoryService;
-import com.newhead.barablah.modules.barablahcoursecategory.ext.protocol.*;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 课程分类控制器
- * 2018年03月13日 07:57:09
+ * 2018年03月22日 08:32:14
  */
 @Api(tags = "课程分类", description = "相关的API")
 public abstract class AbstractBarablahCourseCategoryController extends WebController  {
@@ -52,6 +46,14 @@ public abstract class AbstractBarablahCourseCategoryController extends WebContro
         if (StringUtils.isEmpty(request.getCategoryName())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称不能为空！");
         }
+
+
+
+
+
+
+
+
 
 
         ApiEntity entity = fillCreateRequest(request);

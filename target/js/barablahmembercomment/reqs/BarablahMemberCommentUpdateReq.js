@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月22日 08:05:50
+ * 生成时间：2018年03月24日 04:29:04
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahMemberCommentUpdateReq
  * 接口地址：barablahmembercomment/update
@@ -21,6 +21,9 @@ class BarablahMemberCommentUpdateReq extends BaseRobotReq {
         this._paramsDescriptor = [{key: 'id',
             desc: '主键',
             isRequired: false
+        },{key: 'classId',
+            desc: '班级',
+            isRequired: true
         },{key: 'memberId',
             desc: '会员ID',
             isRequired: true
@@ -30,6 +33,15 @@ class BarablahMemberCommentUpdateReq extends BaseRobotReq {
         },{key: 'content',
             desc: '评语内容',
             isRequired: true
+        },{key: 'memberHomeworkId',
+            desc: '学生作业',
+            isRequired: true
+        },{key: 'commentType',
+            desc: '性别',
+            isRequired: true
+        },{key: 'score',
+            desc: '积分',
+            isRequired: false
         }];        this.curd = 'd';
     }
 
@@ -37,11 +49,15 @@ class BarablahMemberCommentUpdateReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(id,memberId,teacherId,content) {
+    setSimpleParams(id,classId,memberId,teacherId,content,memberHomeworkId,commentType,score) {
         this.addParams('id', id);
+        this.addParams('classId', classId);
         this.addParams('memberId', memberId);
         this.addParams('teacherId', teacherId);
         this.addParams('content', content);
+        this.addParams('memberHomeworkId', memberHomeworkId);
+        this.addParams('commentType', commentType);
+        this.addParams('score', score);
     }
 
     /**

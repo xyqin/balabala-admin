@@ -9,5 +9,5 @@ import lombok.Data;
  */
 @Data
 public class SimpleBarablahCourseQueryListRequest extends AbstractBarablahCourseQueryListRequest {
-
+    private Long courseCatId;
 }

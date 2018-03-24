@@ -6,13 +6,13 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年03月13日 07:57:07
+ * @generated 2018年03月24日 03:44:07
  */
 @Data
 public abstract class AbstractBarablahTextbookQueryListRequest  {
     /**
      *
-     * 教材三级分类ID
+     * 教材四级分类
      */
      private Long categoryId;
 

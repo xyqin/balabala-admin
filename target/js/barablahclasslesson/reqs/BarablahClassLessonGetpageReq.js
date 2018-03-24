@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月22日 08:05:49
+ * 生成时间：2018年03月24日 04:29:03
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahClassLessonGetpageReq
  * 接口地址：barablahclasslesson/getpage
@@ -17,14 +17,14 @@ class BarablahClassLessonGetpageReq extends BaseRobotReq {
             url: '/barablahclasslesson/getpage',
             type: 'Get',        };
         // 请求参数的描述信息，只定义先不用
-        this._paramsDescriptor = [{key: 'classId',
-            desc: '开班ID',
-            isRequired: true
-        },{key: 'teacherId',
-            desc: '教师ID',
-            isRequired: true
-        },{key: 'lessonName',
+        this._paramsDescriptor = [{key: 'lessonName',
             desc: '课时名称',
+            isRequired: true
+        },{key: 'classId',
+            desc: '班级',
+            isRequired: true
+        },{key: 'status',
+            desc: '类型',
             isRequired: true
         },{key: 'type',
             desc: '类型',
@@ -42,10 +42,10 @@ class BarablahClassLessonGetpageReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(classId,teacherId,lessonName,type,page,size) {
-        this.addParams('classId', classId);
-        this.addParams('teacherId', teacherId);
+    setSimpleParams(lessonName,classId,status,type,page,size) {
         this.addParams('lessonName', lessonName);
+        this.addParams('classId', classId);
+        this.addParams('status', status);
         this.addParams('type', type);
         this.addParams('page', page);
         this.addParams('size', size);

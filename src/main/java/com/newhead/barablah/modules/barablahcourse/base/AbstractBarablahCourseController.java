@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 课程控制器
- * 2018年03月13日 07:57:09
+ * 2018年03月24日 03:44:09
  */
 @Api(tags = "课程", description = "相关的API")
 public abstract class AbstractBarablahCourseController extends WebController  {
@@ -54,7 +54,7 @@ public abstract class AbstractBarablahCourseController extends WebController  {
         }
 
         if (StringUtils.isEmpty(request.getTextbookCategoryId())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材二级分类ID不能为空！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材三级分类不能为空！");
         }
 
         if (StringUtils.isEmpty(request.getCourseName())) {
@@ -64,6 +64,22 @@ public abstract class AbstractBarablahCourseController extends WebController  {
         if (StringUtils.isEmpty(request.getCommission())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"总部抽取佣金（元/每位学生）不能为空！");
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         ApiEntity entity = fillCreateRequest(request);
@@ -93,7 +109,7 @@ public abstract class AbstractBarablahCourseController extends WebController  {
                 }
 
                 if (StringUtils.isEmpty(request.getTextbookCategoryId())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材二级分类ID不能为空！");
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材三级分类不能为空！");
                 }
 
                 if (StringUtils.isEmpty(request.getCourseName())) {

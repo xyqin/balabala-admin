@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教师发布作业表控制器
- * 2018年03月13日 07:57:10
+ * 2018年03月24日 01:24:57
  */
 @Api(tags = "教师发布作业表", description = "相关的API")
 public abstract class AbstractBarablahTeacherHomeworkController extends WebController  {
@@ -57,10 +57,26 @@ public abstract class AbstractBarablahTeacherHomeworkController extends WebContr
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"作业名称不能为空！");
         }
 
-        BarablahTeacherHomework homeworkName = getService().existByHomeworkName(request.getHomeworkName());
-        if (homeworkName != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"作业名称'"+request.getHomeworkName()+"'已经存在！");
+        if (StringUtils.isEmpty(request.getClassId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"开班ID不能为空！");
         }
+
+
+
+        if(request.getHomeworkName()!=null) {
+            BarablahTeacherHomework homeworkName = getService().existByHomeworkName(request.getHomeworkName());
+            if (homeworkName != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"作业名称'"+request.getHomeworkName()+"'已经存在！");
+            }
+        }
+
+
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -92,11 +108,19 @@ public abstract class AbstractBarablahTeacherHomeworkController extends WebContr
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"作业名称不能为空！");
                 }
 
+                if (StringUtils.isEmpty(request.getClassId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"开班ID不能为空！");
+                }
+
+
+    if(request.getHomeworkName()!=null) {
 
         BarablahTeacherHomework HomeworkName = getService().existByHomeworkName(request.getHomeworkName());
         if (HomeworkName != null && HomeworkName.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"作业名称"+request.getHomeworkName()+"'已经存在！");
         }
+    }
+
 
        ApiEntity entity = fillUpdateRequest(request);
         if (entity!=null) {
@@ -138,8 +162,11 @@ public abstract class AbstractBarablahTeacherHomeworkController extends WebContr
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "教师发布作业表ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahTeacherHomeworkQueryResponse>> getList() {
+    public ApiEntity<List<SimpleBarablahTeacherHomeworkQueryResponse>> getList(@RequestParam(required = false) Long classId) {
         SimpleBarablahTeacherHomeworkQueryListRequest request = new SimpleBarablahTeacherHomeworkQueryListRequest();
+        if (!StringUtils.isEmpty(classId)) {
+            request.setClassId(classId);
+        }
         List<SimpleBarablahTeacherHomeworkQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBarablahTeacherHomeworkQueryResponse>>(sources);
     }
@@ -153,9 +180,13 @@ public abstract class AbstractBarablahTeacherHomeworkController extends WebContr
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) Long classId,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahTeacherHomeworkQueryPageRequest request = new SimpleBarablahTeacherHomeworkQueryPageRequest();
+        if (!StringUtils.isEmpty(classId)) {
+            request.setClassId(classId);
+        }
         if (page==null) {
             request.setPage(1);
         } else {

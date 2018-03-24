@@ -22,6 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 
+import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
+import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClassExample;
+
+import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
 import com.newhead.barablah.modules.barablahmember.base.repository.entity.BarablahMember;
 import com.newhead.barablah.modules.barablahmember.base.repository.entity.BarablahMemberExample;
 
@@ -46,6 +50,8 @@ public abstract class AbstractBarablahMemberHomeworkService extends BaseService 
 
     protected abstract void saveOrUpdate(BarablahMemberHomework entity);
 
+    @Autowired
+    protected BarablahClassMapper barablahclassMapper;
     @Autowired
     protected BarablahMemberMapper barablahmemberMapper;
     @Autowired
@@ -123,6 +129,14 @@ public abstract class AbstractBarablahMemberHomeworkService extends BaseService 
         statusEnum.setLabel(com.newhead.barablah.modules.barablahmemberhomework.BarablahMemberHomeworkStatusEnum.getLabel(entity.getStatus()));
         statusEnum.setValue(entity.getStatus());
         statusEnum.setChecked(true);
+        BarablahClass  classIdEntity = barablahclassMapper.selectByPrimaryKey(Long.valueOf(entity.getClassId()));
+        if (classIdEntity!=null) {
+            LabelValueItem classIdObject = response.getClassIdObject();
+            classIdObject.setName("classId");
+            classIdObject.setLabel(classIdEntity.getClassName());
+            classIdObject.setValue(String.valueOf(entity.getClassId()));
+            classIdObject.setChecked(false);
+        }
         return response;
     }
 
@@ -162,6 +176,10 @@ public abstract class AbstractBarablahMemberHomeworkService extends BaseService 
             c.andStatusEqualTo(request.getStatus());
          }
 
+        if (request.getClassId()!=null) {
+            c.andClassIdEqualTo(request.getClassId());
+         }
+
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
     }
@@ -188,6 +206,10 @@ public abstract class AbstractBarablahMemberHomeworkService extends BaseService 
 
         if (request.getStatus()!=null) {
             c.andStatusEqualTo(request.getStatus());
+         }
+
+        if (request.getClassId()!=null) {
+            c.andClassIdEqualTo(request.getClassId());
          }
 
         example.setPageSize(request.getSize());
@@ -217,9 +239,13 @@ public abstract class AbstractBarablahMemberHomeworkService extends BaseService 
         Map<Long,Long> teacherIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> teacherIdResultMap = Maps.newHashMap();
 
+        Map<Long,Long> classIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> classIdResultMap = Maps.newHashMap();
+
        for(BarablahMemberHomework entity:entitys) {
             memberIdMap.put(entity.getId(),entity.getMemberId());
             teacherIdMap.put(entity.getId(),entity.getTeacherId());
+            classIdMap.put(entity.getId(),entity.getClassId());
         }
         BarablahMemberExample memberIdExample = new BarablahMemberExample();
 
@@ -251,6 +277,21 @@ public abstract class AbstractBarablahMemberHomeworkService extends BaseService 
            teacherIdItem.setLabel(item.getFullName());
            teacherIdResultMap.put(item.getId(),teacherIdItem);
         }
+        BarablahClassExample classIdExample = new BarablahClassExample();
+
+        List<Long> classIds = new ArrayList<>();
+        classIds.addAll(classIdMap.values());
+        if (classIds.size()>0) {
+            classIdExample.createCriteria().andIdIn(classIds);
+        }
+        List<BarablahClass>  classIdList = barablahclassMapper.selectByExample(classIdExample);
+        for(BarablahClass item:classIdList) {
+           LabelValueItem classIdItem = new LabelValueItem();
+           classIdItem.setName("classId");
+           classIdItem.setValue(String.valueOf(item.getId()));
+           classIdItem.setLabel(item.getClassName());
+           classIdResultMap.put(item.getId(),classIdItem);
+        }
         //第一组
         for(BarablahMemberHomework entity:entitys) {
             SimpleBarablahMemberHomeworkQueryResponse response = new SimpleBarablahMemberHomeworkQueryResponse();
@@ -276,6 +317,14 @@ public abstract class AbstractBarablahMemberHomeworkService extends BaseService 
             statusEnum.setLabel(com.newhead.barablah.modules.barablahmemberhomework.BarablahMemberHomeworkStatusEnum.getLabel(entity.getStatus()));
             statusEnum.setValue(entity.getStatus());
             statusEnum.setChecked(true);
+            Long classId = classIdMap.get(entity.getId());
+
+            LabelValueItem classIdlvi = null;
+            if (classId!=null && classIdResultMap.get(classId)!=null) {
+                classIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(classIdResultMap.get(classId),classIdlvi);
+            }
+            response.setClassIdObject(classIdlvi);
             results.add(response);
         }
     }

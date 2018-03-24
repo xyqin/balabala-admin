@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月22日 08:05:49
+ * 生成时间：2018年03月24日 04:29:03
  * 该文件系自动生成，手动修改可能会被替换
  * 根据创建或修改接口的请求字段生成
  * 表单数据：
@@ -111,15 +111,5 @@ const BARABLAHCLASS_FORM_FIELDS = [{
         label: '已开课'
         },{        value: 'FINISHED',
         label: '已结束'
-        }]},{
-    key: 'deleted',
-    type: 'Object',
-    label: '课程分类',
-    need: 'false',
-    placeholder: '请选择课程分类',
-    displayType: 'SingleList',
-    url: '/barablahcoursecategory/getlist',
-    dataLableKey: 'categoryName',
-    dataValueKey: 'id'
-}];
+        }]}];
 export default BARABLAHCLASS_FORM_FIELDS;

@@ -22,6 +22,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 
+import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
+import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClassExample;
+
+import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
+import com.newhead.barablah.modules.barablahmemberhomework.base.repository.entity.BarablahMemberHomework;
+import com.newhead.barablah.modules.barablahmemberhomework.base.repository.entity.BarablahMemberHomeworkExample;
+
+import com.newhead.barablah.modules.barablahmemberhomework.base.repository.dao.BarablahMemberHomeworkMapper;
 import com.newhead.barablah.modules.barablahmember.base.repository.entity.BarablahMember;
 import com.newhead.barablah.modules.barablahmember.base.repository.entity.BarablahMemberExample;
 
@@ -46,6 +54,10 @@ public abstract class AbstractBarablahMemberCommentService extends BaseService {
 
     protected abstract void saveOrUpdate(BarablahMemberComment entity);
 
+    @Autowired
+    protected BarablahClassMapper barablahclassMapper;
+    @Autowired
+    protected BarablahMemberHomeworkMapper barablahmemberhomeworkMapper;
     @Autowired
     protected BarablahMemberMapper barablahmemberMapper;
     @Autowired
@@ -102,6 +114,14 @@ public abstract class AbstractBarablahMemberCommentService extends BaseService {
         }
         SimpleBarablahMemberCommentGetDetailResponse response = new SimpleBarablahMemberCommentGetDetailResponse();
         BeanUtils.copyProperties(entity, response);
+        BarablahClass  classIdEntity = barablahclassMapper.selectByPrimaryKey(Long.valueOf(entity.getClassId()));
+        if (classIdEntity!=null) {
+            LabelValueItem classIdObject = response.getClassIdObject();
+            classIdObject.setName("classId");
+            classIdObject.setLabel(classIdEntity.getClassName());
+            classIdObject.setValue(String.valueOf(entity.getClassId()));
+            classIdObject.setChecked(false);
+        }
         BarablahMember  memberIdEntity = barablahmemberMapper.selectByPrimaryKey(Long.valueOf(entity.getMemberId()));
         if (memberIdEntity!=null) {
             LabelValueItem memberIdObject = response.getMemberIdObject();
@@ -118,6 +138,19 @@ public abstract class AbstractBarablahMemberCommentService extends BaseService {
             teacherIdObject.setValue(String.valueOf(entity.getTeacherId()));
             teacherIdObject.setChecked(false);
         }
+        BarablahMemberHomework  memberHomeworkIdEntity = barablahmemberhomeworkMapper.selectByPrimaryKey(Long.valueOf(entity.getMemberHomeworkId()));
+        if (memberHomeworkIdEntity!=null) {
+            LabelValueItem memberHomeworkIdObject = response.getMemberHomeworkIdObject();
+            memberHomeworkIdObject.setName("memberHomeworkId");
+            memberHomeworkIdObject.setLabel(memberHomeworkIdEntity.getHomeworkName());
+            memberHomeworkIdObject.setValue(String.valueOf(entity.getMemberHomeworkId()));
+            memberHomeworkIdObject.setChecked(false);
+        }
+        LabelValueItem commentTypeEnum = response.getCommentTypeEnum();
+        commentTypeEnum.setName("commentType");
+        commentTypeEnum.setLabel(com.newhead.barablah.modules.barablahmembercomment.BarablahMemberCommentCommentTypeEnum.getLabel(entity.getCommentType()));
+        commentTypeEnum.setValue(entity.getCommentType());
+        commentTypeEnum.setChecked(true);
         return response;
     }
 
@@ -149,9 +182,17 @@ public abstract class AbstractBarablahMemberCommentService extends BaseService {
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
 
+        if (request.getClassId()!=null) {
+            c.andClassIdEqualTo(request.getClassId());
+         }
+
         if (request.getContent()!=null) {
             c.andContentLike("%"+request.getContent()+"%");
         }
+
+        if (request.getCommentType()!=null) {
+            c.andCommentTypeEqualTo(request.getCommentType());
+         }
 
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
@@ -173,9 +214,17 @@ public abstract class AbstractBarablahMemberCommentService extends BaseService {
         String ordersrc ="";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
+        if (request.getClassId()!=null) {
+            c.andClassIdEqualTo(request.getClassId());
+         }
+
         if (request.getContent()!=null) {
             c.andContentLike("%"+request.getContent()+"%");
         }
+
+        if (request.getCommentType()!=null) {
+            c.andCommentTypeEqualTo(request.getCommentType());
+         }
 
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
@@ -198,15 +247,38 @@ public abstract class AbstractBarablahMemberCommentService extends BaseService {
      * @param results
      */
     private void convertEntityToResponse(List<BarablahMemberComment> entitys,List<SimpleBarablahMemberCommentQueryResponse> results) {
+        Map<Long,Long> classIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> classIdResultMap = Maps.newHashMap();
+
         Map<Long,Long> memberIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> memberIdResultMap = Maps.newHashMap();
 
         Map<Long,Long> teacherIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> teacherIdResultMap = Maps.newHashMap();
 
+        Map<Long,Long> memberHomeworkIdMap = Maps.newHashMap();
+        Map<Long,LabelValueItem> memberHomeworkIdResultMap = Maps.newHashMap();
+
        for(BarablahMemberComment entity:entitys) {
+            classIdMap.put(entity.getId(),entity.getClassId());
             memberIdMap.put(entity.getId(),entity.getMemberId());
             teacherIdMap.put(entity.getId(),entity.getTeacherId());
+            memberHomeworkIdMap.put(entity.getId(),entity.getMemberHomeworkId());
+        }
+        BarablahClassExample classIdExample = new BarablahClassExample();
+
+        List<Long> classIds = new ArrayList<>();
+        classIds.addAll(classIdMap.values());
+        if (classIds.size()>0) {
+            classIdExample.createCriteria().andIdIn(classIds);
+        }
+        List<BarablahClass>  classIdList = barablahclassMapper.selectByExample(classIdExample);
+        for(BarablahClass item:classIdList) {
+           LabelValueItem classIdItem = new LabelValueItem();
+           classIdItem.setName("classId");
+           classIdItem.setValue(String.valueOf(item.getId()));
+           classIdItem.setLabel(item.getClassName());
+           classIdResultMap.put(item.getId(),classIdItem);
         }
         BarablahMemberExample memberIdExample = new BarablahMemberExample();
 
@@ -238,10 +310,33 @@ public abstract class AbstractBarablahMemberCommentService extends BaseService {
            teacherIdItem.setLabel(item.getFullName());
            teacherIdResultMap.put(item.getId(),teacherIdItem);
         }
+        BarablahMemberHomeworkExample memberHomeworkIdExample = new BarablahMemberHomeworkExample();
+
+        List<Long> memberHomeworkIds = new ArrayList<>();
+        memberHomeworkIds.addAll(memberHomeworkIdMap.values());
+        if (memberHomeworkIds.size()>0) {
+            memberHomeworkIdExample.createCriteria().andIdIn(memberHomeworkIds);
+        }
+        List<BarablahMemberHomework>  memberHomeworkIdList = barablahmemberhomeworkMapper.selectByExample(memberHomeworkIdExample);
+        for(BarablahMemberHomework item:memberHomeworkIdList) {
+           LabelValueItem memberHomeworkIdItem = new LabelValueItem();
+           memberHomeworkIdItem.setName("memberHomeworkId");
+           memberHomeworkIdItem.setValue(String.valueOf(item.getId()));
+           memberHomeworkIdItem.setLabel(item.getHomeworkName());
+           memberHomeworkIdResultMap.put(item.getId(),memberHomeworkIdItem);
+        }
         //第一组
         for(BarablahMemberComment entity:entitys) {
             SimpleBarablahMemberCommentQueryResponse response = new SimpleBarablahMemberCommentQueryResponse();
             BeanUtils.copyProperties(entity,response);
+            Long classId = classIdMap.get(entity.getId());
+
+            LabelValueItem classIdlvi = null;
+            if (classId!=null && classIdResultMap.get(classId)!=null) {
+                classIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(classIdResultMap.get(classId),classIdlvi);
+            }
+            response.setClassIdObject(classIdlvi);
             Long memberId = memberIdMap.get(entity.getId());
 
             LabelValueItem memberIdlvi = null;
@@ -258,6 +353,19 @@ public abstract class AbstractBarablahMemberCommentService extends BaseService {
                 BeanUtils.copyProperties(teacherIdResultMap.get(teacherId),teacherIdlvi);
             }
             response.setTeacherIdObject(teacherIdlvi);
+            Long memberHomeworkId = memberHomeworkIdMap.get(entity.getId());
+
+            LabelValueItem memberHomeworkIdlvi = null;
+            if (memberHomeworkId!=null && memberHomeworkIdResultMap.get(memberHomeworkId)!=null) {
+                memberHomeworkIdlvi = new LabelValueItem();
+                BeanUtils.copyProperties(memberHomeworkIdResultMap.get(memberHomeworkId),memberHomeworkIdlvi);
+            }
+            response.setMemberHomeworkIdObject(memberHomeworkIdlvi);
+            LabelValueItem commentTypeEnum = response.getCommentTypeEnum();
+            commentTypeEnum.setName("commentType");
+            commentTypeEnum.setLabel(com.newhead.barablah.modules.barablahmembercomment.BarablahMemberCommentCommentTypeEnum.getLabel(entity.getCommentType()));
+            commentTypeEnum.setValue(entity.getCommentType());
+            commentTypeEnum.setChecked(true);
             results.add(response);
         }
     }

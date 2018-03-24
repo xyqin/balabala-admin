@@ -49,6 +49,15 @@ public class SimpleBarablahTextbookCategoryController extends AbstractBarablahTe
             if (level>4) throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材类别最大只允许4级！");
             request.setPath(String.valueOf(level));
         }
+
+        if (request.getParentId()==null) {
+            request.setParentId(0l);
+        }
+
+        BarablahTextbookCategoryExample s = new BarablahTextbookCategoryExample();
+        s.createCriteria().andParentIdEqualTo(request.getParentId());
+        long count = service.getMapper().countByExample(s);
+        request.setPosition((int)count+1);
         return null;
     }
 
@@ -57,6 +66,9 @@ public class SimpleBarablahTextbookCategoryController extends AbstractBarablahTe
     protected ApiEntity fillUpdateRequest(SimpleBarablahTextbookCategoryUpdateRequest request) {
         if (request.getParentId()==null) {
             request.setParentId(0l);
+        }
+        if (!isAllow(request.getParentId(),request.getId())){
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"选择的上级节点不能是自己或子节点!!!");
         }
         if (request.getParentId()!=0) {
             BarablahTextbookCategory entity = service.getMapper().selectByPrimaryKey(request.getParentId());
@@ -70,15 +82,6 @@ public class SimpleBarablahTextbookCategoryController extends AbstractBarablahTe
             request.setPath(String.valueOf(level));
         }
 
-        if (request.getParentId()==null) {
-            request.setParentId(0l);
-        }
-
-        BarablahTextbookCategoryExample s = new BarablahTextbookCategoryExample();
-        s.createCriteria().andParentIdEqualTo(request.getParentId());
-        long count = service.getMapper().countByExample(s);
-        request.setPosition((int)count+1);
-
         return null;
     }
 
@@ -89,6 +92,18 @@ public class SimpleBarablahTextbookCategoryController extends AbstractBarablahTe
         return new ApiEntity<>(tree);
     }
 
+    private boolean isAllow(long parentId,long curId) {
+        if (parentId==curId) {
+            return false;
+        } else {
+            BarablahTextbookCategory p1 = service.getMapper().selectByPrimaryKey(parentId);
+            if (p1==null) {
+                return true;
+            } else {
+                return isAllow(p1.getParentId(),curId);
+            }
+        }
+    }
 
     private int level(long id) {
         BarablahTextbookCategoryExample example = new BarablahTextbookCategoryExample();

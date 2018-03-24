@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员课时表控制器
- * 2018年03月22日 08:05:48
+ * 2018年03月24日 04:29:02
  */
 @Api(tags = "会员课时表", description = "相关的API")
 public abstract class AbstractBarablahMemberLessonController extends WebController  {
@@ -68,6 +68,8 @@ public abstract class AbstractBarablahMemberLessonController extends WebControll
         if (StringUtils.isEmpty(request.getProbational())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否试听不能为空！");
         }
+
+
 
 
 

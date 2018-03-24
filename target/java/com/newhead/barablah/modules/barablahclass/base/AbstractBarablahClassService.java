@@ -173,14 +173,6 @@ public abstract class AbstractBarablahClassService extends BaseService {
         statusEnum.setLabel(com.newhead.barablah.modules.barablahclass.BarablahClassStatusEnum.getLabel(entity.getStatus()));
         statusEnum.setValue(entity.getStatus());
         statusEnum.setChecked(true);
-        BarablahCourseCategory  deletedEntity = barablahcoursecategoryMapper.selectByPrimaryKey(Long.valueOf(entity.getDeleted()));
-        if (deletedEntity!=null) {
-            LabelValueItem deletedObject = response.getDeletedObject();
-            deletedObject.setName("deleted");
-            deletedObject.setLabel(deletedEntity.getCategoryName());
-            deletedObject.setValue(String.valueOf(entity.getDeleted()));
-            deletedObject.setChecked(false);
-        }
         return response;
     }
 
@@ -319,9 +311,6 @@ public abstract class AbstractBarablahClassService extends BaseService {
         Map<Long,Long> englishTeacherIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> englishTeacherIdResultMap = Maps.newHashMap();
 
-        Map<Long,Long> deletedMap = Maps.newHashMap();
-        Map<Long,LabelValueItem> deletedResultMap = Maps.newHashMap();
-
        for(BarablahClass entity:entitys) {
             categoryIdMap.put(entity.getId(),entity.getCategoryId());
             campusIdMap.put(entity.getId(),entity.getCampusId());
@@ -329,7 +318,6 @@ public abstract class AbstractBarablahClassService extends BaseService {
             courseCatIdMap.put(entity.getId(),entity.getCourseCatId());
             courseIdMap.put(entity.getId(),entity.getCourseId());
             englishTeacherIdMap.put(entity.getId(),entity.getEnglishTeacherId());
-            deletedMap.put(entity.getId(),entity.getDeleted());
         }
         BarablahClassCategoryExample categoryIdExample = new BarablahClassCategoryExample();
 
@@ -421,21 +409,6 @@ public abstract class AbstractBarablahClassService extends BaseService {
            englishTeacherIdItem.setLabel(item.getFullName());
            englishTeacherIdResultMap.put(item.getId(),englishTeacherIdItem);
         }
-        BarablahCourseCategoryExample deletedExample = new BarablahCourseCategoryExample();
-
-        List<Long> deleteds = new ArrayList<>();
-        deleteds.addAll(deletedMap.values());
-        if (deleteds.size()>0) {
-            deletedExample.createCriteria().andIdIn(deleteds);
-        }
-        List<BarablahCourseCategory>  deletedList = barablahcoursecategoryMapper.selectByExample(deletedExample);
-        for(BarablahCourseCategory item:deletedList) {
-           LabelValueItem deletedItem = new LabelValueItem();
-           deletedItem.setName("deleted");
-           deletedItem.setValue(String.valueOf(item.getId()));
-           deletedItem.setLabel(item.getCategoryName());
-           deletedResultMap.put(item.getId(),deletedItem);
-        }
         //第一组
         for(BarablahClass entity:entitys) {
             SimpleBarablahClassQueryResponse response = new SimpleBarablahClassQueryResponse();
@@ -493,14 +466,6 @@ public abstract class AbstractBarablahClassService extends BaseService {
             statusEnum.setLabel(com.newhead.barablah.modules.barablahclass.BarablahClassStatusEnum.getLabel(entity.getStatus()));
             statusEnum.setValue(entity.getStatus());
             statusEnum.setChecked(true);
-            Long deleted = deletedMap.get(entity.getId());
-
-            LabelValueItem deletedlvi = null;
-            if (deleted!=null && deletedResultMap.get(deleted)!=null) {
-                deletedlvi = new LabelValueItem();
-                BeanUtils.copyProperties(deletedResultMap.get(deleted),deletedlvi);
-            }
-            response.setDeletedObject(deletedlvi);
             results.add(response);
         }
     }

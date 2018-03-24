@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月22日 08:05:48
+ * 生成时间：2018年03月24日 04:29:03
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的请求字段生成，如果没有搜索条件返回空数组
  * 搜索条件：拼团
@@ -14,8 +14,8 @@
 const BARABLAHTEXTBOOK_CONDITIONS = [{
     key: 'categoryId',
     type: 'Object',
-    label: '教材三级分类ID',
-    placeholder: '请选择教材三级分类ID',
+    label: '教材四级分类',
+    placeholder: '请选择教材四级分类',
     displayType: 'SingleTree',
     url: '/barablahtextbookcategory/gettree',
     dataLableKey: 'categoryName',

@@ -1,5 +1,5 @@
 /**
- * 生成时间：2018年03月22日 08:05:48
+ * 生成时间：2018年03月24日 04:29:02
  * 该文件系自动生成，手动修改可能会被替换
  * 根据搜索接口的响应字段生成
  * 表头：拼团
@@ -17,7 +17,7 @@ key: 'id',
 type:'Id',
 checked: true
 },{
-title: '教材三级分类ID',
+title: '教材四级分类',
 dataIndex: 'categoryIdObject',
 key: 'categoryIdObject',
 type:'Object',

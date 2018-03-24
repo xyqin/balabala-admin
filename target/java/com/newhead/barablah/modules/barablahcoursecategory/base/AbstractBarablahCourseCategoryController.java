@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 课程分类控制器
- * 2018年03月22日 08:05:47
+ * 2018年03月24日 04:29:02
  */
 @Api(tags = "课程分类", description = "相关的API")
 public abstract class AbstractBarablahCourseCategoryController extends WebController  {
@@ -52,6 +52,7 @@ public abstract class AbstractBarablahCourseCategoryController extends WebContro
         if (StringUtils.isEmpty(request.getCategoryName())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称不能为空！");
         }
+
 
 
 

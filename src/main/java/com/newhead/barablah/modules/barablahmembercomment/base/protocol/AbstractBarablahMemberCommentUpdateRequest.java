@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月13日 07:57:07
+ * 2018年03月24日 01:24:55
  */
 @Data
 public abstract class AbstractBarablahMemberCommentUpdateRequest {
@@ -18,6 +18,11 @@ public abstract class AbstractBarablahMemberCommentUpdateRequest {
      * 主键
      */
     private Long id;
+    /**
+     *
+     * 班级
+     */
+    private Integer classId;
     /**
      *
      * 会员ID
@@ -33,5 +38,20 @@ public abstract class AbstractBarablahMemberCommentUpdateRequest {
      * 评语内容
      */
     private String content;
+    /**
+     *
+     * 学生作业
+     */
+    private Long memberHomeworkId;
+    /**
+     *
+     * 性别
+     */
+    private String commentType;
+    /**
+     *
+     * 积分
+     */
+    private String score;
 
 }

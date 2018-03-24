@@ -2,10 +2,16 @@ package com.newhead.barablah.modules.barablahclass.base.protocol;
 
 import com.newhead.rudderframework.modules.LabelValueItem;
 import lombok.Data;
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+
+import java.math.BigDecimal;
 
 /**
  * 
- * 2018年03月13日 07:57:06
+ * 2018年03月23日 02:01:56
  */
 @Data
 public abstract class AbstractBarablahClassGetDetailResponse {
@@ -29,9 +35,15 @@ public abstract class AbstractBarablahClassGetDetailResponse {
 
     /**
      *
-     * 教师ID
+     * 线上教师
      */
     private LabelValueItem TeacherIdObject = new LabelValueItem();
+
+    /**
+     *
+     * 课程分类
+     */
+    private LabelValueItem CourseCatIdObject = new LabelValueItem();
 
     /**
      *
@@ -41,7 +53,7 @@ public abstract class AbstractBarablahClassGetDetailResponse {
 
     /**
      *
-     * 外教教师ID
+     * 线下教师
      */
     private LabelValueItem EnglishTeacherIdObject = new LabelValueItem();
 

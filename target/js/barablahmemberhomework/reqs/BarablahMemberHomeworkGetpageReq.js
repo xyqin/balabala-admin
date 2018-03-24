@@ -1,7 +1,7 @@
 import BaseRobotReq from "../../../base/reqs/BaseRobotReq";
 
 /**
- * 生成时间：2018年03月22日 08:05:50
+ * 生成时间：2018年03月24日 04:29:04
  * 该文件系自动生成，手动修改可能会被替换
  * BarablahMemberHomeworkGetpageReq
  * 接口地址：barablahmemberhomework/getpage
@@ -23,6 +23,9 @@ class BarablahMemberHomeworkGetpageReq extends BaseRobotReq {
         },{key: 'status',
             desc: '状态',
             isRequired: true
+        },{key: 'classId',
+            desc: '开班ID',
+            isRequired: true
         },{key: 'page',
             desc: '页码',
             isRequired: false
@@ -36,9 +39,10 @@ class BarablahMemberHomeworkGetpageReq extends BaseRobotReq {
      * 添加接口请求参数，适用于参数较少
      * @param id 活动编号
      */
-    setSimpleParams(homeworkName,status,page,size) {
+    setSimpleParams(homeworkName,status,classId,page,size) {
         this.addParams('homeworkName', homeworkName);
         this.addParams('status', status);
+        this.addParams('classId', classId);
         this.addParams('page', page);
         this.addParams('size', size);
     }

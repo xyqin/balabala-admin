@@ -102,6 +102,7 @@ public class BaseField extends BaseTemplateVO {
      * @return
      */
     public static BaseField newBuild(String fieldName, String remarkstr, String javaType) {
+
         BaseField field = JSON.parseObject(remarkstr,BaseField.class);
         if (field==null) {
             System.out.println("8******************");

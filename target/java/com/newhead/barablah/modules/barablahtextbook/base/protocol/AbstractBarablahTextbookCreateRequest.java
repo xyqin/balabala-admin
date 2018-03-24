@@ -9,13 +9,13 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月22日 08:05:45
+ * 2018年03月24日 04:29:00
  */
 @Data
 public abstract class AbstractBarablahTextbookCreateRequest {
     /**
      *
-     * 教材三级分类ID
+     * 教材四级分类
      */
     private Long categoryId;
 
@@ -29,14 +29,12 @@ public abstract class AbstractBarablahTextbookCreateRequest {
      *
      * 题目名称
      */
-    @NotEmpty(message="barablahTextbook题目名称不能为空")
     private String textbookName;
 
     /**
      *
      * 问题
      */
-    @NotEmpty(message="barablahTextbook问题不能为空")
     private String question;
 
     /**

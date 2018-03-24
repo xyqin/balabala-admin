@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月22日 08:05:44
+ * 2018年03月24日 04:28:59
  */
 @Data
 public abstract class AbstractBarablahClassUpdateRequest {
@@ -70,10 +70,5 @@ public abstract class AbstractBarablahClassUpdateRequest {
      * 状态
      */
     private String status;
-    /**
-     *
-     * 课程分类
-     */
-    private Boolean deleted;
 
 }

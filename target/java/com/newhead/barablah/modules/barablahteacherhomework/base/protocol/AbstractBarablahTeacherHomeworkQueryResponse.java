@@ -12,7 +12,7 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年03月22日 08:05:45
+ * @generated 2018年03月24日 04:29:00
  */
 @Data
 public abstract class AbstractBarablahTeacherHomeworkQueryResponse {
@@ -33,5 +33,11 @@ public abstract class AbstractBarablahTeacherHomeworkQueryResponse {
      * 作业名称
      */
      private String homeworkName;
+
+    /**
+     *
+     * 开班ID
+     */
+    private LabelValueItem ClassIdObject = new LabelValueItem();
 
 }
