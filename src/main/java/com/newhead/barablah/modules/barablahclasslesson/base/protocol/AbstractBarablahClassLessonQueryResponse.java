@@ -1,27 +1,26 @@
 package com.newhead.barablah.modules.barablahclasslesson.base.protocol;
 
 import com.newhead.rudderframework.modules.LabelValueItem;
-import lombok.Data;
-
+import com.newhead.rudderframework.core.web.component.tree.Tree;
 import java.util.Date;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.ArrayList;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+
+import lombok.Data;
 
 /**
  * 
- * @generated 2018年03月24日 02:09:41
+ * @generated 2018年03月25日 10:55:20
  */
 @Data
 public abstract class AbstractBarablahClassLessonQueryResponse {
     /**
      *
-     * 课时ID
+     * ID
      */
      private Long id;
-
-    /**
-     *
-     * 课时名称
-     */
-     private String lessonName;
 
     /**
      *
@@ -31,13 +30,19 @@ public abstract class AbstractBarablahClassLessonQueryResponse {
 
     /**
      *
-     * 教材四级分类
+     * 课时名称
+     */
+     private String lessonName;
+
+    /**
+     *
+     * 配套教材
      */
     private LabelValueItem CategoryIdObject = new LabelValueItem();
 
     /**
      *
-     * 开始时间
+     * 开课时间
      */
      private Date startAt;
 
@@ -49,19 +54,19 @@ public abstract class AbstractBarablahClassLessonQueryResponse {
 
     /**
      *
-     * 课时视频缩略图
+     * 视频预览
      */
      private String thumbnail;
 
     /**
      *
-     * 是否备课
+     * 备课情况
      */
      private Boolean prepared;
 
     /**
      *
-     * 类型
+     * 课时状态
      */
     private LabelValueItem StatusEnum = new LabelValueItem();
 

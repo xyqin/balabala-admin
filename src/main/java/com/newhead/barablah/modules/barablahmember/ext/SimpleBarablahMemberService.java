@@ -1,8 +1,5 @@
 package com.newhead.barablah.modules.barablahmember.ext;
 
-import com.google.common.collect.Maps;
-import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus;
-import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampusExample;
 import com.newhead.barablah.modules.barablahmember.base.AbstractBarablahMemberService;
 import com.newhead.barablah.modules.barablahmember.base.repository.dao.BarablahMemberMapper;
 import com.newhead.barablah.modules.barablahmember.base.repository.entity.BarablahMember;
@@ -13,20 +10,17 @@ import com.newhead.barablah.modules.barablahmemberpassport.base.repository.entit
 import com.newhead.barablah.modules.barablahmemberpassport.base.repository.entity.BarablahMemberPassportExample;
 import com.newhead.rudderframework.core.security.ShiroAuthorizingRealm;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
-import com.newhead.rudderframework.modules.LabelValueItem;
 import com.newhead.rudderframework.modules.rudderuser.base.repository.dao.RudderUserMapper;
 import com.newhead.rudderframework.modules.rudderuser.base.repository.entity.RudderUser;
 import io.swagger.annotations.Api;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.collections.CollectionUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -199,62 +193,4 @@ public class SimpleBarablahMemberService extends AbstractBarablahMemberService {
         }
     }
 
-    private void convertEntityToResponse(List<BarablahMember> entitys, List<SimpleBarablahMemberQueryResponse> results) {
-        Map<Long, Long> campusIdMap = Maps.newHashMap();
-        Map<Long, LabelValueItem> campusIdResultMap = Maps.newHashMap();
-
-        for (BarablahMember entity : entitys) {
-            campusIdMap.put(entity.getId(), entity.getCampusId());
-        }
-        BarablahCampusExample campusIdExample = new BarablahCampusExample();
-
-        List<Long> campusIds = new ArrayList<>();
-        campusIds.addAll(campusIdMap.values());
-        if (campusIds.size() > 0) {
-            campusIdExample.createCriteria().andIdIn(campusIds);
-        }
-        List<BarablahCampus> campusIdList = barablahcampusMapper.selectByExample(campusIdExample);
-        for (BarablahCampus item : campusIdList) {
-            LabelValueItem campusIdItem = new LabelValueItem();
-            campusIdItem.setName("campusId");
-            campusIdItem.setValue(String.valueOf(item.getId()));
-            campusIdItem.setLabel(item.getCampusName());
-            campusIdResultMap.put(item.getId(), campusIdItem);
-        }
-        //第一组
-        for (BarablahMember entity : entitys) {
-            SimpleBarablahMemberQueryResponse response = new SimpleBarablahMemberQueryResponse();
-            BeanUtils.copyProperties(entity, response);
-            Long campusId = campusIdMap.get(entity.getId());
-
-            LabelValueItem campusIdlvi = null;
-            if (campusId != null && campusIdResultMap.get(campusId) != null) {
-                campusIdlvi = new LabelValueItem();
-                BeanUtils.copyProperties(campusIdResultMap.get(campusId), campusIdlvi);
-            }
-            response.setCampusIdObject(campusIdlvi);
-            LabelValueItem genderEnum = response.getGenderEnum();
-            genderEnum.setName("gender");
-            genderEnum.setLabel(com.newhead.barablah.modules.barablahmember.BarablahMemberGenderEnum.getLabel(entity.getGender()));
-            genderEnum.setValue(entity.getGender());
-            genderEnum.setChecked(true);
-            LabelValueItem statusEnum = response.getStatusEnum();
-            statusEnum.setName("status");
-            statusEnum.setLabel(com.newhead.barablah.modules.barablahmember.BarablahMemberStatusEnum.getLabel(entity.getStatus()));
-            statusEnum.setValue(entity.getStatus());
-            statusEnum.setChecked(true);
-
-            // 抓取手机号
-            BarablahMemberPassportExample example = new BarablahMemberPassportExample();
-            example.createCriteria().andMemberIdEqualTo(entity.getId()).andProviderEqualTo("PHONE");
-
-            List<BarablahMemberPassport> passports = passportMapper.selectByExample(example);
-
-            if (CollectionUtils.isNotEmpty(passports)) {
-                response.setPhoneNumber(passports.get(0).getProviderId());
-            }
-
-            results.add(response);
-        }
-    }
 }

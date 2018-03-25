@@ -1,28 +1,33 @@
 package com.newhead.barablah.modules.barablahtextbookcategory.base;
 
 import com.google.common.collect.Maps;
-import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategory;
-import com.newhead.barablah.modules.barablahtextbookcategory.ext.SimpleBarablahTextbookCategoryService;
-import com.newhead.barablah.modules.barablahtextbookcategory.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
 import com.newhead.rudderframework.core.web.component.tree.Tree;
+import com.newhead.rudderframework.modules.LabelValueItem;
+
+
 import com.newhead.rudderframework.core.web.controller.WebController;
+import com.newhead.barablah.modules.barablahtextbookcategory.base.repository.entity.BarablahTextbookCategory;
+import com.newhead.barablah.modules.barablahtextbookcategory.ext.SimpleBarablahTextbookCategoryService;
+import com.newhead.barablah.modules.barablahtextbookcategory.ext.protocol.*;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 教材分类表控制器
- * 2018年03月13日 07:57:10
+ * 2018年03月25日 10:55:23
  */
 @Api(tags = "教材分类表", description = "相关的API")
 public abstract class AbstractBarablahTextbookCategoryController extends WebController  {
@@ -44,15 +49,27 @@ public abstract class AbstractBarablahTextbookCategoryController extends WebCont
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahTextbookCategoryCreateRequest request) {
-
         if (StringUtils.isEmpty(request.getCategoryName())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称不能为空！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"名称不能为空！");
         }
 
-        BarablahTextbookCategory categoryName = getService().existByCategoryName(request.getCategoryName());
-        if (categoryName != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称'"+request.getCategoryName()+"'已经存在！");
+
+
+        if(request.getCategoryName()!=null) {
+            BarablahTextbookCategory categoryName = getService().existByCategoryName(request.getCategoryName());
+            if (categoryName != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"名称'"+request.getCategoryName()+"'已经存在！");
+            }
         }
+
+
+
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -77,14 +94,18 @@ public abstract class AbstractBarablahTextbookCategoryController extends WebCont
     public ApiEntity update(@RequestBody SimpleBarablahTextbookCategoryUpdateRequest request) {
 
                 if (StringUtils.isEmpty(request.getCategoryName())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称不能为空！");
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"名称不能为空！");
                 }
 
 
+    if(request.getCategoryName()!=null) {
+
         BarablahTextbookCategory CategoryName = getService().existByCategoryName(request.getCategoryName());
         if (CategoryName != null && CategoryName.getId()!=request.getId()) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称"+request.getCategoryName()+"'已经存在！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"名称"+request.getCategoryName()+"'已经存在！");
         }
+    }
+
 
        ApiEntity entity = fillUpdateRequest(request);
         if (entity!=null) {

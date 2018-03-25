@@ -146,7 +146,7 @@ public abstract class AbstractBarablahMemberSignupService extends BaseService {
         BarablahMemberSignupExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getMemberId()!=null) {
@@ -184,15 +184,12 @@ public abstract class AbstractBarablahMemberSignupService extends BaseService {
         if (request.getMemberId()!=null) {
             c.andMemberIdEqualTo(request.getMemberId());
          }
-
         if (request.getClassId()!=null) {
             c.andClassIdEqualTo(request.getClassId());
          }
-
         if (request.getPayment()!=null) {
             c.andPaymentLike("%"+request.getPayment()+"%");
         }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -213,7 +210,7 @@ public abstract class AbstractBarablahMemberSignupService extends BaseService {
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahMemberSignup> entitys,List<SimpleBarablahMemberSignupQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahMemberSignup> entitys,List<SimpleBarablahMemberSignupQueryResponse> results) {
         Map<Long,Long> memberIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> memberIdResultMap = Maps.newHashMap();
 

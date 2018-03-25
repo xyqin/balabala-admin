@@ -12,20 +12,26 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年03月13日 07:57:06
+ * @generated 2018年03月25日 10:55:20
  */
 @Data
 public abstract class AbstractBarablahClassCategoryQueryResponse {
     /**
      *
-     * 班级分类ID
+     * ID
      */
      private Long id;
 
     /**
      *
-     * 分类名称
+     * 名称
      */
      private String categoryName;
+
+    /**
+     *
+     * 排序号
+     */
+     private Integer position;
 
 }

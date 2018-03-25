@@ -8,13 +8,13 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年03月13日 07:57:07
+ * @generated 2018年03月25日 10:55:20
  */
 @Data
 public abstract class AbstractBarablahMemberQueryPageRequest extends PageRequest {
     /**
      *
-     * 校区ID
+     * 所在校区
      */
      private Long campusId;
 

@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 课程控制器
- * 2018年03月24日 03:44:09
+ * 2018年03月25日 10:55:23
  */
 @Api(tags = "课程", description = "相关的API")
 public abstract class AbstractBarablahCourseController extends WebController  {
@@ -50,15 +50,15 @@ public abstract class AbstractBarablahCourseController extends WebController  {
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahCourseCreateRequest request) {
         if (StringUtils.isEmpty(request.getCategoryId())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课程分类ID不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getTextbookCategoryId())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材三级分类不能为空！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课程分类不能为空！");
         }
 
         if (StringUtils.isEmpty(request.getCourseName())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课程名称不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getTextbookCategoryId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"配套教材不能为空！");
         }
 
         if (StringUtils.isEmpty(request.getCommission())) {
@@ -105,15 +105,15 @@ public abstract class AbstractBarablahCourseController extends WebController  {
     public ApiEntity update(@RequestBody SimpleBarablahCourseUpdateRequest request) {
 
                 if (StringUtils.isEmpty(request.getCategoryId())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课程分类ID不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getTextbookCategoryId())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材三级分类不能为空！");
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课程分类不能为空！");
                 }
 
                 if (StringUtils.isEmpty(request.getCourseName())) {
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课程名称不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getTextbookCategoryId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"配套教材不能为空！");
                 }
 
                 if (StringUtils.isEmpty(request.getCommission())) {

@@ -12,19 +12,19 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年03月13日 07:57:07
+ * @generated 2018年03月25日 10:55:20
  */
 @Data
 public abstract class AbstractBarablahMemberQueryResponse {
     /**
      *
-     * 会员ID
+     * ID
      */
      private Long id;
 
     /**
      *
-     * 校区ID
+     * 所在校区
      */
     private LabelValueItem CampusIdObject = new LabelValueItem();
 

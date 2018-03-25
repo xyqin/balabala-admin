@@ -132,7 +132,7 @@ public abstract class AbstractBarablahMemberPassportService extends BaseService 
         BarablahMemberPassportExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         convertEntityToResponse(getMapper().selectByExample(example),results);
@@ -175,7 +175,7 @@ public abstract class AbstractBarablahMemberPassportService extends BaseService 
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahMemberPassport> entitys,List<SimpleBarablahMemberPassportQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahMemberPassport> entitys,List<SimpleBarablahMemberPassportQueryResponse> results) {
         Map<Long,Long> memberIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> memberIdResultMap = Maps.newHashMap();
 

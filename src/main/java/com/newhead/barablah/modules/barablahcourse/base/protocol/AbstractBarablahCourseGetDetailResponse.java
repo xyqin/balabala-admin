@@ -11,27 +11,21 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2018年03月24日 03:44:06
+ * 2018年03月25日 10:55:20
  */
 @Data
 public abstract class AbstractBarablahCourseGetDetailResponse {
     /**
      *
-     * 课程ID
+     * ID
      */
      private Long id;
 
     /**
      *
-     * 课程分类ID
+     * 课程分类
      */
     private LabelValueItem CategoryIdObject = new LabelValueItem();
-
-    /**
-     *
-     * 教材三级分类
-     */
-    private LabelValueItem TextbookCategoryIdObject = new LabelValueItem();
 
     /**
      *
@@ -41,13 +35,19 @@ public abstract class AbstractBarablahCourseGetDetailResponse {
 
     /**
      *
+     * 配套教材
+     */
+    private LabelValueItem TextbookCategoryIdObject = new LabelValueItem();
+
+    /**
+     *
      * 线上授课次数
      */
      private Short onlineLessons;
 
     /**
      *
-     * 最大允许线上授课节数
+     * 最大线上授课节数
      */
      private Short onlineMaxLessons;
 
@@ -59,7 +59,7 @@ public abstract class AbstractBarablahCourseGetDetailResponse {
 
     /**
      *
-     * 最大允许线上授课时长
+     * 最大线上授课时长
      */
      private Short onlineMaxDuration;
 

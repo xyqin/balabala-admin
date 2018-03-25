@@ -11,13 +11,13 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2018年03月13日 07:57:08
+ * 2018年03月25日 10:55:21
  */
 @Data
 public abstract class AbstractBarablahPositionGetDetailResponse {
     /**
      *
-     * 位置ID
+     * ID
      */
      private Long id;
 

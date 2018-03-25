@@ -11,25 +11,25 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2018年03月13日 07:57:07
+ * 2018年03月25日 10:55:21
  */
 @Data
 public abstract class AbstractBarablahTextbookCategoryGetDetailResponse {
     /**
      *
-     * 主键
+     * ID
      */
      private Long id;
 
     /**
      *
-     * 父ID
+     * 所在科目
      */
     private LabelValueItem ParentIdObject = new LabelValueItem();
 
     /**
      *
-     * 分类名称
+     * 名称
      */
      private String categoryName;
 

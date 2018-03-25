@@ -118,7 +118,7 @@ public abstract class AbstractBarablahPositionService extends BaseService {
         BarablahPositionExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getPositionName()!=null) {
@@ -148,7 +148,6 @@ public abstract class AbstractBarablahPositionService extends BaseService {
         if (request.getPositionName()!=null) {
             c.andPositionNameLike("%"+request.getPositionName()+"%");
         }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -169,7 +168,7 @@ public abstract class AbstractBarablahPositionService extends BaseService {
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahPosition> entitys,List<SimpleBarablahPositionQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahPosition> entitys,List<SimpleBarablahPositionQueryResponse> results) {
        for(BarablahPosition entity:entitys) {
         }
         //第一组

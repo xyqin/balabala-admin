@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教师控制器
- * 2018年03月18日 02:48:25
+ * 2018年03月25日 10:55:23
  */
 @Api(tags = "教师", description = "相关的API")
 public abstract class AbstractBarablahTeacherController extends WebController  {
@@ -50,7 +50,7 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahTeacherCreateRequest request) {
         if (StringUtils.isEmpty(request.getCampusId())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区不能为空！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"所在校区不能为空！");
         }
 
         if (StringUtils.isEmpty(request.getUsername())) {
@@ -83,6 +83,12 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
 
 
 
+        if(request.getUsername()!=null) {
+            BarablahTeacher username = getService().existByUsername(request.getUsername());
+            if (username != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"账号'"+request.getUsername()+"'已经存在！");
+            }
+        }
 
 
 
@@ -122,7 +128,7 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
     public ApiEntity update(@RequestBody SimpleBarablahTeacherUpdateRequest request) {
 
                 if (StringUtils.isEmpty(request.getCampusId())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区不能为空！");
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"所在校区不能为空！");
                 }
 
                 if (StringUtils.isEmpty(request.getUsername())) {
@@ -153,6 +159,14 @@ public abstract class AbstractBarablahTeacherController extends WebController  {
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
                 }
 
+
+    if(request.getUsername()!=null) {
+
+        BarablahTeacher Username = getService().existByUsername(request.getUsername());
+        if (Username != null && Username.getId()!=request.getId()) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"账号"+request.getUsername()+"'已经存在！");
+        }
+    }
 
 
        ApiEntity entity = fillUpdateRequest(request);

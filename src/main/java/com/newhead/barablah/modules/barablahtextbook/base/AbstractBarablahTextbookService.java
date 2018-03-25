@@ -137,7 +137,7 @@ public abstract class AbstractBarablahTextbookService extends BaseService {
         BarablahTextbookExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getCategoryId()!=null) {
@@ -175,15 +175,12 @@ public abstract class AbstractBarablahTextbookService extends BaseService {
         if (request.getCategoryId()!=null) {
             c.andCategoryIdEqualTo(request.getCategoryId());
          }
-
         if (request.getType()!=null) {
             c.andTypeEqualTo(request.getType());
          }
-
         if (request.getTextbookName()!=null) {
             c.andTextbookNameLike("%"+request.getTextbookName()+"%");
         }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -204,7 +201,7 @@ public abstract class AbstractBarablahTextbookService extends BaseService {
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahTextbook> entitys,List<SimpleBarablahTextbookQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahTextbook> entitys,List<SimpleBarablahTextbookQueryResponse> results) {
         Map<Long,Long> categoryIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> categoryIdResultMap = Maps.newHashMap();
 

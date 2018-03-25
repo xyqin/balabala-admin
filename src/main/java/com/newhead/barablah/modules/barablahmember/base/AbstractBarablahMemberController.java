@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员控制器
- * 2018年03月13日 07:57:09
+ * 2018年03月25日 10:55:23
  */
 @Api(tags = "会员", description = "相关的API")
 public abstract class AbstractBarablahMemberController extends WebController  {
@@ -50,32 +50,28 @@ public abstract class AbstractBarablahMemberController extends WebController  {
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahMemberCreateRequest request) {
         if (StringUtils.isEmpty(request.getCampusId())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区ID不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getNickname())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"昵称不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getAvatar())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"头像不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getEnglishName())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"英文名不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getGender())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"性别不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getBirthday())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"生日不能为空！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"所在校区不能为空！");
         }
 
         if (StringUtils.isEmpty(request.getStatus())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"状态不能为空！");
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         ApiEntity entity = fillCreateRequest(request);
@@ -101,27 +97,7 @@ public abstract class AbstractBarablahMemberController extends WebController  {
     public ApiEntity update(@RequestBody SimpleBarablahMemberUpdateRequest request) {
 
                 if (StringUtils.isEmpty(request.getCampusId())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区ID不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getNickname())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"昵称不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getAvatar())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"头像不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getEnglishName())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"英文名不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getGender())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"性别不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getBirthday())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"生日不能为空！");
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"所在校区不能为空！");
                 }
 
                 if (StringUtils.isEmpty(request.getStatus())) {

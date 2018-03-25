@@ -2,17 +2,19 @@ package com.newhead.barablah.modules.barablahteacher.base.protocol;
 
 import com.newhead.rudderframework.core.web.component.pagination.PageRequest;
 import lombok.Data;
+import java.util.Date;
+import java.math.BigDecimal;
 
 
 /**
  * 
- * @generated 2018年03月18日 02:48:23
+ * @generated 2018年03月25日 10:55:20
  */
 @Data
 public abstract class AbstractBarablahTeacherQueryPageRequest extends PageRequest {
     /**
      *
-     * 校区
+     * 所在校区
      */
      private Long campusId;
 

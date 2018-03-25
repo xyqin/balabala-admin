@@ -160,7 +160,7 @@ public abstract class AbstractBarablahTeacherHomeworkItemService extends BaseSer
         BarablahTeacherHomeworkItemExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         convertEntityToResponse(getMapper().selectByExample(example),results);
@@ -203,7 +203,7 @@ public abstract class AbstractBarablahTeacherHomeworkItemService extends BaseSer
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahTeacherHomeworkItem> entitys,List<SimpleBarablahTeacherHomeworkItemQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahTeacherHomeworkItem> entitys,List<SimpleBarablahTeacherHomeworkItemQueryResponse> results) {
         Map<Long,Long> teacherIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> teacherIdResultMap = Maps.newHashMap();
 

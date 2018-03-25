@@ -118,7 +118,7 @@ public abstract class AbstractBarablahCountryService extends BaseService {
         BarablahCountryExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getName()!=null) {
@@ -160,19 +160,15 @@ public abstract class AbstractBarablahCountryService extends BaseService {
         if (request.getName()!=null) {
             c.andNameLike("%"+request.getName()+"%");
         }
-
         if (request.getZhName()!=null) {
             c.andZhNameLike("%"+request.getZhName()+"%");
         }
-
         if (request.getCode()!=null) {
             c.andCodeLike("%"+request.getCode()+"%");
         }
-
         if (request.getCode2()!=null) {
             c.andCode2Like("%"+request.getCode2()+"%");
         }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -193,7 +189,7 @@ public abstract class AbstractBarablahCountryService extends BaseService {
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahCountry> entitys,List<SimpleBarablahCountryQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahCountry> entitys,List<SimpleBarablahCountryQueryResponse> results) {
        for(BarablahCountry entity:entitys) {
         }
         //第一组

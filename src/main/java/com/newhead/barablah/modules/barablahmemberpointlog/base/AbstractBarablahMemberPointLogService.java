@@ -137,8 +137,8 @@ public abstract class AbstractBarablahMemberPointLogService extends BaseService 
         BarablahMemberPointLogExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-            ordersrc = "points desc,";
-        ordersrc = ordersrc + "id desc";
+            ordersrc = "points asc,";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getType()!=null) {
@@ -163,13 +163,12 @@ public abstract class AbstractBarablahMemberPointLogService extends BaseService 
         BarablahMemberPointLogExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-            ordersrc = "points desc,";
+            ordersrc = "points asc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
         if (request.getType()!=null) {
             c.andTypeEqualTo(request.getType());
          }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -190,7 +189,7 @@ public abstract class AbstractBarablahMemberPointLogService extends BaseService 
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahMemberPointLog> entitys,List<SimpleBarablahMemberPointLogQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahMemberPointLog> entitys,List<SimpleBarablahMemberPointLogQueryResponse> results) {
         Map<Long,Long> memberIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> memberIdResultMap = Maps.newHashMap();
 

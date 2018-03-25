@@ -118,8 +118,8 @@ public abstract class AbstractBarablahTeacherMajorService extends BaseService {
         BarablahTeacherMajorExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-            ordersrc = "position desc,";
-        ordersrc = ordersrc + "id desc";
+            ordersrc = "position asc,";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getMajorName()!=null) {
@@ -144,13 +144,12 @@ public abstract class AbstractBarablahTeacherMajorService extends BaseService {
         BarablahTeacherMajorExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-            ordersrc = "position desc,";
+            ordersrc = "position asc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
         if (request.getMajorName()!=null) {
             c.andMajorNameLike("%"+request.getMajorName()+"%");
         }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -171,7 +170,7 @@ public abstract class AbstractBarablahTeacherMajorService extends BaseService {
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahTeacherMajor> entitys,List<SimpleBarablahTeacherMajorQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahTeacherMajor> entitys,List<SimpleBarablahTeacherMajorQueryResponse> results) {
        for(BarablahTeacherMajor entity:entitys) {
         }
         //第一组

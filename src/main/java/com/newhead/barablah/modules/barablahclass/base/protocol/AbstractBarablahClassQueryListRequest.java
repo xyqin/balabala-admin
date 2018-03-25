@@ -6,31 +6,25 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年03月23日 02:01:56
+ * @generated 2018年03月25日 10:55:20
  */
 @Data
 public abstract class AbstractBarablahClassQueryListRequest  {
     /**
      *
-     * 班级分类ID
+     * 班级类别
      */
      private Long categoryId;
 
     /**
      *
-     * 校区ID
+     * 所在校区
      */
      private Long campusId;
 
     /**
      *
-     * 线上教师
-     */
-     private Long teacherId;
-
-    /**
-     *
-     * 课程ID
+     * 所属课程
      */
      private Long courseId;
 
@@ -42,7 +36,13 @@ public abstract class AbstractBarablahClassQueryListRequest  {
 
     /**
      *
-     * 状态
+     * 线上教师
+     */
+     private Long teacherId;
+
+    /**
+     *
+     * 开班状态
      */
      private String status;
 

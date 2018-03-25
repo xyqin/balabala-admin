@@ -9,5 +9,5 @@ import lombok.Data;
  */
 @Data
 public class SimpleBarablahTextbookCategoryQueryResponse extends AbstractBarablahTextbookCategoryQueryResponse {
-
+    private String url;
 }

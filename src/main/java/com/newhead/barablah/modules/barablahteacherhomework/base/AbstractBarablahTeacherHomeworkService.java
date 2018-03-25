@@ -146,7 +146,7 @@ public abstract class AbstractBarablahTeacherHomeworkService extends BaseService
         BarablahTeacherHomeworkExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getClassId()!=null) {
@@ -176,7 +176,6 @@ public abstract class AbstractBarablahTeacherHomeworkService extends BaseService
         if (request.getClassId()!=null) {
             c.andClassIdEqualTo(request.getClassId());
          }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -197,7 +196,7 @@ public abstract class AbstractBarablahTeacherHomeworkService extends BaseService
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahTeacherHomework> entitys,List<SimpleBarablahTeacherHomeworkQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahTeacherHomework> entitys,List<SimpleBarablahTeacherHomeworkQueryResponse> results) {
         Map<Long,Long> teacherIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> teacherIdResultMap = Maps.newHashMap();
 

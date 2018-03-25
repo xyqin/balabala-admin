@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 班级分类控制器
- * 2018年03月13日 07:57:09
+ * 2018年03月25日 10:55:23
  */
 @Api(tags = "班级分类", description = "相关的API")
 public abstract class AbstractBarablahClassCategoryController extends WebController  {
@@ -50,13 +50,23 @@ public abstract class AbstractBarablahClassCategoryController extends WebControl
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahClassCategoryCreateRequest request) {
         if (StringUtils.isEmpty(request.getCategoryName())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称不能为空！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"名称不能为空！");
         }
 
-        BarablahClassCategory categoryName = getService().existByCategoryName(request.getCategoryName());
-        if (categoryName != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称'"+request.getCategoryName()+"'已经存在！");
+
+        if(request.getCategoryName()!=null) {
+            BarablahClassCategory categoryName = getService().existByCategoryName(request.getCategoryName());
+            if (categoryName != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"名称'"+request.getCategoryName()+"'已经存在！");
+            }
         }
+
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -81,14 +91,18 @@ public abstract class AbstractBarablahClassCategoryController extends WebControl
     public ApiEntity update(@RequestBody SimpleBarablahClassCategoryUpdateRequest request) {
 
                 if (StringUtils.isEmpty(request.getCategoryName())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称不能为空！");
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"名称不能为空！");
                 }
 
 
+    if(request.getCategoryName()!=null) {
+
         BarablahClassCategory CategoryName = getService().existByCategoryName(request.getCategoryName());
         if (CategoryName != null && CategoryName.getId()!=request.getId()) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"分类名称"+request.getCategoryName()+"'已经存在！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"名称"+request.getCategoryName()+"'已经存在！");
         }
+    }
+
 
        ApiEntity entity = fillUpdateRequest(request);
         if (entity!=null) {

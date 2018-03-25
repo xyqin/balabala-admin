@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 地区控制器
- * 2018年03月13日 07:57:10
+ * 2018年03月25日 10:55:23
  */
 @Api(tags = "地区", description = "相关的API")
 public abstract class AbstractBarablahRegionController extends WebController  {
@@ -65,10 +65,23 @@ public abstract class AbstractBarablahRegionController extends WebController  {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"资源地址不能为空！");
         }
 
-        BarablahRegion regionName = getService().existByRegionName(request.getRegionName());
-        if (regionName != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区名称'"+request.getRegionName()+"'已经存在！");
+
+
+        if(request.getRegionName()!=null) {
+            BarablahRegion regionName = getService().existByRegionName(request.getRegionName());
+            if (regionName != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区名称'"+request.getRegionName()+"'已经存在！");
+            }
         }
+
+
+
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -109,10 +122,14 @@ public abstract class AbstractBarablahRegionController extends WebController  {
                 }
 
 
+    if(request.getRegionName()!=null) {
+
         BarablahRegion RegionName = getService().existByRegionName(request.getRegionName());
         if (RegionName != null && RegionName.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区名称"+request.getRegionName()+"'已经存在！");
         }
+    }
+
 
        ApiEntity entity = fillUpdateRequest(request);
         if (entity!=null) {
@@ -154,8 +171,11 @@ public abstract class AbstractBarablahRegionController extends WebController  {
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "地区ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahRegionQueryResponse>> getList() {
+    public ApiEntity<List<SimpleBarablahRegionQueryResponse>> getList(@RequestParam(required = false) String regionName) {
         SimpleBarablahRegionQueryListRequest request = new SimpleBarablahRegionQueryListRequest();
+        if (!StringUtils.isEmpty(regionName)) {
+            request.setRegionName(regionName);
+        }
         List<SimpleBarablahRegionQueryResponse> sources = getService().queryList(request);
         return new ApiEntity<List<SimpleBarablahRegionQueryResponse>>(sources);
     }
@@ -169,9 +189,13 @@ public abstract class AbstractBarablahRegionController extends WebController  {
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) String regionName,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahRegionQueryPageRequest request = new SimpleBarablahRegionQueryPageRequest();
+        if (!StringUtils.isEmpty(regionName)) {
+            request.setRegionName(regionName);
+        }
         if (page==null) {
             request.setPage(1);
         } else {

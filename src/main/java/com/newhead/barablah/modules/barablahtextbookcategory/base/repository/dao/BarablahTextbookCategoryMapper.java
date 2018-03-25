@@ -11,77 +11,77 @@ public interface BarablahTextbookCategoryMapper {
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook_category
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     long countByExample(BarablahTextbookCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook_category
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     int deleteByExample(BarablahTextbookCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook_category
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     int deleteByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook_category
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     int insert(BarablahTextbookCategory record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook_category
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     int insertSelective(BarablahTextbookCategory record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook_category
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     List<BarablahTextbookCategory> selectByExample(BarablahTextbookCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook_category
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     BarablahTextbookCategory selectByPrimaryKey(Long id);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook_category
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     int updateByExampleSelective(@Param("record") BarablahTextbookCategory record, @Param("example") BarablahTextbookCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook_category
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     int updateByExample(@Param("record") BarablahTextbookCategory record, @Param("example") BarablahTextbookCategoryExample example);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook_category
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     int updateByPrimaryKeySelective(BarablahTextbookCategory record);
 
     /**
      *  RudderFramework框架生成代码，请不要直接修改..
      *  barablah_textbook_category
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     int updateByPrimaryKey(BarablahTextbookCategory record);
 }

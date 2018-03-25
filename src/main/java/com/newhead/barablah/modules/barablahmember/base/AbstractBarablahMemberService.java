@@ -142,8 +142,8 @@ public abstract class AbstractBarablahMemberService extends BaseService {
         BarablahMemberExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-            ordersrc = "points desc,";
-        ordersrc = ordersrc + "id desc";
+            ordersrc = "points asc,";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getCampusId()!=null) {
@@ -180,25 +180,21 @@ public abstract class AbstractBarablahMemberService extends BaseService {
         BarablahMemberExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-            ordersrc = "points desc,";
+            ordersrc = "points asc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
         if (request.getCampusId()!=null) {
             c.andCampusIdEqualTo(request.getCampusId());
          }
-
         if (request.getNickname()!=null) {
             c.andNicknameLike("%"+request.getNickname()+"%");
         }
-
         if (request.getGender()!=null) {
             c.andGenderEqualTo(request.getGender());
          }
-
         if (request.getStatus()!=null) {
             c.andStatusEqualTo(request.getStatus());
          }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -219,7 +215,7 @@ public abstract class AbstractBarablahMemberService extends BaseService {
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahMember> entitys,List<SimpleBarablahMemberQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahMember> entitys,List<SimpleBarablahMemberQueryResponse> results) {
         Map<Long,Long> campusIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> campusIdResultMap = Maps.newHashMap();
 

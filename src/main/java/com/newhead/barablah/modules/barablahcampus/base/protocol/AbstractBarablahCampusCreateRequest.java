@@ -9,13 +9,13 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月13日 07:57:06
+ * 2018年03月25日 10:55:19
  */
 @Data
 public abstract class AbstractBarablahCampusCreateRequest {
     /**
      *
-     * 地区ID
+     * 所属地区
      */
     private Long regionId;
 

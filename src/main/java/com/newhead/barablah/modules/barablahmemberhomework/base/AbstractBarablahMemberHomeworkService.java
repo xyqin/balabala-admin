@@ -165,7 +165,7 @@ public abstract class AbstractBarablahMemberHomeworkService extends BaseService 
         BarablahMemberHomeworkExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getHomeworkName()!=null) {
@@ -203,15 +203,12 @@ public abstract class AbstractBarablahMemberHomeworkService extends BaseService 
         if (request.getHomeworkName()!=null) {
             c.andHomeworkNameLike("%"+request.getHomeworkName()+"%");
         }
-
         if (request.getStatus()!=null) {
             c.andStatusEqualTo(request.getStatus());
          }
-
         if (request.getClassId()!=null) {
             c.andClassIdEqualTo(request.getClassId());
          }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -232,7 +229,7 @@ public abstract class AbstractBarablahMemberHomeworkService extends BaseService 
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahMemberHomework> entitys,List<SimpleBarablahMemberHomeworkQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahMemberHomework> entitys,List<SimpleBarablahMemberHomeworkQueryResponse> results) {
         Map<Long,Long> memberIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> memberIdResultMap = Maps.newHashMap();
 

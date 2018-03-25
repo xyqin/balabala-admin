@@ -1,28 +1,39 @@
 package com.newhead.barablah.modules.barablahteacher.base;
 
+import com.newhead.rudderframework.core.web.component.pagination.Page;
+
 import com.google.common.collect.Maps;
-import com.newhead.barablah.modules.barablahcampus.base.repository.dao.BarablahCampusMapper;
-import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus;
-import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampusExample;
-import com.newhead.barablah.modules.barablahcountry.base.repository.dao.BarablahCountryMapper;
-import com.newhead.barablah.modules.barablahcountry.base.repository.entity.BarablahCountry;
-import com.newhead.barablah.modules.barablahcountry.base.repository.entity.BarablahCountryExample;
+import com.newhead.rudderframework.core.web.api.ApiStatus;
+import com.newhead.rudderframework.core.web.api.ApiValidateException;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+import com.newhead.rudderframework.core.web.component.tree.ExtNode;
+import com.newhead.rudderframework.core.web.component.tree.Node;
+import com.newhead.rudderframework.core.web.component.tree.TransitionTree;
+import com.newhead.rudderframework.core.services.BaseService;
+
+import com.newhead.rudderframework.modules.LabelValueItem;
 import com.newhead.barablah.modules.barablahteacher.base.repository.dao.BarablahTeacherMapper;
 import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacher;
 import com.newhead.barablah.modules.barablahteacher.base.repository.entity.BarablahTeacherExample;
 import com.newhead.barablah.modules.barablahteacher.ext.protocol.*;
-import com.newhead.barablah.modules.barablahteachermajor.base.repository.dao.BarablahTeacherMajorMapper;
-import com.newhead.barablah.modules.barablahteachermajor.base.repository.entity.BarablahTeacherMajor;
-import com.newhead.barablah.modules.barablahteachermajor.base.repository.entity.BarablahTeacherMajorExample;
-import com.newhead.rudderframework.core.services.BaseService;
-import com.newhead.rudderframework.core.web.api.ApiStatus;
-import com.newhead.rudderframework.core.web.api.ApiValidateException;
-import com.newhead.rudderframework.core.web.component.pagination.Page;
-import com.newhead.rudderframework.core.web.component.tree.Node;
-import com.newhead.rudderframework.modules.LabelValueItem;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+
+import com.newhead.barablah.modules.barablahcountry.base.repository.entity.BarablahCountry;
+import com.newhead.barablah.modules.barablahcountry.base.repository.entity.BarablahCountryExample;
+
+import com.newhead.barablah.modules.barablahcountry.base.repository.dao.BarablahCountryMapper;
+import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampus;
+import com.newhead.barablah.modules.barablahcampus.base.repository.entity.BarablahCampusExample;
+
+import com.newhead.barablah.modules.barablahcampus.base.repository.dao.BarablahCampusMapper;
+import com.newhead.barablah.modules.barablahteachermajor.base.repository.entity.BarablahTeacherMajor;
+import com.newhead.barablah.modules.barablahteachermajor.base.repository.entity.BarablahTeacherMajorExample;
+
+import com.newhead.barablah.modules.barablahteachermajor.base.repository.dao.BarablahTeacherMajorMapper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -105,7 +116,6 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
             campusIdObject.setValue(String.valueOf(entity.getCampusId()));
             campusIdObject.setChecked(false);
         }
-
         BarablahTeacherMajor  majorEntity = barablahteachermajorMapper.selectByPrimaryKey(Long.valueOf(entity.getMajor()));
         if (majorEntity!=null) {
             LabelValueItem majorObject = response.getMajorObject();
@@ -155,7 +165,7 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
         BarablahTeacherExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getCampusId()!=null) {
@@ -209,31 +219,24 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
         if (request.getCampusId()!=null) {
             c.andCampusIdEqualTo(request.getCampusId());
          }
-
         if (request.getUsername()!=null) {
             c.andUsernameLike("%"+request.getUsername()+"%");
         }
-
         if (request.getFullName()!=null) {
             c.andFullNameLike("%"+request.getFullName()+"%");
         }
-
         if (request.getPhoneNumber()!=null) {
             c.andPhoneNumberLike("%"+request.getPhoneNumber()+"%");
         }
-
         if (request.getMajor()!=null) {
             c.andMajorEqualTo(request.getMajor());
          }
-
         if (request.getComeFrom()!=null) {
             c.andComeFromEqualTo(request.getComeFrom());
          }
-
         if (request.getStatus()!=null) {
             c.andStatusEqualTo(request.getStatus());
          }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -254,7 +257,7 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahTeacher> entitys,List<SimpleBarablahTeacherQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahTeacher> entitys,List<SimpleBarablahTeacherQueryResponse> results) {
         Map<Long,Long> campusIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> campusIdResultMap = Maps.newHashMap();
 
@@ -369,6 +372,22 @@ public abstract class AbstractBarablahTeacherService extends BaseService {
         }
     }
 
+    /**
+     * 是否存在同名数据
+     * @param username
+     * @return
+     */
+    public BarablahTeacher existByUsername(String username) {
+        //构造查询对象
+        BarablahTeacherExample example = new BarablahTeacherExample();
+        BarablahTeacherExample.Criteria c = example.createCriteria();
+        c.andUsernameEqualTo(username);
+        List<BarablahTeacher> list = getMapper().selectByExample(example);
+        if (list!=null && list.size()==1) {
+            return list.get(0);
+        }
+        return null;
+    }
 
 
 

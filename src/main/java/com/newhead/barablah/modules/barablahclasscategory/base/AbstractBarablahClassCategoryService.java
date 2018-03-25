@@ -118,7 +118,8 @@ public abstract class AbstractBarablahClassCategoryService extends BaseService {
         BarablahClassCategoryExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+            ordersrc = "position asc,";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getCategoryName()!=null) {
@@ -143,12 +144,12 @@ public abstract class AbstractBarablahClassCategoryService extends BaseService {
         BarablahClassCategoryExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
+            ordersrc = "position asc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
         if (request.getCategoryName()!=null) {
             c.andCategoryNameLike("%"+request.getCategoryName()+"%");
         }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -169,7 +170,7 @@ public abstract class AbstractBarablahClassCategoryService extends BaseService {
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahClassCategory> entitys,List<SimpleBarablahClassCategoryQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahClassCategory> entitys,List<SimpleBarablahClassCategoryQueryResponse> results) {
        for(BarablahClassCategory entity:entitys) {
         }
         //第一组

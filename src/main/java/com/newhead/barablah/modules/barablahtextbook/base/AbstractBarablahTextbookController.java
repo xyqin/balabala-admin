@@ -1,27 +1,33 @@
 package com.newhead.barablah.modules.barablahtextbook.base;
 
 import com.google.common.collect.Maps;
-import com.newhead.barablah.modules.barablahtextbook.base.repository.entity.BarablahTextbook;
-import com.newhead.barablah.modules.barablahtextbook.ext.SimpleBarablahTextbookService;
-import com.newhead.barablah.modules.barablahtextbook.ext.protocol.*;
 import com.newhead.rudderframework.core.web.api.ApiEntity;
 import com.newhead.rudderframework.core.web.api.ApiStatus;
 import com.newhead.rudderframework.core.web.api.ApiValidateException;
 import com.newhead.rudderframework.core.web.component.pagination.Page;
+import com.newhead.rudderframework.core.web.component.tree.Tree;
+import com.newhead.rudderframework.modules.LabelValueItem;
+
+
 import com.newhead.rudderframework.core.web.controller.WebController;
+import com.newhead.barablah.modules.barablahtextbook.base.repository.entity.BarablahTextbook;
+import com.newhead.barablah.modules.barablahtextbook.ext.SimpleBarablahTextbookService;
+import com.newhead.barablah.modules.barablahtextbook.ext.protocol.*;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * RudderFramework 自动生成
  * 教材表控制器
- * 2018年03月24日 03:44:09
+ * 2018年03月25日 10:55:23
  */
 @Api(tags = "教材表", description = "相关的API")
 public abstract class AbstractBarablahTextbookController extends WebController  {
@@ -44,7 +50,7 @@ public abstract class AbstractBarablahTextbookController extends WebController  
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahTextbookCreateRequest request) {
         if (StringUtils.isEmpty(request.getCategoryId())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材四级分类不能为空！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"对应课本不能为空！");
         }
 
         if (StringUtils.isEmpty(request.getType())) {
@@ -109,7 +115,7 @@ public abstract class AbstractBarablahTextbookController extends WebController  
     public ApiEntity update(@RequestBody SimpleBarablahTextbookUpdateRequest request) {
 
                 if (StringUtils.isEmpty(request.getCategoryId())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材四级分类不能为空！");
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"对应课本不能为空！");
                 }
 
                 if (StringUtils.isEmpty(request.getType())) {

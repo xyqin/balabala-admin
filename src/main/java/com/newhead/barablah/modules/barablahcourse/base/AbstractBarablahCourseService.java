@@ -146,7 +146,7 @@ public abstract class AbstractBarablahCourseService extends BaseService {
         BarablahCourseExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getCourseName()!=null) {
@@ -176,7 +176,6 @@ public abstract class AbstractBarablahCourseService extends BaseService {
         if (request.getCourseName()!=null) {
             c.andCourseNameLike("%"+request.getCourseName()+"%");
         }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -197,7 +196,7 @@ public abstract class AbstractBarablahCourseService extends BaseService {
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahCourse> entitys,List<SimpleBarablahCourseQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahCourse> entitys,List<SimpleBarablahCourseQueryResponse> results) {
         Map<Long,Long> categoryIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> categoryIdResultMap = Maps.newHashMap();
 

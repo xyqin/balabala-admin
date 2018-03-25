@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 会员通行证控制器
- * 2018年03月13日 07:57:10
+ * 2018年03月25日 10:55:23
  */
 @Api(tags = "会员通行证", description = "相关的API")
 public abstract class AbstractBarablahMemberPassportController extends WebController  {
@@ -64,6 +64,16 @@ public abstract class AbstractBarablahMemberPassportController extends WebContro
         if (StringUtils.isEmpty(request.getPassword())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"密码不能为空！");
         }
+
+
+
+
+
+
+
+
+
+
 
 
         ApiEntity entity = fillCreateRequest(request);

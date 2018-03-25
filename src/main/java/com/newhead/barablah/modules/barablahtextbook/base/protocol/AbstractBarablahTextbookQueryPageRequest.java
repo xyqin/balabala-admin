@@ -8,13 +8,13 @@ import java.math.BigDecimal;
 
 /**
  * 
- * @generated 2018年03月24日 03:44:07
+ * @generated 2018年03月25日 10:55:21
  */
 @Data
 public abstract class AbstractBarablahTextbookQueryPageRequest extends PageRequest {
     /**
      *
-     * 教材四级分类
+     * 对应课本
      */
      private Long categoryId;
 

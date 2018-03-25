@@ -132,8 +132,12 @@ public abstract class AbstractBarablahCampusService extends BaseService {
         BarablahCampusExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
+
+        if (request.getRegionId()!=null) {
+            c.andRegionIdEqualTo(request.getRegionId());
+         }
 
         if (request.getCampusName()!=null) {
             c.andCampusNameLike("%"+request.getCampusName()+"%");
@@ -159,10 +163,12 @@ public abstract class AbstractBarablahCampusService extends BaseService {
         String ordersrc ="";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
+        if (request.getRegionId()!=null) {
+            c.andRegionIdEqualTo(request.getRegionId());
+         }
         if (request.getCampusName()!=null) {
             c.andCampusNameLike("%"+request.getCampusName()+"%");
         }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -183,7 +189,7 @@ public abstract class AbstractBarablahCampusService extends BaseService {
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahCampus> entitys,List<SimpleBarablahCampusQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahCampus> entitys,List<SimpleBarablahCampusQueryResponse> results) {
         Map<Long,Long> regionIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> regionIdResultMap = Maps.newHashMap();
 

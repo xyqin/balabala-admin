@@ -132,8 +132,8 @@ public abstract class AbstractBarablahPositionContentService extends BaseService
         BarablahPositionContentExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-            ordersrc = "position desc,";
-        ordersrc = ordersrc + "id desc";
+            ordersrc = "position asc,";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getPositionId()!=null) {
@@ -162,17 +162,15 @@ public abstract class AbstractBarablahPositionContentService extends BaseService
         BarablahPositionContentExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-            ordersrc = "position desc,";
+            ordersrc = "position asc,";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
         if (request.getPositionId()!=null) {
             c.andPositionIdEqualTo(request.getPositionId());
          }
-
         if (request.getContentName()!=null) {
             c.andContentNameLike("%"+request.getContentName()+"%");
         }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -193,7 +191,7 @@ public abstract class AbstractBarablahPositionContentService extends BaseService
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahPositionContent> entitys,List<SimpleBarablahPositionContentQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahPositionContent> entitys,List<SimpleBarablahPositionContentQueryResponse> results) {
         Map<Long,Long> positionIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> positionIdResultMap = Maps.newHashMap();
 

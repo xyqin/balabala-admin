@@ -9,19 +9,19 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月13日 07:57:07
+ * 2018年03月25日 10:55:21
  */
 @Data
 public abstract class AbstractBarablahTextbookCategoryCreateRequest {
     /**
      *
-     * 父ID
+     * 所在科目
      */
     private Long parentId;
 
     /**
      *
-     * 分类名称
+     * 名称
      */
     private String categoryName;
 

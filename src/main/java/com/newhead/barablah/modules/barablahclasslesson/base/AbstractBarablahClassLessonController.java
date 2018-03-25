@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 开班课时控制器
- * 2018年03月24日 02:09:43
+ * 2018年03月25日 10:55:23
  */
 @Api(tags = "开班课时", description = "相关的API")
 public abstract class AbstractBarablahClassLessonController extends WebController  {
@@ -49,33 +49,34 @@ public abstract class AbstractBarablahClassLessonController extends WebControlle
     @ApiOperation(value = "创建", httpMethod = "POST", response = String.class)
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahClassLessonCreateRequest request) {
-        if (StringUtils.isEmpty(request.getLessonName())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课时名称不能为空！");
-        }
-
         if (StringUtils.isEmpty(request.getClassId())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"班级不能为空！");
         }
 
-        if (StringUtils.isEmpty(request.getCategoryId())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材四级分类不能为空！");
+        if (StringUtils.isEmpty(request.getLessonName())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课时名称不能为空！");
         }
 
-        if (StringUtils.isEmpty(request.getThumbnail())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课时视频缩略图不能为空！");
+        if (StringUtils.isEmpty(request.getCategoryId())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"配套教材不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getStartAt())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"开课时间不能为空！");
+        }
+
+        if (StringUtils.isEmpty(request.getEndAt())) {
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"结束时间不能为空！");
         }
 
         if (StringUtils.isEmpty(request.getPrepared())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否备课不能为空！");
-        }
-
-        if (StringUtils.isEmpty(request.getStatus())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"类型不能为空！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"备课情况不能为空！");
         }
 
         if (StringUtils.isEmpty(request.getType())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"类型不能为空！");
         }
+
 
 
 
@@ -117,28 +118,28 @@ public abstract class AbstractBarablahClassLessonController extends WebControlle
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ApiEntity update(@RequestBody SimpleBarablahClassLessonUpdateRequest request) {
 
-                if (StringUtils.isEmpty(request.getLessonName())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课时名称不能为空！");
-                }
-
                 if (StringUtils.isEmpty(request.getClassId())) {
                     throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"班级不能为空！");
                 }
 
-                if (StringUtils.isEmpty(request.getCategoryId())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"教材四级分类不能为空！");
+                if (StringUtils.isEmpty(request.getLessonName())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课时名称不能为空！");
                 }
 
-                if (StringUtils.isEmpty(request.getThumbnail())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"课时视频缩略图不能为空！");
+                if (StringUtils.isEmpty(request.getCategoryId())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"配套教材不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getStartAt())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"开课时间不能为空！");
+                }
+
+                if (StringUtils.isEmpty(request.getEndAt())) {
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"结束时间不能为空！");
                 }
 
                 if (StringUtils.isEmpty(request.getPrepared())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"是否备课不能为空！");
-                }
-
-                if (StringUtils.isEmpty(request.getStatus())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"类型不能为空！");
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"备课情况不能为空！");
                 }
 
                 if (StringUtils.isEmpty(request.getType())) {
@@ -187,13 +188,13 @@ public abstract class AbstractBarablahClassLessonController extends WebControlle
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "开班课时ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahClassLessonQueryResponse>> getList(@RequestParam(required = false) String lessonName,@RequestParam(required = false) Long classId,@RequestParam(required = false) String status,@RequestParam(required = false) String type) {
+    public ApiEntity<List<SimpleBarablahClassLessonQueryResponse>> getList(@RequestParam(required = false) Long classId,@RequestParam(required = false) String lessonName,@RequestParam(required = false) String status,@RequestParam(required = false) String type) {
         SimpleBarablahClassLessonQueryListRequest request = new SimpleBarablahClassLessonQueryListRequest();
-        if (!StringUtils.isEmpty(lessonName)) {
-            request.setLessonName(lessonName);
-        }
         if (!StringUtils.isEmpty(classId)) {
             request.setClassId(classId);
+        }
+        if (!StringUtils.isEmpty(lessonName)) {
+            request.setLessonName(lessonName);
         }
         if (!StringUtils.isEmpty(status)) {
             request.setStatus(status);
@@ -214,18 +215,18 @@ public abstract class AbstractBarablahClassLessonController extends WebControlle
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
-        @RequestParam(required = false) String lessonName,
         @RequestParam(required = false) Long classId,
+        @RequestParam(required = false) String lessonName,
         @RequestParam(required = false) String status,
         @RequestParam(required = false) String type,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahClassLessonQueryPageRequest request = new SimpleBarablahClassLessonQueryPageRequest();
-        if (!StringUtils.isEmpty(lessonName)) {
-            request.setLessonName(lessonName);
-        }
         if (!StringUtils.isEmpty(classId)) {
             request.setClassId(classId);
+        }
+        if (!StringUtils.isEmpty(lessonName)) {
+            request.setLessonName(lessonName);
         }
         if (!StringUtils.isEmpty(status)) {
             request.setStatus(status);

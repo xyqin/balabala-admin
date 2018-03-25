@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教师专业控制器
- * 2018年03月18日 01:59:16
+ * 2018年03月25日 10:55:23
  */
 @Api(tags = "教师专业", description = "相关的API")
 public abstract class AbstractBarablahTeacherMajorController extends WebController  {

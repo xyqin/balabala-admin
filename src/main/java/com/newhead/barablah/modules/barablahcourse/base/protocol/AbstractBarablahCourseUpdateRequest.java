@@ -9,25 +9,20 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月24日 03:44:06
+ * 2018年03月25日 10:55:20
  */
 @Data
 public abstract class AbstractBarablahCourseUpdateRequest {
     /**
      *
-     * 课程ID
+     * ID
      */
     private Long id;
     /**
      *
-     * 课程分类ID
+     * 课程分类
      */
     private Long categoryId;
-    /**
-     *
-     * 教材三级分类
-     */
-    private Long textbookCategoryId;
     /**
      *
      * 课程名称
@@ -35,12 +30,17 @@ public abstract class AbstractBarablahCourseUpdateRequest {
     private String courseName;
     /**
      *
+     * 配套教材
+     */
+    private Long textbookCategoryId;
+    /**
+     *
      * 线上授课次数
      */
     private Short onlineLessons;
     /**
      *
-     * 最大允许线上授课节数
+     * 最大线上授课节数
      */
     private Short onlineMaxLessons;
     /**
@@ -50,7 +50,7 @@ public abstract class AbstractBarablahCourseUpdateRequest {
     private Short onlineDuration;
     /**
      *
-     * 最大允许线上授课时长
+     * 最大线上授课时长
      */
     private Short onlineMaxDuration;
     /**

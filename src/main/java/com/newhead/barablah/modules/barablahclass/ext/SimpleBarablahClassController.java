@@ -44,6 +44,12 @@ public class SimpleBarablahClassController extends AbstractBarablahClassControll
     }
 
     @Override
+    protected ApiEntity fillCreateRequest(SimpleBarablahClassCreateRequest request) {
+        request.setStatus(BarablahClassStatusEnum.待开课.getValue());
+        return null;
+    }
+
+    @Override
     protected ApiEntity fillUpdateRequest(SimpleBarablahClassUpdateRequest request) {
         //如果距离开班在1个小时之内,不允许再编辑和修改,线上老师和课程。
         //如果是线上

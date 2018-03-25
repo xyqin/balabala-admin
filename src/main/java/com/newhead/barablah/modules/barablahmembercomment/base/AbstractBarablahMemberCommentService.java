@@ -179,7 +179,7 @@ public abstract class AbstractBarablahMemberCommentService extends BaseService {
         BarablahMemberCommentExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getClassId()!=null) {
@@ -217,15 +217,12 @@ public abstract class AbstractBarablahMemberCommentService extends BaseService {
         if (request.getClassId()!=null) {
             c.andClassIdEqualTo(request.getClassId());
          }
-
         if (request.getContent()!=null) {
             c.andContentLike("%"+request.getContent()+"%");
         }
-
         if (request.getCommentType()!=null) {
             c.andCommentTypeEqualTo(request.getCommentType());
          }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -246,7 +243,7 @@ public abstract class AbstractBarablahMemberCommentService extends BaseService {
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahMemberComment> entitys,List<SimpleBarablahMemberCommentQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahMemberComment> entitys,List<SimpleBarablahMemberCommentQueryResponse> results) {
         Map<Long,Long> classIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> classIdResultMap = Maps.newHashMap();
 

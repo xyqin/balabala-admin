@@ -165,7 +165,7 @@ public abstract class AbstractBarablahMemberLessonlogService extends BaseService
         BarablahMemberLessonlogExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
 
         if (request.getAction()!=null) {
@@ -195,7 +195,6 @@ public abstract class AbstractBarablahMemberLessonlogService extends BaseService
         if (request.getAction()!=null) {
             c.andActionEqualTo(request.getAction());
          }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -216,7 +215,7 @@ public abstract class AbstractBarablahMemberLessonlogService extends BaseService
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahMemberLessonlog> entitys,List<SimpleBarablahMemberLessonlogQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahMemberLessonlog> entitys,List<SimpleBarablahMemberLessonlogQueryResponse> results) {
         Map<Long,Long> classIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> classIdResultMap = Maps.newHashMap();
 

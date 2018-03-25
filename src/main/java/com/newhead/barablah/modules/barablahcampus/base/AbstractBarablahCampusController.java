@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 校区控制器
- * 2018年03月13日 07:57:09
+ * 2018年03月25日 10:55:23
  */
 @Api(tags = "校区", description = "相关的API")
 public abstract class AbstractBarablahCampusController extends WebController  {
@@ -50,17 +50,27 @@ public abstract class AbstractBarablahCampusController extends WebController  {
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ApiEntity<Map> create(@RequestBody SimpleBarablahCampusCreateRequest request) {
         if (StringUtils.isEmpty(request.getRegionId())) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区ID不能为空！");
+            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"所属地区不能为空！");
         }
 
         if (StringUtils.isEmpty(request.getCampusName())) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区名称不能为空！");
         }
 
-        BarablahCampus campusName = getService().existByCampusName(request.getCampusName());
-        if (campusName != null) {
-            throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区名称'"+request.getCampusName()+"'已经存在！");
+
+
+        if(request.getCampusName()!=null) {
+            BarablahCampus campusName = getService().existByCampusName(request.getCampusName());
+            if (campusName != null) {
+                throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区名称'"+request.getCampusName()+"'已经存在！");
+            }
         }
+
+
+
+
+
+
 
         ApiEntity entity = fillCreateRequest(request);
         if (entity!=null) {
@@ -85,7 +95,7 @@ public abstract class AbstractBarablahCampusController extends WebController  {
     public ApiEntity update(@RequestBody SimpleBarablahCampusUpdateRequest request) {
 
                 if (StringUtils.isEmpty(request.getRegionId())) {
-                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"地区ID不能为空！");
+                    throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"所属地区不能为空！");
                 }
 
                 if (StringUtils.isEmpty(request.getCampusName())) {
@@ -93,10 +103,14 @@ public abstract class AbstractBarablahCampusController extends WebController  {
                 }
 
 
+    if(request.getCampusName()!=null) {
+
         BarablahCampus CampusName = getService().existByCampusName(request.getCampusName());
         if (CampusName != null && CampusName.getId()!=request.getId()) {
             throw new ApiValidateException(ApiStatus.STATUS_400.getCode(),"校区名称"+request.getCampusName()+"'已经存在！");
         }
+    }
+
 
        ApiEntity entity = fillUpdateRequest(request);
         if (entity!=null) {
@@ -138,8 +152,11 @@ public abstract class AbstractBarablahCampusController extends WebController  {
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "校区ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahCampusQueryResponse>> getList(@RequestParam(required = false) String campusName) {
+    public ApiEntity<List<SimpleBarablahCampusQueryResponse>> getList(@RequestParam(required = false) Long regionId,@RequestParam(required = false) String campusName) {
         SimpleBarablahCampusQueryListRequest request = new SimpleBarablahCampusQueryListRequest();
+        if (!StringUtils.isEmpty(regionId)) {
+            request.setRegionId(regionId);
+        }
         if (!StringUtils.isEmpty(campusName)) {
             request.setCampusName(campusName);
         }
@@ -156,10 +173,14 @@ public abstract class AbstractBarablahCampusController extends WebController  {
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
+        @RequestParam(required = false) Long regionId,
         @RequestParam(required = false) String campusName,
         @RequestParam(required = false) Integer page,
         @RequestParam(required = false) Integer size) {
         SimpleBarablahCampusQueryPageRequest request = new SimpleBarablahCampusQueryPageRequest();
+        if (!StringUtils.isEmpty(regionId)) {
+            request.setRegionId(regionId);
+        }
         if (!StringUtils.isEmpty(campusName)) {
             request.setCampusName(campusName);
         }

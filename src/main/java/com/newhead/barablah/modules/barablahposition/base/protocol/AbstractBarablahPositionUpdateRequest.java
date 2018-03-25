@@ -9,13 +9,13 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月13日 07:57:08
+ * 2018年03月25日 10:55:21
  */
 @Data
 public abstract class AbstractBarablahPositionUpdateRequest {
     /**
      *
-     * 位置ID
+     * ID
      */
     private Long id;
     /**

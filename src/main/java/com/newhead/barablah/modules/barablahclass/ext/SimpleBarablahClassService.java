@@ -1,6 +1,7 @@
 package com.newhead.barablah.modules.barablahclass.ext;
 
 import com.google.common.collect.Maps;
+import com.newhead.barablah.modules.barablahclass.BarablahClassStatusEnum;
 import com.newhead.barablah.modules.barablahclass.base.AbstractBarablahClassService;
 import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
@@ -136,14 +137,12 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
                     andStartAtLessThanOrEqualTo(startAtOnline)
                     .andEndAtGreaterThanOrEqualTo(startAtOnline)
                     .andDeletedEqualTo(false)
-                    .andClassIdIn(classids)
-                    .andTypeEqualTo(type);
+                    .andClassIdIn(classids);
 
             clee.or().andStartAtLessThanOrEqualTo(nextDate)
                     .andEndAtGreaterThanOrEqualTo(nextDate)
                     .andDeletedEqualTo(false)
-                    .andClassIdIn(classids)
-                    .andTypeEqualTo(type);
+                    .andClassIdIn(classids);
         }
 
         long lesson = classLessonMapper.countByExample(clee);
@@ -167,19 +166,19 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
                 andClassIdEqualTo(classid).
                 andTypeEqualTo(BarablahClassLessonTypeEnum.线上.getValue());
         long hasTimes = classLessonMapper.countByExample(clee);
-        long r = course.getOfflineLessons()-hasTimes;
+        long r = course.getOnlineLessons()-hasTimes;
         if (r<times) {
             throw new ApiException(ApiStatus.STATUS_400.getCode(), "还可以再设置"+r+"节课!!!");
         }
-        if (duration>course.getOnlineMaxLessons()) {
-            throw new ApiException(ApiStatus.STATUS_400.getCode(), "设定的每节课的课时时间不能超过最大允许的课时时间!!!");
+        if (duration>course.getOnlineMaxDuration()) {
+            throw new ApiException(ApiStatus.STATUS_400.getCode(), "设定的每节课的课时时间不能超过"+course.getOnlineMaxDuration()+"分钟!!!");
         }
     }
 
     @Transactional
     public void open(SimpleBarablahClassOpenRequest request) {
         BarablahClass aClass = mapper.selectByPrimaryKey(request.getId());
-        if ( "FINISHED".equals(aClass.getStatus())) {
+        if ( BarablahClassStatusEnum.已结束.getValue().equals(aClass.getStatus())) {
             throw new ApiException(ApiStatus.STATUS_400.getCode(), "当前班级已经结束，不允许调整开班课时");
         }
         //线上课时时间安排和课时按时是否合理
@@ -201,16 +200,17 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
         textbookCategoryExample.setOrderByClause("position DESC");
         List<BarablahTextbookCategory> textbookCategories = textbookCategoryMapper.selectByExample(textbookCategoryExample);
 
-        Date curDate = new Date();
-        Date startAtOnline = null;
-        try {
-            startAtOnline = DateUtils.parseDate(request.getStartAtOnline(), "yyyyMMddHHmmss");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
-        Date endAtOnline = DateUtils.addMinutes(startAtOnline,request.getOnlineDuration());
         if (request.getOnlineLessons()>0) {
+            Date curDate = new Date();
+            Date startAtOnline = null;
+            try {
+                startAtOnline = DateUtils.parseDate(request.getStartAtOnline(), "yyyyMMddHHmmss");
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Date endAtOnline = DateUtils.addMinutes(startAtOnline,request.getOnlineDuration());
             // 自动生成在线课时
             for (int i = 0; i < request.getOnlineLessons(); i++) {
                 BarablahClassLesson onlineLesson = new BarablahClassLesson();
@@ -234,12 +234,12 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
                     .andDeletedEqualTo(false);
             lessonExample.setOrderByClause("start_at asc");
             List<BarablahClassLesson> lessons = classLessonMapper.selectByExample(lessonExample);
-
             for(int i=0;i<lessons.size();i++) {
                 BarablahClassLesson lesson = lessons.get(i);
-                if (lesson.getStartAt().before(startAtOnline)) {
-                    continue;
-                }
+
+//                if (lesson.getStartAt().before(startAtOnline)) {
+//                    continue;
+//                }
                 lesson.setLessonName(textbookCategories.get(i).getCategoryName());
                 lesson.setCategoryId(textbookCategories.get(i).getId());
                 classLessonMapper.updateByPrimaryKeySelective(lesson);
@@ -247,15 +247,16 @@ public class SimpleBarablahClassService extends AbstractBarablahClassService {
         }
 
 
-        Date startAtOffline = null;
-        try {
-            startAtOnline = DateUtils.parseDate(request.getStartAtOnline(), "yyyyMMddHHmmss");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Date endAtOffline = DateUtils.addMinutes(startAtOnline,request.getOnlineDuration());
+
 
         if(request.getOfflineLessons()>0) {
+            Date startAtOffline = null;
+            try {
+                startAtOffline = DateUtils.parseDate(request.getStartAtOffline(), "yyyyMMddHHmmss");
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Date endAtOffline = DateUtils.addMinutes(startAtOffline,request.getOnlineDuration());
             // 自动生成离线课时
             int offlineLessons = request.getOfflineLessons(); // 当前生成课时次数
             for (int i = 0; i < offlineLessons; i++) {

@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 学员课时活动记录控制器
- * 2018年03月24日 01:24:57
+ * 2018年03月25日 10:55:23
  */
 @Api(tags = "学员课时活动记录", description = "相关的API")
 public abstract class AbstractBarablahMemberLessonlogController extends WebController  {

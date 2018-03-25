@@ -11,27 +11,27 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * RudderFramework框架自动生成，不允许修改！
  * 表 barablah_member_passport
- * @generated do_not_delete_during_merge 2018年3月13日 07:57:05
+ * @generated do_not_delete_during_merge 2018年3月25日 10:55:18
  */
 public class BarablahMemberPassport implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"1","formid":"1"},"name":"会员ID","fieldType":"Id","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     private Long id;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"会员ID","fieldType":"Object","visible":true,"queryType":0,"displayOrder":0,"length":0,"ref":{"module":"BarablahMember","field":"nickname","type":"SingleList"},"valid":true}
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     private Long memberId;
 
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"帐号来源","fieldType":"String","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     @NotEmpty(message="帐号来源不能为空")
     @Size(max=0,message = "帐号来源长度无效")
@@ -41,7 +41,7 @@ public class BarablahMemberPassport implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"帐号授权ID","fieldType":"String","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     @NotEmpty(message="帐号授权ID不能为空")
     @Size(max=0,message = "帐号授权ID长度无效")
@@ -51,7 +51,7 @@ public class BarablahMemberPassport implements AuditableEntity {
     /**
      *
      * {"viewconfig":{"optype":"3","formid":"1"},"name":"密码","fieldType":"String","visible":true,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":true}
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     @NotEmpty(message="密码不能为空")
     @Size(max=0,message = "密码长度无效")
@@ -61,7 +61,7 @@ public class BarablahMemberPassport implements AuditableEntity {
     /**
      *
      * {"name":"创建时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     @JSONField(serialize=false)
     private Date createdAt;
@@ -69,7 +69,7 @@ public class BarablahMemberPassport implements AuditableEntity {
     /**
      *
      * {"name":"修改时间","fieldType":"Date","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     @JSONField(serialize=false)
     private Date updatedAt;
@@ -77,7 +77,7 @@ public class BarablahMemberPassport implements AuditableEntity {
     /**
      *
      * {"name":"创建者","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     @JSONField(serialize=false)
     private Long creator;
@@ -85,7 +85,7 @@ public class BarablahMemberPassport implements AuditableEntity {
     /**
      *
      * {"name":"修改人","fieldType":"Number","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     @JSONField(serialize=false)
     private Long lastModifier;
@@ -93,14 +93,14 @@ public class BarablahMemberPassport implements AuditableEntity {
     /**
      *
      * {"name":"删除标志","fieldType":"Bool","visible":false,"queryType":0,"displayOrder":0,"length":0,"types":[],"valid":false}
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     @JSONField(serialize=false)
     private Boolean deleted;
 
     /**
      * 返回 id 会员ID
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public Long getId() {
         
@@ -111,7 +111,7 @@ public class BarablahMemberPassport implements AuditableEntity {
      * 设置会员ID
      *
      * @param id
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public void setId(Long id) {
         this.id = id;
@@ -119,7 +119,7 @@ public class BarablahMemberPassport implements AuditableEntity {
 
     /**
      * 返回 member_id 会员ID
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public Long getMemberId() {
         
@@ -130,7 +130,7 @@ public class BarablahMemberPassport implements AuditableEntity {
      * 设置会员ID
      *
      * @param memberId
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
@@ -138,7 +138,7 @@ public class BarablahMemberPassport implements AuditableEntity {
 
     /**
      * 返回 provider 帐号来源
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public String getProvider() {
         
@@ -149,7 +149,7 @@ public class BarablahMemberPassport implements AuditableEntity {
      * 设置帐号来源
      *
      * @param provider
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public void setProvider(String provider) {
         this.provider = provider == null ? null : provider.trim();
@@ -157,7 +157,7 @@ public class BarablahMemberPassport implements AuditableEntity {
 
     /**
      * 返回 provider_id 帐号授权ID
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public String getProviderId() {
         
@@ -168,7 +168,7 @@ public class BarablahMemberPassport implements AuditableEntity {
      * 设置帐号授权ID
      *
      * @param providerId
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public void setProviderId(String providerId) {
         this.providerId = providerId == null ? null : providerId.trim();
@@ -176,7 +176,7 @@ public class BarablahMemberPassport implements AuditableEntity {
 
     /**
      * 返回 password 密码
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public String getPassword() {
         
@@ -187,7 +187,7 @@ public class BarablahMemberPassport implements AuditableEntity {
      * 设置密码
      *
      * @param password
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
@@ -195,7 +195,7 @@ public class BarablahMemberPassport implements AuditableEntity {
 
     /**
      * 返回 created_at 创建时间
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public Date getCreatedAt() {
         
@@ -206,7 +206,7 @@ public class BarablahMemberPassport implements AuditableEntity {
      * 设置创建时间
      *
      * @param createdAt
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
@@ -214,7 +214,7 @@ public class BarablahMemberPassport implements AuditableEntity {
 
     /**
      * 返回 updated_at 修改时间
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public Date getUpdatedAt() {
         
@@ -225,7 +225,7 @@ public class BarablahMemberPassport implements AuditableEntity {
      * 设置修改时间
      *
      * @param updatedAt
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
@@ -233,7 +233,7 @@ public class BarablahMemberPassport implements AuditableEntity {
 
     /**
      * 返回 creator 创建者
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public Long getCreator() {
         
@@ -244,7 +244,7 @@ public class BarablahMemberPassport implements AuditableEntity {
      * 设置创建者
      *
      * @param creator
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public void setCreator(Long creator) {
         this.creator = creator;
@@ -252,7 +252,7 @@ public class BarablahMemberPassport implements AuditableEntity {
 
     /**
      * 返回 last_modifier 修改人
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public Long getLastModifier() {
         
@@ -263,7 +263,7 @@ public class BarablahMemberPassport implements AuditableEntity {
      * 设置修改人
      *
      * @param lastModifier
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public void setLastModifier(Long lastModifier) {
         this.lastModifier = lastModifier;
@@ -271,7 +271,7 @@ public class BarablahMemberPassport implements AuditableEntity {
 
     /**
      * 返回 deleted 删除标志
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public Boolean getDeleted() {
         
@@ -282,7 +282,7 @@ public class BarablahMemberPassport implements AuditableEntity {
      * 设置删除标志
      *
      * @param deleted
-     * @generated 2018年3月13日 07:57:05
+     * @generated 2018年3月25日 10:55:18
      */
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;

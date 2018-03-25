@@ -1,21 +1,18 @@
 package com.newhead.barablah.modules.barablahclasslesson.base.protocol;
 
 import lombok.Data;
-
+import org.hibernate.validator.constraints.NotEmpty;
 import java.util.Date;
+import java.math.BigDecimal;
+
+import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月24日 02:09:41
+ * 2018年03月25日 10:55:20
  */
 @Data
 public abstract class AbstractBarablahClassLessonCreateRequest {
-    /**
-     *
-     * 课时名称
-     */
-    private String lessonName;
-
     /**
      *
      * 班级
@@ -24,13 +21,19 @@ public abstract class AbstractBarablahClassLessonCreateRequest {
 
     /**
      *
-     * 教材四级分类
+     * 课时名称
+     */
+    private String lessonName;
+
+    /**
+     *
+     * 配套教材
      */
     private Long categoryId;
 
     /**
      *
-     * 开始时间
+     * 开课时间
      */
     private Date startAt;
 
@@ -42,19 +45,19 @@ public abstract class AbstractBarablahClassLessonCreateRequest {
 
     /**
      *
-     * 课时视频缩略图
+     * 视频预览
      */
     private String thumbnail;
 
     /**
      *
-     * 是否备课
+     * 备课情况
      */
     private Boolean prepared;
 
     /**
      *
-     * 类型
+     * 课时状态
      */
     private String status;
 

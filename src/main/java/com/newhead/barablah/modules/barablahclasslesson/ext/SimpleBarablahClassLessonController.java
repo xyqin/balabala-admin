@@ -2,6 +2,7 @@ package com.newhead.barablah.modules.barablahclasslesson.ext;
 
 import com.newhead.barablah.modules.barablahclass.base.repository.dao.BarablahClassMapper;
 import com.newhead.barablah.modules.barablahclass.base.repository.entity.BarablahClass;
+import com.newhead.barablah.modules.barablahclasslesson.BarablahClassLessonStatusEnum;
 import com.newhead.barablah.modules.barablahclasslesson.base.AbstractBarablahClassLessonController;
 import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonCreateRequest;
 import com.newhead.barablah.modules.barablahclasslesson.ext.protocol.SimpleBarablahClassLessonPostponeBatchRequest;
@@ -47,6 +48,7 @@ public class SimpleBarablahClassLessonController extends AbstractBarablahClassLe
         BarablahClass classes = classMapper.selectByPrimaryKey(request.getClassId());
         request.setCourseId(classes.getCourseId());
         request.setTeacherId(classes.getTeacherId());
+        request.setStatus(BarablahClassLessonStatusEnum.待开课.getValue());
         return null;
     }
 

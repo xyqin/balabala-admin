@@ -5,21 +5,39 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * 
- * 2018年03月23日 02:01:56
+ * 2018年03月25日 10:55:20
  */
 @Data
 public abstract class AbstractBarablahClassCreateRequest {
     /**
      *
-     * 班级分类ID
+     * 班级类别
      */
     private Long categoryId;
 
     /**
      *
-     * 校区ID
+     * 所在校区
      */
     private Long campusId;
+
+    /**
+     *
+     * 课程类别
+     */
+    private Long courseCatId;
+
+    /**
+     *
+     * 所属课程
+     */
+    private Long courseId;
+
+    /**
+     *
+     * 班级名称
+     */
+    private String className;
 
     /**
      *
@@ -29,27 +47,9 @@ public abstract class AbstractBarablahClassCreateRequest {
 
     /**
      *
-     * 课程分类
-     */
-    private Long courseCatId;
-
-    /**
-     *
-     * 课程ID
-     */
-    private Long courseId;
-
-    /**
-     *
      * 线下教师
      */
     private Long englishTeacherId;
-
-    /**
-     *
-     * 班级名称
-     */
-    private String className;
 
     /**
      *
@@ -67,7 +67,7 @@ public abstract class AbstractBarablahClassCreateRequest {
 
     /**
      *
-     * 状态
+     * 开班状态
      */
     private String status;
 

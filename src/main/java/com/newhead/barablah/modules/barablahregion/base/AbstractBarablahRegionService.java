@@ -127,8 +127,12 @@ public abstract class AbstractBarablahRegionService extends SimpleTreeService {
         BarablahRegionExample.Criteria c = example.createCriteria();
         c.andDeletedEqualTo(false);
         String ordersrc ="";
-        ordersrc = ordersrc + "id desc";
+        ordersrc = ordersrc + "id asc";
         example.setOrderByClause(ordersrc);
+
+        if (request.getRegionName()!=null) {
+            c.andRegionNameLike("%"+request.getRegionName()+"%");
+        }
 
         convertEntityToResponse(getMapper().selectByExample(example),results);
         return results;
@@ -150,6 +154,9 @@ public abstract class AbstractBarablahRegionService extends SimpleTreeService {
         String ordersrc ="";
         ordersrc = ordersrc + "id desc";
         example.setOrderByClause(ordersrc);
+        if (request.getRegionName()!=null) {
+            c.andRegionNameLike("%"+request.getRegionName()+"%");
+        }
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -170,7 +177,7 @@ public abstract class AbstractBarablahRegionService extends SimpleTreeService {
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahRegion> entitys,List<SimpleBarablahRegionQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahRegion> entitys,List<SimpleBarablahRegionQueryResponse> results) {
         Map<Long,Long> parentIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> parentIdResultMap = Maps.newHashMap();
 

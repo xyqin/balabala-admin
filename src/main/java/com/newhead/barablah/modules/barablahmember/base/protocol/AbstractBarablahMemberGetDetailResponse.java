@@ -11,19 +11,19 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 2018年03月13日 07:57:07
+ * 2018年03月25日 10:55:20
  */
 @Data
 public abstract class AbstractBarablahMemberGetDetailResponse {
     /**
      *
-     * 会员ID
+     * ID
      */
      private Long id;
 
     /**
      *
-     * 校区ID
+     * 所在校区
      */
     private LabelValueItem CampusIdObject = new LabelValueItem();
 

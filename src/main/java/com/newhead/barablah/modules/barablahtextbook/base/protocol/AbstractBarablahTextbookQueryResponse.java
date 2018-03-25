@@ -12,19 +12,19 @@ import lombok.Data;
 
 /**
  * 
- * @generated 2018年03月24日 03:44:07
+ * @generated 2018年03月25日 10:55:21
  */
 @Data
 public abstract class AbstractBarablahTextbookQueryResponse {
     /**
      *
-     * 主键
+     * ID
      */
      private Long id;
 
     /**
      *
-     * 教材四级分类
+     * 对应课本
      */
     private LabelValueItem CategoryIdObject = new LabelValueItem();
 

@@ -151,7 +151,6 @@ public abstract class AbstractBarablahTextbookCategoryService extends SimpleTree
         if (request.getCategoryName()!=null) {
             c.andCategoryNameLike("%"+request.getCategoryName()+"%");
         }
-
         example.setPageSize(request.getSize());
         example.setStartRow(request.getOffset());
 
@@ -172,11 +171,11 @@ public abstract class AbstractBarablahTextbookCategoryService extends SimpleTree
      * @param entitys
      * @param results
      */
-    private void convertEntityToResponse(List<BarablahTextbookCategory> entitys,List<SimpleBarablahTextbookCategoryQueryResponse> results) {
+    public void convertEntityToResponse(List<BarablahTextbookCategory> entitys,List<SimpleBarablahTextbookCategoryQueryResponse> results) {
         Map<Long,Long> parentIdMap = Maps.newHashMap();
         Map<Long,LabelValueItem> parentIdResultMap = Maps.newHashMap();
 
-        for(BarablahTextbookCategory entity:entitys) {
+       for(BarablahTextbookCategory entity:entitys) {
             parentIdMap.put(entity.getId(),entity.getParentId());
         }
         BarablahTextbookCategoryExample parentIdExample = new BarablahTextbookCategoryExample();
@@ -188,11 +187,11 @@ public abstract class AbstractBarablahTextbookCategoryService extends SimpleTree
         }
         List<BarablahTextbookCategory> parentIdList = getMapper().selectByExample(parentIdExample);
         for(BarablahTextbookCategory item:parentIdList) {
-            LabelValueItem parentIdItem = new LabelValueItem();
-            parentIdItem.setName("parentId");
-            parentIdItem.setValue(String.valueOf(item.getId()));
-            parentIdItem.setLabel(item.getCategoryName());
-            parentIdResultMap.put(item.getId(),parentIdItem);
+           LabelValueItem parentIdItem = new LabelValueItem();
+           parentIdItem.setName("parentId");
+           parentIdItem.setValue(String.valueOf(item.getId()));
+           parentIdItem.setLabel(item.getCategoryName());
+           parentIdResultMap.put(item.getId(),parentIdItem);
         }
         //第一组
         for(BarablahTextbookCategory entity:entitys) {
@@ -256,6 +255,7 @@ public abstract class AbstractBarablahTextbookCategoryService extends SimpleTree
         for(SimpleBarablahTextbookCategoryQueryResponse response:sources) {
             ExtNode node = new ExtNode();
             node.setId(response.getId());
+            node.getNode().setUrl(response.getUrl());
             node.getNode().setLeaf(true);
             node.getNode().setLabel(response.getCategoryName());
             node.getNode().setValue(String.valueOf(response.getId()));

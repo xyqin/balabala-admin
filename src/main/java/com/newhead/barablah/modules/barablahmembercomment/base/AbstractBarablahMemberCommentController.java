@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * RudderFramework 自动生成
  * 教师评语表控制器
- * 2018年03月24日 01:24:57
+ * 2018年03月25日 10:55:23
  */
 @Api(tags = "教师评语表", description = "相关的API")
 public abstract class AbstractBarablahMemberCommentController extends WebController  {
@@ -175,7 +175,7 @@ public abstract class AbstractBarablahMemberCommentController extends WebControl
      */
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "教师评语表ID")
     @RequestMapping(value = "getlist", method = RequestMethod.GET)
-    public ApiEntity<List<SimpleBarablahMemberCommentQueryResponse>> getList(@RequestParam(required = false) Integer classId,@RequestParam(required = false) String content,@RequestParam(required = false) String commentType) {
+    public ApiEntity<List<SimpleBarablahMemberCommentQueryResponse>> getList(@RequestParam(required = false) Long classId,@RequestParam(required = false) String content,@RequestParam(required = false) String commentType) {
         SimpleBarablahMemberCommentQueryListRequest request = new SimpleBarablahMemberCommentQueryListRequest();
         if (!StringUtils.isEmpty(classId)) {
             request.setClassId(classId);
@@ -199,7 +199,7 @@ public abstract class AbstractBarablahMemberCommentController extends WebControl
     @ApiOperation(value = "获取", response = ApiEntity.class, notes = "")
     @RequestMapping(value = "getpage", method = RequestMethod.GET)
     public ApiEntity getPage(
-        @RequestParam(required = false) Integer classId,
+        @RequestParam(required = false) Long classId,
         @RequestParam(required = false) String content,
         @RequestParam(required = false) String commentType,
         @RequestParam(required = false) Integer page,

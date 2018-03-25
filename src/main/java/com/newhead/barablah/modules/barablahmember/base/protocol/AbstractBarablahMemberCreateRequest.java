@@ -9,13 +9,13 @@ import javax.validation.constraints.Size;
 
 /**
  * 
- * 2018年03月13日 07:57:07
+ * 2018年03月25日 10:55:20
  */
 @Data
 public abstract class AbstractBarablahMemberCreateRequest {
     /**
      *
-     * 校区ID
+     * 所在校区
      */
     private Long campusId;
 
@@ -23,6 +23,7 @@ public abstract class AbstractBarablahMemberCreateRequest {
      *
      * 昵称
      */
+    @NotEmpty(message="barablahMember昵称不能为空")
     private String nickname;
 
     /**
@@ -35,6 +36,7 @@ public abstract class AbstractBarablahMemberCreateRequest {
      *
      * 英文名
      */
+    @NotEmpty(message="barablahMember英文名不能为空")
     private String englishName;
 
     /**
@@ -47,6 +49,7 @@ public abstract class AbstractBarablahMemberCreateRequest {
      *
      * 生日
      */
+    @NotEmpty(message="barablahMember生日不能为空")
     private String birthday;
 
     /**
